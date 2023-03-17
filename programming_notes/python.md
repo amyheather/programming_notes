@@ -16,6 +16,12 @@ Where you want to open, in terminal, type `jupyter lab`
 Install jupyter-book package.  
 To create sample book stored in current location: `jupyter-book create book_name/`  
 To build/rebuild book: `jupyter-book build book_name`  
+To publish book on GitHub Pages:  
+* Install ghp-import  
+* Navigate to book's root directory (contains `_build/html`) and run: `ghp-import -n -p -f _build/html` (if a directory above, can do `bookname/_build/html` instead)    
+* View book at `https://<user>.github.io/<myonlinebook>/`  
+
+To update book, make changes in main branch, rebuild book, then use `ghp-import -n -p -f _build/html` as before to push newly built HTML to gh-pages branch  
 
 ## Linting
 Install flake8 and nbqa packages.  
