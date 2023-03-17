@@ -21,7 +21,7 @@ To publish book on GitHub Pages:
 * Navigate to book's root directory (contains `_build/html`) and run: `ghp-import -n -p -f _build/html` (if a directory above, can do `bookname/_build/html` instead)    
 * View book at `https://<user>.github.io/<myonlinebook>/`  
 
-To update book, make changes in main branch, rebuild book, then use `ghp-import -n -p -f _build/html` as before to push newly built HTML to gh-pages branch  
+To update book, make changes in main branch, rebuild book, then use `ghp-import -n -p -f _build/html` as before to push newly built HTML to gh-pages branch. Will take a few minutes for page to update.  
 
 ## Linting
 Install flake8 and nbqa packages.  

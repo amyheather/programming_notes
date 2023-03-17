@@ -4,7 +4,7 @@
 When you create the repository on GitHub, be sure to include:  
 * **.gitignore** - tells git which files it should ignore when run git status and upload files to git (e.g. ignoring .Rhistory when use R)  
 * **LICENSE** - use open source license like MIT  
-* **README.md** - contains information about project, shown on front page of repository  
+* **README.<area>md** - contains information about project, shown on front page of repository  
 
 To clone remote repository, start in the directory where you would like to create the folder (don't start within folder with desired name, or will make the same named folder again within it!), then e.g.: `git clone https://github.com/amyheather/programming_notes.git`  
 To delete repository, enter it and type: `rm -rf .git`. Then leave go up a directory and do `rm -r repofoldername`  
