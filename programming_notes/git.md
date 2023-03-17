@@ -6,7 +6,7 @@ When you create the repository on GitHub, be sure to include:
 * **LICENSE** - use open source license like MIT  
 * **README.md** - contains information about project, shown on front page of repository  
 
-To clone remote repository, start in the directory where you would like to create the folder (don't start within folder with desired name, or will make the same named folder again within it!). Command: `git clone httpslinkfromgithub`  
+To clone remote repository, start in the directory where you would like to create the folder (don't start within folder with desired name, or will make the same named folder again within it!), then e.g.: `git clone https://github.com/amyheather/programming_notes.git`  
 To delete repository, enter it and type: `rm -rf .git`. Then leave go up a directory and do `rm -r repofoldername`  
 
 ## Add, rename, remove, push
@@ -21,6 +21,8 @@ To push commits to remote repo: `git push`
 ## Branches and versions
 To view branches (current branch marked with star): `git branch`  
 To create new branch: `git branch branchname`  
+When push for new branch (only on local, not yet on remote), will need to set upstream: `git push --set-upstream origin branchname`  
+
 To switch branches: `git checkout branchname`  
 
 To check for different between local and remote file:  

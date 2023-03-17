@@ -375,7 +375,7 @@ document.write(`
 <li><p><strong>LICENSE</strong> - use open source license like MIT</p></li>
 <li><p><strong><a class="reference external" href="http://README.md">README.md</a></strong> - contains information about project, shown on front page of repository</p></li>
 </ul>
-<p>To clone remote repository, start in the directory where you would like to create the folder (don’t start within folder with desired name, or will make the same named folder again within it!). Command: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">httpslinkfromgithub</span></code><br />
+<p>To clone remote repository, start in the directory where you would like to create the folder (don’t start within folder with desired name, or will make the same named folder again within it!), then e.g.: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/amyheather/programming_notes.git</span></code><br />
 To delete repository, enter it and type: <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">.git</span></code>. Then leave go up a directory and do <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-r</span> <span class="pre">repofoldername</span></code></p>
 </section>
 <section id="add-rename-remove-push">
@@ -392,7 +392,8 @@ To push commits to remote repo: <code class="docutils literal notranslate"><span
 <h2>Branches and versions<a class="headerlink" href="#branches-and-versions" title="Permalink to this headline">#</a></h2>
 <p>To view branches (current branch marked with star): <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code><br />
 To create new branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">branchname</span></code><br />
-To switch branches: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">branchname</span></code></p>
+When push for new branch (only on local, not yet on remote), will need to set upstream: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--set-upstream</span> <span class="pre">origin</span> <span class="pre">branchname</span></code></p>
+<p>To switch branches: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">branchname</span></code></p>
 <p>To check for different between local and remote file:<br />
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">origin</span> <span class="pre">branchname</span></code><br />
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">origin/branchname</span> <span class="pre">--</span> <span class="pre">filename</span></code></p>
