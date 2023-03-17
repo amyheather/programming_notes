@@ -1,2 +1,2 @@
-# programming_notes
-Programming notes
+# Programming notes  
+Jupyter notebook with helpful commands for git and python.  
