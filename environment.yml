@@ -1,0 +1,8 @@
+name: programming_notes
+channels:
+  - conda-forge
+dependencies:
+  - jupyter-book=0.15.1
+  - jupyterlab=3.5.3
+  - jupyterlab-spellchecker=0.7.2
+  - python=3.8.16
