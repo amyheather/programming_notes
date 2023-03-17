@@ -386,7 +386,14 @@ Where you want to open, in terminal, type <code class="docutils literal notransl
 <h2>Jupyter book<a class="headerlink" href="#jupyter-book" title="Permalink to this headline">#</a></h2>
 <p>Install jupyter-book package.<br />
 To create sample book stored in current location: <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">create</span> <span class="pre">book_name/</span></code><br />
-To build/rebuild book: <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">book_name</span></code></p>
+To build/rebuild book: <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">book_name</span></code><br />
+To publish book on GitHub Pages:</p>
+<ul class="simple">
+<li><p>Install ghp-import</p></li>
+<li><p>Navigate to book’s root directory (contains <code class="docutils literal notranslate"><span class="pre">_build/html</span></code>) and run: <code class="docutils literal notranslate"><span class="pre">ghp-import</span> <span class="pre">-n</span> <span class="pre">-p</span> <span class="pre">-f</span> <span class="pre">_build/html</span></code> (if a directory above, can do <code class="docutils literal notranslate"><span class="pre">bookname/_build/html</span></code> instead)</p></li>
+<li><p>View book at <code class="docutils literal notranslate"><span class="pre">https://&lt;user&gt;.github.io/&lt;myonlinebook&gt;/</span></code></p></li>
+</ul>
+<p>To update book, make changes in main branch, rebuild book, then use <code class="docutils literal notranslate"><span class="pre">ghp-import</span> <span class="pre">-n</span> <span class="pre">-p</span> <span class="pre">-f</span> <span class="pre">_build/html</span></code> as before to push newly built HTML to gh-pages branch</p>
 </section>
 <section id="linting">
 <h2>Linting<a class="headerlink" href="#linting" title="Permalink to this headline">#</a></h2>
