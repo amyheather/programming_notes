@@ -18,6 +18,14 @@ To rename file: `git mv oldfilename newfilename`
 To add commit message (applies to all staged files): `git commit -m "Message"`  
 To push commits to remote repo: `git push`  
 
+## Undo git command  
+To unstage specific uncommitted file: `git reset filename`  
+To unstage all uncommitted files: `git reset`  
+
+## Git fetch v.s. git pull  
+`git fetch` downloads remote data, but doesn't integrate it with your files - it gives you a fresh view but is totally "harmless", won't affect local stuff.  
+`git pull` updates your local files with changes from the remote server, integrating it with the working copies of your files (and will try to merge remote changes in merge conflicts) - so should not do this when you have uncommitted local changes.   
+
 ## Branches and versions
 To view branches (current branch marked with star): `git branch`  
 To create new branch: `git branch branchname`  

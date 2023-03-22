@@ -63,6 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'python';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="R" href="r.html" />
     <link rel="prev" title="Git" href="git.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -157,6 +158,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
 </ul>
 
     </div>
@@ -375,7 +377,8 @@ To see packages in current environment: <code class="docutils literal notranslat
 To activate environment: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">env_name</span></code><br />
 To create environment from yml file: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">create</span> <span class="pre">--name</span> <span class="pre">env_name</span> <span class="pre">--file</span> <span class="pre">environment.yml</span></code><br />
 To edit yml file from terminal: <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">environment.yml</span></code><br />
-To update current environment from yml file: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">update</span> <span class="pre">--file</span> <span class="pre">environment.yml</span> <span class="pre">--prune</span></code></p>
+To update current environment from yml file: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">update</span> <span class="pre">--file</span> <span class="pre">environment.yml</span> <span class="pre">--prune</span></code><br />
+To delete environment: deactivate then <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">remove</span> <span class="pre">-n</span> <span class="pre">env_name</span> <span class="pre">--all</span></code></p>
 </section>
 <section id="jupyter-lab">
 <h2>Jupyter lab<a class="headerlink" href="#jupyter-lab" title="Permalink to this headline">#</a></h2>
@@ -385,9 +388,10 @@ Where you want to open, in terminal, type <code class="docutils literal notransl
 <section id="jupyter-book">
 <h2>Jupyter book<a class="headerlink" href="#jupyter-book" title="Permalink to this headline">#</a></h2>
 <p>Install jupyter-book package.<br />
-To create sample book stored in current location: <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">create</span> <span class="pre">book_name/</span></code><br />
-To build/rebuild book: <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">book_name</span></code><br />
-To publish book on GitHub Pages:</p>
+To create sample book stored in current location: <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">create</span> <span class="pre">book_name/</span></code></p>
+<p>To build/rebuild book: <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">book_name</span></code><br />
+If add new page and book table of contents doesn’t update upon rebuild, try: <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">--all</span> <span class="pre">book_name</span></code></p>
+<p>To publish book on GitHub Pages:</p>
 <ul class="simple">
 <li><p>Install ghp-import</p></li>
 <li><p>Navigate to book’s root directory (contains <code class="docutils literal notranslate"><span class="pre">_build/html</span></code>) and run: <code class="docutils literal notranslate"><span class="pre">ghp-import</span> <span class="pre">-n</span> <span class="pre">-p</span> <span class="pre">-f</span> <span class="pre">_build/html</span></code> (if a directory above, can do <code class="docutils literal notranslate"><span class="pre">bookname/_build/html</span></code> instead)</p></li>
@@ -444,6 +448,15 @@ To run: <code class="docutils literal notranslate"><span class="pre">streamlit</
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Git</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="r.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">R</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
