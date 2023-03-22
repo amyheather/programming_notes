@@ -1,3 +1,3 @@
 # Amy - Programming notes
 
-Notes related to git and python.
+Notes related to git, python and R.

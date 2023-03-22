@@ -158,6 +158,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
 </ul>
 
     </div>
@@ -353,6 +354,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-delete-repositories">Create and delete repositories</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-rename-remove-push">Add, rename, remove, push</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#undo-git-command">Undo git command</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-fetch-v-s-git-pull">Git fetch v.s. git pull</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#branches-and-versions">Branches and versions</a></li>
 </ul>
             </nav>
@@ -373,7 +376,7 @@ document.write(`
 <ul class="simple">
 <li><p><strong>.gitignore</strong> - tells git which files it should ignore when run git status and upload files to git (e.g. ignoring .Rhistory when use R)</p></li>
 <li><p><strong>LICENSE</strong> - use open source license like MIT</p></li>
-<li><p><strong><a class="reference external" href="http://README.md">README.md</a></strong> - contains information about project, shown on front page of repository</p></li>
+<li><p><strong>README.<area>md</strong> - contains information about project, shown on front page of repository</p></li>
 </ul>
 <p>To clone remote repository, start in the directory where you would like to create the folder (don’t start within folder with desired name, or will make the same named folder again within it!), then e.g.: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/amyheather/programming_notes.git</span></code><br />
 To delete repository, enter it and type: <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">.git</span></code>. Then leave go up a directory and do <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-r</span> <span class="pre">repofoldername</span></code></p>
@@ -387,6 +390,16 @@ To remove file: <code class="docutils literal notranslate"><span class="pre">git
 To rename file: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">mv</span> <span class="pre">oldfilename</span> <span class="pre">newfilename</span></code><br />
 To add commit message (applies to all staged files): <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;Message&quot;</span></code><br />
 To push commits to remote repo: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code></p>
+</section>
+<section id="undo-git-command">
+<h2>Undo git command<a class="headerlink" href="#undo-git-command" title="Permalink to this headline">#</a></h2>
+<p>To unstage specific uncommitted file: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">filename</span></code><br />
+To unstage all uncommitted files: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span></code></p>
+</section>
+<section id="git-fetch-v-s-git-pull">
+<h2>Git fetch v.s. git pull<a class="headerlink" href="#git-fetch-v-s-git-pull" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> downloads remote data, but doesn’t integrate it with your files - it gives you a fresh view but is totally “harmless”, won’t affect local stuff.<br />
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> updates your local files with changes from the remote server, integrating it with the working copies of your files (and will try to merge remote changes in merge conflicts) - so should not do this when you have uncommitted local changes.</p>
 </section>
 <section id="branches-and-versions">
 <h2>Branches and versions<a class="headerlink" href="#branches-and-versions" title="Permalink to this headline">#</a></h2>
@@ -473,6 +486,8 @@ When push for new branch (only on local, not yet on remote), will need to set up
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-delete-repositories">Create and delete repositories</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-rename-remove-push">Add, rename, remove, push</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#undo-git-command">Undo git command</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-fetch-v-s-git-pull">Git fetch v.s. git pull</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#branches-and-versions">Branches and versions</a></li>
 </ul>
   </nav></div>
