@@ -352,6 +352,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-credentials">Storing credentials</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-delete-repositories">Create and delete repositories</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-rename-remove-push">Add, rename, remove, push</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#undo-git-command">Undo git command</a></li>
@@ -370,6 +371,20 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="git">
 <h1>Git<a class="headerlink" href="#git" title="Permalink to this headline">#</a></h1>
+<section id="storing-credentials">
+<h2>Storing credentials<a class="headerlink" href="#storing-credentials" title="Permalink to this headline">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">credential.helper</span> <span class="pre">cache</span></code> value tells Git to keep your password cached in memory for a particular amount of minutes. The default is 15 minutes, you can set a longer timeout with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cache for 1 hour</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">credential</span><span class="o">.</span><span class="n">helper</span> <span class="s2">&quot;cache --timeout=3600&quot;</span>
+
+<span class="c1"># Cache for 1 day</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">credential</span><span class="o">.</span><span class="n">helper</span> <span class="s2">&quot;cache --timeout=86400&quot;</span>
+
+<span class="c1"># Cache for 1 week</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">credential</span><span class="o">.</span><span class="n">helper</span> <span class="s2">&quot;cache --timeout=604800&quot;</span>
+</pre></div>
+</div>
+</section>
 <section id="create-and-delete-repositories">
 <h2>Create and delete repositories<a class="headerlink" href="#create-and-delete-repositories" title="Permalink to this headline">#</a></h2>
 <p>When you create the repository on GitHub, be sure to include:</p>
@@ -380,6 +395,14 @@ document.write(`
 </ul>
 <p>To clone remote repository, start in the directory where you would like to create the folder (don’t start within folder with desired name, or will make the same named folder again within it!), then e.g.: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/amyheather/programming_notes.git</span></code><br />
 To delete repository, enter it and type: <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">.git</span></code>. Then leave go up a directory and do <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-r</span> <span class="pre">repofoldername</span></code></p>
+<p>To add local repository to remote:</p>
+<ul class="simple">
+<li><p>Set up local repository, making it use git, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span> <span class="pre">-b</span> <span class="pre">main</span></code></p></li>
+<li><p>Add and commit something</p></li>
+<li><p>Create empty repo on GitHub account</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">origin</span> <span class="pre">https://github.com/amyheather/package_test.git</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">-u</span> <span class="pre">origin</span> <span class="pre">main</span></code></p></li>
+</ul>
 </section>
 <section id="add-rename-remove-push">
 <h2>Add, rename, remove, push<a class="headerlink" href="#add-rename-remove-push" title="Permalink to this headline">#</a></h2>
@@ -403,18 +426,25 @@ To unstage all uncommitted files: <code class="docutils literal notranslate"><sp
 </section>
 <section id="branches-and-versions">
 <h2>Branches and versions<a class="headerlink" href="#branches-and-versions" title="Permalink to this headline">#</a></h2>
-<p>To view branches (current branch marked with star): <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code><br />
-To create new branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">branchname</span></code><br />
-When push for new branch (only on local, not yet on remote), will need to set upstream: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--set-upstream</span> <span class="pre">origin</span> <span class="pre">branchname</span></code></p>
+<p>To view branches (current branch marked with star): <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code></p>
+<p>To create new branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span> <span class="n">branchname</span>
+<span class="n">git</span> <span class="n">push</span> <span class="o">--</span><span class="nb">set</span><span class="o">-</span><span class="n">upstream</span> <span class="n">origin</span> <span class="n">branchname</span>
+</pre></div>
+</div>
 <p>To switch branches: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">branchname</span></code></p>
+<p>To delete remote branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">--delete</span> <span class="pre">branchname</span></code><br />
+To delete local branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-d</span> <span class="pre">branchname</span></code></p>
 <p>To check for different between local and remote file:<br />
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">origin</span> <span class="pre">branchname</span></code><br />
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">origin/branchname</span> <span class="pre">--</span> <span class="pre">filename</span></code></p>
-<p>To merge dev branch with main branch, push, then return to dev:<br />
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">dev</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code><br />
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">dev</span></code></p>
+<p>To merge dev branch with main branch, push, then return to dev:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">main</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">dev</span>
+<span class="n">git</span> <span class="n">push</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">dev</span>
+</pre></div>
+</div>
 <p>To move to main branch and force local files to match main (loses unstaged commits):<br />
 <em>Not sure this is best way! Need to investigate more</em><br />
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span></code><br />
@@ -484,6 +514,7 @@ When push for new branch (only on local, not yet on remote), will need to set up
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-credentials">Storing credentials</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-delete-repositories">Create and delete repositories</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-rename-remove-push">Add, rename, remove, push</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#undo-git-command">Undo git command</a></li>
