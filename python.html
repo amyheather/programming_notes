@@ -159,6 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
+
 </ul>
 
     </div>
@@ -353,10 +354,13 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-conda">Environments - conda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">Jupyter lab</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book">Jupyter book</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit">Streamlit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
 </ul>
             </nav>
         </div>
@@ -379,6 +383,17 @@ To create environment from yml file: <code class="docutils literal notranslate">
 To edit yml file from terminal: <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">environment.yml</span></code><br />
 To update current environment from yml file: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">update</span> <span class="pre">--file</span> <span class="pre">environment.yml</span> <span class="pre">--prune</span></code><br />
 To delete environment: deactivate then <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">remove</span> <span class="pre">-n</span> <span class="pre">env_name</span> <span class="pre">--all</span></code></p>
+</section>
+<section id="using-vs-code">
+<h2>Using VS Code<a class="headerlink" href="#using-vs-code" title="Permalink to this headline">#</a></h2>
+<p>To open VS Code from terminal: <code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">.</span></code><br />
+To activate conda environment in VS Code: Ctrl+Shift+P &gt; Python Interpreter, then select correct environment<br />
+To view/create settings.json in .vscode folder: Ctrl+Shift+P &gt; Preferences: Open Workspace Settings (JSON)</p>
+</section>
+<section id="type-hinting-in-vs-code-with-pylance">
+<h2>Type hinting in VS Code with Pylance<a class="headerlink" href="#type-hinting-in-vs-code-with-pylance" title="Permalink to this headline">#</a></h2>
+<p>Extension &gt; Pylance should be installed<br />
+In settings.json, set <code class="docutils literal notranslate"><span class="pre">&quot;python.analysis.typeCheckingMode&quot;:</span> <span class="pre">&quot;strict&quot;</span></code> or to <code class="docutils literal notranslate"><span class="pre">&quot;None&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;basic&quot;</span></code></p>
 </section>
 <section id="jupyter-lab">
 <h2>Jupyter lab<a class="headerlink" href="#jupyter-lab" title="Permalink to this headline">#</a></h2>
@@ -409,6 +424,55 @@ To lint jupyter notebook: <code class="docutils literal notranslate"><span class
 <h2>Streamlit<a class="headerlink" href="#streamlit" title="Permalink to this headline">#</a></h2>
 <p>Install streamlit package.<br />
 To run: <code class="docutils literal notranslate"><span class="pre">streamlit</span> <span class="pre">run</span> <span class="pre">main.py</span></code></p>
+</section>
+<section id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">#</a></h2>
+<p>Successfully installed docker on Ubuntu using following instructions: <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/">https://docs.docker.com/engine/install/ubuntu/</a></p>
+<p>Will need requirements.txt file. To create this from conda environment (with pip install in that environment and environment activated): <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">list</span> <span class="pre">--format=freeze</span> <span class="pre">&gt;</span> <span class="pre">requirements.txt</span></code> (although may not have identifical packages - pip may have fewer). There is a simpler command of <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span> <span class="pre">&gt;</span> <span class="pre">requirements.txt</span></code> but I found that gave odd path references.</p>
+<p>To create dockerfile:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">Dockerfile</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">Dockerfile</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># kailo_dashboards/Dockerfile</span>
+
+<span class="n">FROM</span> <span class="n">python</span><span class="p">:</span><span class="mf">3.10</span><span class="o">-</span><span class="n">slim</span>
+
+<span class="n">WORKDIR</span> <span class="o">/</span><span class="n">kailo_dashboards</span>
+
+<span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> \
+    <span class="n">build</span><span class="o">-</span><span class="n">essential</span> \
+    <span class="n">curl</span> \
+    <span class="n">software</span><span class="o">-</span><span class="n">properties</span><span class="o">-</span><span class="n">common</span> \
+    <span class="n">git</span> \
+    <span class="o">&amp;&amp;</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">lists</span><span class="o">/*</span>
+
+<span class="n">COPY</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="n">RUN</span> <span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="n">EXPOSE</span> <span class="mi">8501</span>
+
+<span class="n">HEALTHCHECK</span> <span class="n">CMD</span> <span class="n">curl</span> <span class="o">--</span><span class="n">fail</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8501</span><span class="o">/</span><span class="n">_stcore</span><span class="o">/</span><span class="n">health</span>
+
+<span class="n">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&quot;streamlit&quot;</span><span class="p">,</span> <span class="s2">&quot;run&quot;</span><span class="p">,</span> <span class="s2">&quot;streamlit_app.py&quot;</span><span class="p">,</span> <span class="s2">&quot;--server.port=8501&quot;</span><span class="p">,</span> <span class="s2">&quot;--se&gt;</span>
+</pre></div>
+</div>
+<p>Explanation of Dockerfile:</p>
+<ul class="simple">
+<li><p>FROM - sets base image, various possible - <a class="reference external" href="https://hub.docker.com/_/python">https://hub.docker.com/_/python</a></p></li>
+<li><p>WORKDIR - sets working directory</p></li>
+<li><p>RUN apt-get… to install git</p></li>
+<li><p>COPY . . to get copy of all app files. If it was in a public GitHub repo, you could do <code class="docutils literal notranslate"><span class="pre">RUN</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/amyheather/kailo_area_dashboard</span> <span class="pre">.</span></code>, and if it was in a private repo, you could use SSH</p></li>
+<li><p>Install dependencies from requirements.txt</p></li>
+<li><p>EXPOSE - informs Docker that the container listens on the specified network ports at runtime. For streamlit, Your container needs to listen to Streamlit’s (default) port 8501</p></li>
+<li><p>HEALTHCHECK - tells Docker how to test a container to check that it is still working. Your container needs to listen to Streamlit’s (default) port 8501</p></li>
+<li><p>ENTRYPOINT - allows you to configure a container that will run as an executable. Here, it also contains the entire streamlit run command for your app, so you don’t have to call it from the command line</p></li>
+</ul>
+<p>To set up docker:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">docker</span> <span class="pre">build</span> <span class="pre">-t</span> <span class="pre">streamlit</span> <span class="pre">.</span></code> to build an image from the Dockerfile. -t is used to tag the file, here tagged as streamlit. Can see streamlit image under repository column if run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">docker</span> <span class="pre">images</span></code></p></li>
+</ul>
 </section>
 </section>
 
@@ -474,10 +538,13 @@ To run: <code class="docutils literal notranslate"><span class="pre">streamlit</
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-conda">Environments - conda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">Jupyter lab</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book">Jupyter book</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit">Streamlit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
 </ul>
   </nav></div>
 
