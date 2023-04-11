@@ -158,6 +158,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="git.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">R</a></li>
+
 </ul>
 
     </div>
@@ -351,8 +352,25 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">R</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-setting-default-inputs">Function setting default inputs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-returning-multiple-objects">Function returning multiple objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-environment-renv">Reproducible environment: renv</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-environment-binder">Reproducible environment: binder</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-set-up">Packages: set up</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-adding-functions-and-testing">Packages: adding functions and testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-using-other-libraries">Packages: using other libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-loading-and-checking">Packages: loading and checking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-vignettes">Packages - Vignettes:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-create-github-pages-website">Packages - Create GitHub pages website:</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -365,6 +383,20 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="r">
 <h1>R<a class="headerlink" href="#r" title="Permalink to this headline">#</a></h1>
+<section id="function-setting-default-inputs">
+<h2>Function setting default inputs<a class="headerlink" href="#function-setting-default-inputs" title="Permalink to this headline">#</a></h2>
+<p>If default input is different to the input name, you won’t have an issue. If it’s the same you’ll have an error.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fine:</span>
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="n">function</span><span class="p">(</span><span class="n">T</span> <span class="o">=</span> <span class="mi">1</span><span class="p">){}</span>
+<span class="c1"># Problem:</span>
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="n">function</span><span class="p">(</span><span class="n">T</span> <span class="o">=</span> <span class="n">T</span><span class="p">){}</span>
+</pre></div>
+</div>
+<p>In that case, you can resolve this by doing…</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>x &lt;- function(T = parent.frame()$T)
+</pre></div>
+</div>
+</section>
 <section id="function-returning-multiple-objects">
 <h2>Function returning multiple objects<a class="headerlink" href="#function-returning-multiple-objects" title="Permalink to this headline">#</a></h2>
 <p>In python, you can return multiple objects as follows:</p>
@@ -392,6 +424,125 @@ document.write(`
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
+<section id="reproducible-environment-renv">
+<h2>Reproducible environment: renv<a class="headerlink" href="#reproducible-environment-renv" title="Permalink to this headline">#</a></h2>
+<p>To start new project environment, creating .RProfile: <code class="docutils literal notranslate"><span class="pre">renv::init()</span></code><br />
+To save state of project library to lockfile renv.lock: <code class="docutils literal notranslate"><span class="pre">renv::snapshot()</span></code><br />
+To return to environment in lockfile:  <code class="docutils literal notranslate"><span class="pre">renv::restore()</span></code></p>
+</section>
+<section id="reproducible-environment-binder">
+<h2>Reproducible environment: binder<a class="headerlink" href="#reproducible-environment-binder" title="Permalink to this headline">#</a></h2>
+<p>Created using instructions from <a class="reference external" href="https://ajstewartlang.github.io/23_introduction_to_binder/slides/23_introduction_to_binder.pdf">here</a> and <a class="reference external" href="https://github.com/binder-examples/r">here</a>.</p>
+<ol class="arabic simple">
+<li><p>Create runtime.txt file with R version</p></li>
+<li><p>Create install.R file with package installations</p></li>
+<li><p>Navigate to <a class="reference external" href="https://mybinder.org/">https://mybinder.org/</a>, paste in GitHub repository, set to “URL to open (optional)” and type in “rstudio”, then launch</p></li>
+</ol>
+</section>
+<section id="linting">
+<h2>Linting<a class="headerlink" href="#linting" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;lintr&quot;</span><span class="p">)</span>
+<span class="n">library</span><span class="p">(</span><span class="n">lintr</span><span class="p">)</span>
+<span class="n">lint</span><span class="p">(</span><span class="s2">&quot;filename.R&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="packages">
+<h1>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">#</a></h1>
+<p>Notes from working through: <a class="reference external" href="https://r-pkgs.org/">https://r-pkgs.org/</a><br />
+<strong>Remember:</strong> Git commit after each change</p>
+<section id="packages-set-up">
+<h2>Packages: set up<a class="headerlink" href="#packages-set-up" title="Permalink to this headline">#</a></h2>
+<p>Start in a fresh R session in the directory where you want to create the folder (e.g. Documents).</p>
+<p>Environment:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">library(devtools)</span></code> (if not already installed, will need to run install.packages(“devtools”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_package(&quot;~/Documents/packagename&quot;)</span></code>, which will create a directory (if doesn’t already exist) and populate with .gitignore, .Rbuildignore, DESCRIPTION, NAMESPACE, R folder, and packagename.Rproj. RStudio will open a new window with Rproj activated/open. As it’s a fresh R session, then call <code class="docutils literal notranslate"><span class="pre">library(devtools)</span></code> again.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">renv::init()</span></code> to set up with renv</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">install.packages(c(&quot;devtools&quot;,</span> <span class="pre">&quot;roxygen2&quot;,</span> <span class="pre">&quot;testthat&quot;,</span> <span class="pre">&quot;knitr&quot;))</span></code> then <code class="docutils literal notranslate"><span class="pre">renv::snapshot()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">library(devtools)</span></code>, or add to .Rprofile to always library() it:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">interactive</span><span class="p">())</span> <span class="p">{</span>
+  <span class="n">suppressMessages</span><span class="p">(</span><span class="n">require</span><span class="p">(</span><span class="n">devtools</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>GitHub:</p>
+<ul class="simple">
+<li><p>Make it a GitHub repository - <code class="docutils literal notranslate"><span class="pre">usethis::use_git()</span></code></p></li>
+<li><p>Rename branch <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-m</span> <span class="pre">master</span> <span class="pre">main</span></code></p></li>
+<li><p>Link with GitHub - <code class="docutils literal notranslate"><span class="pre">usethis::use_github()</span></code>. May get error about personal access token if not set. To see if it is set, run <code class="docutils literal notranslate"><span class="pre">gh_token_help()</span></code>. To store, use <code class="docutils literal notranslate"><span class="pre">gitcreds::gitcreds_set()</span></code></p></li>
+</ul>
+<p>Description, license and readme:</p>
+<ul class="simple">
+<li><p>Edit DESCRIPTION (title, author, description)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_mit_license()</span></code> to create the license files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_readme_rmd()</span></code> to create basic README file, add some lines to .Rbuildignore, and creates a Git pre-commit hook to help you keep README.Rmd and <a class="reference external" href="http://README.md">README.md</a> in sync. <strong>To update README</strong> run<code class="docutils literal notranslate"><span class="pre">build_readme()</span></code> to create <a class="reference external" href="http://README.md">README.md</a> from README/Rmd. The advantage of having a README.Rmd file is that you can include code chunks, embed plots, etc. You can also use GitHub Actions to re-render README.Rmd every time you push, example here: <a class="github reference external" href="https://github.com/r-lib/actions/tree/v1/examples">r-lib/actions</a>. I have not tried that yet though.</p></li>
+</ul>
+</section>
+<section id="packages-adding-functions-and-testing">
+<h2>Packages: adding functions and testing<a class="headerlink" href="#packages-adding-functions-and-testing" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">use_r(&quot;functionname&quot;)</span></code> to create or open script functionname.R in R/ directory. Add the function there (only that, not libraries etc.).</p>
+<p>Docstring:</p>
+<ul class="simple">
+<li><p>Open function R file, click cursor within function, then do <em>Code &gt; Insert Roxygen skelecton</em>.</p></li>
+<li><p>Edit the Rxoygen description. It will include &#64;export. This tells Roxygen2 to add this function to the NAMESPACE file, so that it will be accessible to users. For your first R package, you’ll probably want to include &#64;export for each of your functions.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">document()</span></code> to update documentation. It will convert the roxygen comment into man/functionname.Rd and write in NAMESPACE</p></li>
+<li><p>The &#64;example directive is used when you want to use an external file that contains the examples. If you’re including the example(s) directly in your roxygen documentation then use <code class="docutils literal notranslate"><span class="pre">&#64;examples</span></code>. If you don’t want the examples to run (e.g. if providing with a fake file that doesn’t exist, and hence would fail check() as it tests examples work), then use <code class="docutils literal notranslate"><span class="pre">&#64;examplesIf</span> <span class="pre">interactive()</span></code></p></li>
+<li><p>Can now preview helpfile by running <code class="docutils literal notranslate"><span class="pre">?functionname</span></code></p></li>
+<li><p>Usage is derived from function specification. Can set manually with <code class="docutils literal notranslate"><span class="pre">&#64;usage</span></code> and remove entirely with <code class="docutils literal notranslate"><span class="pre">&#64;usage</span> <span class="pre">NULL</span></code></p></li>
+</ul>
+<p>Testing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">use_testthat()</span></code>. This initializes the unit testing machinery for your package. It adds Suggests: testthat to DESCRIPTION, creates the directory tests/testthat/, and adds the script tests/testthat.R.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_test(&quot;functionname&quot;)</span></code> to create matching testfile.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">library(testthat)</span></code>, <code class="docutils literal notranslate"><span class="pre">load_all()</span></code>, <code class="docutils literal notranslate"><span class="pre">test()</span></code> to run the test. Tests will also run whenever <code class="docutils literal notranslate"><span class="pre">check()</span></code> package</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rename_files(&quot;strsplit1&quot;,</span> <span class="pre">&quot;str_split_one&quot;)</span></code> to rename the R file and will also rename testthat file (which we also edit with new function name), to fit with convention of filename matching function name</p></li>
+</ul>
+</section>
+<section id="packages-using-other-libraries">
+<h2>Packages: using other libraries<a class="headerlink" href="#packages-using-other-libraries" title="Permalink to this headline">#</a></h2>
+<p>Based on: <a class="reference external" href="https://kbroman.org/pkg_primer/pages/depends.html">https://kbroman.org/pkg_primer/pages/depends.html</a></p>
+<ul class="simple">
+<li><p>Add libraries that are essential for package to run and that want R to install when install your package to Imports: section of DESCRIPTION FILE. Instead of manual change, can also run use_package(“readxl”) which adds it to Imports section of DESCRIPTION.</p></li>
+<li><p>Add required imports to each function - ideally with specific functions - or just whole package - example:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#&#39; @import tidyverse</span>
+<span class="c1">#&#39; @importFrom readxl read_excel</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">check()</span></code> to see if issue is resolved</p></li>
+</ul>
+</section>
+<section id="packages-loading-and-checking">
+<h2>Packages: loading and checking<a class="headerlink" href="#packages-loading-and-checking" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">load_all()</span></code> to simulate process of building, installing and attaching the package. You can then use functions from that package.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">check()</span></code> to check package is in working order. Read output - it’s easier to deal with these problems earlier</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">install()</span></code> then <code class="docutils literal notranslate"><span class="pre">library(packagename)</span></code> to install and use package in current environment</p></li>
+</ul>
+</section>
+<section id="packages-vignettes">
+<h2>Packages - Vignettes:<a class="headerlink" href="#packages-vignettes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">usethis::use_vignette(&quot;my-vignette&quot;)</span></code> - creates directory, modifies DESCRIPTION, drafts vignette Rmd, adds patterns to .gitignore</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">library(regexcite)</span></code> then knit</p></li>
+</ul>
+</section>
+<section id="packages-create-github-pages-website">
+<h2>Packages - Create GitHub pages website:<a class="headerlink" href="#packages-create-github-pages-website" title="Permalink to this headline">#</a></h2>
+<p>Initial set-up:</p>
+<ul class="simple">
+<li><p>First step is to ensure set up with git creds. When I first tried this, I had lots of issues with it not working, and realised this was because I hadn’t set it up with the Personal Access Token (PAT). Do this using <code class="docutils literal notranslate"><span class="pre">gitcreds::gitcreds_set()</span></code>. Check settings using <code class="docutils literal notranslate"><span class="pre">usethis::gh_token_help()</span></code>.</p></li>
+<li><p>Next step is to go to repository Settings &gt; Actions &gt; General &gt; Workflow permissions and check “read and write permissions”<br />
+Creating site:</p></li>
+<li><p>OPTION 1. <code class="docutils literal notranslate"><span class="pre">usethis::use_pkgdown()</span></code>, then <code class="docutils literal notranslate"><span class="pre">pkgdown::build_site()</span></code>, then remove docs from .gitignore so you can commit them to GitHub, then push to main</p></li>
+<li><p>OPTION 2: <code class="docutils literal notranslate"><span class="pre">usethis::use_pkgdown_github_pages()</span></code><br />
+To update website, rebuild locally using <code class="docutils literal notranslate"><span class="pre">build_site()</span></code> then push to GitHub. GitHub pages will always based on files in docs/ folder for source code of website.</p></li>
+</ul>
 </section>
 </section>
 
@@ -447,8 +598,25 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">R</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-setting-default-inputs">Function setting default inputs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-returning-multiple-objects">Function returning multiple objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-environment-renv">Reproducible environment: renv</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-environment-binder">Reproducible environment: binder</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-set-up">Packages: set up</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-adding-functions-and-testing">Packages: adding functions and testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-using-other-libraries">Packages: using other libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-loading-and-checking">Packages: loading and checking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-vignettes">Packages - Vignettes:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-create-github-pages-website">Packages - Create GitHub pages website:</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>

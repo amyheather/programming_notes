@@ -1,5 +1,18 @@
 # Git
 
+## Storing credentials  
+The `credential.helper cache` value tells Git to keep your password cached in memory for a particular amount of minutes. The default is 15 minutes, you can set a longer timeout with:
+```
+# Cache for 1 hour
+git config --global credential.helper "cache --timeout=3600"
+
+# Cache for 1 day
+git config --global credential.helper "cache --timeout=86400"
+
+# Cache for 1 week
+git config --global credential.helper "cache --timeout=604800"
+```  
+
 ## Create and delete repositories
 When you create the repository on GitHub, be sure to include:  
 * **.gitignore** - tells git which files it should ignore when run git status and upload files to git (e.g. ignoring .Rhistory when use R)  
@@ -8,6 +21,14 @@ When you create the repository on GitHub, be sure to include:
 
 To clone remote repository, start in the directory where you would like to create the folder (don't start within folder with desired name, or will make the same named folder again within it!), then e.g.: `git clone https://github.com/amyheather/programming_notes.git`  
 To delete repository, enter it and type: `rm -rf .git`. Then leave go up a directory and do `rm -r repofoldername`  
+
+To add local repository to remote:  
+* Set up local repository, making it use git, `git init -b main`  
+* Add and commit something  
+* Create empty repo on GitHub account  
+* `git remote add origin https://github.com/amyheather/package_test.git`  
+* `git push -u origin main`  
+
 
 ## Add, rename, remove, push
 To check status: `git status`  
@@ -28,20 +49,29 @@ To unstage all uncommitted files: `git reset`
 
 ## Branches and versions
 To view branches (current branch marked with star): `git branch`  
-To create new branch: `git branch branchname`  
-When push for new branch (only on local, not yet on remote), will need to set upstream: `git push --set-upstream origin branchname`  
+
+To create new branch:
+```
+git branch branchname
+git push --set-upstream origin branchname
+```  
 
 To switch branches: `git checkout branchname`  
+
+To delete remote branch: `git push origin --delete branchname`  
+To delete local branch: `git branch -d branchname`  
 
 To check for different between local and remote file:  
 `git fetch origin branchname`  
 `git diff origin/branchname -- filename`  
 
 To merge dev branch with main branch, push, then return to dev:  
-`git checkout main`  
-`git merge dev`  
-`git push`  
-`git checkout dev`  
+```
+git checkout main
+git merge dev
+git push
+git checkout dev
+```  
 
 To move to main branch and force local files to match main (loses unstaged commits):  
 *Not sure this is best way! Need to investigate more*  
