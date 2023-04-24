@@ -123,7 +123,8 @@ Based on: <https://kbroman.org/pkg_primer/pages/depends.html>
 
 ### Packages - Vignettes:  
 * `usethis::use_vignette("my-vignette")` - creates directory, modifies DESCRIPTION, drafts vignette Rmd, adds patterns to .gitignore  
-* `library(regexcite)` then knit  
+* `install()`, `library(package_name)` then knit  
+If you rename vignette, change VignetteIndexEntry to match title (doesn't need to match filename). When run, will create new html under docs/articles called newfilename.html. Delete old filename. Build site. Push.  
 
 ### Packages - Create GitHub pages website:  
 Initial set-up:  
@@ -132,4 +133,5 @@ Initial set-up:
 Creating site:  
 * OPTION 1. `usethis::use_pkgdown()`, then `pkgdown::build_site()`, then remove docs from .gitignore so you can commit them to GitHub, then push to main  
 * OPTION 2: `usethis::use_pkgdown_github_pages()`  
-To update website, rebuild locally using `build_site()` then push to GitHub. GitHub pages will always based on files in docs/ folder for source code of website.
+
+To **update website**, rebuild locally using `pkgdown::build_site()` then push to GitHub and push to main branch. GitHub pages will always based on files in docs/ folder for source code of website in specified branch (default: main).

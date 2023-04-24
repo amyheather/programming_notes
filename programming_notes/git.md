@@ -77,4 +77,15 @@ To move to main branch and force local files to match main (loses unstaged commi
 *Not sure this is best way! Need to investigate more*  
 `git checkout main`  
 `git fetch`  
-`git reset --hard origin/main`
+`git reset --hard origin/main`  
+
+## Commits  
+To view commit history: `git log`  
+To return to a previous commit: `git reset 7111dce4748bb213ede5a43912889a350355039a` - but then I was at that commit but with unstaged changes, so I returned by doing `git reflog` to see where I wanted to return to, then `git reset HEAD@{1}` to get back to head.  
+Never quite figured out... stopped needing it... jot down if figure out next time...  
+I also tried these but they were the right thing either:  
+* `git revert 7111dce4748bb213ede5a43912889a350355039a`  
+* git checkout 7111dce4748bb213ede5a43912889a350355039a` ... but this means in detatched head state... so still not super certain regarding this...)... if you make changes but want to get rid of them and return, `git checkout branchname -f` to force it  
+
+## Public v.s. private repositories  
+Nobody can push to public repository until you add them as collaborator.

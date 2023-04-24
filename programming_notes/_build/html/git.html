@@ -159,6 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
+
 </ul>
 
     </div>
@@ -358,6 +359,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#undo-git-command">Undo git command</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-fetch-v-s-git-pull">Git fetch v.s. git pull</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#branches-and-versions">Branches and versions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commits">Commits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#public-v-s-private-repositories">Public v.s. private repositories</a></li>
 </ul>
             </nav>
         </div>
@@ -451,6 +454,21 @@ To delete local branch: <code class="docutils literal notranslate"><span class="
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code><br />
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span> <span class="pre">origin/main</span></code></p>
 </section>
+<section id="commits">
+<h2>Commits<a class="headerlink" href="#commits" title="Permalink to this headline">#</a></h2>
+<p>To view commit history: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code><br />
+To return to a previous commit: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">7111dce4748bb213ede5a43912889a350355039a</span></code> - but then I was at that commit but with unstaged changes, so I returned by doing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reflog</span></code> to see where I wanted to return to, then <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">HEAD&#64;{1}</span></code> to get back to head.<br />
+Never quite figured out… stopped needing it… jot down if figure out next time…<br />
+I also tried these but they were the right thing either:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">revert</span> <span class="pre">7111dce4748bb213ede5a43912889a350355039a</span></code></p></li>
+<li><p>git checkout 7111dce4748bb213ede5a43912889a350355039a<code class="docutils literal notranslate"><span class="pre">...</span> <span class="pre">but</span> <span class="pre">this</span> <span class="pre">means</span> <span class="pre">in</span> <span class="pre">detatched</span> <span class="pre">head</span> <span class="pre">state...</span> <span class="pre">so</span> <span class="pre">still</span> <span class="pre">not</span> <span class="pre">super</span> <span class="pre">certain</span> <span class="pre">regarding</span> <span class="pre">this...)...</span> <span class="pre">if</span> <span class="pre">you</span> <span class="pre">make</span> <span class="pre">changes</span> <span class="pre">but</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">get</span> <span class="pre">rid</span> <span class="pre">of</span> <span class="pre">them</span> <span class="pre">and</span> <span class="pre">return,</span></code>git checkout branchname -f` to force it</p></li>
+</ul>
+</section>
+<section id="public-v-s-private-repositories">
+<h2>Public v.s. private repositories<a class="headerlink" href="#public-v-s-private-repositories" title="Permalink to this headline">#</a></h2>
+<p>Nobody can push to public repository until you add them as collaborator.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -520,6 +538,8 @@ To delete local branch: <code class="docutils literal notranslate"><span class="
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#undo-git-command">Undo git command</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-fetch-v-s-git-pull">Git fetch v.s. git pull</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#branches-and-versions">Branches and versions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commits">Commits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#public-v-s-private-repositories">Public v.s. private repositories</a></li>
 </ul>
   </nav></div>
 

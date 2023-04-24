@@ -529,7 +529,8 @@ To return to environment in lockfile:  <code class="docutils literal notranslate
 <h2>Packages - Vignettes:<a class="headerlink" href="#packages-vignettes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">usethis::use_vignette(&quot;my-vignette&quot;)</span></code> - creates directory, modifies DESCRIPTION, drafts vignette Rmd, adds patterns to .gitignore</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">library(regexcite)</span></code> then knit</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">install()</span></code>, <code class="docutils literal notranslate"><span class="pre">library(package_name)</span></code> then knit<br />
+If you rename vignette, change VignetteIndexEntry to match title (doesn’t need to match filename). When run, will create new html under docs/articles called newfilename.html. Delete old filename. Build site. Push.</p></li>
 </ul>
 </section>
 <section id="packages-create-github-pages-website">
@@ -540,9 +541,9 @@ To return to environment in lockfile:  <code class="docutils literal notranslate
 <li><p>Next step is to go to repository Settings &gt; Actions &gt; General &gt; Workflow permissions and check “read and write permissions”<br />
 Creating site:</p></li>
 <li><p>OPTION 1. <code class="docutils literal notranslate"><span class="pre">usethis::use_pkgdown()</span></code>, then <code class="docutils literal notranslate"><span class="pre">pkgdown::build_site()</span></code>, then remove docs from .gitignore so you can commit them to GitHub, then push to main</p></li>
-<li><p>OPTION 2: <code class="docutils literal notranslate"><span class="pre">usethis::use_pkgdown_github_pages()</span></code><br />
-To update website, rebuild locally using <code class="docutils literal notranslate"><span class="pre">build_site()</span></code> then push to GitHub. GitHub pages will always based on files in docs/ folder for source code of website.</p></li>
+<li><p>OPTION 2: <code class="docutils literal notranslate"><span class="pre">usethis::use_pkgdown_github_pages()</span></code></p></li>
 </ul>
+<p>To <strong>update website</strong>, rebuild locally using <code class="docutils literal notranslate"><span class="pre">pkgdown::build_site()</span></code> then push to GitHub and push to main branch. GitHub pages will always based on files in docs/ folder for source code of website in specified branch (default: main).</p>
 </section>
 </section>
 
