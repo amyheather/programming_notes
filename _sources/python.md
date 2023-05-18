@@ -40,6 +40,124 @@ To update book, make changes in main branch, rebuild book, then use `ghp-import 
 Install flake8 and nbqa packages.  
 To lint file: `flake8 filename.py`  
 To lint jupyter notebook: `nbqa flake8 filename.ipynb`  
+To lint within notebook: `%load_ext pycodestyle_magic` and `%pycodestyle_on`
+
+## Unit testing
+Note: unti testing is typically for testing function outputs - so although the code below works, you wouldn't typically write unit tests for this purpose.
+
+Example:
+```
+import numpy as np
+import os
+import pandas as pd
+import unittest
+
+class DataTests(unittest.TestCase):
+    '''Class for running unit tests'''
+
+    # Run set up once for whole class
+    @classmethod
+    def setUpClass(self):
+        '''Set up - runs prior to each test'''
+        # Paths and filenames
+        raw_path: str = './data'
+        raw_filename: str = 'SAMueL ssnap extract v2.csv'
+        clean_path: str = './output'
+        clean_filename: str = 'reformatted_data.csv'
+        # Import dataframes
+        raw_data = pd.read_csv(os.path.join(raw_path, raw_filename),
+                               low_memory=False)
+        clean_data = pd.read_csv(os.path.join(clean_path, clean_filename),
+                                 low_memory=False)
+        # Save to DataTests class
+        self.raw = raw_data
+        self.clean = clean_data
+
+    def freq(self, raw_col, raw_val, clean_col, clean_val):
+        '''
+        Test that the frequency of a value in the raw data is same as
+        the frequency of a value in the cleaned data
+        Inputs:
+        - self
+        - raw_col and clean_col = string
+        - raw_val and clean_val = string, number, or list
+        Performs assertEqual test.
+        '''
+        # If values are not lists, convert to lists
+        if type(raw_val) != list:
+            raw_val = [raw_val]
+        if type(clean_val) != list:
+            clean_val = [clean_val]
+        # Find frequencies and check if equal
+        raw_freq = (self.raw[raw_col].isin(raw_val).values).sum()
+        clean_freq = (self.clean[clean_col].isin(clean_val).values).sum()
+        self.assertEqual(raw_freq, clean_freq)
+
+    def time_neg(self, time_column):
+        '''
+        Function for testing that times are not negative when expected
+        to be positive.
+        Input: time_column = string, column with times
+        '''
+        self.assertEqual(sum(self.clean[time_column] < 0), 0)
+
+    def equal_array(self, df, col, exp_array):
+        '''
+        Function to check that the only possible values in a column are
+        those provided by exp_array.
+        Inputs:
+        - df = dataframe (raw or clean)
+        - col = string (column name)
+        - exp_array = array (expected values for column)
+        '''
+        # Sorted so that array order does not matter
+        self.assertEqual(sorted(df[col].unique()), sorted(exp_array))
+
+    def test_raw_shape(self):
+        '''Test the raw dataframe shape is as expected'''
+        self.assertEqual(self.raw.shape, (360381, 83))
+        
+    def test_id(self):
+        '''Test that ID numbers are all unique'''
+        self.assertEqual(len(self.clean.id.unique()),
+                         len(self.clean.index))
+
+    def test_onset(self):
+        '''Test that onset_known is equal to precise + best estimate'''
+        self.freq('S1OnsetTimeType', ['P', 'BE'], 'onset_known', 1)
+        self.freq('S1OnsetTimeType', 'NK', 'onset_known', 0)
+        
+    def test_time_negative(self):
+        '''Test that times are not negative when expected to be positive'''
+        time_col = ['onset_to_arrival_time',
+                    'call_to_ambulance_arrival_time',
+                    'ambulance_on_scene_time',
+                    'ambulance_travel_to_hospital_time',
+                    'ambulance_wait_time_at_hospital',
+                    'scan_to_thrombolysis_time',
+                    'arrival_to_thrombectomy_time']
+        for col in time_col:
+            with self.subTest(msg=col):
+                self.time_neg(col)
+
+    def test_no_ambulance(self):
+        '''
+        Test that people who do not arrive by ambulance therefore have
+        no ambulance times
+        '''
+        amb_neg = self.clean[(self.clean['arrive_by_ambulance'] == 0) & (
+            (self.clean['call_to_ambulance_arrival_time'].notnull()) |
+            (self.clean['ambulance_on_scene_time'].notnull()) |
+            (self.clean['ambulance_travel_to_hospital_time'].notnull()) |
+            (self.clean['ambulance_wait_time_at_hospital'].notnull()))]
+        self.assertEqual(len(amb_neg.index), 0)
+
+
+
+if __name__ == '__main__':
+    unittest.main()
+
+```
 
 ## Streamlit
 Install streamlit package.  

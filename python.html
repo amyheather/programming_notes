@@ -359,6 +359,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">Jupyter lab</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book">Jupyter book</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit">Streamlit</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
 </ul>
@@ -418,7 +419,125 @@ If add new page and book table of contents doesn’t update upon rebuild, try: <
 <h2>Linting<a class="headerlink" href="#linting" title="Permalink to this headline">#</a></h2>
 <p>Install flake8 and nbqa packages.<br />
 To lint file: <code class="docutils literal notranslate"><span class="pre">flake8</span> <span class="pre">filename.py</span></code><br />
-To lint jupyter notebook: <code class="docutils literal notranslate"><span class="pre">nbqa</span> <span class="pre">flake8</span> <span class="pre">filename.ipynb</span></code></p>
+To lint jupyter notebook: <code class="docutils literal notranslate"><span class="pre">nbqa</span> <span class="pre">flake8</span> <span class="pre">filename.ipynb</span></code><br />
+To lint within notebook: <code class="docutils literal notranslate"><span class="pre">%load_ext</span> <span class="pre">pycodestyle_magic</span></code> and <code class="docutils literal notranslate"><span class="pre">%pycodestyle_on</span></code></p>
+</section>
+<section id="unit-testing">
+<h2>Unit testing<a class="headerlink" href="#unit-testing" title="Permalink to this headline">#</a></h2>
+<p>Note: unti testing is typically for testing function outputs - so although the code below works, you wouldn’t typically write unit tests for this purpose.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="k">class</span> <span class="nc">DataTests</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Class for running unit tests&#39;&#39;&#39;</span>
+
+    <span class="c1"># Run set up once for whole class</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">setUpClass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Set up - runs prior to each test&#39;&#39;&#39;</span>
+        <span class="c1"># Paths and filenames</span>
+        <span class="n">raw_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;./data&#39;</span>
+        <span class="n">raw_filename</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;SAMueL ssnap extract v2.csv&#39;</span>
+        <span class="n">clean_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;./output&#39;</span>
+        <span class="n">clean_filename</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;reformatted_data.csv&#39;</span>
+        <span class="c1"># Import dataframes</span>
+        <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">raw_path</span><span class="p">,</span> <span class="n">raw_filename</span><span class="p">),</span>
+                               <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">clean_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">clean_path</span><span class="p">,</span> <span class="n">clean_filename</span><span class="p">),</span>
+                                 <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="c1"># Save to DataTests class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">raw_data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clean</span> <span class="o">=</span> <span class="n">clean_data</span>
+
+    <span class="k">def</span> <span class="nf">freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_col</span><span class="p">,</span> <span class="n">raw_val</span><span class="p">,</span> <span class="n">clean_col</span><span class="p">,</span> <span class="n">clean_val</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Test that the frequency of a value in the raw data is same as</span>
+<span class="sd">        the frequency of a value in the cleaned data</span>
+<span class="sd">        Inputs:</span>
+<span class="sd">        - self</span>
+<span class="sd">        - raw_col and clean_col = string</span>
+<span class="sd">        - raw_val and clean_val = string, number, or list</span>
+<span class="sd">        Performs assertEqual test.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># If values are not lists, convert to lists</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">raw_val</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">raw_val</span> <span class="o">=</span> <span class="p">[</span><span class="n">raw_val</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">clean_val</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="n">clean_val</span> <span class="o">=</span> <span class="p">[</span><span class="n">clean_val</span><span class="p">]</span>
+        <span class="c1"># Find frequencies and check if equal</span>
+        <span class="n">raw_freq</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="n">raw_col</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">raw_val</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">clean_freq</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="p">[</span><span class="n">clean_col</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">clean_val</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">raw_freq</span><span class="p">,</span> <span class="n">clean_freq</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">time_neg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_column</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Function for testing that times are not negative when expected</span>
+<span class="sd">        to be positive.</span>
+<span class="sd">        Input: time_column = string, column with times</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="p">[</span><span class="n">time_column</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">equal_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">exp_array</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Function to check that the only possible values in a column are</span>
+<span class="sd">        those provided by exp_array.</span>
+<span class="sd">        Inputs:</span>
+<span class="sd">        - df = dataframe (raw or clean)</span>
+<span class="sd">        - col = string (column name)</span>
+<span class="sd">        - exp_array = array (expected values for column)</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># Sorted so that array order does not matter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">exp_array</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">test_raw_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Test the raw dataframe shape is as expected&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="p">(</span><span class="mi">360381</span><span class="p">,</span> <span class="mi">83</span><span class="p">))</span>
+        
+    <span class="k">def</span> <span class="nf">test_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Test that ID numbers are all unique&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span>
+                         <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">test_onset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Test that onset_known is equal to precise + best estimate&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">freq</span><span class="p">(</span><span class="s1">&#39;S1OnsetTimeType&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;BE&#39;</span><span class="p">],</span> <span class="s1">&#39;onset_known&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">freq</span><span class="p">(</span><span class="s1">&#39;S1OnsetTimeType&#39;</span><span class="p">,</span> <span class="s1">&#39;NK&#39;</span><span class="p">,</span> <span class="s1">&#39;onset_known&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">test_time_negative</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Test that times are not negative when expected to be positive&#39;&#39;&#39;</span>
+        <span class="n">time_col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;onset_to_arrival_time&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;call_to_ambulance_arrival_time&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;ambulance_on_scene_time&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;ambulance_travel_to_hospital_time&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;ambulance_wait_time_at_hospital&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;scan_to_thrombolysis_time&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;arrival_to_thrombectomy_time&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">time_col</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="n">col</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">time_neg</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_no_ambulance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Test that people who do not arrive by ambulance therefore have</span>
+<span class="sd">        no ambulance times</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">amb_neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="p">[</span><span class="s1">&#39;arrive_by_ambulance&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="p">[</span><span class="s1">&#39;call_to_ambulance_arrival_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">|</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="p">[</span><span class="s1">&#39;ambulance_on_scene_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">|</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="p">[</span><span class="s1">&#39;ambulance_travel_to_hospital_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">|</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="p">[</span><span class="s1">&#39;ambulance_wait_time_at_hospital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()))]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">amb_neg</span><span class="o">.</span><span class="n">index</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+
+</pre></div>
+</div>
 </section>
 <section id="streamlit">
 <h2>Streamlit<a class="headerlink" href="#streamlit" title="Permalink to this headline">#</a></h2>
@@ -543,6 +662,7 @@ To run: <code class="docutils literal notranslate"><span class="pre">streamlit</
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">Jupyter lab</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book">Jupyter book</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit">Streamlit</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
 </ul>
