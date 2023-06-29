@@ -43,7 +43,7 @@ To lint jupyter notebook: `nbqa flake8 filename.ipynb`
 To lint within notebook: `%load_ext pycodestyle_magic` and `%pycodestyle_on`
 
 ## Unit testing
-Note: unti testing is typically for testing function outputs - so although the code below works, you wouldn't typically write unit tests for this purpose.
+Note: unit testing is typically for testing function outputs - so although the code below works, you wouldn't typically write unit tests for this purpose.
 
 Example:
 ```
