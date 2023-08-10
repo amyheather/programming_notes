@@ -7,3 +7,4 @@ chapters:
 - file: git
 - file: python
 - file: r
+- file: latex

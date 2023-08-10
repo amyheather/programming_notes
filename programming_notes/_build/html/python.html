@@ -160,6 +160,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="latex.html">Latex</a></li>
+
+
 </ul>
 
     </div>
@@ -356,6 +359,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-conda">Environments - conda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">Violin plot</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">Jupyter lab</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book">Jupyter book</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>
@@ -395,6 +399,16 @@ To view/create settings.json in .vscode folder: Ctrl+Shift+P &gt; Preferences: O
 <h2>Type hinting in VS Code with Pylance<a class="headerlink" href="#type-hinting-in-vs-code-with-pylance" title="Permalink to this headline">#</a></h2>
 <p>Extension &gt; Pylance should be installed<br />
 In settings.json, set <code class="docutils literal notranslate"><span class="pre">&quot;python.analysis.typeCheckingMode&quot;:</span> <span class="pre">&quot;strict&quot;</span></code> or to <code class="docutils literal notranslate"><span class="pre">&quot;None&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;basic&quot;</span></code></p>
+</section>
+<section id="violin-plot">
+<h2>Violin plot<a class="headerlink" href="#violin-plot" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;quarter_year&#39;</span><span class="p">)[</span><span class="s1">&#39;stroke_severity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
 </section>
 <section id="jupyter-lab">
 <h2>Jupyter lab<a class="headerlink" href="#jupyter-lab" title="Permalink to this headline">#</a></h2>
@@ -659,6 +673,7 @@ To run: <code class="docutils literal notranslate"><span class="pre">streamlit</
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-conda">Environments - conda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">Violin plot</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">Jupyter lab</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book">Jupyter book</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>

@@ -16,7 +16,16 @@ To view/create settings.json in .vscode folder: Ctrl+Shift+P > Preferences: Open
 
 ## Type hinting in VS Code with Pylance  
 Extension > Pylance should be installed  
-In settings.json, set `"python.analysis.typeCheckingMode": "strict"` or to `"None"` or `"basic"`   
+In settings.json, set `"python.analysis.typeCheckingMode": "strict"` or to `"None"` or `"basic"` 
+
+## Violin plot
+```
+df = data.groupby('quarter_year')['stroke_severity'].agg(lambda x: list(x))
+fig, ax = plt.subplots()
+ax.violinplot(df)
+ax.set_xticks(np.arange(1, len(df.index)+1), labels=df.index)
+plt.show()
+```
 
 ## Jupyter lab
 Install jupyterlab package.  
