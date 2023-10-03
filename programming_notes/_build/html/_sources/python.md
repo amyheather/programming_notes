@@ -1,5 +1,8 @@
 # Python
 
+## Markdown
+Add image with text alongside it: `<img align='left' src='image file path' alt='alt_name' width='900'> Text alongside image `
+
 ## Environments - conda
 To see conda environments: `conda env list`  
 To see packages in current environment: `conda list`  
@@ -44,6 +47,10 @@ To publish book on GitHub Pages:
 * View book at `https://<user>.github.io/<myonlinebook>/`  
 
 To update book, make changes in main branch, rebuild book, then use `ghp-import -n -p -f _build/html` as before to push newly built HTML to gh-pages branch. Will take a few minutes for page to update.  
+
+## Comparing two dataframes
+Simple check if match: `df1.equals(df2)`
+Drop duplicate columns: `pd.concat([df1, df2]).drop_duplicates(keep=False)`
 
 ## Linting
 Install flake8 and nbqa packages.  
