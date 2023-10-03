@@ -160,6 +160,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="latex.html">Latex</a></li>
+
+
 </ul>
 
     </div>
@@ -353,11 +356,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-conda">Environments - conda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">Violin plot</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">Jupyter lab</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book">Jupyter book</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-two-dataframes">Comparing two dataframes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit">Streamlit</a></li>
@@ -375,6 +381,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="python">
 <h1>Python<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h1>
+<section id="markdown">
+<h2>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">#</a></h2>
+<p>Add image with text alongside it: <code class="docutils literal notranslate"><span class="pre">&lt;img</span> <span class="pre">align='left'</span> <span class="pre">src='image</span> <span class="pre">file</span> <span class="pre">path'</span> <span class="pre">alt='alt_name'</span> <span class="pre">width='900'&gt;</span> <span class="pre">Text</span> <span class="pre">alongside</span> <span class="pre">image</span> </code></p>
+</section>
 <section id="environments-conda">
 <h2>Environments - conda<a class="headerlink" href="#environments-conda" title="Permalink to this headline">#</a></h2>
 <p>To see conda environments: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">list</span></code><br />
@@ -396,6 +406,16 @@ To view/create settings.json in .vscode folder: Ctrl+Shift+P &gt; Preferences: O
 <p>Extension &gt; Pylance should be installed<br />
 In settings.json, set <code class="docutils literal notranslate"><span class="pre">&quot;python.analysis.typeCheckingMode&quot;:</span> <span class="pre">&quot;strict&quot;</span></code> or to <code class="docutils literal notranslate"><span class="pre">&quot;None&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;basic&quot;</span></code></p>
 </section>
+<section id="violin-plot">
+<h2>Violin plot<a class="headerlink" href="#violin-plot" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;quarter_year&#39;</span><span class="p">)[</span><span class="s1">&#39;stroke_severity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
 <section id="jupyter-lab">
 <h2>Jupyter lab<a class="headerlink" href="#jupyter-lab" title="Permalink to this headline">#</a></h2>
 <p>Install jupyterlab package.<br />
@@ -414,6 +434,20 @@ If add new page and book table of contents doesn’t update upon rebuild, try: <
 <li><p>View book at <code class="docutils literal notranslate"><span class="pre">https://&lt;user&gt;.github.io/&lt;myonlinebook&gt;/</span></code></p></li>
 </ul>
 <p>To update book, make changes in main branch, rebuild book, then use <code class="docutils literal notranslate"><span class="pre">ghp-import</span> <span class="pre">-n</span> <span class="pre">-p</span> <span class="pre">-f</span> <span class="pre">_build/html</span></code> as before to push newly built HTML to gh-pages branch. Will take a few minutes for page to update.</p>
+<p>To set this up to just run from the command <code class="docutils literal notranslate"><span class="pre">book</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code> to go to top of directory (i.e. above documents)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">.bashrc</span></code></p></li>
+<li><p>At bottom of file, add <code class="docutils literal notranslate"><span class="pre">alias</span> <span class="pre">book=&quot;jupyter-book</span> <span class="pre">build</span> <span class="pre">./</span> <span class="pre">&amp;&amp;</span> <span class="pre">ghp-import</span> <span class="pre">-n</span> <span class="pre">-p</span> <span class="pre">-f</span> <span class="pre">_build/html&quot;</span></code>, then save the file</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">.bashrc</span></code> to refresh</p></li>
+<li><p>Then, when you want to recreate the jupyter book and push to GH pages, go to where the book is (i.e. where build and config is) and run <code class="docutils literal notranslate"><span class="pre">book</span></code></p></li>
+<li><p>Also set up config file if desired to execute pages <code class="docutils literal notranslate"><span class="pre">off</span></code> if don’t want to re-run all the notebooks each time</p></li>
+</ul>
+</section>
+<section id="comparing-two-dataframes">
+<h2>Comparing two dataframes<a class="headerlink" href="#comparing-two-dataframes" title="Permalink to this headline">#</a></h2>
+<p>Simple check if match: <code class="docutils literal notranslate"><span class="pre">df1.equals(df2)</span></code>
+Drop duplicate columns: <code class="docutils literal notranslate"><span class="pre">pd.concat([df1,</span> <span class="pre">df2]).drop_duplicates(keep=False)</span></code></p>
 </section>
 <section id="linting">
 <h2>Linting<a class="headerlink" href="#linting" title="Permalink to this headline">#</a></h2>
@@ -424,7 +458,7 @@ To lint within notebook: <code class="docutils literal notranslate"><span class=
 </section>
 <section id="unit-testing">
 <h2>Unit testing<a class="headerlink" href="#unit-testing" title="Permalink to this headline">#</a></h2>
-<p>Note: unti testing is typically for testing function outputs - so although the code below works, you wouldn’t typically write unit tests for this purpose.</p>
+<p>Note: unit testing is typically for testing function outputs - so although the code below works, you wouldn’t typically write unit tests for this purpose.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -656,11 +690,14 @@ To run: <code class="docutils literal notranslate"><span class="pre">streamlit</
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-conda">Environments - conda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">Violin plot</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab">Jupyter lab</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book">Jupyter book</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-two-dataframes">Comparing two dataframes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit">Streamlit</a></li>

@@ -1,5 +1,8 @@
 # Python
 
+## Markdown
+Add image with text alongside it: `<img align='left' src='image file path' alt='alt_name' width='900'> Text alongside image `
+
 ## Environments - conda
 To see conda environments: `conda env list`  
 To see packages in current environment: `conda list`  
@@ -16,7 +19,16 @@ To view/create settings.json in .vscode folder: Ctrl+Shift+P > Preferences: Open
 
 ## Type hinting in VS Code with Pylance  
 Extension > Pylance should be installed  
-In settings.json, set `"python.analysis.typeCheckingMode": "strict"` or to `"None"` or `"basic"`   
+In settings.json, set `"python.analysis.typeCheckingMode": "strict"` or to `"None"` or `"basic"` 
+
+## Violin plot
+```
+df = data.groupby('quarter_year')['stroke_severity'].agg(lambda x: list(x))
+fig, ax = plt.subplots()
+ax.violinplot(df)
+ax.set_xticks(np.arange(1, len(df.index)+1), labels=df.index)
+plt.show()
+```
 
 ## Jupyter lab
 Install jupyterlab package.  
@@ -36,6 +48,19 @@ To publish book on GitHub Pages:
 
 To update book, make changes in main branch, rebuild book, then use `ghp-import -n -p -f _build/html` as before to push newly built HTML to gh-pages branch. Will take a few minutes for page to update.  
 
+To set this up to just run from the command `book`:
+* `cd` to go to top of directory (i.e. above documents)
+* `nano .bashrc`
+* At bottom of file, add `alias book="jupyter-book build ./ && ghp-import -n -p -f _build/html"`, then save the file
+* Run `source .bashrc` to refresh
+* Then, when you want to recreate the jupyter book and push to GH pages, go to where the book is (i.e. where build and config is) and run `book`
+* Also set up config file if desired to execute pages `off` if don't want to re-run all the notebooks each time
+
+
+## Comparing two dataframes
+Simple check if match: `df1.equals(df2)`
+Drop duplicate columns: `pd.concat([df1, df2]).drop_duplicates(keep=False)`
+
 ## Linting
 Install flake8 and nbqa packages.  
 To lint file: `flake8 filename.py`  
@@ -43,7 +68,7 @@ To lint jupyter notebook: `nbqa flake8 filename.ipynb`
 To lint within notebook: `%load_ext pycodestyle_magic` and `%pycodestyle_on`
 
 ## Unit testing
-Note: unti testing is typically for testing function outputs - so although the code below works, you wouldn't typically write unit tests for this purpose.
+Note: unit testing is typically for testing function outputs - so although the code below works, you wouldn't typically write unit tests for this purpose.
 
 Example:
 ```
