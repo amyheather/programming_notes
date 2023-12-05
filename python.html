@@ -358,6 +358,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-conda">Environments - conda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-pip-venv-requirements-txt">Environments - pip, venv, requirements.txt</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">Violin plot</a></li>
@@ -394,6 +395,16 @@ To create environment from yml file: <code class="docutils literal notranslate">
 To edit yml file from terminal: <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">environment.yml</span></code><br />
 To update current environment from yml file: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">update</span> <span class="pre">--file</span> <span class="pre">environment.yml</span> <span class="pre">--prune</span></code><br />
 To delete environment: deactivate then <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">remove</span> <span class="pre">-n</span> <span class="pre">env_name</span> <span class="pre">--all</span></code></p>
+</section>
+<section id="environments-pip-venv-requirements-txt">
+<h2>Environments - pip, venv, requirements.txt<a class="headerlink" href="#environments-pip-venv-requirements-txt" title="Permalink to this headline">#</a></h2>
+<p>Steps for setting up virtual environment:</p>
+<ol class="arabic simple">
+<li><p>If not already installed, <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">virtualenv</span></code></p></li>
+<li><p>Create new environment: <code class="docutils literal notranslate"><span class="pre">virtualenv</span> <span class="pre">env_name</span></code></p></li>
+<li><p>Enter the environment: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">env_name/bin/activate</span></code></p></li>
+<li><p>Install requirements into environment: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
+</ol>
 </section>
 <section id="using-vs-code">
 <h2>Using VS Code<a class="headerlink" href="#using-vs-code" title="Permalink to this headline">#</a></h2>
@@ -692,6 +703,7 @@ To run: <code class="docutils literal notranslate"><span class="pre">streamlit</
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-conda">Environments - conda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-pip-venv-requirements-txt">Environments - pip, venv, requirements.txt</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">Violin plot</a></li>

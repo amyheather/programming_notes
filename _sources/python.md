@@ -12,6 +12,13 @@ To edit yml file from terminal: `nano environment.yml`
 To update current environment from yml file: `conda env update --file environment.yml --prune`  
 To delete environment: deactivate then `conda remove -n env_name --all`  
 
+## Environments - pip, venv, requirements.txt
+Steps for setting up virtual environment:
+1. If not already installed, `pip install virtualenv`
+2. Create new environment: `virtualenv env_name`
+3. Enter the environment: `source env_name/bin/activate`
+4. Install requirements into environment: `pip install -r requirements.txt`
+
 ## Using VS Code  
 To open VS Code from terminal: `code .`  
 To activate conda environment in VS Code: Ctrl+Shift+P > Python Interpreter, then select correct environment  
