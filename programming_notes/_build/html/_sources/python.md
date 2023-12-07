@@ -12,6 +12,14 @@ To edit yml file from terminal: `nano environment.yml`
 To update current environment from yml file: `conda env update --file environment.yml --prune`  
 To delete environment: deactivate then `conda remove -n env_name --all`  
 
+## Environments - pip, venv, requirements.txt
+Steps for setting up virtual environment:
+1. If not already installed, `pip install virtualenv`
+2. Create new environment: `virtualenv env_name`
+3. Enter the environment: `source env_name/bin/activate`
+4. Install requirements into environment: `pip install -r requirements.txt`
+5. Update environment from requirements: `pip install -r requirements.txt --upgrade`
+
 ## Using VS Code  
 To open VS Code from terminal: `code .`  
 To activate conda environment in VS Code: Ctrl+Shift+P > Python Interpreter, then select correct environment  
@@ -47,6 +55,15 @@ To publish book on GitHub Pages:
 * View book at `https://<user>.github.io/<myonlinebook>/`  
 
 To update book, make changes in main branch, rebuild book, then use `ghp-import -n -p -f _build/html` as before to push newly built HTML to gh-pages branch. Will take a few minutes for page to update.  
+
+To set this up to just run from the command `book`:
+* `cd` to go to top of directory (i.e. above documents)
+* `nano .bashrc`
+* At bottom of file, add `alias book="jupyter-book build ./ && ghp-import -n -p -f _build/html"`, then save the file
+* Run `source .bashrc` to refresh
+* Then, when you want to recreate the jupyter book and push to GH pages, go to where the book is (i.e. where build and config is) and run `book`
+* Also set up config file if desired to execute pages `off` if don't want to re-run all the notebooks each time
+
 
 ## Comparing two dataframes
 Simple check if match: `df1.equals(df2)`

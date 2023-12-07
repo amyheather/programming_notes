@@ -358,6 +358,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-conda">Environments - conda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-pip-venv-requirements-txt">Environments - pip, venv, requirements.txt</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">Violin plot</a></li>
@@ -394,6 +395,17 @@ To create environment from yml file: <code class="docutils literal notranslate">
 To edit yml file from terminal: <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">environment.yml</span></code><br />
 To update current environment from yml file: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">update</span> <span class="pre">--file</span> <span class="pre">environment.yml</span> <span class="pre">--prune</span></code><br />
 To delete environment: deactivate then <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">remove</span> <span class="pre">-n</span> <span class="pre">env_name</span> <span class="pre">--all</span></code></p>
+</section>
+<section id="environments-pip-venv-requirements-txt">
+<h2>Environments - pip, venv, requirements.txt<a class="headerlink" href="#environments-pip-venv-requirements-txt" title="Permalink to this headline">#</a></h2>
+<p>Steps for setting up virtual environment:</p>
+<ol class="arabic simple">
+<li><p>If not already installed, <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">virtualenv</span></code></p></li>
+<li><p>Create new environment: <code class="docutils literal notranslate"><span class="pre">virtualenv</span> <span class="pre">env_name</span></code></p></li>
+<li><p>Enter the environment: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">env_name/bin/activate</span></code></p></li>
+<li><p>Install requirements into environment: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
+<li><p>Update environment from requirements: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span> <span class="pre">--upgrade</span></code></p></li>
+</ol>
 </section>
 <section id="using-vs-code">
 <h2>Using VS Code<a class="headerlink" href="#using-vs-code" title="Permalink to this headline">#</a></h2>
@@ -434,6 +446,15 @@ If add new page and book table of contents doesn’t update upon rebuild, try: <
 <li><p>View book at <code class="docutils literal notranslate"><span class="pre">https://&lt;user&gt;.github.io/&lt;myonlinebook&gt;/</span></code></p></li>
 </ul>
 <p>To update book, make changes in main branch, rebuild book, then use <code class="docutils literal notranslate"><span class="pre">ghp-import</span> <span class="pre">-n</span> <span class="pre">-p</span> <span class="pre">-f</span> <span class="pre">_build/html</span></code> as before to push newly built HTML to gh-pages branch. Will take a few minutes for page to update.</p>
+<p>To set this up to just run from the command <code class="docutils literal notranslate"><span class="pre">book</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span></code> to go to top of directory (i.e. above documents)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">.bashrc</span></code></p></li>
+<li><p>At bottom of file, add <code class="docutils literal notranslate"><span class="pre">alias</span> <span class="pre">book=&quot;jupyter-book</span> <span class="pre">build</span> <span class="pre">./</span> <span class="pre">&amp;&amp;</span> <span class="pre">ghp-import</span> <span class="pre">-n</span> <span class="pre">-p</span> <span class="pre">-f</span> <span class="pre">_build/html&quot;</span></code>, then save the file</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">.bashrc</span></code> to refresh</p></li>
+<li><p>Then, when you want to recreate the jupyter book and push to GH pages, go to where the book is (i.e. where build and config is) and run <code class="docutils literal notranslate"><span class="pre">book</span></code></p></li>
+<li><p>Also set up config file if desired to execute pages <code class="docutils literal notranslate"><span class="pre">off</span></code> if don’t want to re-run all the notebooks each time</p></li>
+</ul>
 </section>
 <section id="comparing-two-dataframes">
 <h2>Comparing two dataframes<a class="headerlink" href="#comparing-two-dataframes" title="Permalink to this headline">#</a></h2>
@@ -683,6 +704,7 @@ To run: <code class="docutils literal notranslate"><span class="pre">streamlit</
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-conda">Environments - conda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-pip-venv-requirements-txt">Environments - pip, venv, requirements.txt</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">Violin plot</a></li>
