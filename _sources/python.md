@@ -18,6 +18,7 @@ Steps for setting up virtual environment:
 2. Create new environment: `virtualenv env_name`
 3. Enter the environment: `source env_name/bin/activate`
 4. Install requirements into environment: `pip install -r requirements.txt`
+5. Update environment from requirements: `pip install -r requirements.txt --upgrade`
 
 ## Using VS Code  
 To open VS Code from terminal: `code .`  
