@@ -1,5 +1,9 @@
 # Git
 
+## Download folder from a GitHub repository
+
+Replace `.com` in the URL with `.dev`. This will open an editor, where you can then right click the folder in the sidebar and select download.
+
 ## Storing credentials  
 The `credential.helper cache` value tells Git to keep your password cached in memory for a particular amount of minutes. The default is 15 minutes, you can set a longer timeout with:
 ```
