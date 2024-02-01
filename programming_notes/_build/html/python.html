@@ -163,6 +163,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="latex.html">Latex</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="machine_learning.html">Machine learning</a></li>
 </ul>
 
     </div>
@@ -366,9 +367,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book">Jupyter book</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-two-dataframes">Comparing two dataframes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-dataframes">Compare dataframes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit">Streamlit</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colour-scales">Colour scales</a></li>
 </ul>
             </nav>
         </div>
@@ -398,6 +401,7 @@ To delete environment: deactivate then <code class="docutils literal notranslate
 </section>
 <section id="environments-pip-venv-requirements-txt">
 <h2>Environments - pip, venv, requirements.txt<a class="headerlink" href="#environments-pip-venv-requirements-txt" title="Permalink to this headline">#</a></h2>
+<p><strong>WARNING: NEVER NAME YOUR ENVIRONMENT THE SAME AS YOUR FOLDER</strong> - as the command for deleting the environment would delete the folder…!</p>
 <p>Steps for setting up virtual environment:</p>
 <ol class="arabic simple">
 <li><p>If not already installed, <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">virtualenv</span></code></p></li>
@@ -405,6 +409,8 @@ To delete environment: deactivate then <code class="docutils literal notranslate
 <li><p>Enter the environment: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">env_name/bin/activate</span></code></p></li>
 <li><p>Install requirements into environment: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
 <li><p>Update environment from requirements: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span> <span class="pre">--upgrade</span></code></p></li>
+<li><p>Delete environment: <code class="docutils literal notranslate"><span class="pre">deactivate</span></code> then <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-r</span> <span class="pre">env_name</span></code> <strong>be careful! will delete folder of same name!</strong></p></li>
+<li><p>List packages in environment: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">list</span></code></p></li>
 </ol>
 </section>
 <section id="using-vs-code">
@@ -467,6 +473,22 @@ Drop duplicate columns: <code class="docutils literal notranslate"><span class="
 To lint file: <code class="docutils literal notranslate"><span class="pre">flake8</span> <span class="pre">filename.py</span></code><br />
 To lint jupyter notebook: <code class="docutils literal notranslate"><span class="pre">nbqa</span> <span class="pre">flake8</span> <span class="pre">filename.ipynb</span></code><br />
 To lint within notebook: <code class="docutils literal notranslate"><span class="pre">%load_ext</span> <span class="pre">pycodestyle_magic</span></code> and <code class="docutils literal notranslate"><span class="pre">%pycodestyle_on</span></code></p>
+</section>
+<section id="compare-dataframes">
+<h2>Compare dataframes<a class="headerlink" href="#compare-dataframes" title="Permalink to this headline">#</a></h2>
+<p>True/False of difference (note: sometimes False but no actual difference - then try assertion below)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Show differences between them</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Get feedback on exactly what is missing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas.testing</span> <span class="kn">import</span> <span class="n">assert_frame_equal</span>
+<span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="unit-testing">
 <h2>Unit testing<a class="headerlink" href="#unit-testing" title="Permalink to this headline">#</a></h2>
@@ -639,6 +661,60 @@ To run: <code class="docutils literal notranslate"><span class="pre">streamlit</
 <li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">docker</span> <span class="pre">build</span> <span class="pre">-t</span> <span class="pre">streamlit</span> <span class="pre">.</span></code> to build an image from the Dockerfile. -t is used to tag the file, here tagged as streamlit. Can see streamlit image under repository column if run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">docker</span> <span class="pre">images</span></code></p></li>
 </ul>
 </section>
+<section id="colour-scales">
+<h2>Colour scales<a class="headerlink" href="#colour-scales" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Helper functions for creating discrete colour scale sampling in the</span>
+<span class="sd">continuous scale between two provided colours.</span>
+<span class="sd">Source: https://bsouthga.dev/posts/color-gradients-with-python</span>
+<span class="sd">Directly copied from that webpage, all credit to them.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="k">def</span> <span class="nf">hex_to_RGB</span><span class="p">(</span><span class="nb">hex</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39; &quot;#FFFFFF&quot; -&gt; [255,255,255] &#39;&#39;&#39;</span>
+  <span class="c1"># Pass 16 to the integer function for change of base</span>
+  <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">hex</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="mi">16</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
+
+<span class="k">def</span> <span class="nf">RGB_to_hex</span><span class="p">(</span><span class="n">RGB</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39; [255,255,255] -&gt; &quot;#FFFFFF&quot; &#39;&#39;&#39;</span>
+  <span class="c1"># Components need to be integers for hex to make sense</span>
+  <span class="n">RGB</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">RGB</span><span class="p">]</span>
+  <span class="k">return</span> <span class="s2">&quot;#&quot;</span><span class="o">+</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;0</span><span class="si">{0:x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="mi">16</span> <span class="k">else</span>
+            <span class="s2">&quot;</span><span class="si">{0:x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">RGB</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">color_dict</span><span class="p">(</span><span class="n">gradient</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39; Takes in a list of RGB sub-lists and returns dictionary of</span>
+<span class="sd">    colors in RGB and hex form for use in a graphing function</span>
+<span class="sd">    defined later on &#39;&#39;&#39;</span>
+  <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;hex&quot;</span><span class="p">:[</span><span class="n">RGB_to_hex</span><span class="p">(</span><span class="n">RGB</span><span class="p">)</span> <span class="k">for</span> <span class="n">RGB</span> <span class="ow">in</span> <span class="n">gradient</span><span class="p">],</span>
+      <span class="s2">&quot;r&quot;</span><span class="p">:[</span><span class="n">RGB</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">RGB</span> <span class="ow">in</span> <span class="n">gradient</span><span class="p">],</span>
+      <span class="s2">&quot;g&quot;</span><span class="p">:[</span><span class="n">RGB</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">RGB</span> <span class="ow">in</span> <span class="n">gradient</span><span class="p">],</span>
+      <span class="s2">&quot;b&quot;</span><span class="p">:[</span><span class="n">RGB</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">RGB</span> <span class="ow">in</span> <span class="n">gradient</span><span class="p">]}</span>
+
+<span class="k">def</span> <span class="nf">linear_gradient</span><span class="p">(</span><span class="n">start_hex</span><span class="p">,</span> <span class="n">finish_hex</span><span class="o">=</span><span class="s2">&quot;#FFFFFF&quot;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39; returns a gradient list of (n) colors between</span>
+<span class="sd">    two hex colors. start_hex and finish_hex</span>
+<span class="sd">    should be the full six-digit color string,</span>
+<span class="sd">    inlcuding the number sign (&quot;#FFFFFF&quot;) &#39;&#39;&#39;</span>
+  <span class="c1"># Starting and ending colors in RGB form</span>
+  <span class="n">s</span> <span class="o">=</span> <span class="n">hex_to_RGB</span><span class="p">(</span><span class="n">start_hex</span><span class="p">)</span>
+  <span class="n">f</span> <span class="o">=</span> <span class="n">hex_to_RGB</span><span class="p">(</span><span class="n">finish_hex</span><span class="p">)</span>
+  <span class="c1"># Initilize a list of the output colors with the starting color</span>
+  <span class="n">RGB_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">]</span>
+  <span class="c1"># Calcuate a color at each evenly spaced value of t from 1 to n</span>
+  <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="c1"># Interpolate RGB vector for color at the current value of t</span>
+    <span class="n">curr_vector</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="c1"># Add it to our list of output colors</span>
+    <span class="n">RGB_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr_vector</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">color_dict</span><span class="p">(</span><span class="n">RGB_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -712,9 +788,11 @@ To run: <code class="docutils literal notranslate"><span class="pre">streamlit</
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book">Jupyter book</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-two-dataframes">Comparing two dataframes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-dataframes">Compare dataframes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit">Streamlit</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colour-scales">Colour scales</a></li>
 </ul>
   </nav></div>
 

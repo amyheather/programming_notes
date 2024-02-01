@@ -8,3 +8,4 @@ chapters:
 - file: python
 - file: r
 - file: latex
+- file: machine_learning
