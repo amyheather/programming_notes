@@ -14,6 +14,27 @@ To delete environment: deactivate then `conda remove -n env_name --all`
 
 ## Environments - pip, venv, requirements.txt
 
+### Virtualenvwrapper
+
+Recommend using virtualenvwrapper so all your environments are stored in the same place, otherwise its easy to forget what you named it
+
+1. `pip install virtualenvwrapper`
+2. Go to Home
+3. `nano .bashrc`
+4. Add the following:
+```
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+source /usr/local/bin/virtualenvwrapper.sh
+```
+5. Reload with `source ~/.bashrc`
+6. Create environment with `mkvirtualenv env_name`. This will be located in home/.virtualenvs.
+7. Environment activated with `workon env_name`
+8. See list of all available environments with command `workon`
+9. Delete environment - `rmvirtualenv env_name`
+
+### Virtualenv
 **WARNING: NEVER NAME YOUR ENVIRONMENT THE SAME AS YOUR FOLDER** - as the command for deleting the environment would delete the folder...!
 
 Steps for setting up virtual environment:
@@ -24,6 +45,21 @@ Steps for setting up virtual environment:
 5. Update environment from requirements: `pip install -r requirements.txt --upgrade`
 6. Delete environment: `deactivate` then `rm -r env_name` **be careful! will delete folder of same name!**
 7. List packages in environment: `pip list`
+
+## Package
+
+https://betterscientificsoftware.github.io/python-for-hpc/tutorials/python-pypi-packaging/
+* Make setup.py - if you read from requirements for it, will need to make MANIFEST.in file which includes the line `include requirements.txt`
+* `python setup.py check`
+* `python setup.py sdist bdist_wheel`
+* `pip install twine`
+* `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
+* When want to update package:
+    * Delete dist folder
+    * `python setup.py sdist bdist_wheel`
+    * `twine upload --skip-existing --repository-url https://test.pypi.org/legacy/ dist/*`
+* Above uses test pypi URL - for real pypi upload, use `https://upload.pypi.org/legacy/`
+* To install the package locally (rather than from pypi) using your requirements.txt file, if for example it was in a sister directory, add to the text file `../foldername/dist/filename.whl`
 
 ## Using VS Code  
 To open VS Code from terminal: `code .`  
@@ -315,3 +351,19 @@ def linear_gradient(start_hex, finish_hex="#FFFFFF", n=10):
 
   return color_dict(RGB_list)
 ```  
+
+### Save HTML to csv and then import again and convert to PDF (this is not ideal tbh)
+```
+import weasyprint
+import csv
+
+with open("out.csv", "w", encoding="utf-8") as csv_file:
+    writer = csv.writer(csv_file)
+    writer.writerow([html_content])
+
+with open("out.csv", "r") as csv_file:
+    csv_text = csv_file.readlines()
+
+html_check = ''.join(csv_text)[1:-1]
+weasyprint.HTML(string=html_check).write_pdf('report/report.pdf')
+```

@@ -359,7 +359,12 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-conda">Environments - conda</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-pip-venv-requirements-txt">Environments - pip, venv, requirements.txt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-pip-venv-requirements-txt">Environments - pip, venv, requirements.txt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtualenvwrapper">Virtualenvwrapper</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtualenv">Virtualenv</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package">Package</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">Violin plot</a></li>
@@ -371,7 +376,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit">Streamlit</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colour-scales">Colour scales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colour-scales">Colour scales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh">Save HTML to csv and then import again and convert to PDF (this is not ideal tbh)</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -401,6 +409,31 @@ To delete environment: deactivate then <code class="docutils literal notranslate
 </section>
 <section id="environments-pip-venv-requirements-txt">
 <h2>Environments - pip, venv, requirements.txt<a class="headerlink" href="#environments-pip-venv-requirements-txt" title="Permalink to this headline">#</a></h2>
+<section id="virtualenvwrapper">
+<h3>Virtualenvwrapper<a class="headerlink" href="#virtualenvwrapper" title="Permalink to this headline">#</a></h3>
+<p>Recommend using virtualenvwrapper so all your environments are stored in the same place, otherwise its easy to forget what you named it</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">virtualenvwrapper</span></code></p></li>
+<li><p>Go to Home</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">.bashrc</span></code></p></li>
+<li><p>Add the following:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+source /usr/local/bin/virtualenvwrapper.sh
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Reload with <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/.bashrc</span></code></p></li>
+<li><p>Create environment with <code class="docutils literal notranslate"><span class="pre">mkvirtualenv</span> <span class="pre">env_name</span></code>. This will be located in home/.virtualenvs.</p></li>
+<li><p>Environment activated with <code class="docutils literal notranslate"><span class="pre">workon</span> <span class="pre">env_name</span></code></p></li>
+<li><p>See list of all available environments with command <code class="docutils literal notranslate"><span class="pre">workon</span></code></p></li>
+<li><p>Delete environment - <code class="docutils literal notranslate"><span class="pre">rmvirtualenv</span> <span class="pre">env_name</span></code></p></li>
+</ol>
+</section>
+<section id="virtualenv">
+<h3>Virtualenv<a class="headerlink" href="#virtualenv" title="Permalink to this headline">#</a></h3>
 <p><strong>WARNING: NEVER NAME YOUR ENVIRONMENT THE SAME AS YOUR FOLDER</strong> - as the command for deleting the environment would delete the folder…!</p>
 <p>Steps for setting up virtual environment:</p>
 <ol class="arabic simple">
@@ -412,6 +445,27 @@ To delete environment: deactivate then <code class="docutils literal notranslate
 <li><p>Delete environment: <code class="docutils literal notranslate"><span class="pre">deactivate</span></code> then <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-r</span> <span class="pre">env_name</span></code> <strong>be careful! will delete folder of same name!</strong></p></li>
 <li><p>List packages in environment: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">list</span></code></p></li>
 </ol>
+</section>
+</section>
+<section id="package">
+<h2>Package<a class="headerlink" href="#package" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://betterscientificsoftware.github.io/python-for-hpc/tutorials/python-pypi-packaging/">https://betterscientificsoftware.github.io/python-for-hpc/tutorials/python-pypi-packaging/</a></p>
+<ul class="simple">
+<li><p>Make <a class="reference external" href="http://setup.py">setup.py</a> - if you read from requirements for it, will need to make <a class="reference external" href="http://MANIFEST.in">MANIFEST.in</a> file which includes the line <code class="docutils literal notranslate"><span class="pre">include</span> <span class="pre">requirements.txt</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">check</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">sdist</span> <span class="pre">bdist_wheel</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">twine</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">twine</span> <span class="pre">upload</span> <span class="pre">--repository-url</span> <span class="pre">https://test.pypi.org/legacy/</span> <span class="pre">dist/*</span></code></p></li>
+<li><p>When want to update package:</p>
+<ul>
+<li><p>Delete dist folder</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">sdist</span> <span class="pre">bdist_wheel</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">twine</span> <span class="pre">upload</span> <span class="pre">--skip-existing</span> <span class="pre">--repository-url</span> <span class="pre">https://test.pypi.org/legacy/</span> <span class="pre">dist/*</span></code></p></li>
+</ul>
+</li>
+<li><p>Above uses test pypi URL - for real pypi upload, use <code class="docutils literal notranslate"><span class="pre">https://upload.pypi.org/legacy/</span></code></p></li>
+<li><p>To install the package locally (rather than from pypi) using your requirements.txt file, if for example it was in a sister directory, add to the text file <code class="docutils literal notranslate"><span class="pre">../foldername/dist/filename.whl</span></code></p></li>
+</ul>
 </section>
 <section id="using-vs-code">
 <h2>Using VS Code<a class="headerlink" href="#using-vs-code" title="Permalink to this headline">#</a></h2>
@@ -714,6 +768,23 @@ To run: <code class="docutils literal notranslate"><span class="pre">streamlit</
   <span class="k">return</span> <span class="n">color_dict</span><span class="p">(</span><span class="n">RGB_list</span><span class="p">)</span>
 </pre></div>
 </div>
+<section id="save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh">
+<h3>Save HTML to csv and then import again and convert to PDF (this is not ideal tbh)<a class="headerlink" href="#save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh" title="Permalink to this headline">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">weasyprint</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;out.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">html_content</span><span class="p">])</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;out.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+    <span class="n">csv_text</span> <span class="o">=</span> <span class="n">csv_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+<span class="n">html_check</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_text</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">weasyprint</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="n">html_check</span><span class="p">)</span><span class="o">.</span><span class="n">write_pdf</span><span class="p">(</span><span class="s1">&#39;report/report.pdf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -780,7 +851,12 @@ To run: <code class="docutils literal notranslate"><span class="pre">streamlit</
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown">Markdown</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-conda">Environments - conda</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-pip-venv-requirements-txt">Environments - pip, venv, requirements.txt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environments-pip-venv-requirements-txt">Environments - pip, venv, requirements.txt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtualenvwrapper">Virtualenvwrapper</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtualenv">Virtualenv</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package">Package</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">Violin plot</a></li>
@@ -792,7 +868,10 @@ To run: <code class="docutils literal notranslate"><span class="pre">streamlit</
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit">Streamlit</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colour-scales">Colour scales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colour-scales">Colour scales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh">Save HTML to csv and then import again and convert to PDF (this is not ideal tbh)</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
