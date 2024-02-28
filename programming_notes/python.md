@@ -60,6 +60,7 @@ https://betterscientificsoftware.github.io/python-for-hpc/tutorials/python-pypi-
     * `twine upload --skip-existing --repository-url https://test.pypi.org/legacy/ dist/*`
 * Above uses test pypi URL - for real pypi upload, use `https://upload.pypi.org/legacy/`
 * To install the package locally (rather than from pypi) using your requirements.txt file, if for example it was in a sister directory, add to the text file `../foldername/dist/filename.whl`
+* If you are simultaneously working on the package and other code - so if you want to be getting live changes to the package rather than having to rebuild and reinstall the package each time - use `pip install -e /path/to/repo/` - this will use a symbolic link to the repository meaning any changes to the code will also be automatically reflected. For example, when its in a sister directory, `pip install -e ../kailo_beewell_dashboard_package`. You can also do this from your **requirements.txt** by adding `-e ../packagefolder`. If the package was already in your environment, you'll need to delete it, and make just delete and remake the environment
 
 ## Using VS Code  
 To open VS Code from terminal: `code .`  
