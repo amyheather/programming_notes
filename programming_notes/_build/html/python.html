@@ -164,6 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l1"><a class="reference internal" href="machine_learning.html">Machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_science.html">Open Science</a></li>
 </ul>
 
     </div>
@@ -465,6 +466,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 </li>
 <li><p>Above uses test pypi URL - for real pypi upload, use <code class="docutils literal notranslate"><span class="pre">https://upload.pypi.org/legacy/</span></code></p></li>
 <li><p>To install the package locally (rather than from pypi) using your requirements.txt file, if for example it was in a sister directory, add to the text file <code class="docutils literal notranslate"><span class="pre">../foldername/dist/filename.whl</span></code></p></li>
+<li><p>If you are simultaneously working on the package and other code - so if you want to be getting live changes to the package rather than having to rebuild and reinstall the package each time - use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">/path/to/repo/</span></code> - this will use a symbolic link to the repository meaning any changes to the code will also be automatically reflected. For example, when its in a sister directory, <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">../kailo_beewell_dashboard_package</span></code>. You can also do this from your <strong>requirements.txt</strong> by adding <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">../packagefolder</span></code>. If the package was already in your environment, you’ll need to delete it, and make just delete and remake the environment</p></li>
 </ul>
 </section>
 <section id="using-vs-code">

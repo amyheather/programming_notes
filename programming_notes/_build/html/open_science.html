@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Latex &#8212; Programming notes</title>
+    <title>Open Science &#8212; Programming notes</title>
   
   
   
@@ -60,11 +60,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'latex';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'open_science';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Machine learning" href="machine_learning.html" />
-    <link rel="prev" title="R" href="r.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="linux.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -160,11 +159,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="r.html">R</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Latex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="latex.html">Latex</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="machine_learning.html">Machine learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="open_science.html">Open Science</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Open Science</a></li>
 </ul>
 
     </div>
@@ -236,7 +235,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flatex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fopen_science.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -266,7 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/latex.md" target="_blank"
+      <li><a href="_sources/open_science.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -348,7 +347,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Latex</h1>
+    <h1>Open Science</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -358,11 +357,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Latex</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unicode-error">Unicode error</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#url">URL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-science-framework-osf">Open Science Framework (OSF)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project">Project</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registrations">Registrations</a></li>
 </ul>
-
+</li>
+</ul>
             </nav>
         </div>
     </div>
@@ -373,25 +373,31 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="latex">
-<h1>Latex<a class="headerlink" href="#latex" title="Permalink to this headline">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="unicode-error">
-<h1>Unicode error<a class="headerlink" href="#unicode-error" title="Permalink to this headline">#</a></h1>
-<p>To find a unicode error (e.g. for error 202F, it’s a narrow no-break space, which is hard to spot), input the following -</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">makeatletter</span>
-\<span class="n">def</span>\<span class="n">UTFviii</span><span class="nd">@defined</span><span class="c1">#1{\ifx#1\relax!!FIXME!!\else\expandafter#1\fi}</span>
-\<span class="n">makeatother</span>
-</pre></div>
-</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="url">
-<h1>URL<a class="headerlink" href="#url" title="Permalink to this headline">#</a></h1>
-<p>Options include:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="open-science">
+<h1>Open Science<a class="headerlink" href="#open-science" title="Permalink to this headline">#</a></h1>
+<section id="open-science-framework-osf">
+<h2>Open Science Framework (OSF)<a class="headerlink" href="#open-science-framework-osf" title="Permalink to this headline">#</a></h2>
+<section id="project">
+<h3>Project<a class="headerlink" href="#project" title="Permalink to this headline">#</a></h3>
+<p>Create a project, and store all the files related to that project together (e.g. registrations, archived copies of documents like surveys, pre-print publications).</p>
+<p>To add project contributors:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">\url{}</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">\href{}{}</span></code></p></li>
+<li><p>Go to Project –&gt; Contributors</p></li>
+<li><p>Give permissions (Admin, Read/Write, or Read)</p></li>
+<li><p>If select Bibliographic, this means they’re included in the overall citation for the published project</p></li>
 </ul>
+</section>
+<section id="registrations">
+<h3>Registrations<a class="headerlink" href="#registrations" title="Permalink to this headline">#</a></h3>
+<p>The purpose of a registration is to be transparent about what you plan to do (to prevent hypothesis after done), so you’re clear what was confirmatory and what was exploratory, and to prevent fishing for results. These are done, for example, before data collection, or after collection and before analysis.</p>
+<p>To create e.g. pre-registration before data collections:</p>
+<ul class="simple">
+<li><p>Go to Project –&gt; Registrations –&gt; New registration</p></li>
+<li><p>Select OSF Preregistration template, and complete. When done, click register</p></li>
+<li><p>You cannot modify it after registering (defeats the purpose), but you can make a new registration and link it to your old - click on generate new registration, and then in the description, write something along the lines of ‘This is a revised pre-registration relating to the previous pre-registration published (DATE) under the same project anme. See the link: (LINK). Due to (INSERT) reasons, the following changes were made.</p></li>
+</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -423,22 +429,13 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="r.html"
+       href="linux.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">R</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="machine_learning.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Machine learning</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -455,11 +452,12 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Latex</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unicode-error">Unicode error</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#url">URL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-science-framework-osf">Open Science Framework (OSF)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project">Project</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registrations">Registrations</a></li>
 </ul>
-
+</li>
+</ul>
   </nav></div>
 
 </div></div>
