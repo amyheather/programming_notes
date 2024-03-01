@@ -366,6 +366,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package">Package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-documentation-using-sphinx">Package documentation using Sphinx</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">Violin plot</a></li>
@@ -468,6 +469,86 @@ source /usr/local/bin/virtualenvwrapper.sh
 <li><p>To install the package locally (rather than from pypi) using your requirements.txt file, if for example it was in a sister directory, add to the text file <code class="docutils literal notranslate"><span class="pre">../foldername/dist/filename.whl</span></code></p></li>
 <li><p>If you are simultaneously working on the package and other code - so if you want to be getting live changes to the package rather than having to rebuild and reinstall the package each time - use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">/path/to/repo/</span></code> - this will use a symbolic link to the repository meaning any changes to the code will also be automatically reflected. For example, when its in a sister directory, <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">../kailo_beewell_dashboard_package</span></code>. You can also do this from your <strong>requirements.txt</strong> by adding <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">../packagefolder</span></code>. If the package was already in your environment, you’ll need to delete it, and make just delete and remake the environment</p></li>
 </ul>
+</section>
+<section id="package-documentation-using-sphinx">
+<h2>Package documentation using Sphinx<a class="headerlink" href="#package-documentation-using-sphinx" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>Add to environment:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx-rtd-theme</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">myst-parser</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sphinx-autoapi</span></code></p></li>
+</ul>
+</li>
+<li><p>Create directory called <code class="docutils literal notranslate"><span class="pre">docs</span></code> and enter it - e.g. <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">docs</span></code> and <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">docs</span></code>.</p></li>
+<li><p>Add/create any files you want to include in the docs (e.g. how to guides, descriptions) - can be markdown or rst - e.g. <a class="reference external" href="http://guide1.md">guide1.md</a> and <a class="reference external" href="http://guide2.md">guide2.md</a></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code></p></li>
+<li><p>Modify <strong>index.rst</strong> file - this is used as home page - e.g.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Documentation</span> <span class="k">for</span> <span class="n">package</span> <span class="n">name</span>
+<span class="o">==============================</span>
+
+<span class="n">This</span> <span class="n">package</span><span class="o">...</span>
+
+<span class="o">..</span> <span class="n">note</span><span class="p">::</span>
+
+   <span class="n">This</span> <span class="n">project</span> <span class="ow">is</span> <span class="n">under</span> <span class="n">active</span> <span class="n">development</span><span class="o">.</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>If you don’t want toctree within the home page, and just want it to be in the sidebar, then produce a <code class="docutils literal notranslate"><span class="pre">contents.rst</span></code> - e.g.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Site</span> <span class="n">contents</span>
+<span class="o">*************</span>
+
+<span class="o">..</span> <span class="n">toctree</span><span class="p">::</span>
+
+   <span class="n">Home</span> <span class="o">&lt;</span><span class="n">index</span><span class="o">&gt;</span>
+   <span class="n">guide1</span>
+   <span class="n">guide2</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Modify <a class="reference external" href="http://conf.py">conf.py</a> - e.g.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># -- General configuration ---------------------------------------------------</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;myst_parser&#39;</span><span class="p">,</span>  <span class="c1"># To use markdown as well as reStructuredText</span>
+    <span class="s1">&#39;autoapi.extension&#39;</span>  <span class="c1"># Auto generate module and function documentation</span>
+<span class="p">]</span>
+
+<span class="c1"># Location of files for auto API</span>
+<span class="n">autoapi_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;../kailo_beewell_dashboard&#39;</span><span class="p">]</span>
+
+<span class="c1"># File types for documentation</span>
+<span class="n">source_suffix</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.rst&#39;</span><span class="p">,</span> <span class="s1">&#39;.md&#39;</span><span class="p">]</span>
+
+<span class="n">templates_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_templates&#39;</span><span class="p">]</span>
+
+<span class="c1"># Location of toctree</span>
+<span class="n">master_doc</span> <span class="o">=</span> <span class="s1">&#39;contents&#39;</span>
+
+<span class="n">exclude_patterns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_build&#39;</span><span class="p">,</span> <span class="s1">&#39;_templates&#39;</span><span class="p">,</span> <span class="s1">&#39;Thumbs.db&#39;</span><span class="p">,</span> <span class="s1">&#39;.DS_Store&#39;</span><span class="p">]</span>
+
+<span class="n">language</span> <span class="o">=</span> <span class="s1">&#39;English&#39;</span>
+
+<span class="c1"># -- Options for HTML output -------------------------------------------------</span>
+
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;sphinx_rtd_theme&#39;</span>
+<span class="n">html_static_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_static&#39;</span><span class="p">]</span>
+
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
+<li><p>Produce the documentation. Any time you want to do this, from the docs folder, run:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">clean</span> <span class="pre">html</span></code> (to clear out build folder, else might not update everything fully)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code></p></li>
+</ul>
+</li>
+</ol>
 </section>
 <section id="using-vs-code">
 <h2>Using VS Code<a class="headerlink" href="#using-vs-code" title="Permalink to this headline">#</a></h2>
@@ -859,6 +940,7 @@ To run: <code class="docutils literal notranslate"><span class="pre">streamlit</
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package">Package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-documentation-using-sphinx">Package documentation using Sphinx</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">Violin plot</a></li>

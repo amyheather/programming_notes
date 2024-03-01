@@ -62,6 +62,72 @@ https://betterscientificsoftware.github.io/python-for-hpc/tutorials/python-pypi-
 * To install the package locally (rather than from pypi) using your requirements.txt file, if for example it was in a sister directory, add to the text file `../foldername/dist/filename.whl`
 * If you are simultaneously working on the package and other code - so if you want to be getting live changes to the package rather than having to rebuild and reinstall the package each time - use `pip install -e /path/to/repo/` - this will use a symbolic link to the repository meaning any changes to the code will also be automatically reflected. For example, when its in a sister directory, `pip install -e ../kailo_beewell_dashboard_package`. You can also do this from your **requirements.txt** by adding `-e ../packagefolder`. If the package was already in your environment, you'll need to delete it, and make just delete and remake the environment
 
+## Package documentation using Sphinx
+
+1. Add to environment:
+    * `sphinx`
+    * `sphinx-rtd-theme`
+    * `myst-parser`
+    * `sphinx-autoapi`
+2. Create directory called `docs` and enter it - e.g. `mkdir docs` and `cd docs`.
+3. Add/create any files you want to include in the docs (e.g. how to guides, descriptions) - can be markdown or rst - e.g. guide1.md and guide2.md
+4. Run `sphinx-quickstart`
+5. Modify **index.rst** file - this is used as home page - e.g.
+```
+Documentation for package name
+==============================
+
+This package...
+
+.. note::
+
+   This project is under active development.
+```
+6. If you don't want toctree within the home page, and just want it to be in the sidebar, then produce a `contents.rst` - e.g.
+```
+Site contents
+*************
+
+.. toctree::
+
+   Home <index>
+   guide1
+   guide2
+```
+7. Modify conf.py - e.g.
+```
+# -- General configuration ---------------------------------------------------
+
+extensions = [
+    'myst_parser',  # To use markdown as well as reStructuredText
+    'autoapi.extension'  # Auto generate module and function documentation
+]
+
+# Location of files for auto API
+autoapi_dirs = ['../kailo_beewell_dashboard']
+
+# File types for documentation
+source_suffix = ['.rst', '.md']
+
+templates_path = ['_templates']
+
+# Location of toctree
+master_doc = 'contents'
+
+exclude_patterns = ['_build', '_templates', 'Thumbs.db', '.DS_Store']
+
+language = 'English'
+
+# -- Options for HTML output -------------------------------------------------
+
+html_theme = 'sphinx_rtd_theme'
+html_static_path = ['_static']
+
+```
+8. Produce the documentation. Any time you want to do this, from the docs folder, run:
+    * `clean html` (to clear out build folder, else might not update everything fully)
+    * `make html`
+
 ## Using VS Code  
 To open VS Code from terminal: `code .`  
 To activate conda environment in VS Code: Ctrl+Shift+P > Python Interpreter, then select correct environment  
