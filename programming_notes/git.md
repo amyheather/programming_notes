@@ -61,6 +61,8 @@ To switch branches: `git checkout branchname`
 To delete remote branch: `git push origin --delete branchname`  
 To delete local branch: `git branch -d branchname`  
 
+To remove listing of remote branches that have actually been removed: `git remote prune origin`
+
 To check for different between local and remote file:  
 `git fetch origin branchname`  
 `git diff origin/branchname -- filename`  

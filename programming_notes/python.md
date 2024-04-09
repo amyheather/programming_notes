@@ -125,7 +125,7 @@ html_static_path = ['_static']
 
 ```
 8. Produce the documentation. Any time you want to do this, from the docs folder, run:
-    * `clean html` (to clear out build folder, else might not update everything fully)
+    * `make clean` (to clear out build folder, else might not update everything fully)
     * `make html`
 
 ## Using VS Code  
