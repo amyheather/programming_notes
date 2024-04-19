@@ -137,6 +137,8 @@ https://betterscientificsoftware.github.io/python-for-hpc/tutorials/python-pypi-
 
 ## Package documentation using Sphinx
 
+To convert from Jupyter book to sphinx, run: `jupyter-book config sphinx path/to/book`. This will generate a conf.py file from your _config.yml and _toc.yml files. You can then run `sphinx-build path/to/book path/to/book/_build/html -b html.
+
 1. Add to environment:
     * `sphinx`
     * `sphinx-rtd-theme`
