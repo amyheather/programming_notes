@@ -60,7 +60,7 @@ lint("filename.R")
 ```
   
 
-# Packages
+## Packages
 Notes from working through: https://r-pkgs.org/  
 **Remember:** Git commit after each change
 
