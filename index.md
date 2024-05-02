@@ -4,7 +4,8 @@
 :maxdepth: 2
 
 Python <python/general>
-programming_notes/r
+R <r/general>
 programming_notes/git
+simulation/simulation
 Other <programming_notes/latex>
 ```
