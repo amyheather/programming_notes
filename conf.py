@@ -9,6 +9,7 @@ author = 'Amy Heather'
 # -- General configuration ---------------------------------------------------
 
 extensions = [
+    'sphinxcontrib.mermaid',  # To render mermaid diagrams
     'myst_nb',
     'sphinx_copybutton', # Adds a copy button next to code blocks
     'sphinx_togglebutton', # Allows you to make admonitions toggle-able
