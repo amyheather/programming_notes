@@ -267,18 +267,6 @@ Example: Nurse takes 15 minute break every 2 hours
 3. Create **entity generator to demand the nurse resource with a higher priority than any patient every 2 hours** (i.e. use a **negative** value), which will freeze the nurse with them for 15 minutes (but this means the nurse will complete the current patient and won’t walk out midway through)
 4. Set up the new generator running in the run method of the Model class [[source]](https://hsma-programme.github.io/hsma6_des_book/modelling_resource_unavailability.html)
 
-## Reproducibility
-
-You could set one seed per run. We then do 100 runs. Then we repeat that again. We want the results to be the same - and they are, yay!
-
-Now we do a scenario where we **change the number of nurses**. We expect this to:
-* **Change the queues** for nurses and doctors - yes 🙂
-* Number of **arrivals remain unchanged** - **no**! 🙁
-
-This is because all the methods are using one seed. The order that the random numbers are generated in matters. As the order of events changes (e.g. as have more nurses, they can see more patients quicker, changing the order that subsequent events happen).
-
-Hence, a robust way to do this is to **set seeds for each type of event that we are generating random numbers for**. This means that each event has a separate random number stream for each part of process (e.g. for the inter-arrival times, for the consult times, for our probabilities when branching). [[source]](https://hsma-programme.github.io/hsma6_des_book/reproducibility.html)
-
 ## Sampling from distributions
 
 [Sim-tools](https://github.com/TomMonks/sim-tools) contains a bunch of functions you can use. This are set up to have individual seeds, to esaily enable reproducibility.
@@ -341,19 +329,15 @@ You could have variable arrival rates (e.g. high in afternoon, low at night). To
 * Provide dataframe with mean IAT at various time points
 * Set up arrival distribution in Model class with NSPPThinning() [[source]](https://hsma-programme.github.io/hsma6_des_book/modelling_variable_arrival_rates.html)
 
-## Performance tracking
+## Tracking resource utilisation
 
-### Resource utilisation
-
-We want to track resource utilisation **overall** as well as at **specific time points**. We often won't want utilisation to be close to 100%, although what we do want depends on the type and size of service (e.g. emergency service want lower utilisation so can safely cope with spike in demand).
-
-#### Method 1. Simple average across the run
+### Method 1. Simple average across the run
 
 We can track how long each entity spends using a resource, then sum time spent, divide by time elapsed in model, and multiply by number of resources in model.
 
 This may slightly overestimate utilisation though as we record time spent with the resource prior to that time elapsing - e.g. “If we have a model run time of 600 time units, and someone reaches the nurse at unit 595 but has an activity time of 30, we will record that and use it in our calculations - even though only 5 minutes of that time actually took place during our model run.” You could adapt code to account for that (e.g. check if time remaining in model is greater than activity time sampled, and record whichever of those is smaller). [[source]](https://hsma-programme.github.io/hsma6_des_book/tracking_resource_utilisation.html)
 
-#### Method 2. Interval audit process
+### Method 2. Interval audit process
 
 For this, we create a function that takes:
 1. A list of resources to monitor, and
@@ -361,17 +345,40 @@ For this, we create a function that takes:
 
 This is integrated into the code, and then set up as a process. [[source]](https://hsma-programme.github.io/hsma6_des_book/tracking_resource_utilisation.html)
 
-### Other metrics
+Overview of how code is modified for auditing:
+````{mermaid}
+  flowchart TD;
 
-**Arrivals** (as in the simple example above).
-
-**Percentage of entities meeting a target** (e.g. 4 hour arrival to admission). Consider whether anything in historical data patterns is because of trying to meet targets (e.g. 17% of admissions to a&e between 3h50 and 4h). "If the target was removed, would this result in a change in behaviour? How might the predictions of our model be affected by this?"
-
-**Throughput - % of people entering system who have left by time model stops running** - low throughput suggests a bottleneck - "can be a useful measure to track as a quick way of assessing whether different scenarios are leading to severe bottlenecks, but it is not that useful as a standalone measure." [[source]](https://hsma-programme.github.io/hsma6_des_book/other_model_metrics.html)
+    param("<b>Global model parameters</b><br><br>Set audit interval (e.g. 5min)");
+    entity("<b>Patient</b><br>");
+    system("<b>Model</b><br><br>Generator function to get<br>metrics at given intervals<br>storing results as attribute<br><br>Add audit process to run<br>i.e. self.env.process()");
+    trial("<b>Trial</b><br><br>Get audit results from<br>model attributes.<br>Convert to dataframe,<br> add run, save in list<br>Have function to<br>concat df in list.")
+````
 
 ## Testing a large number of scenarios
 
 We run scenarios with different levels of resources, etc. To test a large number, [recommend the method here](https://hsma-programme.github.io/hsma6_des_book/testing_large_numbers_scenarios.html). It involves you having:
 * Dictionary of scenarios
 * Use itertools to create all possible permutations of scenarios
-* Add scenario name to g class, then enumerate through the scenarios and run each one, storing the results as you go [[source]]((https://hsma-programme.github.io/hsma6_des_book/testing_large_numbers_scenarios.html))
+* Add scenario name to g class, then enumerate through the scenarios and run each one, storing the results as you go [[source]](https://hsma-programme.github.io/hsma6_des_book/testing_large_numbers_scenarios.html)
+
+## Appointment booking
+
+We may want to model appointment booking (i.e. delay between enter system to book appointment, and attending appointment), rather than immediate attendance. [See example](https://hsma-programme.github.io/hsma6_des_book/appointment_style_booking_models.html).
+
+<marK>finish this section</mark>
+
+Overview of how code is modified for appointment booking (with time unit here being **days** rather than minutes):
+````{mermaid}
+  flowchart TD;
+
+    param("<b>Global model parameters</b><br><br>New attributes:<br><br>Annual demand<br>rather than IAT<br><br>Dataframe with number<br>of appointments<br>available per day<br><br>Minimum wait (so can't get<br>appointment immediately)");
+
+    entity("<b>Patient</b><br><br>New attributes:<br>Booker<br>Arrival time<br>Wait time");
+
+    booker("<b>Booker</b><br><br>");
+
+    system("<b>Model</b><br><br>New attributes:<br>Available slots<br>Bookings<br>Run create_slots()<br>Run create_bookings()<br>Arrival distribution<br>Monitoring of patient<br>queue time and mean<br><br>Function create_slots()<br><br>Function create_bookings()");
+
+    trial("<b>Trial</b><br><br>Save new metrics<br>(appointment<br>wait a)")
+````

@@ -98,6 +98,58 @@ There are then certain behaviours we might observe...
 **Jockeying** - Entity switches queues in the hope of reducing queue time
 * Never used in healthcare system. However, you might have system where entities pick which queue to join in the first place based on queue length (e.g. choosing between MIU or ED based on live waiting time data online) [[source]](https://hsma-programme.github.io/hsma6_des_book/reneging_balking_jockeying.html)
 
+## Appointment booking
+
+Above, we've assumed that arrivals flow through the system immediately (or as quickly as possible, depending on queues). That's good for services like ED, walk-in clinic.
+
+For services where clients are booked in future, there is **delay between making appointment and attending**. Possibile complexities include -
+* Setting aside slots for **urgent referrals** and balancing that against capacity
+* Patients with **regular appointments** at certain intervals
+* **Triage** step before appointment where decide whether need one or not
+* **Non-attendance of the appointment** meaning either exit system or need to rebook [[source]](https://hsma-programme.github.io/hsma6_des_book/appointment_style_booking_models.html)
+
+## Reproducibility
+
+You could set one seed per run. We then do 100 runs. Then we repeat that again. We want the results to be the same - and they are, yay!
+
+Now we do a scenario where we **change the number of nurses**. We expect this to:
+* **Change the queues** for nurses and doctors - yes 🙂
+* Number of **arrivals remain unchanged** - **no**! 🙁
+
+This is because all the methods are using one seed. The order that the random numbers are generated in matters. As the order of events changes (e.g. as have more nurses, they can see more patients quicker, changing the order that subsequent events happen).
+
+Hence, a robust way to do this is to **set seeds for each type of event that we are generating random numbers for**. This means that each event has a separate random number stream for each part of process (e.g. for the inter-arrival times, for the consult times, for our probabilities when branching). [[source]](https://hsma-programme.github.io/hsma6_des_book/reproducibility.html)
+
+## Evaluating model performance
+
+### Metrics
+
+**Arrivals**. (e.g. total arrivals per day)
+
+**Resource utilisation**. We want to track resource utilisation **overall** as well as at **specific time points**. We often won't want utilisation to be close to 100%, although what we do want depends on the type and size of service (e.g. emergency service want lower utilisation so can safely cope with spike in demand). [[source]](https://hsma-programme.github.io/hsma6_des_book/tracking_resource_utilisation.html)
+
+**Percentage of entities meeting a target** (e.g. 4 hour arrival to admission). Consider whether anything in historical data patterns is because of trying to meet targets (e.g. 17% of admissions to a&e between 3h50 and 4h). "If the target was removed, would this result in a change in behaviour? How might the predictions of our model be affected by this?"
+
+**Throughput - % of people entering system who have left by time model stops running** - low throughput suggests a bottleneck - "can be a useful measure to track as a quick way of assessing whether different scenarios are leading to severe bottlenecks, but it is not that useful as a standalone measure." [[source]](https://hsma-programme.github.io/hsma6_des_book/other_model_metrics.html)
+
+### Scenario analysis
+
+**Scenario analysis** involves compare the results from multiple different scenarios (e.g. different levels of resource, arrivals, etc).
+
+When doing this, use **different random seeds** for each replication or move fixed LARGE number of steps down random number stream on each replication.
+
+Although you might use the same pseudo random numbers in two scenarios, else you see change from scenario and random numbers (which means more noise and needs more replications), whereas consistency means less needed. When doing this, we create a correlation between the two scenarios.[TomL7]
+
+### Replications
+
+Have **replications** (multiple runs) when estimating the performance of a given scenario.
+
+To decide how many do to, find the point where the confidence interval is consistently 10% deviation from the mean (worth checking by adding a few more replications, and also, you might never reach that point).[TomL10]
+
+Image from Tom Lecture 10:
+
+![Choosing number of scenarios](../images/choose_n_scenario.png)
+
 ## Packages and software for discrete event simulation
 
 Python packages:
