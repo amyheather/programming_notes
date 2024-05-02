@@ -1,28 +1,10 @@
 # Amy Heather's Notes
 
-Hello
-
 ```{toctree}
-:hidden:
-:caption: Programming
+:maxdepth: 2
 
-programming_notes/python
+Python <python/general>
 programming_notes/r
-```
-
-```{toctree}
-:hidden:
-:caption: Open source tools
-
 programming_notes/git
-programming_notes/latex
-programming_notes/linux
-```
-
-```{toctree}
-:hidden:
-:caption: Concepts
-
-programming_notes/machine_learning
-programming_notes/open_science
+Other <programming_notes/latex>
 ```

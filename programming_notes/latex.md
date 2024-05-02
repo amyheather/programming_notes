@@ -1,5 +1,14 @@
 # Latex
 
+```{toctree}
+:hidden: True
+
+self
+linux
+machine_learning
+open_science
+```
+
 # Unicode error
 To find a unicode error (e.g. for error 202F, it's a narrow no-break space, which is hard to spot), input the following - 
 ```
