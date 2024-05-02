@@ -7,6 +7,8 @@ A DES models the behaviour of a system as a sequence of events in time. [[source
 * **Dynamic** - represents changes in system over time
 * **Discrete** - variables change at discrete points in time (e.g. customer arrivals) [[source]](https://bookdown.org/manuele_leonelli/SimBook/types-of-simulations.html)
 
+The output of a stochastic model is a **distribution** so stochastic healthcare systems have variable performance. Model is a simplification of the system that attempts to mimic that variation. If we want to compare two or more systems that have stochastic behaviour and output a random variable, then we must do so carefully as there is a risk of making an inference error.[TomL7]
+
 It uses **next event time handling**, meaning it keeps track of when events are due and hopes from event to event. This is more efficient, as ignores time inbetween when nothing is happening.[TomL7]
 
 ## Components of a DES
@@ -50,6 +52,51 @@ There are four possible output types from these models:
 * **Shifting steady-state** - output shifts from one steady-state to another without a regular/predictable pattern
 
 **Terminating** models typically have **transient** output. **Non-terminating** models typically have a **steady-state** output (possibly with a cycle or shifts). It is possible however for a terminating model to have a steady state output (particularly if have long run length before terminates), and for a non-terminating model to not reach steady state. [[source]](https://books.google.co.uk/books?id=Dtn0oAEACAAJ)
+
+## Initialisation bias
+
+Data collection should have a **realistic starting point**. Our problem is that models have **initialisation bias** - i.e. they start in an unrealistic state. To deal with this...
+
+### Method 1. Inspect time series
+
+A **warm-up period** is when you run the model like normal, but don't collect the results. [[source]](https://hsma-programme.github.io/hsma6_des_book/model_warm_up.html)
+
+
+To find the length of the warm-up period, you should run the simulation for a long time, inspect a metric (e.g. waiting time every 60 minutes), and look for when it enters steady state. You would then delete that portion of the simulation (i.e. don't save results until past the time threshold).[TomL10]
+
+To identify when you have reached the steady state, you can either:
+* **Use statistical method** to determine when equilibrium is reached - [example](https://eudl.eu/pdf/10.4108/ICST.SIMUTOOLS2009.5603)
+* Eyeball it
+* Run it for a long time [[source]](https://hsma-programme.github.io/hsma6_des_book/model_warm_up.html)
+
+### Method 2. Set initial conditions manually
+
+This save run time as you normally run and then delete warmup. This can either be based on:
+* **Real system**
+* Running the **model** with warm-up and observing the steady state conditions
+
+You could consider using a **distribution** of initial conditions.
+
+## Queue characteristics
+
+'The **queue discipline** indicates the order in which members of the queue are selected for service'.[[source]](https://www.oreilly.com/library/view/quantitative-techniques-theory/9789332512085/xhtml/ch9sec9.xhtml)
+
+Discplines:
+* **FIFO (first-in first-out)** - a.k.a. FCFS (first-come first served)
+* **LIFO (last-in first-out)** - last entity is served first (e.g. eating a stack of pancakes)[[source]](https://people.revoledu.com/kardi/tutorial/Queuing/Queuing-Discipline.html)
+* **SIRO (service in random order)** - i.e. randomly
+* **Priority queue** when certain entities get priority [[source]](https://www.oreilly.com/library/view/quantitative-techniques-theory/9789332512085/xhtml/ch9sec9.xhtml)
+
+There are then certain behaviours we might observe...
+
+**Reneging** - Entity removes themself from a queue after a certain amount of time has elapsed
+* E.g. Patient attribute of patience (e.g. sample a number, and thats how many minutes they are prepared to wait), when request resource tell simpy to wait until request is met or the patients patience expires. If they reneged, they won’t see nurse and we record the number that reneged
+
+**Balking** - Entity chooses not to enter a queue in the first place because (a) it is too long for their preferences, or (b) there is no capacity for them
+* Example for (b): Have parameter in g class with maximum queue length allowed. Have model attribute storing patients in queue, updated whenever patient leaves or joins. Before ask for nurse resource, check if queue is at max size. If so, patient will never join queue and we record that.
+
+**Jockeying** - Entity switches queues in the hope of reducing queue time
+* Never used in healthcare system. However, you might have system where entities pick which queue to join in the first place based on queue length (e.g. choosing between MIU or ED based on live waiting time data online) [[source]](https://hsma-programme.github.io/hsma6_des_book/reneging_balking_jockeying.html)
 
 ## Packages and software for discrete event simulation
 
