@@ -56,11 +56,11 @@
     <script src="../_static/design-tabs.js"></script>
     <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'simulation/simpy';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/simpy';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Prediction v.s. causal inference" href="../causal_concepts/1_predict_vs_causal.html" />
-    <link rel="prev" title="Discrete event simulation (DES)" href="discrete_event.html" />
+    <link rel="next" title="General" href="../r/general.html" />
+    <link rel="prev" title="Books" href="books.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -154,8 +154,8 @@
   </p>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../python/general.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="general.html">
                         Python
                       </a>
                     </li>
@@ -175,8 +175,8 @@
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="simulation.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../simulation/simulation.html">
                         Simulation
                       </a>
                     </li>
@@ -304,8 +304,8 @@ document.write(`
   </p>
   <ul class="bd-navbar-elements navbar-nav">
     
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../python/general.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="general.html">
                         Python
                       </a>
                     </li>
@@ -325,8 +325,8 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="simulation.html">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../simulation/simulation.html">
                         Simulation
                       </a>
                     </li>
@@ -400,8 +400,9 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="discrete_event.html">Discrete event simulation (DES)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="general.html">General Python Stuff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environments.html">Python environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="books.html">Books</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">DES using SimPy</a></li>
 </ul>
 </div>
@@ -441,7 +442,7 @@ document.write(`
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="simulation.html" class="nav-link">Simulation</a></li>
+    <li class="breadcrumb-item"><a href="general.html" class="nav-link">General Python Stuff</a></li>
     
     <li class="breadcrumb-item active" aria-current="page">DES using SimPy</li>
   </ul>
@@ -641,6 +642,7 @@ Basic example from Tom on MSc<div class="sd-summary-down docutils">
 <ul class="simple">
 <li><p class="sd-card-text">No class for global parameters - defined within script</p></li>
 <li><p class="sd-card-text">Function for patient attending clinic (service()) is within Patient rather than Model</p></li>
+<li><p class="sd-card-text">Environment, Resource, run and process outside of the Model</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Patient</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
@@ -964,8 +966,126 @@ What is a non-stationary Poisson process with thinning?<div class="sd-summary-do
 </tr>
 </tbody>
 </table>
-<p>That is a HSMA example. We can also look at a different example from Tom (basic code structure differs - see above). In his example, he does not modify the Model or Patient classes, but instead creates an <strong>Auditor class</strong>. It performs the same job - getting metrics at given intervals.<a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab1/simulation_lab1_SOLUTIONS.ipynb">[source]</a></p>
+<p>That is a HSMA example. We can also look at a different example from Tom (basic code structure differs - see above). In his example, he does not modify the Model or Patient classes, but instead creates an <strong>Auditor class</strong>. It performs the same job - getting metrics at given intervals.</p>
+<ul class="simple">
+<li><p>Audits occur at first_obs and then interval time units apart</p></li>
+<li><p>Queues and services are lists that will store a tuple identifying what want to audit</p></li>
+<li><p>Metrics is a dict to store audits</p></li>
+<li><p>Scheduled_audit - env.timeout() for delay between aduits, record_queue_length() finds length of queues (for each service, append length of their queue to dictionary)</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab1/simulation_lab1_SOLUTIONS.ipynb">[source]</a></p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Tom’s Auditor class<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Auditor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">run_length</span><span class="p">,</span> <span class="n">first_obs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Auditor Constructor</span>
+<span class="sd">        </span>
+<span class="sd">        Params:</span>
+<span class="sd">        -----</span>
+<span class="sd">        env: simpy.Environment</span>
+<span class="sd">            </span>
+<span class="sd">        first_obs: float, optional (default=None)</span>
+<span class="sd">            Time of first scheduled observation.  If none then no scheduled</span>
+<span class="sd">            audit will take place</span>
+<span class="sd">        </span>
+<span class="sd">        interval: float, optional (default=None)</span>
+<span class="sd">            Time period between scheduled observations. If none then no scheduled</span>
+<span class="sd">            audit will take place</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_observation</span> <span class="o">=</span> <span class="n">first_obs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="n">interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_length</span> <span class="o">=</span> <span class="n">run_length</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">queues</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="c1"># dict to hold states</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="c1"># scheduled the periodic audits</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">first_obs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">env</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scheduled_observation</span><span class="p">())</span>
+            <span class="n">env</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">process_end_of_run</span><span class="p">())</span>
+            
+    <span class="k">def</span> <span class="nf">add_resource_to_audit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">audit_type</span><span class="o">=</span><span class="s1">&#39;qs&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;q&#39;</span> <span class="ow">in</span> <span class="n">audit_type</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">queues</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">resource</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;queue_length_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">if</span> <span class="s1">&#39;s&#39;</span> <span class="ow">in</span> <span class="n">audit_type</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">resource</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;system_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>           
+            
+    <span class="k">def</span> <span class="nf">scheduled_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        simpy process to control the frequency of </span>
+<span class="sd">        auditor observations of the model.  </span>
+<span class="sd">        </span>
+<span class="sd">        The first observation takes place at self.first_obs</span>
+<span class="sd">        and subsequent observations are spaced self.interval</span>
+<span class="sd">        apart in time.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># delay first observation</span>
+        <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">first_observation</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">record_queue_length</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">record_calls_in_progress</span><span class="p">()</span>
+        
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">record_queue_length</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">record_calls_in_progress</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">record_queue_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">queues</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;queue_length_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">queue</span><span class="p">))</span> 
+        
+        
+    <span class="k">def</span> <span class="nf">record_calls_in_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;system_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">count</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">queue</span><span class="p">))</span> 
+               
+        
+    <span class="k">def</span> <span class="nf">process_end_of_run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Create an end of run summary</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        ---------</span>
+<span class="sd">            pd.DataFrame</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        
+        <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run_length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">run_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">queues</span><span class="p">:</span>
+            <span class="n">queue_length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;queue_length_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">])</span>
+            <span class="n">run_results</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;mean_queue_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">queue_length</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+            
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="p">:</span>
+            <span class="n">total_in_system</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;system_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">])</span>
+            <span class="n">run_results</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;mean_system_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_in_system</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        
+<span class="c1">#         #mean number in system and in queue (specific to operations)        </span>
+<span class="c1">#         queue_length = np.array(self.metrics[&#39;queue_length_ops&#39;])</span>
+<span class="c1">#         total_in_system = queue_length + np.array(self.metrics[&#39;service_ops&#39;])</span>
+
+<span class="c1">#         run_results[&#39;mean_queue&#39;] = queue_length.mean()</span>
+<span class="c1">#         run_results[&#39;mean_system&#39;] = total_in_system.mean()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">run_results</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">summary_frame</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;estimate&#39;</span><span class="p">]</span>
+</pre></div>
 </div>
+</div>
+</details></div>
 </div>
 <div class="section" id="testing-a-large-number-of-scenarios">
 <h2>Testing a large number of scenarios<a class="headerlink" href="#testing-a-large-number-of-scenarios" title="Permalink to this heading">#</a></h2>
@@ -1513,20 +1633,20 @@ Auto fit<div class="sd-summary-down docutils">
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="discrete_event.html"
+       href="books.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Discrete event simulation (DES)</p>
+        <p class="prev-next-title">Books</p>
       </div>
     </a>
     <a class="right-next"
-       href="../causal_concepts/1_predict_vs_causal.html"
+       href="../r/general.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Prediction v.s. causal inference</p>
+        <p class="prev-next-title">General</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1574,7 +1694,7 @@ Auto fit<div class="sd-summary-down docutils">
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/simulation/simpy.md.txt">
+    <a href="../_sources/python/simpy.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

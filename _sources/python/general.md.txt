@@ -4,6 +4,7 @@
 self
 environments
 books
+simpy
 ```
 
 # General Python Stuff
