@@ -590,8 +590,8 @@ document.write(`
 <div class="section" id="scenario-analysis">
 <h3>Scenario analysis<a class="headerlink" href="#scenario-analysis" title="Permalink to this heading">#</a></h3>
 <p><strong>Scenario analysis</strong> involves compare the results from multiple different scenarios (e.g. different levels of resource, arrivals, etc).</p>
-<p>When doing this, use <strong>different random seeds</strong> for each replication or move fixed LARGE number of steps down random number stream on each replication.</p>
-<p>Although you might use the same pseudo random numbers in two scenarios, else you see change from scenario and random numbers (which means more noise and needs more replications), whereas consistency means less needed. When doing this, we create a correlation between the two scenarios.[TomL7]</p>
+<p>Reproducibility: When doing this, use <strong>different random seeds</strong> for each replication or move fixed LARGE number of steps down random number stream on each replication. However, you might use the same pseudo random numbers in two scenarios, else you see change from scenario and random numbers (which means more noise and needs more replications), whereas consistency means less needed. When doing this, we create a correlation between the two scenarios.[TomL7]</p>
+<p>You may have limited number of pre-defined scenarios to compare (<strong>comparing alternatives</strong>), or have no pre-defined scenarios and instead be varying experiemental factors until you reach a target or output metric level (<strong>search experimentation</strong>).<a class="reference external" href="https://books.google.co.uk/books?id=Dtn0oAEACAAJ">[source]</a></p>
 </div>
 <div class="section" id="replications">
 <h3>Replications<a class="headerlink" href="#replications" title="Permalink to this heading">#</a></h3>
@@ -600,6 +600,19 @@ document.write(`
 <p>Image from Tom Lecture 10:</p>
 <p><img alt="Choosing number of scenarios" src="../_images/choose_n_scenario.png" /></p>
 </div>
+</div>
+<div class="section" id="model-verification-and-validation">
+<h2>Model verification and validation<a class="headerlink" href="#model-verification-and-validation" title="Permalink to this heading">#</a></h2>
+<p><strong>Verification</strong> = ensure model design has been transformed into computer model with sufficient accuracy</p>
+<p><strong>Validation</strong> = ensure model is sufficiently accurate for purpose</p>
+<ul class="simple">
+<li><p><strong>Conceptual model validation</strong> - whether content, assumptions and simplifications are sufficiently accurate (i.e. does model have necessary details to meet study objective)</p></li>
+<li><p><strong>Data validation</strong> - whether data used at any stage are sufficiently accurate</p></li>
+<li><p><strong>White-box validation</strong> - careful check of each part of model and whether it represents real world with sufficient accuracy</p></li>
+<li><p><strong>Black-box validation</strong> - thinking overall whether model represents real world with sufficient accuracy</p></li>
+<li><p><strong>Experimentation validation</strong> - ensuring procedures allow accurate results i.e. requirements for removing initialisation bias, run length, replications, sensitivity analysis, and searching of solution space to ensure that learning is maximised and appropriate solutions identified</p></li>
+<li><p><strong>Solution validation</strong> - compared the simulation model to the implemented solution (i.e. after modelling done and made changes in real life) <a class="reference external" href="https://books.google.co.uk/books?id=Dtn0oAEACAAJ">[source]</a></p></li>
+</ul>
 </div>
 <div class="section" id="packages-and-software-for-discrete-event-simulation">
 <h2>Packages and software for discrete event simulation<a class="headerlink" href="#packages-and-software-for-discrete-event-simulation" title="Permalink to this heading">#</a></h2>
@@ -694,6 +707,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#replications">Replications</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-verification-and-validation">Model verification and validation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages-and-software-for-discrete-event-simulation">Packages and software for discrete event simulation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>

@@ -136,9 +136,9 @@ Hence, a robust way to do this is to **set seeds for each type of event that we 
 
 **Scenario analysis** involves compare the results from multiple different scenarios (e.g. different levels of resource, arrivals, etc).
 
-When doing this, use **different random seeds** for each replication or move fixed LARGE number of steps down random number stream on each replication.
+Reproducibility: When doing this, use **different random seeds** for each replication or move fixed LARGE number of steps down random number stream on each replication. However, you might use the same pseudo random numbers in two scenarios, else you see change from scenario and random numbers (which means more noise and needs more replications), whereas consistency means less needed. When doing this, we create a correlation between the two scenarios.[TomL7]
 
-Although you might use the same pseudo random numbers in two scenarios, else you see change from scenario and random numbers (which means more noise and needs more replications), whereas consistency means less needed. When doing this, we create a correlation between the two scenarios.[TomL7]
+You may have limited number of pre-defined scenarios to compare (**comparing alternatives**), or have no pre-defined scenarios and instead be varying experiemental factors until you reach a target or output metric level (**search experimentation**).[[source]](https://books.google.co.uk/books?id=Dtn0oAEACAAJ)
 
 ### Replications
 
@@ -149,6 +149,18 @@ To decide how many do to, find the point where the confidence interval is consis
 Image from Tom Lecture 10:
 
 ![Choosing number of scenarios](../images/choose_n_scenario.png)
+
+## Model verification and validation
+
+**Verification** = ensure model design has been transformed into computer model with sufficient accuracy
+
+**Validation** = ensure model is sufficiently accurate for purpose
+* **Conceptual model validation** - whether content, assumptions and simplifications are sufficiently accurate (i.e. does model have necessary details to meet study objective)
+* **Data validation** - whether data used at any stage are sufficiently accurate
+* **White-box validation** - careful check of each part of model and whether it represents real world with sufficient accuracy
+* **Black-box validation** - thinking overall whether model represents real world with sufficient accuracy
+* **Experimentation validation** - ensuring procedures allow accurate results i.e. requirements for removing initialisation bias, run length, replications, sensitivity analysis, and searching of solution space to ensure that learning is maximised and appropriate solutions identified
+* **Solution validation** - compared the simulation model to the implemented solution (i.e. after modelling done and made changes in real life) [[source]](https://books.google.co.uk/books?id=Dtn0oAEACAAJ)
 
 ## Packages and software for discrete event simulation
 
