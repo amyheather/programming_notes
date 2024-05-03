@@ -1,6 +1,8 @@
 name: "Update GitHub Pages"
+# Name of this action (else will name after the commits)
 run-name: Rebuild book and upload to GH pages
 
+# Perform action upon pushes to the main branch
 on:
   push:
     branches:
@@ -20,10 +22,13 @@ jobs:
       - name: Build HTML
         uses: ammaraskar/sphinx-action@master
         with:
+          # Builds using Makefile, with docs for book in current directory
           docs-folder: "."
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           publish_branch: gh-pages
+          # Location of your index.html file to produce the book
           publish_dir: _build/html/
+          # Not a personal access token - GitHub Actions runner makes one
           github_token: ${{ secrets.GITHUB_TOKEN }}
