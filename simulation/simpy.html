@@ -626,6 +626,135 @@ View full code example<div class="sd-summary-down docutils">
 <p>To add another activity, just write it after the first one in the pathway generator function (although outside the with statement, else will drag resource from previous activity with it, unless you want that) - <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/an_example_simpy_model_multiple_steps.html">see example.</a></p>
 <p>You can model <strong>branching paths</strong> using conditional logic - <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/an_example_simpy_model_branching.html">see example.</a></p>
 </div>
+<div class="section" id="alternatives-layouts">
+<h2>Alternatives layouts<a class="headerlink" href="#alternatives-layouts" title="Permalink to this heading">#</a></h2>
+<p>Mostly below explains modifications based on the HSMA model layout. However, there are lots of different ways you can choose to lay out a SimPy model. Some more examples are provided below…</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Basic example from Tom on MSc<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab1/simulation_lab1_SOLUTIONS.ipynb">Example source.</a></p>
+<p class="sd-card-text">You can see it’s pretty similar. Ignoring the slight differences in what is being modelled (and that is not collecting results), the main differences in how code is structured are:</p>
+<ul class="simple">
+<li><p class="sd-card-text">No class for global parameters - defined within script</p></li>
+<li><p class="sd-card-text">Function for patient attending clinic (service()) is within Patient rather than Model</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Patient</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Encapsulates the process a patient caller undergoes when they dial 111</span>
+<span class="sd">    and speaks to an operator who triages their call.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">operators</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Constructor method</span>
+<span class="sd">        </span>
+<span class="sd">        Params:</span>
+<span class="sd">        -----</span>
+<span class="sd">        identifier: int</span>
+<span class="sd">            a numeric identifier for the patient.</span>
+<span class="sd">            </span>
+<span class="sd">        env: simpy.Environment</span>
+<span class="sd">            the simulation environment</span>
+<span class="sd">            </span>
+<span class="sd">        operators: simpy.Resource</span>
+<span class="sd">            the call operators</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">identifier</span> <span class="o">=</span> <span class="n">identifier</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operators</span> <span class="o">=</span> <span class="n">operators</span>
+         
+    <span class="k">def</span> <span class="nf">service</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        simualtes the service process for a call operator</span>
+<span class="sd">        </span>
+<span class="sd">        1. request and wait for a call operator</span>
+<span class="sd">        2. phone triage (triangular)</span>
+<span class="sd">        3. exit system</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># record the time that call entered the queue</span>
+        <span class="n">start_wait</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">now</span>
+
+        <span class="c1"># request an operator </span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">operators</span><span class="o">.</span><span class="n">request</span><span class="p">()</span> <span class="k">as</span> <span class="n">req</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">req</span>
+            
+            <span class="c1"># record the waiting time for call to be answered</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">waiting_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">now</span> <span class="o">-</span> <span class="n">start_wait</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;operator answered call </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">identifier</span><span class="si">}</span><span class="s1"> at &#39;</span> \
+                      <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">now</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            
+            <span class="c1"># sample call duration.</span>
+            <span class="n">call_duration</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">triangular</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> 
+                                                 <span class="n">right</span><span class="o">=</span><span class="mf">0.16</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="n">call_duration</span><span class="p">)</span>
+            
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;call </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">identifier</span><span class="si">}</span><span class="s1"> ended </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">now</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">; &#39;</span> \
+                      <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;waiting time was </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">waiting_time</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">UrgentCareCallCentre</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    111 call centre model</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">operators</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Constructor method</span>
+<span class="sd">        </span>
+<span class="sd">        Params:</span>
+<span class="sd">        --------</span>
+<span class="sd">        env: simpy.Environment</span>
+<span class="sd">        </span>
+<span class="sd">        operators: simpy.Resource</span>
+<span class="sd">            A pool of call operators triage incoming patient calls.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operators</span> <span class="o">=</span> <span class="n">operators</span> 
+            
+    <span class="k">def</span> <span class="nf">arrivals_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        IAT is exponentially distributed with mean</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        ------</span>
+<span class="sd">        env: simpy.Environment</span>
+
+<span class="sd">        operators: simpy.Resource</span>
+<span class="sd">            the call operators.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1"># use itertools as it provides an infinite loop with a counter variable</span>
+        <span class="k">for</span> <span class="n">caller_count</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+
+            <span class="c1"># 100 calls per hour (units = hours). Time between calls is 1/100</span>
+            <span class="n">inter_arrival_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="n">env</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="n">inter_arrival_time</span><span class="p">)</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;call arrives at: </span><span class="si">{</span><span class="n">env</span><span class="o">.</span><span class="n">now</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">new_caller</span> <span class="o">=</span> <span class="n">Patient</span><span class="p">(</span><span class="n">caller_count</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">operators</span><span class="p">)</span>
+            <span class="n">env</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">new_caller</span><span class="o">.</span><span class="n">service</span><span class="p">())</span>
+
+
+<span class="c1"># model parameters</span>
+<span class="n">RUN_LENGTH</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">N_OPERATORS</span> <span class="o">=</span> <span class="mi">13</span>
+
+<span class="c1"># create simpy environment and operator resources</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">simpy</span><span class="o">.</span><span class="n">Environment</span><span class="p">()</span>
+<span class="n">operators</span> <span class="o">=</span> <span class="n">simpy</span><span class="o">.</span><span class="n">Resource</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">capacity</span><span class="o">=</span><span class="n">N_OPERATORS</span><span class="p">)</span>
+
+<span class="c1"># create a model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">UrgentCareCallCentre</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">operators</span><span class="p">)</span>
+
+<span class="n">env</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">arrivals_generator</span><span class="p">())</span>
+<span class="n">env</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">until</span><span class="o">=</span><span class="n">RUN_LENGTH</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;end of run. simulation clock time = </span><span class="si">{</span><span class="n">env</span><span class="o">.</span><span class="n">now</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
 <div class="section" id="producing-entity-arrivals-using-generator-functions">
 <h2>Producing entity arrivals (using generator functions)<a class="headerlink" href="#producing-entity-arrivals-using-generator-functions" title="Permalink to this heading">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
@@ -777,11 +906,23 @@ When request PriorityResource, tell it what attribute it should use to determine
 </div>
 <p><a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/choosing_distributions.html">[source]</a></p>
 </div>
-<div class="section" id="variable-arrival-rates">
-<h2>Variable arrival rates<a class="headerlink" href="#variable-arrival-rates" title="Permalink to this heading">#</a></h2>
-<p>You could have variable arrival rates (e.g. high in afternoon, low at night). To model this you can use sim-tools which has a class that creates a non-stationary poisson process via thinning</p>
+<div class="section" id="variable-arrival-rates-i-e-time-dependent-arrivals">
+<h2>Variable arrival rates (i.e. time-dependent arrivals)<a class="headerlink" href="#variable-arrival-rates-i-e-time-dependent-arrivals" title="Permalink to this heading">#</a></h2>
+<p>You could have variable arrival rates (e.g. high in afternoon, low at night). To model this you can use sim-tools which has a class that creates a <strong>non-stationary poisson process via thinning</strong>. <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/modelling_variable_arrival_rates.html">[source]</a></p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+What is a non-stationary Poisson process with thinning?<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">First, we define a <strong>random process</strong> (or <strong>stochastic process</strong>) as a collection of random variables usually indexed by time. For each time point, the value is a random variable. They can be classified as continuous-time or discrete-time.</p>
+<p class="sd-card-text">One example of a random process is the <strong>Poisson process</strong>. This is a continuous-time random process.<a class="reference external" href="https://dlsun.github.io/probability/random-process.html">[source]</a> It is typically used when we want to account the occurence of something that happens <strong>at a certain rate over some time interval</strong> but is also completely at <strong>random</strong>, with occurences <strong>independent</strong> of each other (e.g. know that area has rate of 2 earthquakes a month, although their timing is otherwise completely random).<a class="reference external" href="https://www.probabilitycourse.com/chapter11/11_1_2_basic_concepts_of_the_poisson_process.php">[source]</a></p>
+<p class="sd-card-text">A Poisson process - also known as <strong>stationary or time-stationary or time-homogenous</strong> Poisson process - has a fixed and <strong>constant rate</strong> over time. However, if the rate varies over time (e.g. higher rate of arrivals in afternoon than at night), then it is a <strong>non-stationary Poisson process</strong>.<a class="reference external" href="http://www.columbia.edu/~ks20/4404-Sigman/4404-Notes-NSP.pdf">[source]</a> Hence, a <strong>non-stationary Poisson process</strong> is an arrival process with an arrival rate that varies by time.<a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab4/sim_lab4_nspp_SOLUTIONS.ipynb">[source]</a></p>
+<p class="sd-card-text">A non-stationary Poisson process can be generated either by <strong>thinning</strong> or <strong>rate inversion</strong>. The thinning method involves first generating a stationary Poisson process with a constant rate, but then rejecting potential arrivals at a given time by a given probability. <a class="reference external" href="https://rossetti.github.io/RossettiArenaBook/ch6-sec-NSPP.html">[source]</a> In other words, thinning is an acceptance-rejection sampling method<a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab4/sim_lab4_nspp_SOLUTIONS.ipynb">[source]</a> from a time dependent distribution where each time period follows its own exponential distribution.<a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/modelling_variable_arrival_rates.html">[source]</a></p>
+</div>
+</details><p>To set this up we:</p>
 <ul class="simple">
-<li><p>“Thinning is an acceptance-rejection approach to sampling inter-arrival times (IAT) from a time dependent distribution where each time period follows its own exponential distribution.”</p></li>
 <li><p>Provide dataframe with mean IAT at various time points</p></li>
 <li><p>Set up arrival distribution in Model class with NSPPThinning() <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/modelling_variable_arrival_rates.html">[source]</a></p></li>
 </ul>
@@ -801,7 +942,7 @@ When request PriorityResource, tell it what attribute it should use to determine
 <li><p>A time interval at which to snapshot utilisation</p></li>
 </ol>
 <p>This is integrated into the code, and then set up as a process. <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/tracking_resource_utilisation.html">[source]</a></p>
-<p>Overview of how code is modified for auditing:</p>
+<p>Overview of how <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/tracking_resource_utilisation.html">HSMA code</a> is modified for auditing:</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Class</p></th>
@@ -823,6 +964,7 @@ When request PriorityResource, tell it what attribute it should use to determine
 </tr>
 </tbody>
 </table>
+<p>That is a HSMA example. We can also look at a different example from Tom (basic code structure differs - see above). In his example, he does not modify the Model or Patient classes, but instead creates an <strong>Auditor class</strong>. It performs the same job - getting metrics at given intervals.<a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab1/simulation_lab1_SOLUTIONS.ipynb">[source]</a></p>
 </div>
 </div>
 <div class="section" id="testing-a-large-number-of-scenarios">
@@ -834,10 +976,183 @@ When request PriorityResource, tell it what attribute it should use to determine
 <li><p>Add scenario name to g class, then enumerate through the scenarios and run each one, storing the results as you go <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/testing_large_numbers_scenarios.html">[source]</a></p></li>
 </ul>
 </div>
+<div class="section" id="determining-how-many-replications-to-run">
+<h2>Determining how many replications to run.<a class="headerlink" href="#determining-how-many-replications-to-run" title="Permalink to this heading">#</a></h2>
+<p>‘You will now use the confidence interval method to select the number replications to run in order to get a good estimate the models mean performance. The narrower the confidence interval the more precise our estimate of the mean. In general, the more replications you run the narrower the confidence interval. The method requires you to set a predefined width of the confidence interval’ - e.g. 5% or 10% either side of mean. Use the following function to implement in Python…<a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab6/sim_lab6_output_analysis_SOLUTIONS.ipynb">[source]</a></p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Confidence interval method to determine replication number<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab6/sim_lab6_output_analysis_SOLUTIONS.ipynb">[source]</a></p>
+<p class="sd-card-text">‘The method is less useful for values very close to zero. As the utilisation measures are between 0 and 1 it is recommended that you multiple the values by 100.’</p>
+<p class="sd-card-text">Function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">confidence_interval_method</span><span class="p">(</span><span class="n">replications</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">desired_precision</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> 
+                               <span class="n">min_rep</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">decimal_place</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    The confidence interval method for selecting the number of replications</span>
+<span class="sd">    to run in a simulation.</span>
+<span class="sd">    </span>
+<span class="sd">    Finds the smallest number of replications where the width of the confidence</span>
+<span class="sd">    interval is less than the desired_precision.  </span>
+<span class="sd">    </span>
+<span class="sd">    Returns both the number of replications and the full results dataframe.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    ----------</span>
+<span class="sd">    replications: arraylike</span>
+<span class="sd">        Array (e.g. np.ndarray or list) of replications of a performance metric</span>
+<span class="sd">        </span>
+<span class="sd">    alpha: float, optional (default=0.05)</span>
+<span class="sd">        procedure constructs a 100(1-alpha) confidence interval for the </span>
+<span class="sd">        cumulative mean.</span>
+<span class="sd">        </span>
+<span class="sd">    desired_precision: float, optional (default=0.05)</span>
+<span class="sd">        Desired mean deviation from confidence interval.</span>
+<span class="sd">        </span>
+<span class="sd">    min_rep: int, optional (default=5)</span>
+<span class="sd">        set to a integer &gt; 0 and ignore all of the replications prior to it </span>
+<span class="sd">        when selecting the number of replications to run to achieve the desired</span>
+<span class="sd">        precision.  Useful when the number of replications returned does not</span>
+<span class="sd">        provide a stable precision below target.</span>
+<span class="sd">        </span>
+<span class="sd">    decimal_places: int, optional (default=2)</span>
+<span class="sd">        sets the number of decimal places of the returned dataframe containing</span>
+<span class="sd">        the results</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">        tuple: int, pd.DataFrame</span>
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">replications</span><span class="p">)</span>
+    <span class="n">cumulative_mean</span> <span class="o">=</span> <span class="p">[</span><span class="n">replications</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">running_var</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">cumulative_mean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cumulative_mean</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> \
+                       <span class="p">(</span><span class="n">replications</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">cumulative_mean</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        
+        <span class="c1"># running biased variance</span>
+        <span class="n">running_var</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">running_var</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">replications</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
+                                               <span class="o">-</span> <span class="n">cumulative_mean</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> \
+                            <span class="o">*</span> <span class="p">(</span><span class="n">replications</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">cumulative_mean</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        
+    <span class="c1"># unbiased std dev = running_var / (n - 1)</span>
+    <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">):</span>
+        <span class="n">running_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">running_var</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    
+    <span class="c1"># half width of interval</span>
+    <span class="n">dof</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">replications</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">t_value</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">alpha</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>  <span class="n">dof</span><span class="p">)</span>    
+    <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">):</span>
+        <span class="n">std_error</span> <span class="o">=</span> <span class="n">running_std</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        
+    <span class="n">half_width</span> <span class="o">=</span> <span class="n">t_value</span> <span class="o">*</span> <span class="n">std_error</span>
+        
+    <span class="c1"># upper and lower confidence interval</span>
+    <span class="n">upper</span> <span class="o">=</span> <span class="n">cumulative_mean</span> <span class="o">+</span> <span class="n">half_width</span>
+    <span class="n">lower</span> <span class="o">=</span> <span class="n">cumulative_mean</span> <span class="o">-</span> <span class="n">half_width</span>
+    
+    <span class="c1"># Mean deviation</span>
+    <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">):</span>
+        <span class="n">deviation</span> <span class="o">=</span> <span class="p">(</span><span class="n">half_width</span> <span class="o">/</span> <span class="n">cumulative_mean</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    
+    <span class="c1"># commbine results into a single dataframe</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">replications</span><span class="p">,</span> <span class="n">cumulative_mean</span><span class="p">,</span> 
+                            <span class="n">running_std</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">deviation</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Cumulative Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Standard Deviation&#39;</span><span class="p">,</span> 
+                       <span class="s1">&#39;Lower Interval&#39;</span><span class="p">,</span> <span class="s1">&#39;Upper Interval&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">% d</span><span class="s1">eviation&#39;</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;replications&#39;</span>
+    
+    <span class="c1"># get the smallest no. of reps where deviation is less than precision target</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">n_reps</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">min_rep</span><span class="p">:]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">% d</span><span class="s1">eviation&#39;</span><span class="p">]</span> 
+                             <span class="o">&lt;=</span> <span class="n">desired_precision</span><span class="o">*</span><span class="mi">100</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="c1"># no replications with desired precision</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;WARNING: the replications do not reach desired precision&#39;</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="n">n_reps</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> 
+
+    
+    <span class="k">return</span> <span class="n">n_reps</span><span class="p">,</span> <span class="n">results</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Using function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the method on the operator_wait replications</span>
+<span class="n">n_reps</span><span class="p">,</span> <span class="n">conf_ints</span> <span class="o">=</span> \
+    <span class="n">confidence_interval_method</span><span class="p">(</span><span class="n">replications</span><span class="p">[</span><span class="s1">&#39;operator_wait&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+                               <span class="n">desired_precision</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># print out the min number of replications to achieve precision</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">minimum number of reps for 5% precision: </span><span class="si">{</span><span class="n">n_reps</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># peek at table of results</span>
+<span class="n">conf_ints</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">plot_confidence_interval_method</span><span class="p">(</span><span class="n">n_reps</span><span class="p">,</span> <span class="n">conf_ints</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">,</span> 
+                                    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Plot the confidence intervals and cumulative mean</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n_reps: int</span>
+<span class="sd">        minimum number of reps selected</span>
+<span class="sd">        </span>
+<span class="sd">    conf_ints: pandas.DataFrame</span>
+<span class="sd">       results of the `confidence_interval_method` function</span>
+<span class="sd">       </span>
+<span class="sd">    metric_name: str</span>
+<span class="sd">        Name of the performance measure</span>
+<span class="sd">        </span>
+<span class="sd">    figsize: tuple, optional (default=(12,4))</span>
+<span class="sd">        The size of the plot</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    -------</span>
+<span class="sd">        matplotlib.pyplot.axis</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># plot cumulative mean + lower/upper intervals</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">conf_ints</span><span class="p">[[</span><span class="s1">&#39;Cumulative Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Lower Interval&#39;</span><span class="p">,</span> 
+                         <span class="s1">&#39;Upper Interval&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="c1"># add the </span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">n_reps</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;cumulative mean: </span><span class="si">{</span><span class="n">metric_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">ax</span>
+
+<span class="c1"># plot the confidence intervals</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_confidence_interval_method</span><span class="p">(</span><span class="n">n_reps</span><span class="p">,</span> <span class="n">conf_ints</span><span class="p">,</span> 
+                                     <span class="n">metric_name</span><span class="o">=</span><span class="s1">&#39;operator_wait&#39;</span><span class="p">)</span>
+
+<span class="c1"># quick check if the % deviation remains below 5% for the next 10 reps?</span>
+<span class="n">lookahead</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">conf_ints</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">n_reps</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">n_reps</span><span class="o">+</span><span class="n">lookahead</span><span class="p">]</span>
+<span class="c1"># run the method on the operator_wait replications</span>
+<span class="n">n_reps</span><span class="p">,</span> <span class="n">conf_ints</span> <span class="o">=</span> \
+    <span class="n">confidence_interval_method</span><span class="p">(</span><span class="n">replications</span><span class="p">[</span><span class="s1">&#39;operator_wait&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+                               <span class="n">desired_precision</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">min_rep</span><span class="o">=</span><span class="mi">36</span><span class="p">)</span>
+
+
+<span class="c1"># print out the min number of replications to achieve precision</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">minimum number of reps for 5% precision: </span><span class="si">{</span><span class="n">n_reps</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot the confidence intervals</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plot_confidence_interval_method</span><span class="p">(</span><span class="n">n_reps</span><span class="p">,</span> <span class="n">conf_ints</span><span class="p">,</span> 
+                                     <span class="n">metric_name</span><span class="o">=</span><span class="s1">&#39;operator_wait&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details></div>
 <div class="section" id="appointment-booking-i-e-scheduling">
 <h2>Appointment booking (i.e. scheduling)<a class="headerlink" href="#appointment-booking-i-e-scheduling" title="Permalink to this heading">#</a></h2>
 <p>We may want to model appointment booking (i.e. delay between enter system to book appointment, and attending appointment), rather than immediate attendance. <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/appointment_style_booking_models.html">See example from HSMA</a>, which is based on <a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/tree/master/labs/simulation/lab5">Tom’s example</a>.</p>
-<p>Overview of core changes to code for appointment booking (with time unit here being <strong>days</strong> rather than minutes):</p>
+<p>Overview of core changes to <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/appointment_style_booking_models.html">HSMA code</a> for appointment booking (with time unit here being <strong>days</strong> rather than minutes):</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Class</p></th>
@@ -862,6 +1177,7 @@ When request PriorityResource, tell it what attribute it should use to determine
 </tr>
 </tbody>
 </table>
+<p>You can allow patients to have a range of possible clinics that they can book into. You can do this by having a <strong>pooling matrix</strong> which is a simple table of 0s and 1s determining whether a patient can access each clinic. The package sim_utility has some premade Booker classes. To work with pooled booking, you could use the class one of their pooled booker classes e.g. <code class="docutils literal notranslate"><span class="pre">LowPriorityPooledBooker</span></code> from sim_utility (rather than <code class="docutils literal notranslate"><span class="pre">LowPriorityBooker</span></code>). <a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab5/sim_lab5_scheduling_models_SOLUTIONS.ipynb">[source]</a></p>
 </div>
 <div class="section" id="parallelisation">
 <h2>Parallelisation<a class="headerlink" href="#parallelisation" title="Permalink to this heading">#</a></h2>
@@ -939,6 +1255,251 @@ How does Joblib work?<div class="sd-summary-down docutils">
 </tbody>
 </table>
 </div>
+<div class="section" id="input-modelling">
+<h2>Input modelling<a class="headerlink" href="#input-modelling" title="Permalink to this heading">#</a></h2>
+<p>Mike write some code (archived but copied below) which fits various distributions to the data, then conductes Chi-Squared and KS-Test and ranks by the Chi-Squared statistics. It produces histograms, p-p plots, and q-q plots of the data against the theoretical distributions</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Auto fit<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab3/input_modelling/fitting.py">[source]</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">auto_fit</span><span class="p">(</span><span class="n">data_to_fit</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dist_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">data_to_fit</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">sc</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span> 
+    <span class="n">yy</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">sc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
+    <span class="n">y_std</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
+    <span class="n">y_std</span> <span class="o">=</span> <span class="n">y_std</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="k">del</span> <span class="n">yy</span>
+
+    <span class="k">if</span> <span class="n">dist_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dist_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;expon&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;gamma&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;lognorm&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;norm&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;pearson3&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;weibull_min&#39;</span><span class="p">,</span> 
+                      <span class="s1">&#39;weibull_max&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Set up empty lists to store results</span>
+    <span class="n">chi_square</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">p_values</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Set up 50 bins for chi-square test</span>
+    <span class="c1"># Observed data will be approximately evenly distrubuted aross all bins</span>
+    <span class="n">percentile_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">percentile_cutoffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">y_std</span><span class="p">,</span> <span class="n">percentile_bins</span><span class="p">)</span>
+    
+    <span class="c1">#&quot;fix&quot;: sometimes np.percentile produces cut-off that are not sorted!?  </span>
+    <span class="c1">#Why?  The test data was synthetic LoS in an ED and they are rounded numbers...</span>
+    <span class="n">observed_frequency</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">y_std</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">percentile_cutoffs</span><span class="p">)))</span>
+    <span class="n">cum_observed_frequency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">observed_frequency</span><span class="p">)</span>
+
+    <span class="c1"># Loop through candidate distributions</span>
+
+    <span class="k">for</span> <span class="n">distribution</span> <span class="ow">in</span> <span class="n">dist_names</span><span class="p">:</span>
+        <span class="c1"># Set up distribution and get fitted distribution parameters</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_std</span><span class="p">)</span>
+
+        <span class="c1"># Obtain the KS test P statistic, round it to 5 decimal places</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">kstest</span><span class="p">(</span><span class="n">y_std</span><span class="p">,</span> <span class="n">distribution</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">param</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">p_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>    
+
+        <span class="c1"># Get expected counts in percentile bins</span>
+        <span class="c1"># This is based on a &#39;cumulative distrubution function&#39; (cdf)</span>
+        <span class="n">cdf_fitted</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">percentile_cutoffs</span><span class="p">,</span> <span class="o">*</span><span class="n">param</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="n">param</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> 
+                              <span class="n">scale</span><span class="o">=</span><span class="n">param</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">expected_frequency</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="nb">bin</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">percentile_bins</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">expected_cdf_area</span> <span class="o">=</span> <span class="n">cdf_fitted</span><span class="p">[</span><span class="nb">bin</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">cdf_fitted</span><span class="p">[</span><span class="nb">bin</span><span class="p">]</span>
+            <span class="n">expected_frequency</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">expected_cdf_area</span><span class="p">)</span>
+
+        <span class="c1"># calculate chi-squared</span>
+        <span class="n">expected_frequency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">expected_frequency</span><span class="p">)</span> <span class="o">*</span> <span class="n">size</span>
+        <span class="n">cum_expected_frequency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">expected_frequency</span><span class="p">)</span>
+        <span class="n">ss</span> <span class="o">=</span> <span class="nb">sum</span> <span class="p">(((</span><span class="n">cum_expected_frequency</span> <span class="o">-</span> <span class="n">cum_observed_frequency</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">cum_observed_frequency</span><span class="p">)</span>
+        <span class="n">chi_square</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span>
+
+    <span class="c1"># Collate results and sort by goodness of fit (best at top)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;Distribution&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist_names</span>
+    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;chi_square&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chi_square</span>
+    <span class="n">results</span><span class="p">[</span><span class="s1">&#39;p_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_values</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;chi_square&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Report results</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Distributions sorted by goodness of fit:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;----------------------------------------&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">hist</span><span class="p">:</span>
+        <span class="n">fitted_histogram</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span>
+        
+    <span class="k">if</span> <span class="n">pp</span><span class="p">:</span>
+        <span class="n">pp_qq_plots</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_std</span><span class="p">,</span> <span class="n">dist_names</span><span class="p">)</span>
+        
+<span class="k">def</span> <span class="nf">fitted_histogram</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>    
+    <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+
+    <span class="c1"># Divide the observed data into 100 bins for plotting (this can be changed)</span>
+    <span class="n">number_of_bins</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">bin_cutoffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">99</span><span class="p">),</span><span class="n">number_of_bins</span><span class="p">)</span>
+
+    <span class="c1"># Create the plot</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">bin_cutoffs</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;0.75&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Get the top three distributions from the previous phase</span>
+    <span class="n">number_distributions_to_plot</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">dist_names</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;Distribution&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">number_distributions_to_plot</span><span class="p">]</span>
+
+    <span class="c1"># Create an empty list to stroe fitted distribution parameters</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Loop through the distributions ot get line fit and paraemters</span>
+
+    <span class="k">for</span> <span class="n">dist_name</span> <span class="ow">in</span> <span class="n">dist_names</span><span class="p">:</span>
+        <span class="c1"># Set up distribution and store distribution paraemters</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="p">,</span> <span class="n">dist_name</span><span class="p">)</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">parameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+
+        <span class="c1"># Get line for each distribution (and scale to match observed data)</span>
+        <span class="n">pdf_fitted</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">param</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="n">param</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="n">param</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">scale_pdf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span> <span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span> <span class="p">(</span><span class="n">pdf_fitted</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="n">pdf_fitted</span> <span class="o">*=</span> <span class="n">scale_pdf</span>
+
+        <span class="c1"># Add the line to the plot</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pdf_fitted</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">dist_name</span><span class="p">)</span>
+
+        <span class="c1"># Set the plot x axis to contain 99% of the data</span>
+        <span class="c1"># This can be removed, but sometimes outlier data makes the plot less clear</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">99</span><span class="p">))</span>
+
+    <span class="c1"># Add legend and display plot</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># Store distribution paraemters in a dataframe (this could also be saved)</span>
+    <span class="n">dist_parameters</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">dist_parameters</span><span class="p">[</span><span class="s1">&#39;Distribution&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">results</span><span class="p">[</span><span class="s1">&#39;Distribution&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">number_distributions_to_plot</span><span class="p">])</span>
+    <span class="n">dist_parameters</span><span class="p">[</span><span class="s1">&#39;Distribution parameters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parameters</span>
+
+    <span class="c1"># Print parameter results</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Distribution parameters:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;------------------------&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dist_parameters</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Distribution:&#39;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Parameters:&#39;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
+        
+<span class="k">def</span> <span class="nf">pp_qq_plots</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_std</span><span class="p">,</span> <span class="n">dist_names</span><span class="p">):</span>
+    <span class="c1">## qq and pp plots</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">y_std</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Loop through selected distributions (as previously selected)</span>
+
+    <span class="k">for</span> <span class="n">distribution</span> <span class="ow">in</span> <span class="n">dist_names</span><span class="p">:</span>
+        <span class="c1"># Set up distribution</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_std</span><span class="p">)</span>
+
+        <span class="c1"># Get random numbers from distribution</span>
+        <span class="n">norm</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="o">*</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span><span class="n">loc</span><span class="o">=</span><span class="n">param</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="n">param</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span><span class="p">)</span>
+        <span class="n">norm</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+        <span class="c1"># Create figure</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span> 
+
+        <span class="c1"># qq plot</span>
+        <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span> <span class="c1"># Grid of 2x2, this is suplot 1</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">norm</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+        <span class="n">min_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">norm</span><span class="p">),</span><span class="nb">min</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">norm</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">min_value</span><span class="p">,</span><span class="n">max_value</span><span class="p">],[</span><span class="n">min_value</span><span class="p">,</span><span class="n">max_value</span><span class="p">],</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">min_value</span><span class="p">,</span><span class="n">max_value</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Theoretical quantiles&#39;</span><span class="p">)</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Observed quantiles&#39;</span><span class="p">)</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;qq plot for &#39;</span> <span class="o">+</span> <span class="n">distribution</span> <span class="o">+</span><span class="s1">&#39; distribution&#39;</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="c1"># pp plot</span>
+        <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+
+        <span class="c1"># Calculate cumulative distributions</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">norm</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">101</span><span class="p">))</span>
+        <span class="n">data_counts</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">bins</span><span class="p">)</span>
+        <span class="n">norm_counts</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">norm</span><span class="p">,</span><span class="n">bins</span><span class="p">)</span>
+        <span class="n">cum_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">data_counts</span><span class="p">)</span>
+        <span class="n">cum_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">norm_counts</span><span class="p">)</span>
+        <span class="n">cum_data</span> <span class="o">=</span> <span class="n">cum_data</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">cum_data</span><span class="p">)</span>
+        <span class="n">cum_norm</span> <span class="o">=</span> <span class="n">cum_norm</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="n">cum_norm</span><span class="p">)</span>
+
+        <span class="c1"># plot</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cum_norm</span><span class="p">,</span><span class="n">cum_data</span><span class="p">,</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+        <span class="n">min_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">cum_norm</span><span class="p">),</span><span class="nb">min</span><span class="p">(</span><span class="n">cum_data</span><span class="p">)))</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">cum_norm</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="n">cum_data</span><span class="p">)))</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">min_value</span><span class="p">,</span><span class="n">max_value</span><span class="p">],[</span><span class="n">min_value</span><span class="p">,</span><span class="n">max_value</span><span class="p">],</span><span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">min_value</span><span class="p">,</span><span class="n">max_value</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Theoretical cumulative distribution&#39;</span><span class="p">)</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Observed cumulative distribution&#39;</span><span class="p">)</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;pp plot for &#39;</span> <span class="o">+</span> <span class="n">distribution</span> <span class="o">+</span><span class="s1">&#39; distribution&#39;</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="c1"># Display plot    </span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sd-card-text">We can then run the code as follows: <a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab3/sim_lab3_autofit_intro.ipynb">[source]</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">input_modelling.fitting</span> <span class="kn">import</span> <span class="n">auto_fit</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+<span class="n">samples</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="n">auto_fit</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+
+<span class="c1"># Plot the distributions and use a few extra options</span>
+<span class="n">dists_to_test</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;expon&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">]</span>
+<span class="n">auto_fit</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">pp</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dist_names</span><span class="o">=</span><span class="n">dists_to_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="section" id="viewing-results-from-the-model">
+<h2>Viewing results from the model<a class="headerlink" href="#viewing-results-from-the-model" title="Permalink to this heading">#</a></h2>
+<p>I have made limited notes on output analysis, mainly focussing this on how the model is set up. However, you can see more about output analysis from each the HSMA DES book pages (which typically shows the output from all the different variants of model setup, using varying visualisations).</p>
+</div>
 </div>
 
 
@@ -986,6 +1547,7 @@ How does Joblib work?<div class="sd-summary-down docutils">
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-model-structure-using-object-oriented-programming">Basic model structure (using object-oriented programming)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternatives-layouts">Alternatives layouts</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#producing-entity-arrivals-using-generator-functions">Producing entity arrivals (using generator functions)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requesting-multiple-resources-simultaneously">Requesting multiple resources simultaneously</a></li>
@@ -994,15 +1556,18 @@ How does Joblib work?<div class="sd-summary-down docutils">
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-from-distributions">Sampling from distributions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-arrival-rates">Variable arrival rates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-arrival-rates-i-e-time-dependent-arrivals">Variable arrival rates (i.e. time-dependent arrivals)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tracking-resource-utilisation">Tracking resource utilisation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-simple-average-across-the-run">Method 1. Simple average across the run</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-interval-audit-process">Method 2. Interval audit process</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-a-large-number-of-scenarios">Testing a large number of scenarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-how-many-replications-to-run">Determining how many replications to run.</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appointment-booking-i-e-scheduling">Appointment booking (i.e. scheduling)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelisation">Parallelisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-modelling">Input modelling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#viewing-results-from-the-model">Viewing results from the model</a></li>
 </ul>
   </nav></div>
 
