@@ -346,14 +346,13 @@ For this, we create a function that takes:
 This is integrated into the code, and then set up as a process. [[source]](https://hsma-programme.github.io/hsma6_des_book/tracking_resource_utilisation.html)
 
 Overview of how code is modified for auditing:
-````{mermaid}
-  flowchart TD;
 
-    param("<b>Global model parameters</b><br><br>Set audit interval (e.g. 5min)");
-    entity("<b>Patient</b><br>");
-    system("<b>Model</b><br><br>Generator function to get<br>metrics at given intervals<br>storing results as attribute<br><br>Add audit process to run<br>i.e. self.env.process()");
-    trial("<b>Trial</b><br><br>Get audit results from<br>model attributes.<br>Convert to dataframe,<br> add run, save in list<br>Have function to<br>concat df in list.")
-````
+| Class | Changes |
+| --- | --- |
+| Global model parameters | • Set audit interval (e.g. 5 min) |
+| Patient | - |
+| Model | • Generator function to get metrics at given intervals, storing results as attribute<br>• Add audit process to run i.e. self.env.process() |
+| Trial | • Get audit results from model attributes
 
 ## Testing a large number of scenarios
 
@@ -362,23 +361,83 @@ We run scenarios with different levels of resources, etc. To test a large number
 * Use itertools to create all possible permutations of scenarios
 * Add scenario name to g class, then enumerate through the scenarios and run each one, storing the results as you go [[source]](https://hsma-programme.github.io/hsma6_des_book/testing_large_numbers_scenarios.html)
 
-## Appointment booking
+## Appointment booking (i.e. scheduling)
 
-We may want to model appointment booking (i.e. delay between enter system to book appointment, and attending appointment), rather than immediate attendance. [See example](https://hsma-programme.github.io/hsma6_des_book/appointment_style_booking_models.html).
+We may want to model appointment booking (i.e. delay between enter system to book appointment, and attending appointment), rather than immediate attendance. [See example from HSMA](https://hsma-programme.github.io/hsma6_des_book/appointment_style_booking_models.html), which is based on [Tom's example](https://github.com/health-data-science-OR/stochastic_systems/tree/master/labs/simulation/lab5).
 
-<marK>finish this section</mark>
+Overview of core changes to code for appointment booking (with time unit here being **days** rather than minutes):
 
-Overview of how code is modified for appointment booking (with time unit here being **days** rather than minutes):
-````{mermaid}
-  flowchart TD;
 
-    param("<b>Global model parameters</b><br><br>New attributes:<br><br>Annual demand<br>rather than IAT<br><br>Dataframe with number<br>of appointments<br>available per day<br><br>Minimum wait (so can't get<br>appointment immediately)");
+| Class | Modifications |
+| --- | --- |
+| Global parameters | New attributes:<br>• Annual demand rather than IAT<br>• Shifts dataframe with number of available appointments per day<br>• Minimum wait (so can't get appointment immediately) |
+| Patient | New attributes:<br>• Booker<br>• Arrival time<br>• Wait time |
+| Booker | Attributes:<br>• Priority<br>• Model<br><br>Functions:<br>• <b>find_slot():</b> Find available slot in diary<br>• <b>book_slot():</b> Book the slot |
+| Model | New attributes:<br>•Available slots<br>• Bookings<br>• Run create_slots()<br>• Run create_bookings()<br>• Arrival distribution<br>• Monitoring of patient queue time and mean<br><br>New functions:<br>• <b>create_slots()</b>: extrapolate shift dataframe to cover run time + longer (so can book ahead)<br>• <b>create_bookings()</b>: create blank dataframe of same dimensions so can use to track number of patients booked<br><br>Changed functions:<br>• <b>generator_patient_arrivals():</b> instead of generate patient then wait until next, instead sample arrivals per day, loop through referrals and make patients, start booker for each patient, then run attend clinic for each patient<br>• <b>attend_clinic():</b> find_slot(), book_slot(), env.timeout() until appointment, then save time between enter system and appointment  |
+| Trial | Save new metrics (appointment wait) |
 
-    entity("<b>Patient</b><br><br>New attributes:<br>Booker<br>Arrival time<br>Wait time");
+## Parallelisation
 
-    booker("<b>Booker</b><br><br>");
+By default, Python code will run everything sequentially on a single core. We can run code in parallel to reduce run length. Use **Joblib** to split SimPy code to run across multiple processor cores. May not be possible when deploying on web.
 
-    system("<b>Model</b><br><br>New attributes:<br>Available slots<br>Bookings<br>Run create_slots()<br>Run create_bookings()<br>Arrival distribution<br>Monitoring of patient<br>queue time and mean<br><br>Function create_slots()<br><br>Function create_bookings()");
+:::{dropdown} How does Joblib work?
 
-    trial("<b>Trial</b><br><br>Save new metrics<br>(appointment<br>wait a)")
-````
+We can illustrate this with a simple function:
+
+```
+import time
+import math
+from joblib import Parallel, delayed
+
+def my_function(i):
+    # Wait one second
+    time.sleep(1)
+    # Return square root of i**2
+    return math.sqrt(i**2)
+```
+
+If we run this function with a **for loop**, it takes ten seconds:
+
+```
+i = num
+start = time.time()
+
+# Run function in for loop
+for i in range(num):
+    my_function(i)
+
+end = time.time()
+# Print time elapsed
+print('{:.4f} s'.format(end-start))
+
+10.0387 s
+```
+
+If we run it using **Parallel** and **delayed** functions from joblib, it takes five seconds.[[source]](https://measurespace.medium.com/use-joblib-to-run-your-python-code-in-parallel-ad82abb26954) We use the delayed() function as it prevents the function from running. If we just had `Parallel(n_jobs=2)(my_function(i) for i in range(num))`, by the time it gets passed to Paralell, the `my_function(i)` calls have already returned, and there's nothing left to execute in Parallel. [[source]](https://stackoverflow.com/questions/42220458/what-does-the-delayed-function-do-when-used-with-joblib-in-python)
+
+```
+start = time.time()
+
+# Run function using parallel processing
+# n_jobs is the number of parallel jobs
+Parallel(n_jobs=2)(delayed(my_function(i) for i in range(num)))
+
+end = time.time()
+# Print time elapsed
+print('{:.4f} s'.format(end-start))
+
+5.6560 s
+```
+
+[[source]](https://measurespace.medium.com/use-joblib-to-run-your-python-code-in-parallel-ad82abb26954)
+
+:::
+
+An overview of the changes we make to implement this for our SimPy model are below. These are from [this HSMA example](https://hsma-programme.github.io/hsma6_des_book/running_parallel_cpus.html), which is based on an [example from Mike](https://github.com/MichaelAllen1966/2004_simple_simpy_parallel).
+
+| Class | Changes |
+| --- | --- |
+| Global parameters | - |
+| Patient | - |
+| Model | - |
+| Trial | • Changes for how save results, so save dictionary of results from run into list (rather than setting up a dummy dataframe and using .loc to write results into correct row, as will just end up with empty results list, when running parallel)<br>• Split run_trial() into two functions, with <b>run_trial()</b> containing `self.df_trial_results = Parallel(n_jobs=-1)(delayed(self.run_single)(run) for run in range(g.number_of_runs))` (-1 means every available core will run code)
