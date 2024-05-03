@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regression discontinuity (RD) &#8212; Birth outcomes  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'causal_methods/c2_regression_discontinuity';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interrupted time series (ITS)" href="c3_interrupted_time.html" />
+    <link rel="prev" title="Instrumental variables" href="c1_instrumental_variable.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programming notes</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../python/general.html">
+                        Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../r/general.html">
+                        R
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../programming_notes/git.html">
+                        Git
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../simulation/simulation.html">
+                        Simulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../causal_concepts/1_predict_vs_causal.html">
+                        Causality
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../programming_notes/latex.html">
+                        Other
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/amyheather/programming_notes/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../python/general.html">
+                        Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../r/general.html">
+                        R
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../programming_notes/git.html">
+                        Git
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../simulation/simulation.html">
+                        Simulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../causal_concepts/1_predict_vs_causal.html">
+                        Causality
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../programming_notes/latex.html">
+                        Other
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/amyheather/programming_notes/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction and causal concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/1_predict_vs_causal.html">Prediction v.s. causal inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/2_intro_to_causality.html">The three “languages” of causal inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/3_dags.html">Directed acyclic graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/4_assumptions.html">Assumptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/5_estimands.html">Causal estimands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/6_propensity_scores.html">Propensity scores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/7_target_trial.html">Target trial emulation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Methods</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a1_multivariable_regression.html">Multivariable regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a2_stratification.html">Stratification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a3_matching.html">Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a4_iptw.html">Inverse probability of treatment weighting (IPTW) with baseline covariates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="b1_marginal_structural_models.html">Marginal structural models (MSM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="b2_gcomputation.html">G-computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="b3_gestimation.html">G-estimation of structural nested models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c1_instrumental_variable.html">Instrumental variables</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Regression discontinuity (RD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c3_interrupted_time.html">Interrupted time series (ITS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c4_diff_in_diff.html">Difference in differences (DiD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other.html">Other methods</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../causal_concepts/1_predict_vs_causal.html" class="nav-link">Prediction v.s. causal inference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Regression...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="section" id="regression-discontinuity-rd">
+<h1>Regression discontinuity (RD)<a class="headerlink" href="#regression-discontinuity-rd" title="Permalink to this heading">#</a></h1>
+<p>Regression Discontinuity Design (RDD) was first used by Thistlethwaite and Campbell (1960). It’s appeal is that it can convinvingly <strong>eliminate selection bias</strong>.</p>
+<p>It can be used when the <strong>exposure status</strong> (wholly or partly) is determined by some <strong>continuous variable exceeding some arbitrary threshold</strong>. <a class="reference external" href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al. 2022]</a> It works best when the cut-off is known, precise and free of manipulation - and is most effect when the exposure ‘has a “hair trigger” that is not tightly related to the outcome being studied’. Examples:</p>
+<ul class="simple">
+<li><p>Arrest for DWI when &gt; 0.08 blood-alcohol content</p></li>
+<li><p>Probably of receiving healthcare insurance at 65</p></li>
+<li><p>Probability of receiving medical attention jumping when birthweight falls below 1,500 grams</p></li>
+<li><p>Probability of attending summer school when grades fall below some minimum level <a class="reference external" href="https://mixtape.scunning.com/06-regression_discontinuity">[Causal Inference: The Mixtape - Scott Cunningham]</a></p></li>
+</ul>
+<p>‘If the <strong>relationship between the forcing variable and the outcome is otherwise continuous, any discontinuity or jump in the relationship can be attributed to the exposure</strong>.’ RD estimates a local average treatment effect (LATE) ‘among the individuals who fall <strong>just above or just below the threshold</strong>.’ For this reason, we require <strong>large datasets</strong>.</p>
+<p>‘As with IV analysis, bias can occur if the forcing variable is connected to the outcome through a back-door path or any other pathway besides the exposure.’ <a class="reference external" href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al. 2022]</a></p>
+<p>Why does this work? See below…</p>
+<div class="section" id="how-does-rdd-work">
+<h2>How does RDD work?<a class="headerlink" href="#how-does-rdd-work" title="Permalink to this heading">#</a></h2>
+<p>To understand RDD, we first focus on <strong>continuity</strong>, which is a core assumption that is illustrated below.</p>
+<p>In the <strong>first graph</strong> observe that:</p>
+<ul class="simple">
+<li><p>X (often called the “running variable” or “assignment variable” or “forcing variable”) is a confounder (causes D and Y)</p></li>
+<li><p>As treatment assignment is based on cut-off, we can never observe units in both treatment and control with same value of X (does not satisfy overlap condition, can’t meet backdoor criterion)</p></li>
+</ul>
+<p>The <strong>second graph</strong> illustrates that:</p>
+<ul class="simple">
+<li><p>We can identify causal effects for subjects with <strong>values of X close to the cut-off c<sub>0</sub></strong>. This is possible because the cut-off is the sole point where treatment and control subjects overlap.</p></li>
+<li><p>There are lots of assumptions in this graph</p></li>
+<li><p>One of the assumptions is <strong>continuity</strong></p>
+<ul>
+<li><p>This means X has no direct effect on Y</p></li>
+<li><p>i.e. <strong>At c<sub>0</sub>, X no longer has a direct effect on Y</strong></p></li>
+<li><p>i.e. The cut-off c<sub>0</sub> <strong>cannot be triggering a competing intervention</strong> at the same time it triggers treatment D</p></li>
+<li><p>i.e. Expected potential outcomes are continuous at the cut-off (which would necessarily rule out competing interventions occurring at the same time)</p></li>
+<li><p><strong>The null hypothesis is continuity</strong> (i.e. things changes gradually), and <strong>any discontinuity implies some cause</strong> (“nature does not make jump” - ‘if you see a turtle on a fencepost, you know he didn’t get there by himself’)</p></li>
+</ul>
+</li>
+</ul>
+<p><a class="reference external" href="https://mixtape.scunning.com/06-regression_discontinuity">[Causal Inference: The Mixtape - Scott Cunningham]</a></p>
+<div class="mermaid">
+              flowchart TD;
+
+    graphb:::outline;
+    subgraph graphb[&quot; &quot;]
+      X2(&quot;&lt;b&gt;X near c&lt;sub&gt;0&lt;/sub&gt;&lt;/b&gt;&quot;):::white;
+      D2(&quot;&lt;b&gt;D&lt;/b&gt;&quot;):::white;
+      U2(&quot;&lt;b&gt;U&lt;/b&gt;&quot;):::white;
+      Y2(&quot;&lt;b&gt;Y&lt;/b&gt;&quot;):::white;
+    end
+
+    X2 --&gt; D2;
+    D2 --&gt; Y2;
+    U2 --&gt; Y2;
+
+    grapha:::outline;
+    subgraph grapha[&quot; &quot;]
+      X1(&quot;&lt;b&gt;X&lt;/b&gt; (continuous variable)&quot;):::white;
+      D1(&quot;&lt;b&gt;D&lt;/b&gt; (treatment)&lt;br&gt;&lt;i&gt;receive if X &gt; cut-off c&lt;sub&gt;0&lt;/sub&gt;&lt;/i&gt;&quot;):::white;
+      U1(&quot;&lt;b&gt;U&lt;/b&gt;&quot;):::white;
+      Y1(&quot;&lt;b&gt;Y&lt;/b&gt; (outcome)&quot;):::white;
+    end
+
+    X1 --&gt; D1;
+    D1 --&gt; Y1;
+    X1 --&gt; Y1;
+    U1 --&gt; Y1;
+    X1 &lt;-.-&gt; U1;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF;
+    classDef black fill:#FFFFFF, stroke:#000000;
+    classDef outline fill:#FFFFFF;
+        </div><p>An example of RDD is Hoekstra (2009)</p>
+<ul class="simple">
+<li><p>Aim: Estimate causal effect of college on earnings</p></li>
+<li><p>Problem: <strong>Selection bias</strong>. State flagship universities are more selective than public universities in the same state. State flagship schools have individuals with higher observed and unobserved ability, and due to their ability, expected them to earn more regardless of their university.</p></li>
+</ul>
+<p>See first image from Hoekstra (2009), which is about admission to flagship college based on SAT points:</p>
+<ul class="simple">
+<li><p>Horizontal axis (SAT points above/below admission cut-off) is centred around 0 (cut-off). Cut-off was binding but not deterministic - some students below cut-off still get in - they likely had qualifications compensating for low SAT scores. Re-centred SAT scores are the running variable</p></li>
+<li><p>This is not individual data - it is binned, with each dot the conditional mean (enrollment rate)</p></li>
+<li><p>Lines are least squares fitted values of running variable, and regression could include higher-order terms, so line is above to more flexibly track central tendencies of data, with lines fit seperately for left and right</p></li>
+<li><p>There is a discontinuous jump at cut-off</p></li>
+<li><p><strong>Looking at a large sample of students just either side of the cut-off, we expect them to be pretty similar to one another in terms of observable and unobservable characteristics</strong>.</p></li>
+</ul>
+<p><a class="reference external" href="https://mixtape.scunning.com/06-regression_discontinuity">[Causal Inference: The Mixtape - Scott Cunningham]</a></p>
+<p><img alt="Hoekstra RDD" src="../_images/mixtape_hoekstra_rdd.jpg" /></p>
+<p>In this figure, notice:</p>
+<ul class="simple">
+<li><p>Estimated discontinuity 0.095 means that those just above cut-off earn 9.5% higher wages on average than those just below. With a variety of bins, estimates range from 7.4 to 11.1%.</p></li>
+<li><p>He has found that ‘<strong>where workers experienced a jump in the probability of enrolling at the state flagship university, there is, ten to fifteen years later, a separate jump in logged earnings of around 10%</strong>. Those individuals who just barely made it in to the state flagship university made around 10% more in long-term earnings than those individuals who just barely missed the cutoff.’</p></li>
+<li><p>‘Insofar as <strong>the two groups of applicants right around the cutoff have comparable future earnings in a world where neither attended the state flagship university, then there is no selection bias confounding his comparison</strong>’.</p></li>
+</ul>
+<p><a class="reference external" href="https://mixtape.scunning.com/06-regression_discontinuity">[Causal Inference: The Mixtape - Scott Cunningham]</a></p>
+<p><img alt="Hoekstra RDD" src="../_images/mixtape_hoekstra_rdd2.jpg" /></p>
+</div>
+<div class="section" id="sharp-v-s-fuzzy-rdd">
+<h2>Sharp v.s. fuzzy RDD<a class="headerlink" href="#sharp-v-s-fuzzy-rdd" title="Permalink to this heading">#</a></h2>
+<p><strong>Sharp RDD</strong> - when probability of treatment goes from 0 to 1 at cut-off - and so running variable is deterministic of X (dashed line)</p>
+<p><strong>Fuzzy RDD</strong> - when probability of treatment discontinuously increases at cut-off (as in example above) (solid line)</p>
+<p><img alt="Fuzzy v.s. sharp RDD" src="../_images/cunning_fuzzy_sharp_rdd.png" /></p>
+</div>
+<div class="section" id="applying-to-our-work">
+<h2>Applying to our work<a class="headerlink" href="#applying-to-our-work" title="Permalink to this heading">#</a></h2>
+<p>This might be less relevant for caesarean (no single one cut-off for a single treatment).</p>
+<p>However, it would be relevant to stroke, which has much clearer cut-offs. Although maybe focus per hospital would you need to? If you think hospital has impact on threshold?</p>
+</div>
+</div>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="c1_instrumental_variable.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Instrumental variables</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="c3_interrupted_time.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Interrupted time series (ITS)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-rdd-work">How does RDD work?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sharp-v-s-fuzzy-rdd">Sharp v.s. fuzzy RDD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-to-our-work">Applying to our work</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/causal_methods/c2_regression_discontinuity.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Amy Heather.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

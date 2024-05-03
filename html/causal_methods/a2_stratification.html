@@ -1,0 +1,673 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stratification &#8212; Birth outcomes  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'causal_methods/a2_stratification';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Matching" href="a3_matching.html" />
+    <link rel="prev" title="Multivariable regression" href="a1_multivariable_regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programming notes</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../python/general.html">
+                        Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../r/general.html">
+                        R
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../programming_notes/git.html">
+                        Git
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../simulation/simulation.html">
+                        Simulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../causal_concepts/1_predict_vs_causal.html">
+                        Causality
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../programming_notes/latex.html">
+                        Other
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/amyheather/programming_notes/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../python/general.html">
+                        Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../r/general.html">
+                        R
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../programming_notes/git.html">
+                        Git
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../simulation/simulation.html">
+                        Simulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../causal_concepts/1_predict_vs_causal.html">
+                        Causality
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../programming_notes/latex.html">
+                        Other
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/amyheather/programming_notes/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction and causal concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/1_predict_vs_causal.html">Prediction v.s. causal inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/2_intro_to_causality.html">The three “languages” of causal inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/3_dags.html">Directed acyclic graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/4_assumptions.html">Assumptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/5_estimands.html">Causal estimands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/6_propensity_scores.html">Propensity scores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/7_target_trial.html">Target trial emulation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Methods</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a1_multivariable_regression.html">Multivariable regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Stratification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a3_matching.html">Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a4_iptw.html">Inverse probability of treatment weighting (IPTW) with baseline covariates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="b1_marginal_structural_models.html">Marginal structural models (MSM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="b2_gcomputation.html">G-computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="b3_gestimation.html">G-estimation of structural nested models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c1_instrumental_variable.html">Instrumental variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c2_regression_discontinuity.html">Regression discontinuity (RD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c3_interrupted_time.html">Interrupted time series (ITS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c4_diff_in_diff.html">Difference in differences (DiD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other.html">Other methods</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../causal_concepts/1_predict_vs_causal.html" class="nav-link">Prediction v.s. causal inference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Stratification</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="section" id="stratification">
+<h1>Stratification<a class="headerlink" href="#stratification" title="Permalink to this heading">#</a></h1>
+<p>Stratification or <strong>principal stratification</strong> is the <strong>simplest</strong> method to control confounding.<a class="reference external" href="https://doi.org/10.1159/000319590">[Tripepi et al. 2010]</a> It is represented by drawing a box on the DAG.<a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+<p>It was proposed by Frangakis and Rubin 2002.<a class="reference external" href="https://doi.org/10.1111/j.0006-341X.2002.00021.x">[source]</a> It has gained popularity since the ICH E9 addendum on statistical principles for clinical trials, which listed it as a valid approach to ICEs.<a class="reference external" href="https://cran.r-project.org/web/packages/PStrata/vignettes/PStrata_JSS.pdf">[source]</a> The use of stratification to adjust for confounding is so common that some investigators consider the terms ‘stratification’ and ‘adjustment’ synonymous. Whilst it can be used to adjust for confounding - but it can also be used to <strong>identify effect modification</strong>.<a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a></p>
+<p>Principal stratification involves partitioning participants into <strong>principal strata</strong> - i.e. particular values of a variable. ‘Stratification necessarily results in multiple stratum-specific effect measures (one per stratum defined by the variables L). Each of them quantifies the average causal effect in a nonoverlapping subset of the population but, in general, none of them quantifies the average causal effect in the entire population.’ Instead, they are <strong>conditional effect measures</strong>. <a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a></p>
+<p>‘Often, one of the principal strata is the focus of inference, but sometimes it is of interest to combine principal effects across several (or all) principal strata while accounting for a confounding effect of a post-randomization variable.’<a class="reference external" href="https://doi.org/10.1002/sim.9439">[Lipkovich et al. 2022]</a> Hence, stratification involves either:</p>
+<ul class="simple">
+<li><p><strong>Restricting analysis to subset</strong> of study population with particular value of confounder.<a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a> This type of stratification is referred to as <strong>restriction</strong>. When positivity fails for some strata of the population (i.e. impossible to get a certain exposure), restriction is used to limit causal inference to the strata where it does hold. <a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a></p></li>
+<li><p><strong>Performing analysis in each stratum</strong> of confounder.<a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a> For causal inference, stratification is simply applies restriction to several mutually exclusive subsets of the population, with exchangeability within each subset. <a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a></p></li>
+</ul>
+<div class="section" id="simple-example">
+<h2>Simple example<a class="headerlink" href="#simple-example" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Exposure: Birth order</p></li>
+<li><p>Outcome: Down syndrome</p></li>
+<li><p>Potential confounder: Maternal age</p></li>
+</ul>
+<div class="mermaid">
+              flowchart LR;
+
+    order(&quot;Birth order&quot;):::white;
+    down(&quot;Down syndrome&quot;):::white;
+    age(&quot;Maternal age&quot;):::black;
+
+    order --&gt;|?| down;
+    age --&gt; order;
+    age --&gt; down;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+        </div><p>See figure:</p>
+<ul class="simple">
+<li><p>(a) Association of down syndrome with birth order and age groups seperately</p></li>
+<li><p>(b) Down syndrome cases stratified by birth order and maternal age</p></li>
+</ul>
+<p>Can observe that crude association between birth order and Down syndrome was just due to maternal age (as in each age category, birth order did not affect down syndrome frequency, but in each birth order category, age did). <a class="reference external" href="https://doi.org/10.1159/000319590">[Tripepi et al. 2010]</a></p>
+<p><img alt="Tripepi et al. 2010 Figure 1" src="../_images/tripepi_2010_fig1.jpg" /></p>
+</div>
+<div class="section" id="mantel-haenszel-formula">
+<h2>Mantel-Haenszel Formula<a class="headerlink" href="#mantel-haenszel-formula" title="Permalink to this heading">#</a></h2>
+<p>The <strong>Mantel-Haenszel formula</strong> can be used to provide a pooled odds ratio across different strata. There are alternative methods (e.g. Woolf and inverse variance) but the Mantel-Haenszel method is generally the most robust.<a class="reference external" href="https://www.statsdirect.co.uk/help/meta_analysis/mh.htm">[source]</a></p>
+<p>Key steps:</p>
+<ol class="arabic simple">
+<li><p>Calculate crude relative risks (RR) or odds ratio (OR) (i.e. <strong>without stratifying</strong>)</p></li>
+<li><p>Stratify by confounding variable and calculate <strong>stratum-specific</strong> RR or OR</p></li>
+<li><p>Assess whether effect estimates are roughly homogenous across strata and do not differ from that in the whole group</p>
+<ul class="simple">
+<li><p>If they are <strong>homogeneous</strong>, this means there is <strong>no confounding</strong>, and you can calculate the overall adjusted RR or OR by the <strong>Mantel-Haenszel formula</strong>. The pooling estimate provides an <strong>average</strong> of the stratum-specific RRs or ORs with <strong>weights proportional to the number of individuals</strong> in each stratum.</p></li>
+<li><p>If they are <strong>heterogeneous</strong> and we are interested in effect modification, stratum-specific effect estimates should be reported separately. <a class="reference external" href="https://doi.org/10.1159/000319590">[Tripepi et al. 2010]</a></p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="stratification-on-the-propensity-score">
+<h2>Stratification on the propensity score<a class="headerlink" href="#stratification-on-the-propensity-score" title="Permalink to this heading">#</a></h2>
+<p>You can stratify subjects based on their propensity scores. ‘The literature showed that five strata are adequate to reduce at least 90% of the bias associated with a confounding variable. With a large sample size, we can use between 10 or 20 strata.’ <a class="reference external" href="https://doi.org/10.14196%2Fmjiri.32.122">[Valojerdi et al. 2018]</a></p>
+</div>
+<div class="section" id="limitations-of-stratification">
+<h2>Limitations of stratification<a class="headerlink" href="#limitations-of-stratification" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Computes <strong>conditional</strong> effect measures (not average effect measures)</p></li>
+<li><p>Requires computation of effect measures in subsets of population defined by combining <em>all</em> variables required for conditional exchangeability<a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a></p>
+<ul>
+<li><p>This can be laborious and demands a large sample <strong>size</strong> when there is more than one confounder.<a class="reference external" href="https://doi.org/10.1159/000319590">[Tripepi et al. 2010]</a> It is therefore ‘prone to sparse-data problem (it occurs when there are few or no study participants at some combinations of the outcome, exposure, and covariates) and unstable estimates’, and as such, ‘is rarely used in practice’. <a class="reference external" href="https://journalaim.com/Article/1060">[Gharibzadeh et al. 2016]</a></p></li>
+<li><p>This is even if we’re <strong>not interested</strong> in such effect modification. Solution: Stratification by something of interest (i.e. effect modifier) followed by IP weighting or standardisation (to adjust for confounding) allows you to deal with exchangeability (confounders) and effect modification (modifiers)</p></li>
+</ul>
+</li>
+<li><p><strong>Noncollapsibility</strong> of certain effect measures like the odds ratio <a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a> - i.e. ‘the crude OR from the marginal table cannot be expressed as the weighted average of the stratum-specific ORs even in the absence of confounding’ - as ‘the magnitude of the OR is different when comparing the aggregate analysis to the subgroup analysis’ - but both estimates are still valid. Other effect measures are <strong>collapsible</strong> e.g. stratified risk ratios <a class="reference external" href="https://doi.org/10.1016/j.amjcard.2012.09.002">[Pang et al. 2013]</a></p></li>
+<li><p>Requires <strong>continuous</strong> confounders to be <strong>constrained</strong> to a limited number of categories, which could generate <strong>residual confounding</strong> <a class="reference external" href="https://doi.org/10.1159/000319590">[Tripepi et al. 2010]</a></p></li>
+</ul>
+</div>
+</div>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="a1_multivariable_regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Multivariable regression</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="a3_matching.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Matching</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-example">Simple example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mantel-haenszel-formula">Mantel-Haenszel Formula</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stratification-on-the-propensity-score">Stratification on the propensity score</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-stratification">Limitations of stratification</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/causal_methods/a2_stratification.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Amy Heather.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

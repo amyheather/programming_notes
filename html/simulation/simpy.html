@@ -1,0 +1,1074 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DES using SimPy &#8212; Birth outcomes  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'simulation/simpy';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Prediction v.s. causal inference" href="../causal_concepts/1_predict_vs_causal.html" />
+    <link rel="prev" title="Discrete event simulation (DES)" href="discrete_event.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programming notes</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../python/general.html">
+                        Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../r/general.html">
+                        R
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../programming_notes/git.html">
+                        Git
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="simulation.html">
+                        Simulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../causal_concepts/1_predict_vs_causal.html">
+                        Causality
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../programming_notes/latex.html">
+                        Other
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/amyheather/programming_notes/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../python/general.html">
+                        Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../r/general.html">
+                        R
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../programming_notes/git.html">
+                        Git
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="simulation.html">
+                        Simulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../causal_concepts/1_predict_vs_causal.html">
+                        Causality
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../programming_notes/latex.html">
+                        Other
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/amyheather/programming_notes/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discrete_event.html">Discrete event simulation (DES)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">DES using SimPy</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="simulation.html" class="nav-link">Simulation</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">DES using SimPy</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="section" id="des-using-simpy">
+<h1>DES using SimPy<a class="headerlink" href="#des-using-simpy" title="Permalink to this heading">#</a></h1>
+<div class="section" id="basic-model-structure-using-object-oriented-programming">
+<h2>Basic model structure (using object-oriented programming)<a class="headerlink" href="#basic-model-structure-using-object-oriented-programming" title="Permalink to this heading">#</a></h2>
+<p>Two main ways to programme in python:</p>
+<ul class="simple">
+<li><p><strong>Functional</strong> - write functions (designed to do one thing)</p></li>
+<li><p><strong>Object oriented</strong> - create objects which have attributes and methods. These objects are created as classes. This is useful when have lots of logic to use, or when want to make copies of a similar thing.</p></li>
+</ul>
+<p>A basic structure of a SimPy model:</p>
+<ul class="simple">
+<li><p>Class to store <strong>global model parameters</strong> (which you won’t create instances of, but instead will refer to directly when need to access something, hence might be lower case)</p></li>
+<li><p>Class to represent <strong>entity</strong> (which will have their attributes)</p></li>
+<li><p>Class to represent <strong>system</strong> (which will have generators, entity journeys, and store simpy environment)</p></li>
+<li><p>Class to represent <strong>trial</strong> (i.e. batch of simulation runs with methods to run them, and to store, record and display results from the trial) <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/recommended_structure_classes_for_des_models.html">[source]</a></p></li>
+</ul>
+<div class="mermaid">
+              flowchart TD;
+
+    param(&quot;&lt;b&gt;Global model parameters&lt;/b&gt;&quot;);
+    entity(&quot;&lt;b&gt;Entity&lt;/b&gt;&lt;br&gt;Attributes&quot;);
+    system(&quot;&lt;b&gt;System&lt;/b&gt;&lt;br&gt;Generators&lt;br&gt;Resources&lt;br&gt;Entity journeys&lt;br&gt;Stores simpy environment&quot;);
+    trial(&quot;&lt;b&gt;Trial&lt;/b&gt;&lt;br&gt;Run model&lt;br&gt;Record and display result&quot;)
+        </div><p>Where store results:</p>
+<div class="mermaid">
+              flowchart TD;
+
+    param(&quot;&lt;b&gt;Global model parameters&lt;/b&gt;&quot;);
+    entity(&quot;&lt;b&gt;Entity&lt;/b&gt;&lt;br&gt;Entity queue time&quot;);
+    system(&quot;&lt;b&gt;System&lt;/b&gt;&lt;br&gt;Create and populate&lt;br&gt;results dataframe&lt;br&gt;with row for each entity&quot;);
+    trial(&quot;&lt;b&gt;Trial&lt;/b&gt;&lt;br&gt;Run model&lt;br&gt;Record and display result&quot;)
+        </div><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+View full code example<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Code source: <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/an_example_simpy_model.html">HSMA</a></p>
+<p class="sd-card-text">This is a basic example (e.g. doesn’t have sim-tools distributions with reproducibility)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">simpy</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="c1"># Global parameter values</span>
+<span class="c1"># Don&#39;t make instance of this class, just access it directly</span>
+<span class="k">class</span> <span class="nc">g</span><span class="p">:</span>
+    <span class="n">patient_inter</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">mean_n_consult_time</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">number_of_nurses</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">sim_duration</span> <span class="o">=</span> <span class="mi">120</span>
+    <span class="n">number_of_runs</span> <span class="o">=</span> <span class="mi">5</span>
+
+
+<span class="c1"># Entity (Patient) with two attributes: ID and time queueing</span>
+<span class="k">class</span> <span class="nc">Patient</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p_id</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">p_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q_time_nurse</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="k">class</span> <span class="nc">Model</span><span class="p">:</span>
+    <span class="c1"># Constructor to set up model for run</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_number</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">simpy</span><span class="o">.</span><span class="n">Environment</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">patient_counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nurse</span> <span class="o">=</span> <span class="n">simpy</span><span class="o">.</span><span class="n">Resource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">,</span> <span class="n">capacity</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">number_of_nurses</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_number</span> <span class="o">=</span> <span class="n">run_number</span>
+        <span class="c1"># Blank dataframe for results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Patient ID&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Q Time Nurse&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Time with Nurse&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Patient ID&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># Blank attribute to store mean queue time of run</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean_q_time_nurse</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Generator function for patient arriving</span>
+    <span class="k">def</span> <span class="nf">generator_patient_arrivals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Infinite loop does this indefinitely during simulation run</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">patient_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="c1"># Create a new patient</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">Patient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">patient_counter</span><span class="p">)</span>
+            <span class="c1"># Send through process</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attend_clinic</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+            <span class="c1"># Sample time to next patient (inter-arrival time)</span>
+            <span class="n">sampled_inter</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">expovariate</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">g</span><span class="o">.</span><span class="n">patient_inter</span><span class="p">)</span>
+            <span class="c1"># Freeze this instance of this function until time has elapsed</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="n">sampled_inter</span><span class="p">)</span>
+
+    <span class="c1"># Generator function for patient going through clinic</span>
+    <span class="k">def</span> <span class="nf">attend_clinic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patient</span><span class="p">):</span>
+        <span class="c1"># Wait start time</span>
+        <span class="n">start_q_nurse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">now</span>
+        <span class="c1"># Request a nurse resource</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">nurse</span><span class="o">.</span><span class="n">request</span><span class="p">()</span> <span class="k">as</span> <span class="n">req</span><span class="p">:</span>
+            <span class="c1"># Queue until resource available</span>
+            <span class="k">yield</span> <span class="n">req</span>
+            <span class="c1"># Wait end time</span>
+            <span class="n">end_q_nurse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">now</span>
+            <span class="n">patient</span><span class="o">.</span><span class="n">q_time_nurse</span> <span class="o">=</span> <span class="n">end_q_nurse</span> <span class="o">-</span> <span class="n">start_q_nurse</span>
+            <span class="c1"># Sample time with nurse</span>
+            <span class="n">sampled_nurse_act_time</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">expovariate</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span>
+                                                        <span class="n">g</span><span class="o">.</span><span class="n">mean_n_consult_time</span><span class="p">)</span>
+            <span class="c1"># Store queue time and time with nurse in results</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">patient</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;Q Time Nurse&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">patient</span><span class="o">.</span><span class="n">q_time_nurse</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">patient</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;Time with Nurse&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">sampled_nurse_act_time</span><span class="p">)</span>
+            <span class="c1"># Freeze this instance of this function (i.e. for this entity) for the time spent with nurse</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="n">sampled_nurse_act_time</span><span class="p">)</span>
+            <span class="c1"># Sink</span>
+
+
+    <span class="k">def</span> <span class="nf">calculate_run_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Find mean queue time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean_q_time_nurse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Q Time Nurse&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Start up DES entity generators that create new patients</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generator_patient_arrivals</span><span class="p">())</span>
+        <span class="c1"># Run the model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">until</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">sim_duration</span><span class="p">)</span>
+        <span class="c1"># Calculate results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculate_run_results</span><span class="p">()</span>
+        <span class="c1"># Print results</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Run Number </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">run_number</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Trial</span><span class="p">:</span>
+    <span class="c1"># Set up dataframe to store results from each run</span>
+    <span class="k">def</span>  <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df_trial_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df_trial_results</span><span class="p">[</span><span class="s2">&quot;Run Number&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df_trial_results</span><span class="p">[</span><span class="s2">&quot;Mean Q Time Nurse&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df_trial_results</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Run Number&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Print trial results</span>
+    <span class="k">def</span> <span class="nf">print_trial_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Trial Results&quot;</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df_trial_results</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">number_of_runs</span><span class="p">):</span>
+            <span class="c1"># Conduct run of model</span>
+            <span class="n">my_model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
+            <span class="n">my_model</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+            <span class="c1"># Store results from run</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">df_trial_results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">run</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">my_model</span><span class="o">.</span><span class="n">mean_q_time_nurse</span><span class="p">]</span>
+        <span class="c1"># Print trial results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print_trial_results</span><span class="p">()</span>
+
+<span class="c1"># To run the above, create instance of trial class and run it</span>
+<span class="n">my_trial</span> <span class="o">=</span> <span class="n">Trial</span><span class="p">()</span>
+<span class="n">my_trial</span><span class="o">.</span><span class="n">run_trial</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details><p>When we use <strong>env.timeout</strong>, it is specification to each entity (i.e. time passes for just that entity), and so if you kill a process, only that entity is affected. However, it is possible to have some specific types of process that interrupt each other. <a class="reference external" href="https://stackoverflow.com/questions/76635524/timeout-function-in-simpy-how-does-it-work">[source]</a></p>
+<p>To add another activity, just write it after the first one in the pathway generator function (although outside the with statement, else will drag resource from previous activity with it, unless you want that) - <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/an_example_simpy_model_multiple_steps.html">see example.</a></p>
+<p>You can model <strong>branching paths</strong> using conditional logic - <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/an_example_simpy_model_branching.html">see example.</a></p>
+</div>
+<div class="section" id="producing-entity-arrivals-using-generator-functions">
+<h2>Producing entity arrivals (using generator functions)<a class="headerlink" href="#producing-entity-arrivals-using-generator-functions" title="Permalink to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+What are generator functions?<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">In a normal function we <strong>return</strong> values, which returns a value then terminates the function. In a <strong>generator function</strong> we <strong>yield</strong> values, which returns a value then pauses execution by saving states.</p>
+<ul class="simple">
+<li><p class="sd-card-text">Local variables and their states are <strong>remembered</strong> between successive calls of the generator function.</p></li>
+<li><p class="sd-card-text">A generator function is creating an <strong>iterator</strong> and returning an iterator object</p></li>
+<li><p class="sd-card-text">We can use <strong>multiple yield</strong> statements in the generator function</p></li>
+</ul>
+<p class="sd-card-text">Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">seq</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">i</span>
+
+<span class="nb">range</span> <span class="o">=</span> <span class="n">seq</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># If you called this eleven times, on the final time it would stop with the error StopIteration</span>
+</pre></div>
+</div>
+<p class="sd-card-text"><a class="reference external" href="https://www.scaler.com/topics/python/python-generators/">[source]</a></p>
+<p class="sd-card-text"><strong>Why use them?</strong></p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>Easier to implement then iterators</strong></p></li>
+<li><p class="sd-card-text"><strong>Memory efficient</strong> - a normal function can return a sequence of items but it has to create a sequence in memory before it can give result - whilst a generator function produces one output at a time</p></li>
+<li><p class="sd-card-text"><strong>Infinite sequence</strong> - can’t store infinite sequences in a given memory, but as generators only produce one item at a time, they can present an infinite stream of data <a class="reference external" href="https://www.scaler.com/topics/python/python-generators/">[source]</a></p></li>
+</ul>
+<p class="sd-card-text">You can make a python **generator expression **(instead of a function) which is a short-hand form of a generator function. You implement them similar to lambda functions but use round brackets. The difference here is:</p>
+<ul class="simple">
+<li><p class="sd-card-text">List comprehension returns list of items</p></li>
+<li><p class="sd-card-text">Generator expression returns an iterable object</p></li>
+</ul>
+<p class="sd-card-text">Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># List comprehension</span>
+<span class="n">list_</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Generator expression</span>
+<span class="n">list_</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sd-card-text"><a class="reference external" href="https://www.scaler.com/topics/python/python-generators/">[source]</a></p>
+</div>
+</details><p>The generator functions are used <strong>for entities arriving into a process</strong></p>
+<ul class="simple">
+<li><p>Set up simpy environment, customer counter, resource, run number, dataframe to store results</p></li>
+<li><p>Create <strong>generator function to represent customer arrivals</strong>, which creates new customer, uses another generator (for calls), then moves time forward by inter-arrival time (which know from sampling from distribution)</p></li>
+<li><p>Have <strong>generator function to represent customer calling helpline</strong> - requests resource, calculates time they had queued, samples time then spent with resource, then move forward by that amount of time (i.e. free that function in place for the activity time sample above) <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/recommended_structure_classes_for_des_models.html">[source]</a></p></li>
+</ul>
+</div>
+<div class="section" id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this heading">#</a></h2>
+<div class="section" id="requesting-multiple-resources-simultaneously">
+<h3>Requesting multiple resources simultaneously<a class="headerlink" href="#requesting-multiple-resources-simultaneously" title="Permalink to this heading">#</a></h3>
+<p>For example, if you need to request a nurse and a room, before can proceed with appointment.</p>
+<p>To set this up, create the resources, with attributes and columns in the results dataframe to record queue time and appointment time.</p>
+<p>You’ll have <strong>conditional</strong> logic to check if have one resource (and need to wait for other), or have both resources available at once.</p>
+<p>We request the resources without indentation, and so <strong>manually specifying when to stop using the resource</strong> which makes it easier when you are writing code that requests multiple resources at once.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># There are two ways to request a resource in SimPy...</span>
+
+<span class="c1"># Method 1</span>
+<span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">receptionist</span><span class="o">.</span><span class="n">request</span><span class="p">()</span> <span class="k">as</span> <span class="n">req</span><span class="p">:</span>
+    <span class="k">yield</span> <span class="n">req</span>
+    <span class="c1"># Rest of code here, to run whilst holding resource</span>
+
+<span class="c1"># Method 2</span>
+<span class="n">nurse_request</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">receptionist</span><span class="o">.</span><span class="n">request</span><span class="p">()</span>
+<span class="k">yield</span> <span class="n">nurse_request</span>
+<span class="c1"># Rest of code here, to run whilst holding resource</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">nurse</span><span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="n">nurse_request</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/requesting_multiple_resources.html">[source]</a></p>
+</div>
+<div class="section" id="priority-queue">
+<h3>Priority queue<a class="headerlink" href="#priority-queue" title="Permalink to this heading">#</a></h3>
+<p>Create priority based queueing with <strong>PriorityResource</strong>. It’s like the standard SimPy Resource class, but has functionality that allows it to select which entity to pull out of queue based on a priority value. To use:</p>
+<ol class="arabic simple">
+<li><p>Set up resource using <strong>PriorityResource</strong> rather than Resource</p></li>
+<li><p>Have <strong>attribute</strong> in each entity that gives their priority (<strong>lower value = higher priority</strong>)
+When request PriorityResource, tell it what attribute it should use to determine priority in queue</p></li>
+<li><p>If there are a few people waiting, it will just the person with the highest priority. If people have the same priority, it will choose the oldest of those.</p></li>
+</ol>
+<p>Remember that our results only include people who get seen by the nurse - and so when the model stops, there could still be loads of people waiting in a queue - you’ll want to account for that. <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/priority_based_queueing.html">[source]</a></p>
+</div>
+<div class="section" id="resource-unavailability">
+<h3>Resource unavailability<a class="headerlink" href="#resource-unavailability" title="Permalink to this heading">#</a></h3>
+<p>If the <strong>level of resource varies</strong> (e.g. its not 5 doctors constantly available 24/7), then you can model this in SimPy by <strong>“obstructing” a resource</strong> for a certain amount of time.</p>
+<p>Example: Nurse takes 15 minute break every 2 hours</p>
+<ol class="arabic simple">
+<li><p>Set <strong>frequency and duration of unavailability</strong> as parameter values in parameter class</p></li>
+<li><p>Set up nurse as <strong>PriorityResource</strong></p></li>
+<li><p>Create <strong>entity generator to demand the nurse resource with a higher priority than any patient every 2 hours</strong> (i.e. use a <strong>negative</strong> value), which will freeze the nurse with them for 15 minutes (but this means the nurse will complete the current patient and won’t walk out midway through)</p></li>
+<li><p>Set up the new generator running in the run method of the Model class <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/modelling_resource_unavailability.html">[source]</a></p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="sampling-from-distributions">
+<h2>Sampling from distributions<a class="headerlink" href="#sampling-from-distributions" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://github.com/TomMonks/sim-tools">Sim-tools</a> contains a bunch of functions you can use. This are set up to have individual seeds, to esaily enable reproducibility.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sim_tools.distributions</span> <span class="kn">import</span> <span class="n">Exponential</span>
+
+<span class="c1"># Later in code...</span>
+
+<span class="bp">self</span><span class="o">.</span><span class="n">patient_inter_arrival_dist</span> <span class="o">=</span> <span class="n">Exponential</span><span class="p">(</span><span class="n">mean</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">patient_inter</span><span class="p">,</span> <span class="n">random_seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_number</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The Exponential Class from the package (you’ll see there’s actually only a few lines of code):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Exponential</span><span class="p">(</span><span class="n">Distribution</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convenience class for the exponential distribution.</span>
+<span class="sd">    packages up distribution parameters, seed and random generator.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">random_seed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor</span>
+
+<span class="sd">        Params:</span>
+<span class="sd">        ------</span>
+<span class="sd">        mean: float</span>
+<span class="sd">            The mean of the exponential distribution</span>
+
+<span class="sd">        random_seed: int, optional (default=None)</span>
+<span class="sd">            A random seed to reproduce samples.  If set to none then a unique</span>
+<span class="sd">            sample is created.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">random_seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">mean</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate a sample from the exponential distribution</span>
+
+<span class="sd">        Params:</span>
+<span class="sd">        -------</span>
+<span class="sd">        size: int, optional (default=None)</span>
+<span class="sd">            the number of samples to return.  If size=None then a single</span>
+<span class="sd">            sample is returned.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/choosing_distributions.html">[source]</a></p>
+</div>
+<div class="section" id="variable-arrival-rates">
+<h2>Variable arrival rates<a class="headerlink" href="#variable-arrival-rates" title="Permalink to this heading">#</a></h2>
+<p>You could have variable arrival rates (e.g. high in afternoon, low at night). To model this you can use sim-tools which has a class that creates a non-stationary poisson process via thinning</p>
+<ul class="simple">
+<li><p>“Thinning is an acceptance-rejection approach to sampling inter-arrival times (IAT) from a time dependent distribution where each time period follows its own exponential distribution.”</p></li>
+<li><p>Provide dataframe with mean IAT at various time points</p></li>
+<li><p>Set up arrival distribution in Model class with NSPPThinning() <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/modelling_variable_arrival_rates.html">[source]</a></p></li>
+</ul>
+</div>
+<div class="section" id="tracking-resource-utilisation">
+<h2>Tracking resource utilisation<a class="headerlink" href="#tracking-resource-utilisation" title="Permalink to this heading">#</a></h2>
+<div class="section" id="method-1-simple-average-across-the-run">
+<h3>Method 1. Simple average across the run<a class="headerlink" href="#method-1-simple-average-across-the-run" title="Permalink to this heading">#</a></h3>
+<p>We can track how long each entity spends using a resource, then sum time spent, divide by time elapsed in model, and multiply by number of resources in model.</p>
+<p>This may slightly overestimate utilisation though as we record time spent with the resource prior to that time elapsing - e.g. “If we have a model run time of 600 time units, and someone reaches the nurse at unit 595 but has an activity time of 30, we will record that and use it in our calculations - even though only 5 minutes of that time actually took place during our model run.” You could adapt code to account for that (e.g. check if time remaining in model is greater than activity time sampled, and record whichever of those is smaller). <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/tracking_resource_utilisation.html">[source]</a></p>
+</div>
+<div class="section" id="method-2-interval-audit-process">
+<h3>Method 2. Interval audit process<a class="headerlink" href="#method-2-interval-audit-process" title="Permalink to this heading">#</a></h3>
+<p>For this, we create a function that takes:</p>
+<ol class="arabic simple">
+<li><p>A list of resources to monitor, and</p></li>
+<li><p>A time interval at which to snapshot utilisation</p></li>
+</ol>
+<p>This is integrated into the code, and then set up as a process. <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/tracking_resource_utilisation.html">[source]</a></p>
+<p>Overview of how code is modified for auditing:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Class</p></th>
+<th class="head"><p>Changes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global model parameters</p></td>
+<td><p>• Set audit interval (e.g. 5 min)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Patient</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>Model</p></td>
+<td><p>• Generator function to get metrics at given intervals, storing results as attribute<br>• Add audit process to run i.e. self.env.process()</p></td>
+</tr>
+<tr class="row-odd"><td><p>Trial</p></td>
+<td><p>• Get audit results from model attributes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="testing-a-large-number-of-scenarios">
+<h2>Testing a large number of scenarios<a class="headerlink" href="#testing-a-large-number-of-scenarios" title="Permalink to this heading">#</a></h2>
+<p>We run scenarios with different levels of resources, etc. To test a large number, <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/testing_large_numbers_scenarios.html">recommend the method here</a>. It involves you having:</p>
+<ul class="simple">
+<li><p>Dictionary of scenarios</p></li>
+<li><p>Use itertools to create all possible permutations of scenarios</p></li>
+<li><p>Add scenario name to g class, then enumerate through the scenarios and run each one, storing the results as you go <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/testing_large_numbers_scenarios.html">[source]</a></p></li>
+</ul>
+</div>
+<div class="section" id="appointment-booking-i-e-scheduling">
+<h2>Appointment booking (i.e. scheduling)<a class="headerlink" href="#appointment-booking-i-e-scheduling" title="Permalink to this heading">#</a></h2>
+<p>We may want to model appointment booking (i.e. delay between enter system to book appointment, and attending appointment), rather than immediate attendance. <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/appointment_style_booking_models.html">See example from HSMA</a>, which is based on <a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/tree/master/labs/simulation/lab5">Tom’s example</a>.</p>
+<p>Overview of core changes to code for appointment booking (with time unit here being <strong>days</strong> rather than minutes):</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Class</p></th>
+<th class="head"><p>Modifications</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global parameters</p></td>
+<td><p>New attributes:<br>• Annual demand rather than IAT<br>• Shifts dataframe with number of available appointments per day<br>• Minimum wait (so can’t get appointment immediately)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Patient</p></td>
+<td><p>New attributes:<br>• Booker<br>• Arrival time<br>• Wait time</p></td>
+</tr>
+<tr class="row-even"><td><p>Booker</p></td>
+<td><p>Attributes:<br>• Priority<br>• Model<br><br>Functions:<br>• <b>find_slot():</b> Find available slot in diary<br>• <b>book_slot():</b> Book the slot</p></td>
+</tr>
+<tr class="row-odd"><td><p>Model</p></td>
+<td><p>New attributes:<br>•Available slots<br>• Bookings<br>• Run create_slots()<br>• Run create_bookings()<br>• Arrival distribution<br>• Monitoring of patient queue time and mean<br><br>New functions:<br>• <b>create_slots()</b>: extrapolate shift dataframe to cover run time + longer (so can book ahead)<br>• <b>create_bookings()</b>: create blank dataframe of same dimensions so can use to track number of patients booked<br><br>Changed functions:<br>• <b>generator_patient_arrivals():</b> instead of generate patient then wait until next, instead sample arrivals per day, loop through referrals and make patients, start booker for each patient, then run attend clinic for each patient<br>• <b>attend_clinic():</b> find_slot(), book_slot(), env.timeout() until appointment, then save time between enter system and appointment</p></td>
+</tr>
+<tr class="row-even"><td><p>Trial</p></td>
+<td><p>Save new metrics (appointment wait)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="parallelisation">
+<h2>Parallelisation<a class="headerlink" href="#parallelisation" title="Permalink to this heading">#</a></h2>
+<p>By default, Python code will run everything sequentially on a single core. We can run code in parallel to reduce run length. Use <strong>Joblib</strong> to split SimPy code to run across multiple processor cores. May not be possible when deploying on web.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+How does Joblib work?<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">We can illustrate this with a simple function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+
+<span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="c1"># Wait one second</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Return square root of i**2</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sd-card-text">If we run this function with a <strong>for loop</strong>, it takes ten seconds:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="n">num</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Run function in for loop</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="n">my_function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="c1"># Print time elapsed</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:.4f}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">))</span>
+
+<span class="mf">10.0387</span> <span class="n">s</span>
+</pre></div>
+</div>
+<p class="sd-card-text">If we run it using <strong>Parallel</strong> and <strong>delayed</strong> functions from joblib, it takes five seconds.<a class="reference external" href="https://measurespace.medium.com/use-joblib-to-run-your-python-code-in-parallel-ad82abb26954">[source]</a> We use the delayed() function as it prevents the function from running. If we just had <code class="docutils literal notranslate"><span class="pre">Parallel(n_jobs=2)(my_function(i)</span> <span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(num))</span></code>, by the time it gets passed to Paralell, the <code class="docutils literal notranslate"><span class="pre">my_function(i)</span></code> calls have already returned, and there’s nothing left to execute in Parallel. <a class="reference external" href="https://stackoverflow.com/questions/42220458/what-does-the-delayed-function-do-when-used-with-joblib-in-python">[source]</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Run function using parallel processing</span>
+<span class="c1"># n_jobs is the number of parallel jobs</span>
+<span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">my_function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">)))</span>
+
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="c1"># Print time elapsed</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:.4f}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">))</span>
+
+<span class="mf">5.6560</span> <span class="n">s</span>
+</pre></div>
+</div>
+<p class="sd-card-text"><a class="reference external" href="https://measurespace.medium.com/use-joblib-to-run-your-python-code-in-parallel-ad82abb26954">[source]</a></p>
+</div>
+</details><p>An overview of the changes we make to implement this for our SimPy model are below. These are from <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/running_parallel_cpus.html">this HSMA example</a>, which is based on an <a class="reference external" href="https://github.com/MichaelAllen1966/2004_simple_simpy_parallel">example from Mike</a>.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Class</p></th>
+<th class="head"><p>Changes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Global parameters</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>Patient</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p>Model</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>Trial</p></td>
+<td><p>• Changes for how save results, so save dictionary of results from run into list (rather than setting up a dummy dataframe and using .loc to write results into correct row, as will just end up with empty results list, when running parallel)<br>• Split run_trial() into two functions, with <b>run_trial()</b> containing <code class="docutils literal notranslate"><span class="pre">self.df_trial_results</span> <span class="pre">=</span> <span class="pre">Parallel(n_jobs=-1)(delayed(self.run_single)(run)</span> <span class="pre">for</span> <span class="pre">run</span> <span class="pre">in</span> <span class="pre">range(g.number_of_runs))</span></code> (-1 means every available core will run code)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="discrete_event.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Discrete event simulation (DES)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../causal_concepts/1_predict_vs_causal.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Prediction v.s. causal inference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-model-structure-using-object-oriented-programming">Basic model structure (using object-oriented programming)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#producing-entity-arrivals-using-generator-functions">Producing entity arrivals (using generator functions)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requesting-multiple-resources-simultaneously">Requesting multiple resources simultaneously</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#priority-queue">Priority queue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resource-unavailability">Resource unavailability</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-from-distributions">Sampling from distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-arrival-rates">Variable arrival rates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tracking-resource-utilisation">Tracking resource utilisation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-simple-average-across-the-run">Method 1. Simple average across the run</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-interval-audit-process">Method 2. Interval audit process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-a-large-number-of-scenarios">Testing a large number of scenarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appointment-booking-i-e-scheduling">Appointment booking (i.e. scheduling)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelisation">Parallelisation</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/simulation/simpy.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Amy Heather.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
