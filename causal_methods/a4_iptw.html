@@ -1,0 +1,755 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Inverse probability of treatment weighting (IPTW) with baseline covariates &#8212; Birth outcomes  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=da435dbd" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'causal_methods/a4_iptw';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Marginal structural models (MSM)" href="b1_marginal_structural_models.html" />
+    <link rel="prev" title="Matching" href="a3_matching.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programming notes</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../python/general.html">
+                        Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../r/general.html">
+                        R
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../programming_notes/git.html">
+                        Git
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../simulation/simulation.html">
+                        Simulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../causal_concepts/1_predict_vs_causal.html">
+                        Causality
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../programming_notes/latex.html">
+                        Other
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/amyheather/programming_notes/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../python/general.html">
+                        Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../r/general.html">
+                        R
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../programming_notes/git.html">
+                        Git
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../simulation/simulation.html">
+                        Simulation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../causal_concepts/1_predict_vs_causal.html">
+                        Causality
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../programming_notes/latex.html">
+                        Other
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/amyheather/programming_notes/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction and causal concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/1_predict_vs_causal.html">Prediction v.s. causal inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/2_intro_to_causality.html">The three “languages” of causal inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/3_dags.html">Directed acyclic graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/4_assumptions.html">Assumptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/5_estimands.html">Causal estimands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/6_propensity_scores.html">Propensity scores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../causal_concepts/7_target_trial.html">Target trial emulation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Methods</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a1_multivariable_regression.html">Multivariable regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a2_stratification.html">Stratification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a3_matching.html">Matching</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Inverse probability of treatment weighting (IPTW) with baseline covariates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="b1_marginal_structural_models.html">Marginal structural models (MSM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="b2_gcomputation.html">G-computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="b3_gestimation.html">G-estimation of structural nested models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c1_instrumental_variable.html">Instrumental variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c2_regression_discontinuity.html">Regression discontinuity (RD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c3_interrupted_time.html">Interrupted time series (ITS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c4_diff_in_diff.html">Difference in differences (DiD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other.html">Other methods</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../causal_concepts/1_predict_vs_causal.html" class="nav-link">Prediction v.s. causal inference</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Inverse...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="inverse-probability-of-treatment-weighting-iptw-with-baseline-covariates">
+<h1>Inverse probability of treatment weighting (IPTW) with baseline covariates<a class="headerlink" href="#inverse-probability-of-treatment-weighting-iptw-with-baseline-covariates" title="Link to this heading">#</a></h1>
+<p>Names:</p>
+<ul class="simple">
+<li><p><strong>Inverse probability weighting (IPW)</strong></p></li>
+<li><p><strong>Inverse probability of treatment weighting (IPTW)</strong></p></li>
+<li><p><strong>Propensity score weighting</strong></p></li>
+</ul>
+<p>IPTW is one of the various propensity score methods. Below describes IPTW to account for confounders at baseline, but it can be used to:</p>
+<ul class="simple">
+<li><p>Estimate parameters of a marginal structure model and adjust for confounding measured over time (see page on G-methods).</p></li>
+<li><p>Account for informative censoring (pateitsn censored when lost to follow-up or reach study end without encountering event) - calculating <strong>inverse probability of censoring weights</strong> or each time point as the inverse probability of remaining in the study up to the current time point, given the previous exposure, and patient characteristics related to censoring <a class="reference external" href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al. 2022]</a></p></li>
+</ul>
+<p>IPTW involves using the propensity scores to balance the baseline characteristics in the treated and untreated (or ‘exposed and unexposed’) groups. This is done by <strong>weighting each individual by the inverse probability of receiving their actual treatment</strong>. <a class="reference external" href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al. 2022]</a></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Actual group</p></th>
+<th class="head"><p>Estimated probability of being in this group</p></th>
+<th class="head"><p>Inverse</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Exposed / Treated</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">propensity_score</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1/propensity_score</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Unexposed / Untreated</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1-propensity_score</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1/(1-propensity_score)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>This means that larger weights go to:</p>
+<ul class="simple">
+<li><p>Exposed individuals with a lower probability of exposure</p></li>
+<li><p>Unexposed individuals with a higher probability of exposure</p></li>
+</ul>
+<p>Conceptually, IPTW can be considered mathematically equivalent to standardisation.</p>
+<p>As IPTW aims to balance patient characteristics in the exposed and unexposed groups, it is considered good practice to assess the <strong>standardized differences</strong> between groups for all baseline characteristics both before and after weighting. The advantage of checking standardized mean differences is that it allows for comparisons of balance across variables measured in different units. As a rule of thumb, a standardized difference of &lt;10% may be considered a negligible imbalance between groups. If the standardized differences remain too large after weighting, the propensity model should be revisited (e.g. by including interaction terms, transformations, splines). <a class="reference external" href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al. 2022]</a></p>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Study on receiving extended-hours haemodialysis (EHD) treatment v.s. conventional HD (CHD)</p></li>
+<li><p>Want to balance distribution of diabetes - at baseline, <strong>higher % diabetes patients in CHD group</strong> than in EHD group</p></li>
+<li><p>Patients with diabetes have 25% probability of receiving EHD = propensity score of 0.25</p></li>
+<li><p>To balance distribution, weight-up patients in EHD group by inverse of propensity score, which is 1/0.25=4, so conceptually each <strong>EHD diabetes patient represents four patients</strong>, creating a “pseudo-population”</p></li>
+<li><p>Similarly, CHD diabetes patients weighted by 1/(1-0.25)=1.33.</p></li>
+<li><p><strong>Diabetes now equally distributed</strong> across the EHD and CHD groups</p></li>
+<li><p>These weights can then be incorporated into an outcome model to get an estimate of the <strong>average treatment effect</strong> adjusted for confounders</p></li>
+</ul>
+<p>‘As the weighting creates a pseudopopulation containing ‘replications’ of individuals, the sample size is artificially inflated and correlation is induced within each individual. This lack of independence needs to be accounted for in order to correctly estimate the variance and confidence intervals in the effect estimates, which can be achieved by using either a robust ‘sandwich’ variance estimator or bootstrap-based methods.’ <a class="reference external" href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al. 2022]</a></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Diabetes + Group</p></th>
+<th class="head"><p>Estimated probability<br>of EHD (given<br>diabetes status)</p></th>
+<th class="head"><p>Estimated probability<br>of actual treatment<br>received</p></th>
+<th class="head"><p>Inverse</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Diabetes + CHD</p></td>
+<td><p>0.25</p></td>
+<td><p>0.75</p></td>
+<td><p>1/0.75 = 1.33</p></td>
+</tr>
+<tr class="row-odd"><td><p>No diabetes + CHD</p></td>
+<td><p>0.75</p></td>
+<td><p>0.25</p></td>
+<td><p>1/0.25 = 4</p></td>
+</tr>
+<tr class="row-even"><td><p>Diabetes + EHD</p></td>
+<td><p>0.25</p></td>
+<td><p>0.25</p></td>
+<td><p>1/0.25 = 4</p></td>
+</tr>
+<tr class="row-odd"><td><p>No diabetes + EHD</p></td>
+<td><p>0.75</p></td>
+<td><p>0.75</p></td>
+<td><p>1/0.75 = 1.33</p></td>
+</tr>
+</tbody>
+</table>
+<p>Image from <a class="reference external" href="https://doi.org/10.1093%2Fckj%2Fsfab158">Chesnaye et al. 2022</a>:</p>
+<p><img alt="Chesnaye et al. 2022 propensity score diagram" src="../_images/chesnaye_2022_iptw.jpg" /></p>
+</section>
+<section id="strengths-and-limitations">
+<h2>Strengths and limitations<a class="headerlink" href="#strengths-and-limitations" title="Link to this heading">#</a></h2>
+<p>Strengths:</p>
+<ul class="simple">
+<li><p>(As for all propensity score-based methods) able to summarise all characteristics in a single covariate</p></li>
+<li><p>Retains more individuals than propensity score matching</p></li>
+<li><p>Can be used for categorical or continuous exposures (whilst matching generally compares a single treatment group with a control group)</p></li>
+<li><p>Estimates hazard ratios with less bias than propensity score stratification or adjustment using the propensity score</p></li>
+<li><p>Can be used in marginal structural models to correct for time-dependent confounders</p></li>
+</ul>
+<p>Limitations:</p>
+<ul class="simple">
+<li><p>Simulation studies have shown IPTW can be no better than multivariable regression</p></li>
+<li><p>IPTW cautioned against for sample sizes under 150 due to underestimation of the variance (i.e. standard error, confidence interval and P-values) of effect estimates</p></li>
+<li><p>‘Sensitive to misspecifications of the propensity score model, as omission of interaction effects or misspecification of functional forms of included covariates may induce imbalanced groups, biasing the effect estimate’ <a class="reference external" href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al. 2022]</a></p></li>
+<li><p>‘Propensity values near 0 and 1 yield extreme weights (after taking the inverse)’<a class="reference external" href="https://www2.stat.duke.edu/~fl35/teaching/640/Chap3.4_observational_weighting.pdf">[source]</a> - i.e. not recommended when propensities are small (close to 0) as weights can be unstable</p></li>
+<li><p>ATE may not always be the sensible estimand <a class="reference external" href="https://www2.stat.duke.edu/~fl35/teaching/640/Chap3.4_observational_weighting.pdf">[source]</a></p></li>
+</ul>
+</section>
+<section id="assumptions">
+<h2>Assumptions<a class="headerlink" href="#assumptions" title="Link to this heading">#</a></h2>
+<p>‘Treatment effects obtained using IPTW may be interpreted as causal under the following assumptions:</p>
+<ul class="simple">
+<li><p>Exchangeability</p></li>
+<li><p>No misspecification of the propensity score model</p></li>
+<li><p>Positivity</p></li>
+<li><p>Consistency’ <a class="reference external" href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al. 2022]</a></p></li>
+</ul>
+</section>
+<section id="iptw-variants">
+<h2>IPTW variants<a class="headerlink" href="#iptw-variants" title="Link to this heading">#</a></h2>
+<p>One of the limitations described above is that propensity values near 0 and 1 yield <strong>extreme weights</strong>. This can ‘inflate the variance and confident intervals of the effect estimate. This may occur when the exposure is rare in a small subset of individuals, which subsequently receives very large weights, and thus have a disproportionate influence on the analysis.’ It’s worth considering <strong>why</strong> these individuals have such a low probability of being treatment but actually receive the treatment, or vice versa - they may be <strong>outliers</strong>. For example, ‘patients with a 100% probbaility of receiving a particular treatment would not be eligible to be randomised to both treatments’. There are variants to IPTW that attempt to address some of its limitations. <a class="reference external" href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al. 2022]</a></p>
+<section id="weight-stabilisation">
+<h3>Weight stabilisation<a class="headerlink" href="#weight-stabilisation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Replace ‘numerator (which is 1 in the unstabilized weights) with the <strong>crude probability of exposure</strong> (i.e. given by the propensity score model without covariates).’</p></li>
+<li><p>‘In case of a binary exposure, the numerator is simply the proportion of patients who were exposed. Stablised weights can therefore be calculated as:’</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">exposed</span> <span class="pre">/</span> <span class="pre">propensity_score</span></code>, instead of <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">propensity_score</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unexposed</span> <span class="pre">/</span> <span class="pre">(1-propensity</span> <span class="pre">score)</span></code>, instead of <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">(1-propensity</span> <span class="pre">score)</span></code></p></li>
+</ul>
+</li>
+<li><p>‘<strong>Stabilized weights should be preferred</strong> over unstabilized weights, as they tend to reduce the variance of the effect estimate’ <a class="reference external" href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al. 2022]</a></p></li>
+</ul>
+<p>In other weights, weight stabilisation invovles multiplying the unstabilised weight by the probability of the observed exposure without conditioning on the confounders, and so it the stablised weight is the ‘ratio of the unconditional probability (the numerator) to the conditional probability (the denominator)’.<a class="reference external" href="https://doi.org/10.2215/CJN.00650117">[Xie et al. 2017]</a></p>
+</section>
+<section id="propensity-score-trimming-and-truncation">
+<h3>Propensity score trimming and truncation<a class="headerlink" href="#propensity-score-trimming-and-truncation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Symmetric trimming</strong> - exclude patients with a score outside [a, 1-a], with often a=0.1, so [0.1, 0.9] <a class="reference external" href="https://www2.stat.duke.edu/~fl35/teaching/640/Chap3.4_observational_weighting.pdf">[source]</a> - typically 1st and 99th percentiles, but lower thresholds can reduce variance <a class="reference external" href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al. 2022]</a></p></li>
+<li><p><strong>Asymmetric trimming</strong> - exclude patients with a score outside the common range formed by the treated and control patients, and below the q quantile of treated and above the 1-q quantile of control</p></li>
+<li><p><strong>Propensity score truncation</strong> - set patients with a score below a to a, and above 1-a to 1-a  <a class="reference external" href="https://www2.stat.duke.edu/~fl35/teaching/640/Chap3.4_observational_weighting.pdf">[source]</a></p></li>
+</ul>
+<p>‘Truncating weights change the population of inference and thus this reduction in variance comes at the cost of increasing bias’. <a class="reference external" href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al. 2022]</a></p>
+</section>
+<section id="augmented-inverse-propensity-weighting-aipw">
+<h3>Augmented inverse propensity weighting (AIPW)<a class="headerlink" href="#augmented-inverse-propensity-weighting-aipw" title="Link to this heading">#</a></h3>
+<p>Augmented inverse propensity weighting (AIPW) involves:</p>
+<ol class="arabic simple">
+<li><p>Fitting a <strong>propensity score</strong> model (i.e. estimated probability of treatment assignment conditional on baseline characteristics)</p></li>
+<li><p>Fit <strong>two seperate models</strong> that estimate the outcome - one under treatment and one under control</p></li>
+<li><p><strong>Weight</strong> each outcome by the propensity scores</p></li>
+</ol>
+<p>This improves on IPW to combine information about the probability of treatment and predictive information about the outcome variable. It is a <strong>doubly robust</strong> estimator / has the property of double robustnesss. This means ‘that it is consistent (i.e., it converges in probability to the true value of the parameter) for the ATE if either the propensity score model or the outcome model is correctly specified’.</p>
+<p>AIPW is more flexible as it doesn’t require the <strong>same set of covariates</strong> to be used for the propensity score model and model estimaing treatment-outcome relationship. <a class="reference external" href="https://doi.org/10.1177%2F0272989X211027181">[Kurz 2022]</a></p>
+</section>
+<section id="excluding-treated-individuals">
+<h3>Excluding treated individuals<a class="headerlink" href="#excluding-treated-individuals" title="Link to this heading">#</a></h3>
+<p>Pajouheshnia et al. 2017 propose to exclude treated individuals after IPTW - i.e. stratifying the sample but focussing only on untreated - so that the resulting validation set resembles the untreated target population.
+<a class="reference external" href="https://doi.org/10.1186%2Fs12874-017-0375-8">[Pajouheshnia et al. 2017]</a> This is proposed in the context of the treatment paradox, with the intention of finding the direct effect of the exposure on outcome not mediated by treatment.</p>
+<p>In their simulation study, Pajouheshnia et al. 2017 find that <strong>IPW alone did not improve calibration</strong> (compared to when we did nothing to account for the treatment paradox), but IPW followed by the <strong>exclusion of treated individuals</strong> provided correct estimates for calibration. IPW alone or followed by the exclusion of treated individuals improved estimates of the c-index in all scenarios where the assumptions of positivity and no unobserved confounding were met. In scenario 4, <strong>where treatment allocation was determined by a strict risk-threshold and thus the assumption of positivity was violated, IPW was ineffective, and resulted in the worst estimates of discrimination across all methods</strong>. In addition, the extreme weights calculated in scenario 4 led to very large standard errors. In scenarios 13–15, the presence of an unobserved confounder led to the failure of IPW to provide correct estimates of the c-index. Weight truncation at the 98% percentile increased precision, but was less effective in correcting of the c-index for the effects of treatment.</p>
+<p>‘Although the use of IPW prior to the exclusion of treated individuals is a promising solution in data where treatments are non-randomly allocated, it <strong>should not be used when there are severe violations of the underlying assumptions, e.g. in the presence of non-positivity (where some individuals had no chance of receiving treatment), or when there is an unobserved confounder, strongly associated with both the outcome and treatment use.</strong> There is thus a need to explore alternative methods to IPW to account for the effects of treatment use when validating a prognostic model in settings with non-random treatment use.’ <a class="reference external" href="https://doi.org/10.1186%2Fs12874-017-0375-8">[Pajouheshnia et al. 2017]</a></p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="a3_matching.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Matching</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="b1_marginal_structural_models.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Marginal structural models (MSM)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strengths-and-limitations">Strengths and limitations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions">Assumptions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iptw-variants">IPTW variants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-stabilisation">Weight stabilisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propensity-score-trimming-and-truncation">Propensity score trimming and truncation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-inverse-propensity-weighting-aipw">Augmented inverse propensity weighting (AIPW)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#excluding-treated-individuals">Excluding treated individuals</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/causal_methods/a4_iptw.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Amy Heather.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
