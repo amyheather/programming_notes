@@ -177,6 +177,7 @@ Mostly below explains modifications based on the HSMA model layout. However, the
 You can see it's pretty similar. Ignoring the slight differences in what is being modelled (and that is not collecting results), the main differences in how code is structured are:
 * No class for global parameters - defined within script
 * Function for patient attending clinic (service()) is within Patient rather than Model
+* Environment, Resource, run and process outside of the Model
 
 ```
 class Patient:
@@ -492,7 +493,121 @@ Overview of how [HSMA code](https://hsma-programme.github.io/hsma6_des_book/trac
 | Model | • Generator function to get metrics at given intervals, storing results as attribute<br>• Add audit process to run i.e. self.env.process() |
 | Trial | • Get audit results from model attributes
 
-That is a HSMA example. We can also look at a different example from Tom (basic code structure differs - see above). In his example, he does not modify the Model or Patient classes, but instead creates an **Auditor class**. It performs the same job - getting metrics at given intervals.[[source]](https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab1/simulation_lab1_SOLUTIONS.ipynb)
+That is a HSMA example. We can also look at a different example from Tom (basic code structure differs - see above). In his example, he does not modify the Model or Patient classes, but instead creates an **Auditor class**. It performs the same job - getting metrics at given intervals.
+* Audits occur at first_obs and then interval time units apart
+* Queues and services are lists that will store a tuple identifying what want to audit
+* Metrics is a dict to store audits
+* Scheduled_audit - env.timeout() for delay between aduits, record_queue_length() finds length of queues (for each service, append length of their queue to dictionary)
+
+[[source]](https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab1/simulation_lab1_SOLUTIONS.ipynb)
+
+:::{dropdown} Tom's Auditor class
+
+```
+class Auditor:
+    def __init__(self, env, run_length, first_obs=None, interval=None):
+        '''
+        Auditor Constructor
+        
+        Params:
+        -----
+        env: simpy.Environment
+            
+        first_obs: float, optional (default=None)
+            Time of first scheduled observation.  If none then no scheduled
+            audit will take place
+        
+        interval: float, optional (default=None)
+            Time period between scheduled observations. If none then no scheduled
+            audit will take place
+        '''
+        self.env = env
+        self.first_observation = first_obs
+        self.interval = interval
+        self.run_length = run_length
+        
+        self.queues = []
+        self.service = []
+        
+        # dict to hold states
+        self.metrics = {}
+        
+        # scheduled the periodic audits
+        if not first_obs is None:
+            env.process(self.scheduled_observation())
+            env.process(self.process_end_of_run())
+            
+    def add_resource_to_audit(self, resource, name, audit_type='qs'):
+        if 'q' in audit_type:
+            self.queues.append((name, resource))
+            self.metrics[f'queue_length_{name}'] = []
+        
+        if 's' in audit_type:
+            self.service.append((name, resource))
+            self.metrics[f'system_{name}'] = []           
+            
+    def scheduled_observation(self):
+        '''
+        simpy process to control the frequency of 
+        auditor observations of the model.  
+        
+        The first observation takes place at self.first_obs
+        and subsequent observations are spaced self.interval
+        apart in time.
+        '''
+        # delay first observation
+        yield self.env.timeout(self.first_observation)
+        self.record_queue_length()
+        self.record_calls_in_progress()
+        
+        while True:
+            yield self.env.timeout(self.interval)
+            self.record_queue_length()
+            self.record_calls_in_progress()
+    
+    def record_queue_length(self):
+        for name, res in self.queues:
+            self.metrics[f'queue_length_{name}'].append(len(res.queue)) 
+        
+        
+    def record_calls_in_progress(self):
+        for name, res in self.service:
+            self.metrics[f'system_{name}'].append(res.count + len(res.queue)) 
+               
+        
+    def process_end_of_run(self):
+        '''
+        Create an end of run summary
+        
+        Returns:
+        ---------
+            pd.DataFrame
+        '''
+        
+        yield self.env.timeout(self.run_length - 1)
+        
+        run_results = {}
+
+        for name, res in self.queues:
+            queue_length = np.array(self.metrics[f'queue_length_{name}'])
+            run_results[f'mean_queue_{name}'] = queue_length.mean()
+            
+        for name, res in self.service:
+            total_in_system = np.array(self.metrics[f'system_{name}'])
+            run_results[f'mean_system_{name}'] = total_in_system.mean()
+        
+#         #mean number in system and in queue (specific to operations)        
+#         queue_length = np.array(self.metrics['queue_length_ops'])
+#         total_in_system = queue_length + np.array(self.metrics['service_ops'])
+
+#         run_results['mean_queue'] = queue_length.mean()
+#         run_results['mean_system'] = total_in_system.mean()
+
+        self.summary_frame = pd.Series(run_results).to_frame()
+        self.summary_frame.columns = ['estimate']
+```
+
+:::
 
 ## Testing a large number of scenarios
 
