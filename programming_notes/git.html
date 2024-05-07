@@ -526,6 +526,20 @@ To delete local branch: <code class="docutils literal notranslate"><span class="
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code><br />
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span> <span class="pre">origin/main</span></code></p>
 </div>
+<div class="section" id="git-stash">
+<h2>Git stash<a class="headerlink" href="#git-stash" title="Permalink to this heading">#</a></h2>
+<p>If you have local uncommitted changes, and realise you are not working on the right branch, you can resolve this using git stash…</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">stash</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">branchname</span>
+<span class="n">git</span> <span class="n">stash</span> <span class="n">apply</span>
+</pre></div>
+</div>
+<p>If there are differences, a merge conflict will appear, and you can resolve using conflict editor in VS Code which shows you the two versions and changes on each line, and as you accept one or the other, it shows you the end result from that.</p>
+</div>
+<div class="section" id="git-fork">
+<h2>Git fork<a class="headerlink" href="#git-fork" title="Permalink to this heading">#</a></h2>
+<p>If you fork a repository and want to push changes to a branch other than main, switch to that branch in the forked repository and make the changes there.</p>
+</div>
 <div class="section" id="commits">
 <h2>Commits<a class="headerlink" href="#commits" title="Permalink to this heading">#</a></h2>
 <p>To view commit history: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code><br />
@@ -607,6 +621,8 @@ To return to a previous commit:</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#track-large-file">Track large file</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-fetch-v-s-git-pull">Git fetch v.s. git pull</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#branches-and-versions">Branches and versions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-stash">Git stash</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-fork">Git fork</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commits">Commits</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-credentials">Storing credentials</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#public-v-s-private-repositories">Public v.s. private repositories</a></li>

@@ -81,6 +81,22 @@ To move to main branch and force local files to match main (loses unstaged commi
 `git fetch`  
 `git reset --hard origin/main`  
 
+## Git stash
+
+If you have local uncommitted changes, and realise you are not working on the right branch, you can resolve this using git stash...
+
+```
+git stash
+git checkout branchname
+git stash apply
+```
+
+If there are differences, a merge conflict will appear, and you can resolve using conflict editor in VS Code which shows you the two versions and changes on each line, and as you accept one or the other, it shows you the end result from that.
+
+## Git fork
+
+If you fork a repository and want to push changes to a branch other than main, switch to that branch in the forked repository and make the changes there.
+
 ## Commits  
 To view commit history: `git log`  
 To return to a previous commit: 
