@@ -7,6 +7,7 @@ self
 linux
 machine_learning
 open_science
+other
 ```
 
 # Unicode error
