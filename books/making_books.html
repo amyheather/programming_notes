@@ -561,10 +561,35 @@ document.write(`
 </div>
 <div class="section" id="quarto">
 <h2>Quarto<a class="headerlink" href="#quarto" title="Permalink to this heading">#</a></h2>
-<p>Install Quarto VS Code extension (has various handy tools)</p>
-<p>Within VS Code, Ctrl+Shift+P &gt; Quarto: Create Project</p>
+<p>Getting set up…</p>
+<ol class="arabic simple">
+<li><p>Install <strong>Quarto</strong> - https://quarto.org/docs/get-started/ - I downloaded the Linux deb file, then ran <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dpkg</span> <span class="pre">-i</span> <span class="pre">packagename.deb</span></code></p></li>
+<li><p>Create <strong>environment</strong> with necessary requirements (<em>this may not be a necessary step, but this is what I decided to do</em>) - for me, I needed:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ipykernel</span>
+<span class="n">pyyaml</span>
+<span class="n">nbformat</span>
+<span class="n">nbclient</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Install Quarto <strong>VS Code extension</strong> (and then perhaps open and close VS Code)</p></li>
+<li><p>Within VS Code, Ctrl+Shift+P &gt; Quarto: <strong>Create Project</strong></p></li>
+<li><p>Ctrl+Shift+P &gt; <strong>Select Interpreter</strong> &gt; choose the environment created</p></li>
+</ol>
 <p>Render full .qmd: <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+K</span></code></p>
+<p>Render file: <code class="docutils literal notranslate"><span class="pre">quarto</span> <span class="pre">render</span> <span class="pre">hello.qmd</span> <span class="pre">--to</span> <span class="pre">html</span></code></p>
+<p>Render to alt. output: <code class="docutils literal notranslate"><span class="pre">quarto</span> <span class="pre">render</span> <span class="pre">hello.qmd</span> <span class="pre">--to</span> <span class="pre">docx</span></code></p>
 <p>Run individual cells by selecting the <strong>Run Cell</strong> button.</p>
+<p>You’ll see there’s a few Quarto projects that pop up -</p>
+<ul class="simple">
+<li><p>Basic</p></li>
+<li><p>Book</p></li>
+<li><p>Blog</p></li>
+<li><p>Manuscript</p></li>
+<li><p>Website</p></li>
+</ul>
+<p>A book is actually a special type of website - the most important difference is that it uses chapter numbers and supports cross-references between different chapters. <a class="reference external" href="https://quarto.org/docs/books/">[source]</a></p>
 </div>
 <div class="section" id="jupyter-book">
 <h2>Jupyter book<a class="headerlink" href="#jupyter-book" title="Permalink to this heading">#</a></h2>
