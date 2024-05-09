@@ -32,13 +32,35 @@ Other random noted down options not explored:
 
 ## Quarto
 
-Install Quarto VS Code extension (has various handy tools)
-
-Within VS Code, Ctrl+Shift+P > Quarto: Create Project
+Getting set up...
+1. Install **Quarto** - https://quarto.org/docs/get-started/ - I downloaded the Linux deb file, then ran `sudo dpkg -i packagename.deb`
+2. Create **environment** with necessary requirements (*this may not be a necessary step, but this is what I decided to do*) - for me, I needed:
+```
+ipykernel
+pyyaml
+nbformat
+nbclient
+```
+3. Install Quarto **VS Code extension** (and then perhaps open and close VS Code)
+4. Within VS Code, Ctrl+Shift+P > Quarto: **Create Project**
+5. Ctrl+Shift+P > **Select Interpreter** > choose the environment created
 
 Render full .qmd: `Ctrl+Shift+K`
 
+Render file: `quarto render hello.qmd --to html`
+
+Render to alt. output: `quarto render hello.qmd --to docx`
+
 Run individual cells by selecting the **Run Cell** button.
+
+You'll see there's a few Quarto projects that pop up -
+* Basic
+* Book
+* Blog
+* Manuscript
+* Website
+
+A book is actually a special type of website - the most important difference is that it uses chapter numbers and supports cross-references between different chapters. [[source]](https://quarto.org/docs/books/)
 
 ## Jupyter book
 
