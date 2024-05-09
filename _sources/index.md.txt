@@ -1,8 +1,11 @@
 # Amy Heather's Notes
 
-```{toctree}
-:maxdepth: 2
+Notebook with a range of topics (e.g. books, python, R, causality, simulation).
 
+```{toctree}
+:hidden: True
+
+Books <books/making_books>
 Python <python/general>
 R <r/general>
 programming_notes/git
