@@ -3,7 +3,6 @@
 
 self
 environments
-books
 simpy
 ```
 

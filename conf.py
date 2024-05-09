@@ -2,7 +2,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Birth outcomes'
+project = 'Amy Notes'
 copyright = '2024, Amy Heather'
 author = 'Amy Heather'
 
