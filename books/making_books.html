@@ -473,7 +473,99 @@ document.write(`
 <h1>Making books<a class="headerlink" href="#making-books" title="Permalink to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<p><mark>need to sort out</mark></p>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>System</p></th>
+<th class="head"><p>Valid input files</p></th>
+<th class="head"><p>Compatibility with Python &amp; R</p></th>
+<th class="head"><p>Blog posts (tags, dates, filters) ?</p></th>
+<th class="head"><p>Nice examples</p></th>
+<th class="head"><p>Additional details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><b>Jupyter Book</b><br><a class="reference external" href="https://jupyterbook.org/en/stable/intro.html">Documentation</a></p></td>
+<td><p>- Markdown <code class="docutils literal notranslate"><span class="pre">.md</span></code><br>- Jupyter notebook <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code><br>- MyST markdown notebook <code class="docutils literal notranslate"><span class="pre">.md</span></code><br>- reStructured Text <code class="docutils literal notranslate"><span class="pre">.rst</span></code> (not recommended)<br><a class="reference external" href="https://jupyterbook.org/en/stable/file-types/index.html">[source]</a></p></td>
+<td><p>Python tool. Would probably only use with R if you were working with R in <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>. Possible to convert <code class="docutils literal notranslate"><span class="pre">.Rmd</span></code> to <code class="docutils literal notranslate"><span class="pre">ipynb</span></code> or MyST</p></td>
+<td><p>Not found example</p></td>
+<td><p><a class="reference external" href="https://samuel-book.github.io/samuel-1/introduction/intro.html">SAMueL-1</a><br><br><a class="reference external" href="https://samuel-book.github.io/samuel-2/introduction/intro.html">SAMueL-2</a></p></td>
+<td><p>Easy integration with BinderHub and Google Colab <a class="reference external" href="https://jupyterbook.org/en/stable/interactive/launchbuttons.html">[source]</a><br><br>Uses Sphinx to build book <a class="reference external" href="https://jupyterbook.org/en/stable/explain/sphinx.html">[source]</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><b>Sphinx</b><br><a class="reference external" href="https://www.sphinx-doc.org/en/master/">Documentation</a></p></td>
+<td><p>- reStructured Text <code class="docutils literal notranslate"><span class="pre">.rst</span></code> (default)<br>- Markdown <code class="docutils literal notranslate"><span class="pre">.md</span></code><br>- Jupyter notebook <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> (with nbsphinx and MyST-NB)</p></td>
+<td><p>Designed for Python, didn’t easily run into R implementation, but <a class="reference external" href="https://www.ericholscher.com/blog/2014/feb/11/sphinx-isnt-just-for-python/">examples here in various languages</a></p></td>
+<td><p>Yes</p></td>
+<td><p><a class="reference external" href="https://www.pyopensci.org/python-package-guide/index.html">pyOpenSci</a><br><br><a class="reference external" href="https://a-little-book-of-r-for-biomedical-statistics.readthedocs.io/en/latest/">Little book of R for biomedical statistics</a><br><br><a class="reference external" href="https://chrisholdgraf.com/blog/">Chris Holdgraf’s blog</a></p></td>
+<td><p>Thumbnail gallery, Binder, nbviewer <a class="reference external" href="https://nbsphinx.readthedocs.io/en/latest/gallery/gallery-with-nested-documents.html">[source]</a></p></td>
+</tr>
+<tr class="row-even"><td><p><b>Quarto</b><br><a class="reference external" href="https://quarto.org/">Documentation</a></p></td>
+<td><p>- Cross-language Quarto markdown <code class="docutils literal notranslate"><span class="pre">.qmd</span></code> (which combines markdown and executable code)<br>-Jupyter notebook <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code><br>- Markdown <code class="docutils literal notranslate"><span class="pre">.md</span></code><br>- R markdown <code class="docutils literal notranslate"><span class="pre">.Rmd</span></code><br><a class="reference external" href="https://quarto.org/docs/projects/quarto-projects.html">[source]</a></p></td>
+<td><p>Explicitly supports dynamic content from Python, R, Julia and Observable <a class="reference external" href="https://quarto.org/">[source]</a><br><a class="reference external" href="https://quarto.org/docs/faq/rmarkdown.html">Comparison with Rmd</a></p></td>
+<td><p>Well supported natively<br><a class="reference external" href="https://quarto.org/docs/websites/website-blog.html">Tutorial 1</a> <br><a class="reference external" href="https://albert-rapp.de/posts/13_quarto_blog_writing_guide/13_quarto_blog_writing_guide.html">Tutorial 2</a><br><a class="reference external" href="https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/">Tutorial 3</a></p></td>
+<td><p><a class="reference external" href="https://github.com/ddanieltan/ddanieltan.com">ddanieltan’s blog</a><br><br><a class="reference external" href="https://quarto.org/docs/blog/">Quarto’s blog</a><br><br><a class="reference external" href="https://r4ds.hadley.nz/">R for Data Science</a><br><br><a class="reference external" href="https://wesmckinney.com/book/">Python for Data Analysis</a><br><br>HSMA DES Book - <a class="reference external" href="https://github.com/hsma-programme/hsma6_des_book">github</a>, <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/">site</a></p></td>
+<td><p>Huge range of supported output formats <a class="reference external" href="https://quarto.org/docs/output-formats/all-formats.html">[source]</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><b>Jekyll</b></p></td>
+<td><p>- Markdown <code class="docutils literal notranslate"><span class="pre">.md</span></code><br>- HTML</p></td>
+<td><p>Written in Ruby. Creates simple static sites.</p></td>
+<td><p></p></td>
+<td><p>Exeter RSE Workshop - <a class="reference external" href="https://github.com/UniExeterRSE/intro-version-control">github</a>, <a class="reference external" href="https://uniexeterrse.github.io/intro-version-control/">site</a><br><br><a class="reference external" href="https://www.ruby-lang.org/en/">Ruby’s website</a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><b>Mkdocs</b><br><a class="reference external" href="https://www.mkdocs.org/">Documentation</a></p></td>
+<td><p>- Markdown <code class="docutils literal notranslate"><span class="pre">.md</span></code><br>Seems possible for others but more designed for markdown?</p></td>
+<td><p>Designed for Python</p></td>
+<td><p>Yes with Material for Mkdocs <a class="reference external" href="https://squidfunk.github.io/mkdocs-material/plugins/blog/">plugin</a></p></td>
+<td><p>Material for MkDocs - <a class="reference external" href="https://github.com/squidfunk/mkdocs-material">github</a>, <a class="reference external" href="https://squidfunk.github.io/mkdocs-material/">site</a><br><br>Cookiecutter Data Science - <a class="reference external" href="https://github.com/drivendata/cookiecutter-data-science/tree/master">github</a>, <a class="reference external" href="http://drivendata.github.io/cookiecutter-data-science/">site</a></p></td>
+<td><p><a class="reference external" href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a> provides additional features</p></td>
+</tr>
+<tr class="row-odd"><td><p><b>Bookdown</b><br><a class="reference external" href="https://bookdown.org/">Documentation</a></p></td>
+<td><p>- R Markdown <code class="docutils literal notranslate"><span class="pre">.Rmd</span></code></p></td>
+<td><p>Designed for R</p></td>
+<td><p></p></td>
+<td><p><a class="reference external" href="https://bookdown.org/yihui/rmarkdown/">R Markdown Definitive Guide</a><br><br><a class="reference external" href="https://bookdown.org/yihui/rmarkdown-cookbook/">R Markdown Cookbook</a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><b>Blogdown</b><br><a class="reference external" href="https://bookdown.org/yihui/blogdown/">Documentation</a></p></td>
+<td><p>- R Markdown <code class="docutils literal notranslate"><span class="pre">.Rmd</span></code></p></td>
+<td><p>Designed for R</p></td>
+<td><p></p></td>
+<td><p><a class="reference external" href="https://awesome-blogdown.com/">List of blogs</a></p></td>
+<td><p>Built on <a class="reference external" href="https://gohugo.io/">Hugo</a> <a class="reference external" href="https://bookdown.org/yihui/blogdown/hugo.html">[source]</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><b>Hugodown</b><br><a class="reference external" href="https://hugodown.r-lib.org/">Documentation</a></p></td>
+<td><p>- R Markdown <code class="docutils literal notranslate"><span class="pre">.Rmd</span></code></p></td>
+<td><p>Designed for R</p></td>
+<td><p></p></td>
+<td><p><a class="reference external" href="https://awesome-blogdown.com/">List of blogs</a></p></td>
+<td><p>Built on <a class="reference external" href="https://gohugo.io/">Hugo</a></p></td>
+</tr>
+<tr class="row-even"><td><p><b>Distill for R Markdown</b><br><a class="reference external" href="https://rstudio.github.io/distill/">Documentation</a></p></td>
+<td><p>- R Markdown <code class="docutils literal notranslate"><span class="pre">.Rmd</span></code></p></td>
+<td><p>Designed for R</p></td>
+<td><p>Yes natively (eg. set up project as blog or website)</p></td>
+<td><p><a class="reference external" href="https://www.pipinghotdata.com/blog">Piping Hot Data</a><br><br><a class="reference external" href="https://www.tidymodels.org/learn/">Tidy models</a><br><br><a class="reference external" href="https://milesmcbain.xyz/">Before I sleep</a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><a class="reference external" href="https://education.rstudio.com/blog/2021/02/distill-it-down/">Reflections on RMarkdown, Distill, Bookdown and Blogdown</a>.</p>
+<p>Paid: https://www.gitbook.com/pricing</p>
+<p>Other random noted down options not explored:</p>
+<ul class="simple">
+<li><p>Sandpaper, pegboard and varnish - example: https://carpentries-lab.github.io/good-enough-practices/index.html</p></li>
+<li><p>Sweave/LaTeX RStudio/LaTeX Pandoc SageMath Colab Notebooks Nbconvert Pelican Org mode DocOnce Scribus Madoko Texinfo</p></li>
+</ul>
+</div>
+<div class="section" id="quarto">
+<h2>Quarto<a class="headerlink" href="#quarto" title="Permalink to this heading">#</a></h2>
+<p>Install Quarto VS Code extension (has various handy tools)</p>
+<p>Within VS Code, Ctrl+Shift+P &gt; Quarto: Create Project</p>
+<p>Render full .qmd: <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+K</span></code></p>
+<p>Run individual cells by selecting the <strong>Run Cell</strong> button.</p>
+</div>
 <div class="section" id="jupyter-book">
 <h2>Jupyter book<a class="headerlink" href="#jupyter-book" title="Permalink to this heading">#</a></h2>
 <p>Install jupyter-book package.</p>
@@ -609,6 +701,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quarto">Quarto</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book">Jupyter book</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sphinx">Sphinx</a></li>
 </ul>

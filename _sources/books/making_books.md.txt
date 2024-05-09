@@ -8,7 +8,37 @@ hosting_books
 markdown
 ```
 
-<mark>need to sort out</mark>
+## Summary
+
+| System | Valid input files | Compatibility with Python & R | Blog posts (tags, dates, filters) ? | Nice examples | Additional details |
+| --- | --- | --- | --- | --- | --- |
+| <b>Jupyter Book</b><br>[Documentation](https://jupyterbook.org/en/stable/intro.html) | - Markdown `.md`<br>- Jupyter notebook `.ipynb`<br>- MyST markdown notebook `.md`<br>- reStructured Text `.rst` (not recommended)<br>[[source]](https://jupyterbook.org/en/stable/file-types/index.html) | Python tool. Would probably only use with R if you were working with R in `.ipynb`. Possible to convert `.Rmd` to `ipynb` or MyST | Not found example | [SAMueL-1](https://samuel-book.github.io/samuel-1/introduction/intro.html)<br><br>[SAMueL-2](https://samuel-book.github.io/samuel-2/introduction/intro.html) | Easy integration with BinderHub and Google Colab [[source]](https://jupyterbook.org/en/stable/interactive/launchbuttons.html)<br><br>Uses Sphinx to build book [[source]](https://jupyterbook.org/en/stable/explain/sphinx.html) |
+| <b>Sphinx</b><br>[Documentation](https://www.sphinx-doc.org/en/master/) | - reStructured Text `.rst` (default)<br>- Markdown `.md`<br>- Jupyter notebook `.ipynb` (with nbsphinx and MyST-NB) | Designed for Python, didn't easily run into R implementation, but [examples here in various languages](https://www.ericholscher.com/blog/2014/feb/11/sphinx-isnt-just-for-python/) | Yes | [pyOpenSci](https://www.pyopensci.org/python-package-guide/index.html)<br><br>[Little book of R for biomedical statistics](https://a-little-book-of-r-for-biomedical-statistics.readthedocs.io/en/latest/)<br><br>[Chris Holdgraf's blog](https://chrisholdgraf.com/blog/) | Thumbnail gallery, Binder, nbviewer [[source]](https://nbsphinx.readthedocs.io/en/latest/gallery/gallery-with-nested-documents.html)
+| <b>Quarto</b><br>[Documentation](https://quarto.org/) | - Cross-language Quarto markdown `.qmd` (which combines markdown and executable code)<br>-Jupyter notebook `.ipynb`<br>- Markdown `.md`<br>- R markdown `.Rmd`<br>[[source]](https://quarto.org/docs/projects/quarto-projects.html) | Explicitly supports dynamic content from Python, R, Julia and Observable [[source]](https://quarto.org/)<br>[Comparison with Rmd](https://quarto.org/docs/faq/rmarkdown.html) | Well supported natively<br>[Tutorial 1](https://quarto.org/docs/websites/website-blog.html) <br>[Tutorial 2](https://albert-rapp.de/posts/13_quarto_blog_writing_guide/13_quarto_blog_writing_guide.html)<br>[Tutorial 3](https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/) | [ddanieltan's blog](https://github.com/ddanieltan/ddanieltan.com)<br><br>[Quarto's blog](https://quarto.org/docs/blog/)<br><br>[R for Data Science](https://r4ds.hadley.nz/)<br><br>[Python for Data Analysis](https://wesmckinney.com/book/)<br><br>HSMA DES Book - [github](https://github.com/hsma-programme/hsma6_des_book), [site](https://hsma-programme.github.io/hsma6_des_book/) | Huge range of supported output formats [[source]](https://quarto.org/docs/output-formats/all-formats.html) |
+| <b>Jekyll</b> | - Markdown `.md`<br>- HTML| Written in Ruby. Creates simple static sites. | | Exeter RSE Workshop - [github](https://github.com/UniExeterRSE/intro-version-control), [site](https://uniexeterrse.github.io/intro-version-control/)<br><br>[Ruby's website](https://www.ruby-lang.org/en/) |
+| <b>Mkdocs</b><br>[Documentation](https://www.mkdocs.org/) | - Markdown `.md`<br>Seems possible for others but more designed for markdown? | Designed for Python | Yes with Material for Mkdocs [plugin](https://squidfunk.github.io/mkdocs-material/plugins/blog/) | Material for MkDocs - [github](https://github.com/squidfunk/mkdocs-material), [site](https://squidfunk.github.io/mkdocs-material/)<br><br>Cookiecutter Data Science - [github](https://github.com/drivendata/cookiecutter-data-science/tree/master), [site](http://drivendata.github.io/cookiecutter-data-science/) | [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) provides additional features
+| <b>Bookdown</b><br>[Documentation](https://bookdown.org/) | - R Markdown `.Rmd` | Designed for R | | [R Markdown Definitive Guide](https://bookdown.org/yihui/rmarkdown/)<br><br>[R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/) |
+| <b>Blogdown</b><br>[Documentation](https://bookdown.org/yihui/blogdown/) | - R Markdown `.Rmd` | Designed for R | | [List of blogs](https://awesome-blogdown.com/) | Built on [Hugo](https://gohugo.io/) [[source]](https://bookdown.org/yihui/blogdown/hugo.html)
+| <b>Hugodown</b><br>[Documentation](https://hugodown.r-lib.org/) | - R Markdown `.Rmd` | Designed for R | | [List of blogs](https://awesome-blogdown.com/) | Built on [Hugo](https://gohugo.io/)
+| <b>Distill for R Markdown</b><br>[Documentation](https://rstudio.github.io/distill/) | - R Markdown `.Rmd`| Designed for R | Yes natively (eg. set up project as blog or website) | [Piping Hot Data](https://www.pipinghotdata.com/blog)<br><br>[Tidy models](https://www.tidymodels.org/learn/)<br><br>[Before I sleep](https://milesmcbain.xyz/)
+
+[Reflections on RMarkdown, Distill, Bookdown and Blogdown](https://education.rstudio.com/blog/2021/02/distill-it-down/).
+
+Paid: https://www.gitbook.com/pricing
+
+Other random noted down options not explored:
+* Sandpaper, pegboard and varnish - example: https://carpentries-lab.github.io/good-enough-practices/index.html
+* Sweave/LaTeX RStudio/LaTeX Pandoc SageMath Colab Notebooks Nbconvert Pelican Org mode DocOnce Scribus Madoko Texinfo
+
+## Quarto
+
+Install Quarto VS Code extension (has various handy tools)
+
+Within VS Code, Ctrl+Shift+P > Quarto: Create Project
+
+Render full .qmd: `Ctrl+Shift+K`
+
+Run individual cells by selecting the **Run Cell** button.
 
 ## Jupyter book
 

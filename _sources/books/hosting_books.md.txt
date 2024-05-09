@@ -2,6 +2,11 @@
 
 <mark>need to sort out</mark>
 
+* [List here](https://quarto.org/docs/publishing/) - inc. Quarto Pub, Posit Connect, Posit Cloud, Netlify, Confluence, Hugging Face Spaces
+* RPubs
+* Readthedocs
+* GitHub pages
+
 ## GitHub pages
 
 *Note: Written for jupyter book...*
