@@ -305,13 +305,21 @@ In a normal function we **return** values, which returns a value then terminates
 Example:
 
 ```
-def seq(x):
-    for i in range(x):
-        yield i
+# Source: https://www.geeksforgeeks.org/generators-in-python/
 
-range = seq(10)
+# Generator function
+def simple_generator(): 
+    yield 1
+    yield 2
+    yield 3
 
-# If you called this eleven times, on the final time it would stop with the error StopIteration
+# Generator object
+x = simple_generator()
+
+# Iterating over the generator object using next
+print(next(x))
+print(next(x))
+print(next(x))
 ```
 
 [[source]](https://www.scaler.com/topics/python/python-generators/)

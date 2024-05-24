@@ -1,0 +1,551 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Seeds"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Packages\n",
+    "\n",
+    "In NumPy, the two main packages you'll come across in relation to random seeds are `numpy` and `random`.\n",
+    "\n",
+    "In this script, we will demonstrate using numpy."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Generating a random number\n",
+    "\n",
+    "In order to illustrate how different practices with random number generators work, we will use the `random()` function, which returns a random float between 0 and 1.\n",
+    "\n",
+    "Without a seed, you can see that we'll get a different answer each time.\n",
+    "\n",
+    "In Python, these values are produced by a pseudorandom number generator."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0.9160257015890815\n",
+      "0.014614208720352462\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(np.random.random())\n",
+    "print(np.random.random())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## What is a pseudorandom number generator?\n",
+    "\n",
+    "A random number generator (RNG) is a system generating random numbers from a true source of randomness (e.g. electrostatic noise converted into random numbers). However, we don't need true randomness, so we use a pseudorandom number generator (PRNG).\n",
+    "\n",
+    "A PRNG is also known as a deterministic random bit generator (DRBG). It generates a sequence of numbers that look close to random - but are not truly random, since it is determined by an intial value called the **seed**. If you do not set a seed, then it may use the current system time in seconds or milliseconds as the seed. [[source 1]](https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/) [[source 2]](https://en.wikipedia.org/wiki/Pseudorandom_number_generator)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Global random number generator\n",
+    "\n",
+    "We have what can be referred to a the \"global\" RNG for our script. It is common practice to set the seed for the global RNG at the start of the script using `random.seed()` or `np.random.seed()`.[[source]](https://albertcthomas.github.io/good-practices-random-number-generators/)\n",
+    "\n",
+    "As you'll see, setting this seed ensures you then get the same result."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0.22199317108973948\n",
+      "0.22199317108973948\n"
+     ]
+    }
+   ],
+   "source": [
+    "np.random.seed(5)\n",
+    "print(np.random.random())\n",
+    "\n",
+    "np.random.seed(5)\n",
+    "print(np.random.random())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "However, this is actually considered bad practice. Global variables (like a global RNG) are not recommended as they can have influences throughout your script.\n",
+    "\n",
+    "You could change the variable for one part of the script and inadvertently impact elsewhere in the script - such as in the case of random numbers, where you could **unknowingly reset the seed** elsewhere in the codebase.\n",
+    "\n",
+    "The numpy RNG policy instead recommends that you create a generator object with a seed and pass that around...[[source]](https://albertcthomas.github.io/good-practices-random-number-generators/)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Create a generator object and pass it around\n",
+    "\n",
+    "You can use `np.random.default_rng()` to create a RNG.\n",
+    "\n",
+    "You then use that RNG object when calling `.random()`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0.22733602246716966\n",
+      "0.22733602246716966\n",
+      "Generator(PCG64)\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Illustration that this enables reproducibility\n",
+    "rng = np.random.default_rng(seed=12345)\n",
+    "print(rng.random())\n",
+    "\n",
+    "rng = np.random.default_rng(seed=12345)\n",
+    "print(rng.random())\n",
+    "\n",
+    "# Showing that this is a generator object\n",
+    "print(rng)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "It has generally been said that you should create a single PRNG and draw from it sequentially (rather than creating new PRNGs within your script). This is having multiple streams, you can be concerned about what the streams from different seeds might be less independent/more correlated that those creates from a single seed. However, the numpy developers have explained that the size and entropy seeding of their PRNGs means that this concern is not particularly relevant. [[source 1]](https://albertcthomas.github.io/good-practices-random-number-generators/) [[source 2]](https://github.com/numpy/numpy/issues/15322#issuecomment-573890207)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0.22733602246716966\n",
+      "4\n",
+      "-0.8706617379590857\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Using a single PRNG...\n",
+    "rng = np.random.default_rng(seed=12345)\n",
+    "print(rng.random())\n",
+    "print(rng.integers(1,5))\n",
+    "print(rng.standard_normal())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Parallel random number generation\n",
+    "\n",
+    "If we have a stochastic simulation and we want to run it thirty times, we might do so via **paralleling processing** (such as with the `joblib` library). We don't want the same results each run, but we do want to be able to reproduce our set of thirty runs. We need to be wary that:\n",
+    "* Not setting a seed, the forked Python processes might \"use the same random seed, generated for instance from system entropy, and thus produce the exact same outputs\"\n",
+    "* Setting a single seed, the RNG will be deep copied\n",
+    "* Setting different seeds for each RNG, we cannot be sure that the RNGs are statistically independent. [[source]](https://albertcthomas.github.io/good-practices-random-number-generators/)\n",
+    "\n",
+    "NumPy offers a few different methods to create independent PRNGs:\n",
+    "* SeedSequence spawning\n",
+    "* Sequence of integer seeds\n",
+    "* Independent BitGenerator\n",
+    "* Jumping the BitGenerator state [[source]](https://numpy.org/doc/stable/reference/random/parallel.html)\n",
+    "\n",
+    "We'll focus on SeedSequence spawning..."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## SeedSequence spawning\n",
+    "\n",
+    "You provide a seed to SeedSequence. It then uses this seed to create N BitGenerator states that are highly probable to be independent of each other. Conversion to bit generator states \"uses hashing techniques to ensure that low-quality seeds are turned into high quality initial states\". You can then use these to instantiate PRNGs.[[source]](https://numpy.org/doc/stable/reference/random/parallel.html)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "ss: SeedSequence(\n",
+      "    entropy=12345,\n",
+      ")\n",
+      "example child_seeds: [SeedSequence(\n",
+      "    entropy=12345,\n",
+      "    spawn_key=(0,),\n",
+      "), SeedSequence(\n",
+      "    entropy=12345,\n",
+      "    spawn_key=(1,),\n",
+      ")]\n",
+      "example PRNGs: [Generator(PCG64) at 0x70A2B3C559A0, Generator(PCG64) at 0x70A2B3C54D60]\n"
+     ]
+    }
+   ],
+   "source": [
+    "ss = np.random.SeedSequence(entropy=12345)\n",
+    "print(f'ss: {ss}')\n",
+    "\n",
+    "# Spawn 10 child SeedSequences to pass to child processes\n",
+    "child_seeds = ss.spawn(10)\n",
+    "print(f'example child_seeds: {child_seeds[0:2]}')\n",
+    "\n",
+    "# Create 10 PRNGs\n",
+    "prngs = [np.random.default_rng(s) for s in child_seeds]\n",
+    "print(f'example PRNGs: {prngs[0:2]}')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "For convenience, you can spawn independent child generators directly from a parent generator (without needing to directly use `SeedSequence`). Those children can likewise be used to spawn yet more independent generators.[[source]](https://numpy.org/doc/stable/reference/random/parallel.html)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Generator(PCG64)\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "[Generator(PCG64) at 0x70A2B3C55E00,\n",
+       " Generator(PCG64) at 0x70A2B3C565E0,\n",
+       " Generator(PCG64) at 0x70A2B3C56340,\n",
+       " Generator(PCG64) at 0x70A2B3C56500,\n",
+       " Generator(PCG64) at 0x70A2B3C54BA0,\n",
+       " Generator(PCG64) at 0x70A2B3C567A0,\n",
+       " Generator(PCG64) at 0x70A2B3C56880,\n",
+       " Generator(PCG64) at 0x70A2B3C566C0,\n",
+       " Generator(PCG64) at 0x70A2B3C54C80,\n",
+       " Generator(PCG64) at 0x70A2B3C56DC0]"
+      ]
+     },
+     "execution_count": 23,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "parent_rng = np.random.default_rng(12345)\n",
+    "print(parent_rng)\n",
+    "\n",
+    "streams = parent_rng.spawn(10)\n",
+    "streams"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Creating individual random number streams for sampling\n",
+    "\n",
+    "In stochastic simulations, we sample from a distribution. However, it is important to set individual random number streams for sampling, as illustrated below (based on [source](https://pythonhealthdatascience.github.io/stars-treat-simmer/02_model/03_r_sampling.html)).\n",
+    "\n",
+    "In our example, we sample acute length of stay (LoS) from an exponential distribution and rehabilitation LoS from a uniform distribution."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Acute LoS: [0.07513152 0.07300593 0.07452378 0.00874357 0.00270117]\n",
+      "Rehab LoS: [78.41545286 64.47408063 66.09417984 23.32738612 44.27508596]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Seed and parameters for our distributions\n",
+    "seed = 42\n",
+    "acute_mean = 32\n",
+    "rehab_min = 15\n",
+    "rehab_max = 80\n",
+    "n_patients = 5\n",
+    "\n",
+    "# Instantiate PRNG\n",
+    "rng = np.random.default_rng(seed)\n",
+    "\n",
+    "# Sample 5 \n",
+    "acute_los = rng.exponential(scale=1/acute_mean, size=n_patients)\n",
+    "rehab_los = rng.uniform(low=rehab_min, high=rehab_max, size=n_patients)\n",
+    "\n",
+    "print(f'Acute LoS: {acute_los}')\n",
+    "print(f'Rehab LoS: {rehab_los}')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Then we reset the stream using the same seed but limit to simulating just two patients.\n",
+    "\n",
+    "As such, we might expect to get this when rerunning the code:\n",
+    "\n",
+    " we reduce the size two (for example, reflecting less patients arriving per hour). We might expect to get:\n",
+    "\n",
+    "> Acute LoS: [0.07513152 0.07300593]\n",
+    ">\n",
+    "> Rehab LoS: [78.41545286 64.47408063]\n",
+    "\n",
+    "But we do not! Instead we get -"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Acute LoS: [76.93467533 74.75806899]\n",
+      "Rehab LoS: [70.80886479 60.32892189]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Change to 2 patients\n",
+    "n_patients = 2\n",
+    "\n",
+    "# Instantiate PRNG\n",
+    "rng = np.random.default_rng(seed)\n",
+    "\n",
+    "# Sample 5 \n",
+    "acute_los = rng.exponential(scale=1/acute_mean, size=n_patients)\n",
+    "rehab_los = rng.uniform(low=rehab_min, high=rehab_max, size=n_patients)\n",
+    "\n",
+    "print(f'Acute LoS: {acute_los}')\n",
+    "print(f'Rehab LoS: {rehab_los}')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "This is because both sampling methods as using the same PRNG/same pseudo random number stream.\n",
+    "\n",
+    "This problem will introduce noise between experiments, where variation in results are due to this and not actually the change we made to the simulation.\n",
+    "\n",
+    "Hence, it is recommended to use individual PRNGs for each sampling distribution (as in [this example](https://pythonhealthdatascience.github.io/stars-simpy-example-docs/content/02_model_code/04_model.html))."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Sampling five from each...\n",
+      "[2.90633292 5.48489155 1.37244157 0.83179124 9.79691459]\n",
+      "[18.17284798 17.05012411 13.67874431 14.14819982 18.3269625 ]\n",
+      "Sampling two from each...\n",
+      "[2.90633292 5.48489155]\n",
+      "[18.17284798 17.05012411]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Source: https://pythonhealthdatascience.github.io/stars-simpy-example-docs/content/02_model_code/04_model.html\n",
+    "\n",
+    "class Exponential:\n",
+    "    def __init__(self, mean, random_seed=None):\n",
+    "        self.rng = np.random.default_rng(seed=random_seed)\n",
+    "        self.mean = mean\n",
+    "    def sample(self, size=None):\n",
+    "        return self.rng.exponential(self.mean, size=size)\n",
+    "\n",
+    "\n",
+    "class Normal:\n",
+    "    def __init__(self, mean, sigma, random_seed=None):\n",
+    "        self.rng = np.random.default_rng(seed=random_seed)\n",
+    "        self.mean = mean\n",
+    "        self.sigma = sigma\n",
+    "    def sample(self, size=None):\n",
+    "        return self.rng.normal(self.mean, self.sigma, size=size)\n",
+    "\n",
+    "\n",
+    "# Parameters\n",
+    "seed = 42\n",
+    "triage_mean = 3\n",
+    "exam_mean = 16\n",
+    "exam_var = 3\n",
+    "n_streams = 20\n",
+    "\n",
+    "# Spawning seeds to use to create generators\n",
+    "seed_sequence = np.random.SeedSequence(seed)\n",
+    "seeds = seed_sequence.spawn(n_streams)\n",
+    "\n",
+    "# Creating the seperate distributions...\n",
+    "triage_dist = Exponential(triage_mean, random_seed = seeds[0])\n",
+    "exam_dist = Normal(exam_mean, np.sqrt(exam_var), random_seed = seeds[1])\n",
+    "\n",
+    "# Sampling five from each\n",
+    "print('Sampling five from each...')\n",
+    "print(triage_dist.sample(5))\n",
+    "print(exam_dist.sample(5))\n",
+    "\n",
+    "# Creating the seperate distributions\n",
+    "triage_dist = Exponential(triage_mean, random_seed = seeds[0])\n",
+    "exam_dist = Normal(exam_mean, np.sqrt(exam_var), random_seed = seeds[1])\n",
+    "\n",
+    "# Sampling two from each\n",
+    "print('Sampling two from each...')\n",
+    "print(triage_dist.sample(2))\n",
+    "print(exam_dist.sample(2))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Behaviour as expected - yay!\n",
+    "\n",
+    "Another way of setting up this same thing (from me, just to help illustrate it in another way, but you'll see it is the same results)...\n",
+    "\n",
+    "From looking at it, you'll also understand the benefit of the way the Classes are set up above."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Sampling five from each...\n",
+      "[2.90633292 5.48489155 1.37244157 0.83179124 9.79691459]\n",
+      "[18.17284798 17.05012411 13.67874431 14.14819982 18.3269625 ]\n",
+      "Sampling two from each...\n",
+      "[2.90633292 5.48489155]\n",
+      "[18.17284798 17.05012411]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Create parent generator and spawn child sequences\n",
+    "parent_rng = np.random.default_rng(seed)\n",
+    "generators = parent_rng.spawn(10)\n",
+    "\n",
+    "# Create generators for each distribution using the children\n",
+    "triage_rng = generators[0]\n",
+    "exam_rng = generators[1]\n",
+    "\n",
+    "# Sample five from each\n",
+    "print('Sampling five from each...')\n",
+    "print(triage_rng.exponential(triage_mean, 5))\n",
+    "print(exam_rng.normal(exam_mean, np.sqrt(exam_var), 5))\n",
+    "\n",
+    "# Remaking to illustrate reproducibility\n",
+    "# Sample two from each\n",
+    "parent_rng = np.random.default_rng(seed)\n",
+    "generators = parent_rng.spawn(10)\n",
+    "triage_rng = generators[0]\n",
+    "exam_rng = generators[1]\n",
+    "print('Sampling two from each...')\n",
+    "print(triage_rng.exponential(triage_mean, 2))\n",
+    "print(exam_rng.normal(exam_mean, np.sqrt(exam_var), 2))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Legacy: RandomState\n",
+    "\n",
+    "<mark>add explanation about this</mark>"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "notes",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.12"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}

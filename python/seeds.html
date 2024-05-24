@@ -1,0 +1,966 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seeds &#8212; Amy Notes  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/seeds';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="General" href="../r/general.html" />
+    <link rel="prev" title="DES using SimPy" href="simpy.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programming notes</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../books/making_books.html">
+                        Books
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="general.html">
+                        Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../r/general.html">
+                        R
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../programming_notes/git.html">
+                        Git
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../simulation/simulation.html">
+                        Simulation
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../causal_concepts/1_predict_vs_causal.html">
+                        Causality
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../programming_notes/latex.html">
+                        Other
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/amyheather/programming_notes/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../books/making_books.html">
+                        Books
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="general.html">
+                        Python
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../r/general.html">
+                        R
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../programming_notes/git.html">
+                        Git
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../simulation/simulation.html">
+                        Simulation
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../causal_concepts/1_predict_vs_causal.html">
+                        Causality
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../programming_notes/latex.html">
+                        Other
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/amyheather/programming_notes/" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="general.html">General Python Stuff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environments.html">Python environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simpy.html">DES using SimPy</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Seeds</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="general.html" class="nav-link">General Python Stuff</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Seeds</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="section" id="seeds">
+<h1>Seeds<a class="headerlink" href="#seeds" title="Permalink to this heading">#</a></h1>
+<div class="section" id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this heading">#</a></h2>
+<p>In NumPy, the two main packages you’ll come across in relation to random seeds are <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">random</span></code>.</p>
+<p>In this script, we will demonstrate using numpy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="generating-a-random-number">
+<h2>Generating a random number<a class="headerlink" href="#generating-a-random-number" title="Permalink to this heading">#</a></h2>
+<p>In order to illustrate how different practices with random number generators work, we will use the <code class="docutils literal notranslate"><span class="pre">random()</span></code> function, which returns a random float between 0 and 1.</p>
+<p>Without a seed, you can see that we’ll get a different answer each time.</p>
+<p>In Python, these values are produced by a pseudorandom number generator.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9160257015890815
+0.014614208720352462
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="what-is-a-pseudorandom-number-generator">
+<h2>What is a pseudorandom number generator?<a class="headerlink" href="#what-is-a-pseudorandom-number-generator" title="Permalink to this heading">#</a></h2>
+<p>A random number generator (RNG) is a system generating random numbers from a true source of randomness (e.g. electrostatic noise converted into random numbers). However, we don’t need true randomness, so we use a pseudorandom number generator (PRNG).</p>
+<p>A PRNG is also known as a deterministic random bit generator (DRBG). It generates a sequence of numbers that look close to random - but are not truly random, since it is determined by an intial value called the <strong>seed</strong>. If you do not set a seed, then it may use the current system time in seconds or milliseconds as the seed. <a class="reference external" href="https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/">[source 1]</a> <a class="reference external" href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator">[source 2]</a></p>
+</div>
+<div class="section" id="global-random-number-generator">
+<h2>Global random number generator<a class="headerlink" href="#global-random-number-generator" title="Permalink to this heading">#</a></h2>
+<p>We have what can be referred to a the “global” RNG for our script. It is common practice to set the seed for the global RNG at the start of the script using <code class="docutils literal notranslate"><span class="pre">random.seed()</span></code> or <code class="docutils literal notranslate"><span class="pre">np.random.seed()</span></code>.<a class="reference external" href="https://albertcthomas.github.io/good-practices-random-number-generators/">[source]</a></p>
+<p>As you’ll see, setting this seed ensures you then get the same result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.22199317108973948
+0.22199317108973948
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, this is actually considered bad practice. Global variables (like a global RNG) are not recommended as they can have influences throughout your script.</p>
+<p>You could change the variable for one part of the script and inadvertently impact elsewhere in the script - such as in the case of random numbers, where you could <strong>unknowingly reset the seed</strong> elsewhere in the codebase.</p>
+<p>The numpy RNG policy instead recommends that you create a generator object with a seed and pass that around…<a class="reference external" href="https://albertcthomas.github.io/good-practices-random-number-generators/">[source]</a></p>
+</div>
+<div class="section" id="create-a-generator-object-and-pass-it-around">
+<h2>Create a generator object and pass it around<a class="headerlink" href="#create-a-generator-object-and-pass-it-around" title="Permalink to this heading">#</a></h2>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">np.random.default_rng()</span></code> to create a RNG.</p>
+<p>You then use that RNG object when calling <code class="docutils literal notranslate"><span class="pre">.random()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Illustration that this enables reproducibility</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+
+<span class="c1"># Showing that this is a generator object</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rng</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.22733602246716966
+0.22733602246716966
+Generator(PCG64)
+</pre></div>
+</div>
+</div>
+</div>
+<p>It has generally been said that you should create a single PRNG and draw from it sequentially (rather than creating new PRNGs within your script). This is having multiple streams, you can be concerned about what the streams from different seeds might be less independent/more correlated that those creates from a single seed. However, the numpy developers have explained that the size and entropy seeding of their PRNGs means that this concern is not particularly relevant. <a class="reference external" href="https://albertcthomas.github.io/good-practices-random-number-generators/">[source 1]</a> <a class="reference external" href="https://github.com/numpy/numpy/issues/15322#issuecomment-573890207">[source 2]</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using a single PRNG...</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.22733602246716966
+4
+-0.8706617379590857
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="parallel-random-number-generation">
+<h2>Parallel random number generation<a class="headerlink" href="#parallel-random-number-generation" title="Permalink to this heading">#</a></h2>
+<p>If we have a stochastic simulation and we want to run it thirty times, we might do so via <strong>paralleling processing</strong> (such as with the <code class="docutils literal notranslate"><span class="pre">joblib</span></code> library). We don’t want the same results each run, but we do want to be able to reproduce our set of thirty runs. We need to be wary that:</p>
+<ul class="simple">
+<li><p>Not setting a seed, the forked Python processes might “use the same random seed, generated for instance from system entropy, and thus produce the exact same outputs”</p></li>
+<li><p>Setting a single seed, the RNG will be deep copied</p></li>
+<li><p>Setting different seeds for each RNG, we cannot be sure that the RNGs are statistically independent. <a class="reference external" href="https://albertcthomas.github.io/good-practices-random-number-generators/">[source]</a></p></li>
+</ul>
+<p>NumPy offers a few different methods to create independent PRNGs:</p>
+<ul class="simple">
+<li><p>SeedSequence spawning</p></li>
+<li><p>Sequence of integer seeds</p></li>
+<li><p>Independent BitGenerator</p></li>
+<li><p>Jumping the BitGenerator state <a class="reference external" href="https://numpy.org/doc/stable/reference/random/parallel.html">[source]</a></p></li>
+</ul>
+<p>We’ll focus on SeedSequence spawning…</p>
+</div>
+<div class="section" id="seedsequence-spawning">
+<h2>SeedSequence spawning<a class="headerlink" href="#seedsequence-spawning" title="Permalink to this heading">#</a></h2>
+<p>You provide a seed to SeedSequence. It then uses this seed to create N BitGenerator states that are highly probable to be independent of each other. Conversion to bit generator states “uses hashing techniques to ensure that low-quality seeds are turned into high quality initial states”. You can then use these to instantiate PRNGs.<a class="reference external" href="https://numpy.org/doc/stable/reference/random/parallel.html">[source]</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">SeedSequence</span><span class="p">(</span><span class="n">entropy</span><span class="o">=</span><span class="mi">12345</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ss: </span><span class="si">{</span><span class="n">ss</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Spawn 10 child SeedSequences to pass to child processes</span>
+<span class="n">child_seeds</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;example child_seeds: </span><span class="si">{</span><span class="n">child_seeds</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create 10 PRNGs</span>
+<span class="n">prngs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">child_seeds</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;example PRNGs: </span><span class="si">{</span><span class="n">prngs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ss: SeedSequence(
+    entropy=12345,
+)
+example child_seeds: [SeedSequence(
+    entropy=12345,
+    spawn_key=(0,),
+), SeedSequence(
+    entropy=12345,
+    spawn_key=(1,),
+)]
+example PRNGs: [Generator(PCG64) at 0x70A2B3C559A0, Generator(PCG64) at 0x70A2B3C54D60]
+</pre></div>
+</div>
+</div>
+</div>
+<p>For convenience, you can spawn independent child generators directly from a parent generator (without needing to directly use <code class="docutils literal notranslate"><span class="pre">SeedSequence</span></code>). Those children can likewise be used to spawn yet more independent generators.<a class="reference external" href="https://numpy.org/doc/stable/reference/random/parallel.html">[source]</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parent_rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">parent_rng</span><span class="p">)</span>
+
+<span class="n">streams</span> <span class="o">=</span> <span class="n">parent_rng</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">streams</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generator(PCG64)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Generator(PCG64) at 0x70A2B3C55E00,
+ Generator(PCG64) at 0x70A2B3C565E0,
+ Generator(PCG64) at 0x70A2B3C56340,
+ Generator(PCG64) at 0x70A2B3C56500,
+ Generator(PCG64) at 0x70A2B3C54BA0,
+ Generator(PCG64) at 0x70A2B3C567A0,
+ Generator(PCG64) at 0x70A2B3C56880,
+ Generator(PCG64) at 0x70A2B3C566C0,
+ Generator(PCG64) at 0x70A2B3C54C80,
+ Generator(PCG64) at 0x70A2B3C56DC0]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-individual-random-number-streams-for-sampling">
+<h2>Creating individual random number streams for sampling<a class="headerlink" href="#creating-individual-random-number-streams-for-sampling" title="Permalink to this heading">#</a></h2>
+<p>In stochastic simulations, we sample from a distribution. However, it is important to set individual random number streams for sampling, as illustrated below (based on <a class="reference external" href="https://pythonhealthdatascience.github.io/stars-treat-simmer/02_model/03_r_sampling.html">source</a>).</p>
+<p>In our example, we sample acute length of stay (LoS) from an exponential distribution and rehabilitation LoS from a uniform distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seed and parameters for our distributions</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">acute_mean</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">rehab_min</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">rehab_max</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">n_patients</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Instantiate PRNG</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+<span class="c1"># Sample 5 </span>
+<span class="n">acute_los</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">acute_mean</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_patients</span><span class="p">)</span>
+<span class="n">rehab_los</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="n">rehab_min</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">rehab_max</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_patients</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Acute LoS: </span><span class="si">{</span><span class="n">acute_los</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Rehab LoS: </span><span class="si">{</span><span class="n">rehab_los</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acute LoS: [0.07513152 0.07300593 0.07452378 0.00874357 0.00270117]
+Rehab LoS: [78.41545286 64.47408063 66.09417984 23.32738612 44.27508596]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we reset the stream using the same seed but limit to simulating just two patients.</p>
+<p>As such, we might expect to get this when rerunning the code:</p>
+<p>we reduce the size two (for example, reflecting less patients arriving per hour). We might expect to get:</p>
+<blockquote>
+<div><p>Acute LoS: [0.07513152 0.07300593]</p>
+<p>Rehab LoS: [78.41545286 64.47408063]</p>
+</div></blockquote>
+<p>But we do not! Instead we get -</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change to 2 patients</span>
+<span class="n">n_patients</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Instantiate PRNG</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+<span class="c1"># Sample 5 </span>
+<span class="n">acute_los</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">acute_mean</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_patients</span><span class="p">)</span>
+<span class="n">rehab_los</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="n">rehab_min</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">rehab_max</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_patients</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Acute LoS: </span><span class="si">{</span><span class="n">acute_los</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Rehab LoS: </span><span class="si">{</span><span class="n">rehab_los</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acute LoS: [76.93467533 74.75806899]
+Rehab LoS: [70.80886479 60.32892189]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is because both sampling methods as using the same PRNG/same pseudo random number stream.</p>
+<p>This problem will introduce noise between experiments, where variation in results are due to this and not actually the change we made to the simulation.</p>
+<p>Hence, it is recommended to use individual PRNGs for each sampling distribution (as in <a class="reference external" href="https://pythonhealthdatascience.github.io/stars-simpy-example-docs/content/02_model_code/04_model.html">this example</a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Source: https://pythonhealthdatascience.github.io/stars-simpy-example-docs/content/02_model_code/04_model.html</span>
+
+<span class="k">class</span> <span class="nc">Exponential</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">random_seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">mean</span>
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Normal</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">random_seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">mean</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span>
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+
+
+<span class="c1"># Parameters</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">triage_mean</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">exam_mean</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">exam_var</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">n_streams</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="c1"># Spawning seeds to use to create generators</span>
+<span class="n">seed_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">SeedSequence</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">seeds</span> <span class="o">=</span> <span class="n">seed_sequence</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">n_streams</span><span class="p">)</span>
+
+<span class="c1"># Creating the seperate distributions...</span>
+<span class="n">triage_dist</span> <span class="o">=</span> <span class="n">Exponential</span><span class="p">(</span><span class="n">triage_mean</span><span class="p">,</span> <span class="n">random_seed</span> <span class="o">=</span> <span class="n">seeds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">exam_dist</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">exam_mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">exam_var</span><span class="p">),</span> <span class="n">random_seed</span> <span class="o">=</span> <span class="n">seeds</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Sampling five from each</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sampling five from each...&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">triage_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">exam_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Creating the seperate distributions</span>
+<span class="n">triage_dist</span> <span class="o">=</span> <span class="n">Exponential</span><span class="p">(</span><span class="n">triage_mean</span><span class="p">,</span> <span class="n">random_seed</span> <span class="o">=</span> <span class="n">seeds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">exam_dist</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="n">exam_mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">exam_var</span><span class="p">),</span> <span class="n">random_seed</span> <span class="o">=</span> <span class="n">seeds</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Sampling two from each</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sampling two from each...&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">triage_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">exam_dist</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling five from each...
+[2.90633292 5.48489155 1.37244157 0.83179124 9.79691459]
+[18.17284798 17.05012411 13.67874431 14.14819982 18.3269625 ]
+Sampling two from each...
+[2.90633292 5.48489155]
+[18.17284798 17.05012411]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Behaviour as expected - yay!</p>
+<p>Another way of setting up this same thing (from me, just to help illustrate it in another way, but you’ll see it is the same results)…</p>
+<p>From looking at it, you’ll also understand the benefit of the way the Classes are set up above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create parent generator and spawn child sequences</span>
+<span class="n">parent_rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">generators</span> <span class="o">=</span> <span class="n">parent_rng</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Create generators for each distribution using the children</span>
+<span class="n">triage_rng</span> <span class="o">=</span> <span class="n">generators</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">exam_rng</span> <span class="o">=</span> <span class="n">generators</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Sample five from each</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sampling five from each...&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">triage_rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">triage_mean</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">exam_rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">exam_mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">exam_var</span><span class="p">),</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Remaking to illustrate reproducibility</span>
+<span class="c1"># Sample two from each</span>
+<span class="n">parent_rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">generators</span> <span class="o">=</span> <span class="n">parent_rng</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">triage_rng</span> <span class="o">=</span> <span class="n">generators</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">exam_rng</span> <span class="o">=</span> <span class="n">generators</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sampling two from each...&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">triage_rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">triage_mean</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">exam_rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">exam_mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">exam_var</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling five from each...
+[2.90633292 5.48489155 1.37244157 0.83179124 9.79691459]
+[18.17284798 17.05012411 13.67874431 14.14819982 18.3269625 ]
+Sampling two from each...
+[2.90633292 5.48489155]
+[18.17284798 17.05012411]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="legacy-randomstate">
+<h2>Legacy: RandomState<a class="headerlink" href="#legacy-randomstate" title="Permalink to this heading">#</a></h2>
+<p><mark>add explanation about this</mark></p>
+</div>
+</div>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="simpy.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">DES using SimPy</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../r/general.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">General</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-a-random-number">Generating a random number</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-pseudorandom-number-generator">What is a pseudorandom number generator?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-random-number-generator">Global random number generator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-generator-object-and-pass-it-around">Create a generator object and pass it around</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parallel-random-number-generation">Parallel random number generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seedsequence-spawning">SeedSequence spawning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-individual-random-number-streams-for-sampling">Creating individual random number streams for sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#legacy-randomstate">Legacy: RandomState</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/python/seeds.ipynb.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Amy Heather.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
