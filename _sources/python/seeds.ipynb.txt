@@ -521,9 +521,30 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Legacy: RandomState\n",
+    "## Legacy Random Generation\n",
     "\n",
-    "<mark>add explanation about this</mark>"
+    "`RandomState` is no longer supported. It is the old way of creating a random number generator, allowing you to set the seed just for the generator (and not messing about with the global random generation)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([ 1,  0,  0,  0, -1,  0,  1,  1,  0,  1])"
+      ]
+     },
+     "execution_count": 49,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rng = np.random.RandomState(12345)\n",
+    "rng.randint(-1, 2, size=10)"
    ]
   }
  ],
