@@ -66,6 +66,13 @@ For a blog, the posts are in seperate pages as the filename has to be index.qmd.
 
 To change preview type when using VSCode to preview, go to Settings > Quarto > Render: Preview Type and set to external
 
+Commands to check/make/preview book:
+
+* `quarto check` - checks if would build successfully
+* `quarto preview` - previews as-is
+* `quarto render` - rebuilds whole book
+* quarto preview button in VS code - will render current page, and will render other pages when you click on them, except blog posts
+
 ## Jupyter book
 
 Install jupyter-book package.  
