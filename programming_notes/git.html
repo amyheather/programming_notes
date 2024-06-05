@@ -507,6 +507,12 @@ To unstage latest commmit: <code class="docutils literal notranslate"><span clas
 <li><p>Recommended that you also add the .gitattributes file produced</p></li>
 </ul>
 </div>
+<div class="section" id="tags">
+<h2>Tags<a class="headerlink" href="#tags" title="Permalink to this heading">#</a></h2>
+<p>Tag an old release: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">tag</span> <span class="pre">tagname</span> <span class="pre">commit</span></code> e.g. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">tag</span> <span class="pre">v0.1.0</span> <span class="pre">f94e8f6</span></code></p>
+<p>Push tag to remote: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">v0.1.0</span></code></p>
+<p>View date of tag (i.e. date of commit that was tagged): <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">-1</span> <span class="pre">--format=%ai</span> <span class="pre">v0.1.0</span></code></p>
+</div>
 <div class="section" id="git-fetch-v-s-git-pull">
 <h2>Git fetch v.s. git pull<a class="headerlink" href="#git-fetch-v-s-git-pull" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> downloads remote data, but doesn’t integrate it with your files - it gives you a fresh view but is totally “harmless”, won’t affect local stuff.<br />
@@ -633,6 +639,7 @@ To return to a previous commit:</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-rename-remove-push">Add, rename, remove, push</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#undo-git-command">Undo git command</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#track-large-file">Track large file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tags">Tags</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-fetch-v-s-git-pull">Git fetch v.s. git pull</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#branches-and-versions">Branches and versions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-stash">Git stash</a></li>
