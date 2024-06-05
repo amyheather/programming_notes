@@ -43,6 +43,14 @@ Git will give warning for file over 50MB and block file over 100MB. However, you
 * Can then git add and commit that file
 * Recommended that you also add the .gitattributes file produced
 
+## Tags
+
+Tag an old release: `git tag tagname commit` e.g. `git tag v0.1.0 f94e8f6`
+
+Push tag to remote: `git push origin v0.1.0`
+
+View date of tag (i.e. date of commit that was tagged): `git log -1 --format=%ai v0.1.0`
+
 ## Git fetch v.s. git pull  
 `git fetch` downloads remote data, but doesn't integrate it with your files - it gives you a fresh view but is totally "harmless", won't affect local stuff.  
 `git pull` updates your local files with changes from the remote server, integrating it with the working copies of your files (and will try to merge remote changes in merge conflicts) - so should not do this when you have uncommitted local changes.   
