@@ -1,5 +1,9 @@
 # Other
 
+## Zotero
+
+If you have an institutional author (e.g. "World Health Organisation" rather than "John Smith"), you should change the field mode from two-field mode to single-field mode. You can do this by clicking the small square icon next to the name (just before the + and - buttons). [[source]](https://www.zotero.org/support/kb/name_parsing#field_mode)
+
 ## Citation.cff
 
 Use this schema-guide to help produce: https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md
