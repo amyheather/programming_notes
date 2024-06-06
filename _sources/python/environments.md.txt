@@ -1,5 +1,11 @@
 # Python environments
 
+Python -
+\begin{itemize}
+    \item Conda, VirtualEnv, etc.
+    \item Docker - to do development inside container, VSCode Dev Containers extension allows you to open folder inside container - \href{https://code.visualstudio.com/docs/devcontainers/containers}{source 1}
+\end{itemize}
+
 ## Conda
 
 To see conda environments: `conda env list`  
