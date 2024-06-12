@@ -6,6 +6,12 @@ Python -
     \item Docker - to do development inside container, VSCode Dev Containers extension allows you to open folder inside container - \href{https://code.visualstudio.com/docs/devcontainers/containers}{source 1}
 \end{itemize}
 
+Poetry - you specify python version BUT you have to have it already
+Venv - no python version
+Conda - you specific python version and it gets it for you
+Mamba - quicker version of conda
+https://alpopkes.com/posts/python/packaging_tools/ 
+
 ## Conda
 
 To see conda environments: `conda env list`  
