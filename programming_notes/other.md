@@ -1,5 +1,11 @@
 # Other
 
+## draw.io
+
+To add transparency, select shape then right click > edit style, then add line like `opacity=60;`
+
+To export at higher quality, `File` > `Export as` > `Advanced` > Set to 300DPI (standard for publication).
+
 ## Zotero
 
 If you have an institutional author (e.g. "World Health Organisation" rather than "John Smith"), you should change the field mode from two-field mode to single-field mode. You can do this by clicking the small square icon next to the name (just before the + and - buttons). [[source]](https://www.zotero.org/support/kb/name_parsing#field_mode)
