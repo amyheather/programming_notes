@@ -457,6 +457,126 @@ document.write(`
                   
   <div class="section" id="git">
 <h1>Git<a class="headerlink" href="#git" title="Permalink to this heading">#</a></h1>
+<div class="section" id="conventional-commits">
+<h2>Conventional commits<a class="headerlink" href="#conventional-commits" title="Permalink to this heading">#</a></h2>
+<p>VSCode has extension <code class="docutils literal notranslate"><span class="pre">Conventional</span> <span class="pre">Commits</span></code> to help with following this criteria.</p>
+<p>Format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">scope</span><span class="p">):</span> <span class="n">description</span>
+
+<span class="n">body</span>
+
+<span class="n">footer</span>
+</pre></div>
+</div>
+<p>If you have a breaking change (correlates with <code class="docutils literal notranslate"><span class="pre">major</span></code> in semantic versioning) you need to:</p>
+<ul class="simple">
+<li><p>Add a “!” after type/scope</p></li>
+<li><p>In footer, have “BREAKING CHANGE: description of change”</p></li>
+</ul>
+<p>Type (mandatory):</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Summary</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">style</span></code></p></td>
+<td><p>Styles</p></td>
+<td><p>Commit doesn’t affect meaning (white-space, formatting, missing semi-colons, etc.)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">docs</span></code></p></td>
+<td><p>Documentation</p></td>
+<td><p>Commit affects documentation only (correlates with <code class="docutils literal notranslate"><span class="pre">patch</span></code> in semantic versioning)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">refactor</span></code></p></td>
+<td><p>Code refactoring</p></td>
+<td><p>Commit rewrites/restructures code but doesn’t change expected behaviour of code</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">perf</span></code></p></td>
+<td><p>Performance improvements</p></td>
+<td><p>Commit rewrites/restructures code to improve performance (but doesn’t change expected behaviour of code)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">improvement</span></code></p></td>
+<td><p>Improvement</p></td>
+<td><p>Commit improves current implementation without adding new feature or fixing bug (would have no effect on semantic versioning)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">feat</span></code></p></td>
+<td><p>Features</p></td>
+<td><p>New feature</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fix</span></code></p></td>
+<td><p>Bug fixes</p></td>
+<td><p>Bug fix</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test</span></code></p></td>
+<td><p>Test</p></td>
+<td><p>Commit adds or amends tests</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">build</span></code></p></td>
+<td><p>Builds</p></td>
+<td><p>Commit affects build system or external dependencies (e.g. adding, removing, upgrading dependencies)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ops</span></code></p></td>
+<td><p>Operational</p></td>
+<td><p>Commit affects operational components (e.g. infrastructure, deployment, backup, recovery)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">chore</span></code></p></td>
+<td><p>Chores</p></td>
+<td><p>Miscellanous commit (e.g. modifying <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>, regenerating generated code, releasing product)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">revert</span></code></p></td>
+<td><p>Reverts</p></td>
+<td><p>Revert to old commit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ci</span></code></p></td>
+<td><p>Continuous integrations (CI)</p></td>
+<td><p>Commit changes CI files (e.g. Travis)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Scope (optional)</p>
+<p>Description (mandatory)</p>
+<ul class="simple">
+<li><p>Concise description of change in present tense</p></li>
+<li><p>Don’t capitalise first letter, and no dot (<code class="docutils literal notranslate"><span class="pre">.</span></code>) at end</p></li>
+</ul>
+<p>Body (optional)</p>
+<ul class="simple">
+<li><p>Motivation for change and contrast with previous behaviour, in present tense</p></li>
+<li><p>Must have one blank line before</p></li>
+</ul>
+<p>Footer (optional)</p>
+<ul class="simple">
+<li><p>Must have one blank line before</p></li>
+<li><p>Should include issue ref (e.g. <code class="docutils literal notranslate"><span class="pre">Fixes:</span> <span class="pre">#13</span></code>). As long as you use one of GitHub’s key words, it will automatically create a link. (<code class="docutils literal notranslate"><span class="pre">close</span></code>, <code class="docutils literal notranslate"><span class="pre">closes</span></code>, <code class="docutils literal notranslate"><span class="pre">closed</span></code>, <code class="docutils literal notranslate"><span class="pre">fix</span></code>, <code class="docutils literal notranslate"><span class="pre">fixes</span></code>, <code class="docutils literal notranslate"><span class="pre">fixed</span></code>, <code class="docutils literal notranslate"><span class="pre">resolve</span></code>, <code class="docutils literal notranslate"><span class="pre">resolves</span></code>, <code class="docutils literal notranslate"><span class="pre">resolved</span></code>). If for a commit in a different repository, then e.g. <code class="docutils literal notranslate"><span class="pre">Resolves:</span> <span class="pre">neudesic/projectcenter#22</span></code></p></li>
+<li><p>Should only include BREAKING CHANGE, external links, issue references, and other meta-information</p></li>
+</ul>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fix</span><span class="p">:</span> <span class="n">add</span> <span class="n">missing</span> <span class="n">parameter</span> <span class="n">to</span> <span class="n">service</span> <span class="n">call</span>
+
+<span class="n">The</span> <span class="n">error</span> <span class="n">occurred</span> <span class="n">because</span> <span class="n">of</span> <span class="o">&lt;</span><span class="n">reasons</span><span class="o">&gt;.</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>feat!: remove ticket list endpoint
+
+refers to JIRA-1337
+
+BREAKING CHANGES: ticket enpoints no longer supports list all entites.
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">feat</span><span class="p">(</span><span class="n">shopping</span> <span class="n">cart</span><span class="p">):</span> <span class="n">add</span> <span class="n">the</span> <span class="n">amazing</span> <span class="n">button</span>
+</pre></div>
+</div>
+<p>Sources:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://kapeli.com/cheat_sheets/Conventional_Commits.docset/Contents/Resources/Documents/index">https://kapeli.com/cheat_sheets/Conventional_Commits.docset/Contents/Resources/Documents/index</a></p></li>
+<li><p><a class="reference external" href="https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13">https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13</a></p></li>
+<li><p><a class="reference external" href="https://www.conventionalcommits.org/en/v1.0.0-beta.2/">https://www.conventionalcommits.org/en/v1.0.0-beta.2/</a></p></li>
+<li><p><a class="reference external" href="https://medium.com/neudesic-innovation/conventional-commits-a-better-way-78d6785c2e08">https://medium.com/neudesic-innovation/conventional-commits-a-better-way-78d6785c2e08</a></p></li>
+</ul>
+</div>
 <div class="section" id="download-folder-from-a-github-repository">
 <h2>Download folder from a GitHub repository<a class="headerlink" href="#download-folder-from-a-github-repository" title="Permalink to this heading">#</a></h2>
 <p>Replace <code class="docutils literal notranslate"><span class="pre">.com</span></code> in the URL with <code class="docutils literal notranslate"><span class="pre">.dev</span></code>. This will open an editor, where you can then right click the folder in the sidebar and select download.</p>
@@ -634,6 +754,7 @@ To return to a previous commit:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conventional-commits">Conventional commits</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-folder-from-a-github-repository">Download folder from a GitHub repository</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-and-delete-repositories">Create and delete repositories</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-rename-remove-push">Add, rename, remove, push</a></li>

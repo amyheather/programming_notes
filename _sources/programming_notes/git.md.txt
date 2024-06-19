@@ -1,5 +1,82 @@
 # Git
 
+## Conventional commits
+
+VSCode has extension `Conventional Commits` to help with following this criteria.
+
+Format:
+
+```
+type(scope): description
+
+body
+
+footer
+```
+
+If you have a breaking change (correlates with `major` in semantic versioning) you need to:
+* Add a "!" after type/scope
+* In footer, have "BREAKING CHANGE: description of change"
+
+Type (mandatory):
+
+| Type | Summary | Description |
+| --- | --- | --- |
+| `style` | Styles | Commit doesn't affect meaning (white-space, formatting, missing semi-colons, etc.) |
+| `docs` | Documentation | Commit affects documentation only (correlates with `patch` in semantic versioning) |
+| `refactor` | Code refactoring | Commit rewrites/restructures code but doesn't change expected behaviour of code |
+| `perf` | Performance improvements | Commit rewrites/restructures code to improve performance (but doesn't change expected behaviour of code) |
+| `improvement` | Improvement | Commit improves current implementation without adding new feature or fixing bug (would have no effect on semantic versioning) |
+| `feat` | Features | New feature | Commit adds new feature (correlates with `minor` in semantic versioning) (whilst keeping backward compatability) |
+| `fix` | Bug fixes | Bug fix | Commit fixes bug (correlates with `patch` in semantic versioning) |
+| `test` | Test | Commit adds or amends tests |
+| `build` | Builds | Commit affects build system or external dependencies (e.g. adding, removing, upgrading dependencies) |
+| `ops` | Operational | Commit affects operational components (e.g. infrastructure, deployment, backup, recovery) |
+| `chore` | Chores | Miscellanous commit (e.g. modifying `.gitignore`, regenerating generated code, releasing product) |
+| `revert` | Reverts | Revert to old commit |
+| `ci` | Continuous integrations (CI) | Commit changes CI files (e.g. Travis) |
+
+Scope (optional)
+
+Description (mandatory)
+* Concise description of change in present tense
+* Don't capitalise first letter, and no dot (`.`) at end
+
+Body (optional)
+* Motivation for change and contrast with previous behaviour, in present tense
+* Must have one blank line before
+
+Footer (optional)
+* Must have one blank line before
+* Should include issue ref (e.g. `Fixes: #13`). As long as you use one of GitHub's key words, it will automatically create a link. (`close`, `closes`, `closed`, `fix`, `fixes`, `fixed`, `resolve`, `resolves`, `resolved`). If for a commit in a different repository, then e.g. `Resolves: neudesic/projectcenter#22`
+* Should only include BREAKING CHANGE, external links, issue references, and other meta-information
+
+Examples:
+
+```
+fix: add missing parameter to service call
+
+The error occurred because of <reasons>.
+```
+
+```
+feat!: remove ticket list endpoint
+
+refers to JIRA-1337
+
+BREAKING CHANGES: ticket enpoints no longer supports list all entites.
+```
+
+```
+feat(shopping cart): add the amazing button
+```
+
+Sources:
+* <https://kapeli.com/cheat_sheets/Conventional_Commits.docset/Contents/Resources/Documents/index>
+* <https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13>
+* <https://www.conventionalcommits.org/en/v1.0.0-beta.2/>
+* <https://medium.com/neudesic-innovation/conventional-commits-a-better-way-78d6785c2e08>
+
 ## Download folder from a GitHub repository
 
 Replace `.com` in the URL with `.dev`. This will open an editor, where you can then right click the folder in the sidebar and select download.
