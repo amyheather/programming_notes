@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>R environments &#8212; Amy Notes  documentation</title>
+    <title>Dependency management in R &#8212; Amy Notes  documentation</title>
   
   
   
@@ -413,7 +413,7 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="general.html">General</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">R environments</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Dependency management in R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="packages.html">Packages</a></li>
 </ul>
 </div>
@@ -455,7 +455,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="general.html" class="nav-link">General</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">R environments</li>
+    <li class="breadcrumb-item active" aria-current="page">Dependency...</li>
   </ul>
 </nav>
 </div>
@@ -472,8 +472,112 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="section" id="r-environments">
-<h1>R environments<a class="headerlink" href="#r-environments" title="Permalink to this heading">#</a></h1>
+  <div class="section" id="dependency-management-in-r">
+<h1>Dependency management in R<a class="headerlink" href="#dependency-management-in-r" title="Permalink to this heading">#</a></h1>
+<p>CRAN won’t let you use old versions of packages.</p>
+<p>People like R because they can just use one R environment and everything works in that latest environment. General recommendation is just to use the latest stuff</p>
+<p>“A big reason R doesn’t have as rich an ecosystem for package installation tools (as compared to other languages) is because CRAN’s design alleviates many of the challenges traditionally faced in package installation. As an example, CRAN checks new package updates to ensure they work with their upstream reverse dependencies. If updates fail to pass these “revdep checks”, the package author must shoulder the burden of getting those reverse dependencies in line. Overall, this ensures that users going to install.packages get a set of packages that work together. Other languages push more of this work onto the person (and client) installing the package. However, as the R package ecosystem has grown, and people have developed more mission-critical workflows that require reproducibility, we have seen an uptick in the need for package management (as opposed to installation) tools.” <a class="reference external" href="https://forum.posit.co/t/what-is-the-current-state-of-r-package-mangers-in-2019/25143/2">[source]</a></p>
+<p>Binary packages, pre-compiled, etc. etc.</p>
+<p><a class="reference external" href="https://cran.r-project.org/web/views/ReproducibleResearch.html">CRAN Task View Initiative</a> suggests checkpoint, containerit, dateback, groundhog, liftr, miniCRAN, packrat, rang, renv, Require, switchr.</p>
+<ul class="simple">
+<li><p>box</p></li>
+<li><p>capsule</p></li>
+<li><p>checkpoint</p>
+<ul>
+<li><p>874 monthly downloads, last published 28 January 2022, <a class="reference external" href="https://www.rdocumentation.org/packages/checkpoint/versions/1.0.2">[source]</a></p></li>
+<li><p>can’t use packages hosted elsewhere</p></li>
+<li><p>depends on maintenance of mRAN (which is now dead)</p></li>
+</ul>
+</li>
+<li><p>conda</p></li>
+<li><p>containerit: Automatically generate Dockerfile from current R session</p>
+<ul>
+<li><p>Requires <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">(&gt;=</span> <span class="pre">3.5.0)</span></code> <a class="reference external" href="https://github.com/o2r-project/containerit/">[source]</a></p></li>
+<li><p>Last updated 20 August 2019 <a class="reference external" href="https://github.com/o2r-project/containerit">[source]</a></p></li>
+<li><p>“Uses the posit.packagemanager.co servers hosted by Posit” <a class="reference external" href="https://www.rdocumentation.org/packages/Require/versions/0.3.1">[source]</a></p></li>
+</ul>
+</li>
+<li><p>dateback</p>
+<ul>
+<li><p>Developed after MRAN closed, “miniCRAN package would be a better choice if you want to archive the current packages and will use them in the future. dateback will be helpful if you haven’t archived packages in advance”</p></li>
+<li><p>Suggests Posit Package Manager for Windows and Mac users</p></li>
+</ul>
+</li>
+<li><p>deps</p></li>
+<li><p>docker</p>
+<ul>
+<li><p>Needs root access</p></li>
+</ul>
+</li>
+<li><p>groundhog</p>
+<ul>
+<li><p>From v3.0.0, relies on GRAN instead of MRAN</p></li>
+<li><p>1071 monthly downloads, last published 3 February 2024, <a class="reference external" href="https://www.rdocumentation.org/packages/groundhog/versions/3.2.0">[source]</a></p></li>
+</ul>
+</li>
+<li><p>jetpak</p></li>
+<li><p>liftr</p>
+<ul>
+<li><p>237 monthly downloads, last published 19 June 2019, <a class="reference external" href="https://www.rdocumentation.org/packages/liftr/versions/0.9.2">[source]</a></p></li>
+</ul>
+</li>
+<li><p>miniCRAN</p>
+<ul>
+<li><p>1557 monhtly downloads, last published 28 March 2024, <a class="reference external" href="https://www.rdocumentation.org/packages/miniCRAN/versions/0.3.0">[source]</a></p></li>
+</ul>
+</li>
+<li><p>packrat</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">packrat</span> <span class="pre">has</span> <span class="pre">been</span> <span class="pre">soft-deprecated</span> <span class="pre">and</span> <span class="pre">is</span> <span class="pre">now</span> <span class="pre">supseded</span> <span class="pre">by</span> <span class="pre">renv</span></code> <a class="reference external" href="https://www.rdocumentation.org/packages/packrat/versions/0.9.2">[source]</a></p></li>
+</ul>
+</li>
+<li><p>pak</p>
+<ul>
+<li><p>“focuses on fast installations of current versions of packages on CRAN-like packages and GitHub.com and other similar code-sharing pages. This works well if the objective is to keep current. It is fast.” <a class="reference external" href="https://www.rdocumentation.org/packages/Require/versions/0.3.1">[source]</a></p></li>
+</ul>
+</li>
+<li><p>pkgr</p></li>
+<li><p>Posit Public Package Manager</p>
+<ul>
+<li><p>Posit has a free service (Posit Public Package Manager (P3M)) and a paid service (Posit Package Manager (PPM))</p></li>
+<li><p>You can set to install from Posit Package Manager instead of CRAN</p></li>
+<li><p>“Posit Public Package Manager is a free, hosted instance of Posit Package Manager.” <a class="reference external" href="https://docs.posit.co/rspm/admin/">[source]</a></p></li>
+<li><p>You might see this referred to previously as RStudio’s Package Manager (which now redirects to Posit)</p></li>
+</ul>
+</li>
+<li><p>rang: Resolve the dependency graph of R packages at a specific time point in order to reconstruct the R computational environment.</p>
+<ul>
+<li><p>180 monthly downloads, last published 8 October 2023, <a class="reference external" href="https://www.rdocumentation.org/packages/rang/versions/0.3.0">[source]</a></p></li>
+</ul>
+</li>
+<li><p>rbundler</p></li>
+<li><p>remotes</p></li>
+<li><p>renv</p>
+<ul>
+<li><p>455,641 monthly downloads, last published 11 April 2024, <a class="reference external" href="https://www.rdocumentation.org/packages/renv/versions/1.0.7">[source]</a></p></li>
+<li><p>As in their <a class="reference external" href="https://www.rdocumentation.org/packages/renv/versions/0.3.0-40">old package documentation</a>, renv aims to “be a robust, stable replacement for pakrat”</p></li>
+</ul>
+</li>
+<li><p>Require</p>
+<ul>
+<li><p>1936 monthly downloads, last published 22 May 2024, <a class="reference external" href="https://www.rdocumentation.org/packages/Require/versions/0.3.1">[source]</a></p></li>
+</ul>
+</li>
+<li><p>rig</p></li>
+<li><p>rocker</p>
+<ul>
+<li><p>Pre-configured images</p></li>
+</ul>
+</li>
+<li><p>roo</p></li>
+<li><p>r_portable</p></li>
+<li><p>switchr</p>
+<ul>
+<li><p>464 monthly downloads, last published 21 March 2023, <a class="reference external" href="https://www.rdocumentation.org/packages/switchr/versions/0.14.8">[source]</a></p></li>
+</ul>
+</li>
+<li><p>versions</p></li>
+</ul>
 <div class="section" id="how-to-set-up-renv-for-reproducible-research">
 <h2>How to set-up renv for reproducible research<a class="headerlink" href="#how-to-set-up-renv-for-reproducible-research" title="Permalink to this heading">#</a></h2>
 <p>Create <code class="docutils literal notranslate"><span class="pre">DESCRIPTION</span></code> file e.g.</p>
