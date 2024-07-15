@@ -1,10 +1,23 @@
 # Dependency management in R
 
+Can use gnome-box to run a new system.
+
 CRAN won't let you use old versions of packages.
 
 People like R because they can just use one R environment and everything works in that latest environment. General recommendation is just to use the latest stuff
 
 "A big reason R doesn't have as rich an ecosystem for package installation tools (as compared to other languages) is because CRAN's design alleviates many of the challenges traditionally faced in package installation. As an example, CRAN checks new package updates to ensure they work with their upstream reverse dependencies. If updates fail to pass these "revdep checks", the package author must shoulder the burden of getting those reverse dependencies in line. Overall, this ensures that users going to install.packages get a set of packages that work together. Other languages push more of this work onto the person (and client) installing the package. However, as the R package ecosystem has grown, and people have developed more mission-critical workflows that require reproducibility, we have seen an uptick in the need for package management (as opposed to installation) tools." [[source]](https://forum.posit.co/t/what-is-the-current-state-of-r-package-mangers-in-2019/25143/2)
+
+Issues with renv:
+
+* "Software, including R packages, can generally be delivered in two forms: as binaries or as source code. If you are building from the source code, you may in some case need a compilation toolchain on your computer. If that toolchain is missing, it can lead to errors... With renv, you often want to install older versions of the packages, which won’t be available as binaries from CRAN. This means you are more likely to have to compile the package yourself and see this kind of errors, even though renv is not causing them." [[source]](https://www.r-bloggers.com/2024/05/things-that-can-go-wrong-when-using-renv/)
+* May get issues with renv as old version of package is not "supported by recent R versions or modern compilers". [[source]](https://www.r-bloggers.com/2024/05/things-that-can-go-wrong-when-using-renv/)
+
+Possible solutions:
+
+* You could only install pre-compiled binaries. "This is not possible while installing from CRAN as CRAN only provides binaries for recent versions of R and for a limited number of platforms. But Posit for example provides a larger collection of binaries, for different package versions, and different platforms, via their Public Posit Package Manager (PPM)." [[source]](https://www.r-bloggers.com/2024/05/things-that-can-go-wrong-when-using-renv/)
+* renv with rig - to specify R version [[source]](https://www.r-bloggers.com/2024/05/things-that-can-go-wrong-when-using-renv/)
+* Docker, Nix and others - for entire software stack [[source]](https://www.r-bloggers.com/2024/05/things-that-can-go-wrong-when-using-renv/)
 
 Binary packages, pre-compiled, etc. etc.
 
@@ -35,6 +48,8 @@ Binary packages, pre-compiled, etc. etc.
     * 237 monthly downloads, last published 19 June 2019, [[source]](https://www.rdocumentation.org/packages/liftr/versions/0.9.2)
 * miniCRAN
     * 1557 monhtly downloads, last published 28 March 2024, [[source]](https://www.rdocumentation.org/packages/miniCRAN/versions/0.3.0)
+* Nix
+    * <https://www.brodrigues.co/blog/2023-07-13-nix_for_r_part1/>
 * packrat
     * `packrat has been soft-deprecated and is now supseded by renv` [[source]](https://www.rdocumentation.org/packages/packrat/versions/0.9.2)
 * pak
