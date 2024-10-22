@@ -54,8 +54,14 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'causal_methods/a1_multivariable_regression';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -503,8 +509,8 @@ document.write(`
 <li><p>Block all backdoor paths - so would want to block the open back door path that is in the image on the left</p></li>
 <li><p>Do not inadvertenly open closed pathways by conditioning on colliders or descendents - as is the case in the image on the right (not conditoning on the collider, so the path remains blocked - but if you did, it would open it)</p></li>
 </ol>
-<div class="mermaid">
-              flowchart TD;
+<pre  class="mermaid">
+          flowchart TD;
 
     block:::outline;
     subgraph block[&quot;`**Path blocked at collider**`&quot;]
@@ -532,7 +538,7 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000
     classDef outline fill:#FFFFFF
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>Alike the methods above, we assume <strong>conditional exchangeability given measured convariates</strong> - i.e. only addresses confounding caused by measured covaries and can be biases by unmeasured covariates.<a class="reference external" href="https://doi.org/10.2188/jea.JE20210145">[Shiba and Kawahara 2021]</a></p>
+    </pre><p>Alike the methods above, we assume <strong>conditional exchangeability given measured convariates</strong> - i.e. only addresses confounding caused by measured covaries and can be biases by unmeasured covariates.<a class="reference external" href="https://doi.org/10.2188/jea.JE20210145">[Shiba and Kawahara 2021]</a></p>
 <p>Shiba and Kawahara 2021 explain the benefits, however, of propensity score methods (propensity score matching, inverse probability weighting) over multivariable regression:</p>
 <ul class="simple">
 <li><p>Modeling decisions for propensity score methods typically come before looking at data (hence minimises p-hacking and tweaking of spec to align with expectations)</p></li>
@@ -558,8 +564,8 @@ document.write(`
 <li><p>Adjusting for a variable whose only causal association with variables of interest is as a cause of the outcome (C4)</p></li>
 </ul>
 <p>Adjusting for these varaibles should not impact the total causal effect on the outcome, but may be gain or loss in precision of relationship between exposure of interest, the unnecessary adjustment variables, and the outcome of interest.<a class="reference external" href="https://doi.org/10.1097/EDE.0b013e3181a819a1">[Schisterman et al. 2009]</a></p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     C1:::white
     C2:::white
@@ -574,7 +580,7 @@ document.write(`
     C4 --&gt; D;
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
-        </div></div>
+    </pre></div>
 <div class="section" id="data-driven-selection-of-confounders">
 <h2>Data-driven selection of confounders<a class="headerlink" href="#data-driven-selection-of-confounders" title="Permalink to this heading">#</a></h2>
 <p>‘Though generally not advisable, data-driven confounder selection may be employed in small datasets, under the condition that the data has been pre-processed to entail that covariates fed into the statistical selection method are only potential confounders and free of mediators’.<a class="reference external" href="https://doi.org/10.1007/s10654-021-00794-w">[Ramspek et al. 2021 (supplementary)]</a></p>

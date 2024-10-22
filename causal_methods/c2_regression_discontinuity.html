@@ -54,8 +54,14 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'causal_methods/c2_regression_discontinuity';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -531,8 +537,8 @@ document.write(`
 </li>
 </ul>
 <p><a class="reference external" href="https://mixtape.scunning.com/06-regression_discontinuity">[Causal Inference: The Mixtape - Scott Cunningham]</a></p>
-<div class="mermaid">
-              flowchart TD;
+<pre  class="mermaid">
+          flowchart TD;
 
     graphb:::outline;
     subgraph graphb[&quot; &quot;]
@@ -563,7 +569,7 @@ document.write(`
     classDef white fill:#FFFFFF, stroke:#FFFFFF;
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef outline fill:#FFFFFF;
-        </div><p>An example of RDD is Hoekstra (2009)</p>
+    </pre><p>An example of RDD is Hoekstra (2009)</p>
 <ul class="simple">
 <li><p>Aim: Estimate causal effect of college on earnings</p></li>
 <li><p>Problem: <strong>Selection bias</strong>. State flagship universities are more selective than public universities in the same state. State flagship schools have individuals with higher observed and unobserved ability, and due to their ability, expected them to earn more regardless of their university.</p></li>

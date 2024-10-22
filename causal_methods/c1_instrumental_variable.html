@@ -54,8 +54,14 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'causal_methods/c1_instrumental_variable';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -506,8 +512,8 @@ document.write(`
 <li><p>As it is unrelated to the outcome, is is therefore <strong>unrelated to unmeasured confounders</strong> (unmeasured differences in characteristics that affect outcomes) (i.e. <strong>exogeneity</strong> assumption - it is an exogneous variable) <a class="reference external" href="https://doi.org/10.1001/jama.1994.03520110039026">[McClellan et al. 1994]</a><a class="reference external" href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al. 2022]</a> <a class="reference external" href="https://towardsdatascience.com/instrumental-variables-a-practical-explanation-1a583408a5b9">[source]</a> <a class="reference external" href="https://medium.com/teconomics-blog/machine-learning-meets-instrumental-variables-c8eecf5cec95">[source]</a></p></li>
 </ol>
 <p>This is illustrated below:</p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     iv(&quot;Instrumental variable&quot;):::white;
     e(&quot;Exposure/treatment&quot;):::white;
@@ -523,9 +529,9 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef empty width:0px,height:0px;
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>Due to these characteristics, instrumental variables enable us to mimic randomisation to treatment. <a class="reference external" href="https://doi.org/10.1001/jama.1994.03520110039026">[McClellan et al. 1994]</a> In fact, <strong>randomisation to treatment</strong> in an RCT is an example instrumental variable (it meets the above assumptions).</p>
-<div class="mermaid">
-              flowchart LR;
+    </pre><p>Due to these characteristics, instrumental variables enable us to mimic randomisation to treatment. <a class="reference external" href="https://doi.org/10.1001/jama.1994.03520110039026">[McClellan et al. 1994]</a> In fact, <strong>randomisation to treatment</strong> in an RCT is an example instrumental variable (it meets the above assumptions).</p>
+<pre  class="mermaid">
+          flowchart LR;
 
     iv(&quot;RCT randomisation to treatment&quot;):::white;
     e(&quot;Exposure/treatment&quot;):::white;
@@ -541,7 +547,7 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef empty width:0px,height:0px;
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>You have likely identified an instrumental variable ‘if people are confused when you tell them about the instrument’s relationship to the outcome’.</p>
+    </pre><p>You have likely identified an instrumental variable ‘if people are confused when you tell them about the instrument’s relationship to the outcome’.</p>
 <ul class="simple">
 <li><p>No-one is confused if you say family size will reduce labour supply of women</p></li>
 <li><p>They will be confused if you use gender composition of first two children as instrumental variable, and find ‘that mothers whose first two children were the same gender were employed outside the home less than those whose two children had a balanced sex ratio’, as they don’t expect gender composition to incentive work outside home - but it is related as if both the same gender, they’re more likely to try again for child of another gender <a class="reference external" href="https://mixtape.scunning.com/06-regression_discontinuity">[Causal Inference: The Mixtape - Scott Cunningham]</a></p></li>
@@ -593,8 +599,8 @@ document.write(`
 <div class="section" id="example-1-mendelian-randomisation">
 <h3>Example 1: Mendelian randomisation<a class="headerlink" href="#example-1-mendelian-randomisation" title="Permalink to this heading">#</a></h3>
 <p>Disease association with non-genetic risk factors are often confounded - for example:</p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     e(&quot;Drinking alcohol&quot;):::green;
     o(&quot;Lung cancer&quot;):::green;
@@ -607,11 +613,11 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef empty width:0px,height:0px;
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>Genotype-phenotype associations are much less likely to be confounded. They are aetiological associations (causing or contributing to disease/condition development).</p>
+    </pre><p>Genotype-phenotype associations are much less likely to be confounded. They are aetiological associations (causing or contributing to disease/condition development).</p>
 <p>If we know of a gene closely linked to the phenotype without direct effect on the disease, it can often be reasonably assumed that the gene is not itself associated with any confounding factors - a phenomenon called <strong>Mendelian randomization</strong>. Genetic variants (G) should influence the exposure (X) but should not be directly associated with confounders (U) or the outcome (Y).</p>
 <p>We can then identify the causal relationship between X and Y - if it doesn’t cause Y, then G should be independent of Y. This is the same logic as we use for an RCT (where G would be randomisation to treatment).</p>
-<div class="mermaid">
-              flowchart TD;
+<pre  class="mermaid">
+          flowchart TD;
 
     con:::outline;
     subgraph con[&quot;If X doesn't cause Y...&quot;]
@@ -641,7 +647,7 @@ document.write(`
     classDef white fill:#FFFFFF, stroke:#FFFFFF;
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef outline fill:#FFFFFF;
-        </div><p>[BSc Medical Sciences]</p>
+    </pre><p>[BSc Medical Sciences]</p>
 </div>
 <div class="section" id="example-2-effect-of-intensive-treatment-on-mortality-in-patients-with-acute-myocardial-infarction">
 <h3>Example 2: Effect of intensive treatment on mortality in patients with acute myocardial infarction<a class="headerlink" href="#example-2-effect-of-intensive-treatment-on-mortality-in-patients-with-acute-myocardial-infarction" title="Permalink to this heading">#</a></h3>
@@ -664,8 +670,8 @@ document.write(`
 </ol>
 </li>
 </ul>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     treat(&quot;&lt;b&gt;Intensive treatment&lt;/b&gt;&lt;br&gt;(e.g. catheterisation)&quot;):::green;
     mortality(&quot;&lt;b&gt;Mortality&lt;/b&gt;&quot;):::green;
@@ -682,7 +688,7 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef empty width:0px,height:0px;
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>First, checked for presence of selection bias (i.e. whether hospital type affects treatment intensity - and therefore whether simple comparisons of treatments and outcomes across hospital types are valid). Then, as was present, used IV methods to estimate effect of intensive treatment on mortality. <strong>Differential distance approximately randomises patients to different likelihoods of receiving intensive treatments</strong>, uncorrelated with health status.</p>
+    </pre><p>First, checked for presence of selection bias (i.e. whether hospital type affects treatment intensity - and therefore whether simple comparisons of treatments and outcomes across hospital types are valid). Then, as was present, used IV methods to estimate effect of intensive treatment on mortality. <strong>Differential distance approximately randomises patients to different likelihoods of receiving intensive treatments</strong>, uncorrelated with health status.</p>
 <ul class="simple">
 <li><p>First, compared two groups of apx. equal size - patients near to catheterisation hospital (differential distance &lt;= 2.5 miles) and patients far from them (&gt; 2.5 miles). This evidenced assumption that distribution of health status in AMI patients is independent of differential distance, and illustrates IV method, estimating the ‘average effect of invasive treatment for all patients who are marginal from the standpoint of the near-far IVs - those who undergo catheterisation in the relatively near group and not in the relatively far group - if the two groups are balanced and if catheterisation is the only treatment that differs between the groups’</p></li>
 <li><p>Then used more general IV estimation netchniques with wide range of differential distance groups, and account for small remaining observable differences between differential-distance groups <a class="reference external" href="https://doi.org/10.1001/jama.1994.03520110039026">[McClellan et al. 1994]</a></p></li>
@@ -693,8 +699,8 @@ document.write(`
 <p>This example is taken from It’s about time: Cesarean sections and neonatal health <a class="reference external" href="https://linkinghub.elsevier.com/retrieve/pii/S0167629617307609">[Costa-Ramón et al. 2018]</a>.</p>
 <p>The study aimed to estimate the causal relationship between caesarean section and newborn health: Apgar-1 and Apgar-5; Reanimation (assisted ventilation); ICU admission; Neonatal death; Umbilical cord pH.</p>
 <p>Several known measured confounders (e.g. age, gestational length, obstetric risk), but also omitted variable bias due to other unmeausred confounders.</p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     e(&quot;Caesarean section&quot;):::green;
     o(&quot;Neonatal health&lt;br&gt;(e.g. Apgar)&quot;):::green;
@@ -707,13 +713,13 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef empty width:0px,height:0px;
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>Time of birth can be used as an instrumental variable as:</p>
+    </pre><p>Time of birth can be used as an instrumental variable as:</p>
 <ul class="simple">
 <li><p>It is associated with treatment (unplanned C-sections more likely in early hours of night)</p></li>
 <li><p>It is unrelated to outcome and confounders (mothers giving birth at different times of day are observationally similar - suggesting excess number of C-sections observed are due to non-medical reasons)</p></li>
 </ul>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     e(&quot;Caesarean section&quot;):::green;
     o(&quot;Neonatal health&lt;br&gt;(e.g. Apgar)&quot;):::green;
@@ -728,7 +734,7 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef empty width:0px,height:0px;
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>Showing example of results for Apgar-5 scores.</p>
+    </pre><p>Showing example of results for Apgar-5 scores.</p>
 <p>From <strong>standard OLS estimation</strong>, unplanned CS coefficient for predicting Apgar-5 (with standard error in parentheses, clustered at hospital-shift level):</p>
 <ul class="simple">
 <li><p>-0.219 (0.038) (regression controlling only for weekday and hospital fixed effects)</p></li>
@@ -756,8 +762,8 @@ document.write(`
 <h2>Python example<a class="headerlink" href="#python-example" title="Permalink to this heading">#</a></h2>
 <p>This example is taken from <a class="reference external" href="https://matheusfacure.github.io/python-causality-handbook/landing-page.html">Causal Inference for the Brave and True</a> (MIT license).</p>
 <p>Interested in causal effect of education on wage. Confounders like ability (which affect education and wage).</p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     e(&quot;Education&lt;br&gt;(years of schooling)&quot;):::green;
     o(&quot;Wage&quot;):::green;
@@ -770,9 +776,9 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef empty width:0px,height:0px;
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>Quarter of birth (i.e. dividing year into Q1, Q2, Q3, Q4) impacts education (kids born earlier in school year start education at older age than kids born later in school year), and does not impact wage (other than through its impact on education).</p>
-<div class="mermaid">
-              flowchart LR;
+    </pre><p>Quarter of birth (i.e. dividing year into Q1, Q2, Q3, Q4) impacts education (kids born earlier in school year start education at older age than kids born later in school year), and does not impact wage (other than through its impact on education).</p>
+<pre  class="mermaid">
+          flowchart LR;
 
     e(&quot;Education&lt;br&gt;(years of schooling)&quot;):::green;
     o(&quot;Wage&quot;):::green;
@@ -787,7 +793,7 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef empty width:0px,height:0px;
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><div class="section" id="set-up-import-packages-and-data">
+    </pre><div class="section" id="set-up-import-packages-and-data">
 <h3>Set-up (import packages and data)<a class="headerlink" href="#set-up-import-packages-and-data" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

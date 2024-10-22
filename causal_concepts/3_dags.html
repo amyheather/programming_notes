@@ -54,8 +54,14 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'causal_concepts/3_dags';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -523,8 +529,8 @@ document.write(`
 </ul>
 <p>When letters are not used, the exposure and outcome will often be highlighted using a “?” on the arrow, or through coloured boxes or arrows.</p>
 <p>Example:</p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     A:::green;
     Y:::green;
@@ -540,7 +546,7 @@ document.write(`
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>Nodes can also be described as:</p>
+    </pre><p>Nodes can also be described as:</p>
 <ul class="simple">
 <li><p><strong>Ancestor</strong> = direct cause (<strong>parent</strong>) or indirect cause (e.g. <strong>grandparent</strong>) of a variable</p></li>
 <li><p><strong>Descendent</strong> = direct effect (<strong>child</strong>) or indirect effect (e.g. <strong>grandchild</strong>) of a variable <a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p></li>
@@ -560,8 +566,8 @@ document.write(`
 <li><p>If we don’t condition on it, we expect to see an association between yellow fingers and lung cancer (known as a <strong>marginal/unconditional</strong> association)</p></li>
 <li><p>If we do condition on smoking, we expect to see no association between yellow fingers and lung cancers (i.e. they are “<strong>not associated conditional on</strong> smoking)<a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p></li>
 </ul>
-<div class="mermaid">
-              flowchart TD;
+<pre  class="mermaid">
+          flowchart TD;
 
     con:::outline;
     subgraph con[&quot;`**Conditional**`&quot;]
@@ -586,7 +592,7 @@ document.write(`
     classDef white fill:#FFFFFF, stroke:#FFFFFF;
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef outline fill:#FFFFFF;
-        </div></div>
+    </pre></div>
 <div class="section" id="moderators">
 <h3>Moderators<a class="headerlink" href="#moderators" title="Permalink to this heading">#</a></h3>
 <p><strong>Moderators</strong> are variables that change the <strong>size or direction</strong> of the relationship between variables. These could also be referred to as <strong>effect modifiers</strong> or statistical interaction. <a class="reference external" href="https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf">[source]</a></p>
@@ -604,8 +610,8 @@ document.write(`
 <li><p>Interaction focuses on the <strong>joint causal effect</strong> of two exposures (eg, the combined effect of smoking and asbestos exposure on lung cancer)</p></li>
 <li><p>EMM focuses on the effect of one exposure whose effect differs across levels of another variable (eg, the effect of asbestos exposure on lung cancer in smokers vs non-smokers); with EMM, the <strong>causal effect of the effect modifier itself is not of interest</strong>.’ <a class="reference external" href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al. 2022]</a></p></li>
 </ul>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     A(&quot;A (treatment/exposure)&quot;):::green;
     Y(&quot;Y (outcome)&quot;):::green;
@@ -620,7 +626,7 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef empty width:0px,height:0px;
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p><strong>Why do we care about modifiers/effect modification?</strong></p>
+    </pre><p><strong>Why do we care about modifiers/effect modification?</strong></p>
 <p>(1) The average causal effect will differ between populations with different prevalence of the modifier - i.e. it depends on the distribution of individual causal effects in the population</p>
 <ul class="simple">
 <li><p>*<em>Example: If average causal effect of exposure is harmful in women and beneficial in mean, a study with an equal gender split would find null causal effect, and a study with majority women would find harmful causal effect.</em></p></li>
@@ -638,8 +644,8 @@ document.write(`
 <li><p>In contrast, the arrow directly connecting the treatment and outcome represents the <strong>direct causal effect</strong> of the treatment on the outcome that is not due to changes in the mediator.<a class="reference external" href="https://doi.org/10.1513/AnnalsATS.201808-564PS">[Lederer et al. 2018]</a> This is also referred to as the <strong>controlled direct effect (CDE)</strong> <a class="reference external" href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al. 2022]</a></p></li>
 <li><p>If you do not have a direct arrow between the treatment and outcome, and only via the mediator, this implies that this is the only way in which the treatment can cause the outcome, and that if you know the mediator is present, knowing whether or not the treatment was present should have no impact on the outcome.</p></li>
 </ul>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     treat(&quot;Treatment&quot;):::white;
     med(&quot;Mediator&quot;):::white;
@@ -650,9 +656,9 @@ document.write(`
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div><p>You might <strong>condition</strong> on a mediator if you are interested in the <strong>direct effect of treatment on outcome that doesn’t pass through mediator</strong>. Example: In racial disparity studies, will condition on mediators like socioeconomic, education, location (often though <strong>matching</strong> on these characteristics),  to allow you to isolate the unique effect of race that is not explainable by those pathways. <a class="reference external" href="https://stats.stackexchange.com/questions/488048/dag-are-there-situations-where-adjusting-for-mediators-is-reasonable">[source]</a> This is referred to as <strong>mediation analysis</strong> - when you’re trying to ‘quantify how much of the total effect of A on Y is explained by a particular mediator (the indirect effect), and how much is not (the direct effect)’.</p>
-<div class="mermaid">
-              flowchart LR;
+    </pre><p>You might <strong>condition</strong> on a mediator if you are interested in the <strong>direct effect of treatment on outcome that doesn’t pass through mediator</strong>. Example: In racial disparity studies, will condition on mediators like socioeconomic, education, location (often though <strong>matching</strong> on these characteristics),  to allow you to isolate the unique effect of race that is not explainable by those pathways. <a class="reference external" href="https://stats.stackexchange.com/questions/488048/dag-are-there-situations-where-adjusting-for-mediators-is-reasonable">[source]</a> This is referred to as <strong>mediation analysis</strong> - when you’re trying to ‘quantify how much of the total effect of A on Y is explained by a particular mediator (the indirect effect), and how much is not (the direct effect)’.</p>
+<pre  class="mermaid">
+          flowchart LR;
 
     race(&quot;Race&quot;):::white;
     outcome(&quot;Outcome&quot;):::white;
@@ -667,7 +673,7 @@ document.write(`
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div><div class="section" id="how-is-cde-estimated">
+    </pre><div class="section" id="how-is-cde-estimated">
 <h4>How is CDE estimated?<a class="headerlink" href="#how-is-cde-estimated" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>‘Assuming no interaction between exposure and mediator, and no confounding between mediator and outcome, the indirect effect can be obtained by subtracting the CDE from the total effect’</p></li>
@@ -698,8 +704,8 @@ document.write(`
 <li><p>Scenario #2: Condition on cancer - If we condition on cancer - such as by just selecting people who have cancer - we will find an <strong>inverse association</strong> between genetics and environment (as if cancer wasn’t caused by one, it was by the other). This biased effect estimate is referred to as <strong>selection bias</strong>.</p></li>
 <li><p>Scenario #3: Condition on surgery - We can <strong>induce</strong> selection bias by conditioning on the downstream consequence of a collider - e.g. if cancer is collider, and surgery is consequence of cancer, if we condition on surgery, we expect to see inverse association between genetic and environment conditional on surgery (just as we did for the collider cancer).<a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p></li>
 </ul>
-<div class="mermaid">
-              flowchart TD;
+<pre  class="mermaid">
+          flowchart TD;
 
     con_sur:::outline;
     subgraph con_sur[&quot;`**Condition on surgery**`&quot;]
@@ -740,14 +746,14 @@ document.write(`
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
     classDef outline fill:#FFFFFF;
-        </div><p>Collider bias may also be present when neither the exposure nor the outcome is a direct cause of the collider variable. An example is <strong>M-bias</strong>. In this example…</p>
+    </pre><p>Collider bias may also be present when neither the exposure nor the outcome is a direct cause of the collider variable. An example is <strong>M-bias</strong>. In this example…</p>
 <ul class="simple">
 <li><p>Focus: beta-blocker use and risk of ARDS</p></li>
 <li><p>Might be tempted to adjust for crackles as you might think its a confounder… 1) heart failure leads to both chronic β-blocker therapy and crackles, and 2) pneumonia causes both ARDS and crackles</p></li>
 <li><p>However, crackles is actually a collider on the <strong>back-door path</strong> of <strong>chronic β-blocker therapy</strong> ← heart failure → crackles ← pneumonia → <strong>ARDS</strong>. Adjusting for the presence of crackles opens this back-door path, introducing confounding. Ignoring the presence of crackles would be the right thing to do.<a class="reference external" href="https://doi.org/10.1513/AnnalsATS.201808-564PS">[Lederer et al. 2018]</a></p></li>
 </ul>
-<div class="mermaid">
-              flowchart TD;
+<pre  class="mermaid">
+          flowchart TD;
 
     beta(&quot;Beta blocker use&quot;):::white;
     ards(&quot;Acute respiratory distress syndrome (ARDS)&quot;):::white;
@@ -763,7 +769,7 @@ document.write(`
   
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div><p>Another type of collider bias - specifically, a type of selection bias - is <strong>Berkson’s bias</strong>. This is when the selection of cases into the study depends on hospitalisation, and the treatment is another disease, or a cause of another disease, which also results in hospitalisation.<a class="reference external" href="https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf">[source]</a></p>
+    </pre><p>Another type of collider bias - specifically, a type of selection bias - is <strong>Berkson’s bias</strong>. This is when the selection of cases into the study depends on hospitalisation, and the treatment is another disease, or a cause of another disease, which also results in hospitalisation.<a class="reference external" href="https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf">[source]</a></p>
 </div>
 <div class="section" id="selection-nodes">
 <h3>Selection nodes<a class="headerlink" href="#selection-nodes" title="Permalink to this heading">#</a></h3>
@@ -786,8 +792,8 @@ document.write(`
 <li><p>Bias in exposure depends on both (a) memory of vitamin uptake, and (b) bladder cancer, since they might have spent more time reflecting on what could have caused the illness</p></li>
 <li><p>If there is no effect of vitamins on bladder cancer, this dependency will make it seem as if vitamins are a <strong>risk</strong> for bladder cancer. If it is, in fact, <strong>protective</strong>, recall bias can reduce or even reverse the association.</p></li>
 </ul>
-<div class="mermaid">
-              flowchart TD;
+<pre  class="mermaid">
+          flowchart TD;
 
     me_diag(&quot;&lt;b&gt;Measurement error&lt;/b&gt;&lt;br&gt;in diagnosis&quot;):::white;
     diag(&quot;Diagnosis of bladder cancer *&quot;):::white;
@@ -806,7 +812,7 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000
     classDef outline fill:#FFFFFF
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div></div>
+    </pre></div>
 </div>
 <div class="section" id="how-do-you-know-what-to-include-in-your-dag">
 <h2>How do you know what to include in your DAG?<a class="headerlink" href="#how-do-you-know-what-to-include-in-your-dag" title="Permalink to this heading">#</a></h2>
@@ -824,8 +830,8 @@ document.write(`
 <li><p>In an <strong>observational study</strong>, there will be other variables that would explain why people received aspirin (e.g. CHD), which we would need to include for it to be a causal DAG (i.e. <strong>aspirin AND stroke BOTH caused by CHD</strong>). <a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p></li>
 </ul>
 <p>You don’t need variables that <strong>cause Y but not A</strong> (although might include if for example you want to compare to other studies that did adjust for that variable).</p>
-<div class="mermaid">
-              flowchart TD;
+<pre  class="mermaid">
+          flowchart TD;
 
     ob:::outline;
     subgraph ob[&quot;`**Observational**`&quot;]
@@ -850,7 +856,7 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000
     classDef outline fill:#FFFFFF
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div></div>
+    </pre></div>
 <div class="section" id="how-do-you-know-when-to-include-mediators">
 <h3>How do you know when to include mediators?<a class="headerlink" href="#how-do-you-know-when-to-include-mediators" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
@@ -889,8 +895,8 @@ document.write(`
 </ul>
 <p><strong>Everytime you add a new node</strong> to the DAG, you need to conside whether it has common causes with any other variables (its not just about common causes of A and Y). For example, if you believe measurement of Y is affected by whether person is on treatment, draw arrow from A to measurement error for Y.</p>
 <p>There can often be <strong>more than one appropriate DAG</strong>, and alternate DAGs can make excellent sensitivity analyses.<a class="reference external" href="https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf">[source]</a> <a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     A(&quot;A (treatment/exposure)&quot;):::green;
     Y(&quot;Y (outcome)&quot;):::green;
@@ -918,7 +924,7 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef empty width:0px,height:0px;
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div></div>
+    </pre></div>
 <div class="section" id="paths">
 <h2>Paths<a class="headerlink" href="#paths" title="Permalink to this heading">#</a></h2>
 <p>A <strong>path</strong> is any route through graph - it <strong>doesn’t have to follow</strong> the direction of the arrows. Paths can be either be:</p>
@@ -934,8 +940,8 @@ document.write(`
 </ul>
 </li>
 </ul>
-<div class="mermaid">
-              flowchart TD;
+<pre  class="mermaid">
+          flowchart TD;
 
     block:::outline;
     subgraph block[&quot;`**Path blocked at collider**`&quot;]
@@ -963,7 +969,7 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000
     classDef outline fill:#FFFFFF
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>The <strong>target (causal) paths</strong> are the directed paths from the exposure to the outcome which transmit the target effect. <strong>Biasing paths</strong> are non-directed open paths between the exposure and the outcome, which transmit bias for estimating the effect of the exposure on the outcome.<a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3733703/">[source]</a></p>
+    </pre><p>The <strong>target (causal) paths</strong> are the directed paths from the exposure to the outcome which transmit the target effect. <strong>Biasing paths</strong> are non-directed open paths between the exposure and the outcome, which transmit bias for estimating the effect of the exposure on the outcome.<a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3733703/">[source]</a></p>
 </div>
 <div class="section" id="d-seperation-rules">
 <h2>D-seperation rules<a class="headerlink" href="#d-seperation-rules" title="Permalink to this heading">#</a></h2>
@@ -988,8 +994,8 @@ document.write(`
 <div class="section" id="examples-of-each-rule">
 <h3>Examples of each rule<a class="headerlink" href="#examples-of-each-rule" title="Permalink to this heading">#</a></h3>
 <p>Rule 1: L to Y open</p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     l(&quot;L&quot;):::white;
     a(&quot;A&quot;):::white;
@@ -1002,9 +1008,9 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000
     classDef outline fill:#FFFFFF
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>Rule 1: L to A blocked</p>
-<div class="mermaid">
-              flowchart LR;
+    </pre><p>Rule 1: L to A blocked</p>
+<pre  class="mermaid">
+          flowchart LR;
 
     l(&quot;L&quot;):::white;
     a(&quot;A&quot;):::white;
@@ -1017,9 +1023,9 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000
     classDef outline fill:#FFFFFF
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>Rule 2: A to Y blocked.</p>
-<div class="mermaid">
-              flowchart LR;
+    </pre><p>Rule 2: A to Y blocked.</p>
+<pre  class="mermaid">
+          flowchart LR;
 
     a(&quot;A&quot;):::white;
     b(&quot;B&quot;):::black;
@@ -1029,9 +1035,9 @@ document.write(`
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div><p>Rule 3: A to Y open.</p>
-<div class="mermaid">
-              flowchart LR;
+    </pre><p>Rule 3: A to Y open.</p>
+<pre  class="mermaid">
+          flowchart LR;
 
     a(&quot;A&quot;):::white;
     y(&quot;Y&quot;):::white;
@@ -1041,9 +1047,9 @@ document.write(`
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div><p>Rule 4: A to Y open.</p>
-<div class="mermaid">
-              flowchart LR;
+    </pre><p>Rule 4: A to Y open.</p>
+<pre  class="mermaid">
+          flowchart LR;
 
     a(&quot;A&quot;):::white;
     y(&quot;Y&quot;):::white;
@@ -1054,7 +1060,7 @@ document.write(`
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div></div>
+    </pre></div>
 </div>
 <div class="section" id="faithfulness">
 <h2>Faithfulness<a class="headerlink" href="#faithfulness" title="Permalink to this heading">#</a></h2>
@@ -1078,8 +1084,8 @@ document.write(`
 <li><p>Y, L and A at timepoint K+1 (e.g. week 1)</p></li>
 <li><p>Y at timepoint K+2 (e.g. week 2)</p></li>
 </ul>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     ak(&quot;A&lt;sub&gt;K&lt;/sub&gt;: EPO dose&quot;):::white;
     ak1(&quot;A&lt;sub&gt;K+1&lt;/sub&gt;: EPO dose&quot;):::white;
@@ -1102,7 +1108,7 @@ document.write(`
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div></div>
+    </pre></div>
 <div class="section" id="treatment-confounder-feedback">
 <h3>Treatment-confounder feedback<a class="headerlink" href="#treatment-confounder-feedback" title="Permalink to this heading">#</a></h3>
 <p>Our DAG above was incomplete - in this scenario, treatment at timepoint K will impact the confounder (levels of haemoglobin) at timepoint K+1. This is referred to as <strong>treatment-confounder feedback</strong> - when the later confounder is impacted by prior treatment.<a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a> This is also referred to as <strong>intermediate confounding</strong> - when a confoudner is affected by prior exposure/treatment status.<a class="reference external" href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al. 2022]</a></p>
@@ -1117,8 +1123,8 @@ In other words:</p>
 </ul>
 <p>This means we will be unable to yield an unbiased estimate and, if the time-varying confounder also affects the outcome (e.g. L<sub>K+1</sub> –&gt; Y<sub>K+2</sub>), it will be impossible to estimate the total effect of the treatment.<a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
 <p>We need other methods to handle these settings: <strong>G-methods</strong>. <a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     ak(&quot;A&lt;sub&gt;K&lt;/sub&gt;: EPO dose&quot;):::white;
     ak1(&quot;A&lt;sub&gt;K+1&lt;/sub&gt;: EPO dose&quot;):::white;
@@ -1142,7 +1148,7 @@ In other words:</p>
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div></div>
+    </pre></div>
 </div>
 <div class="section" id="presenting-results-from-causal-inference-studies">
 <h2>Presenting results from causal inference studies<a class="headerlink" href="#presenting-results-from-causal-inference-studies" title="Permalink to this heading">#</a></h2>
@@ -1158,8 +1164,8 @@ In other words:</p>
 <li><p>Doesn’t inadvertenly open closed pathways by conditioning on colliders or descendents. <a class="reference external" href="https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf">[source]</a></p></li>
 </ol>
 <p>With the example below, the minimal set of variables you’d need to condition for would be <strong>L0 and L1 - wouldn’t need to for U</strong> as doing for L0 and L1 blocks the backdoor paths.<a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     ak(&quot;A&lt;sub&gt;K&lt;/sub&gt;: EPO dose&quot;):::white;
     ak1(&quot;A&lt;sub&gt;K+1&lt;/sub&gt;: EPO dose&quot;):::white;
@@ -1182,7 +1188,7 @@ In other words:</p>
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div></div>
+    </pre></div>
 <div class="section" id="example-cases">
 <h2>Example cases<a class="headerlink" href="#example-cases" title="Permalink to this heading">#</a></h2>
 <p>These examples help demonstrate the utility of causal diagrams.</p>
@@ -1199,8 +1205,8 @@ In other words:</p>
 <li><p>Boston researchers argued we would find association even in women who bleed and even if they don’t cause cancer, and so that this approach would still have ascertainment bias.</p></li>
 </ul>
 <p>Explanation one.</p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     a(&quot;A: Oestrogens&quot;):::white;
     u(&quot;U: Cancer (unmeasured)&quot;):::white;
@@ -1211,9 +1217,9 @@ In other words:</p>
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div><p>Explanation two.</p>
-<div class="mermaid">
-              flowchart LR;
+    </pre><p>Explanation two.</p>
+<pre  class="mermaid">
+          flowchart LR;
 
     a(&quot;A: Oestrogens&quot;):::white;
     u(&quot;U: Cancer (unmeasured)&quot;):::white;
@@ -1227,14 +1233,14 @@ In other words:</p>
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div><p>Restrict analysis to women who bleed. If association still found, must be path of A –&gt; U –&gt; Y. Boston argued could still exist.</p>
+    </pre><p>Restrict analysis to women who bleed. If association still found, must be path of A –&gt; U –&gt; Y. Boston argued could still exist.</p>
 <ul class="simple">
 <li><p>Conditioning on C blocks path A-C-Y</p></li>
 <li><p>However, we still have path of A-C-U-Y, and C is collider on that path, so when condition on C, it becomes open (and conditioning on C is what we do when we restrict analysis to bleeders)</p></li>
 </ul>
 <p>So Boston were right.</p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     a(&quot;A: Oestrogens&quot;):::white;
     u(&quot;U: Cancer (unmeasured)&quot;):::white;
@@ -1248,9 +1254,9 @@ In other words:</p>
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div><p>What can you do then? You can design study where C-Y doesn’t exist as you require all women to be screened for cancer frequently regardless of whether they bleed. If no association between A and Y, then we know there is no causal effect of A on U. If you still found association, then A must cause U.</p>
-<div class="mermaid">
-              flowchart LR;
+    </pre><p>What can you do then? You can design study where C-Y doesn’t exist as you require all women to be screened for cancer frequently regardless of whether they bleed. If no association between A and Y, then we know there is no causal effect of A on U. If you still found association, then A must cause U.</p>
+<pre  class="mermaid">
+          flowchart LR;
 
     a(&quot;A: Oestrogens&quot;):::white;
     u(&quot;U: Cancer (unmeasured)&quot;):::white;
@@ -1263,7 +1269,7 @@ In other words:</p>
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div><p><a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+    </pre><p><a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
 </div>
 <div class="section" id="example-hiv-and-art">
 <h3>Example: HIV and ART<a class="headerlink" href="#example-hiv-and-art" title="Permalink to this heading">#</a></h3>
@@ -1271,8 +1277,8 @@ In other words:</p>
 <p>Observational of clinical data to look at real world effect of ART did not detect much benefit for new combination therapies - no increased survival among those taking ART. What was wrong with the studies?</p>
 <p>They were adjusting for lots of confounders - e.g. CD4 count - and yet could not eliminate the bias. Some people say there must be lots of unmeasured confounding. However, the more time-varying confounders were adjusted for, the more biased the effect estimate seemed to be. The problem was treatment-confounder feedback - the value of CD4 count was impacted by earlier treatment - in this case, the bias was in the opposite direction.</p>
 <p>There is a way to identify whether the bias is due to incomplete adjustment for confounding or for incorrect adjustment for time-varying confounders - and that is to use G-methods to adjust for the time-varying confounders. When they used G-methods, the effect estimates were much closer to the ARTs.</p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     ak(&quot;A&lt;sub&gt;K&lt;/sub&gt;&lt;br&gt;ART&quot;):::white;
     
@@ -1293,7 +1299,7 @@ In other words:</p>
     
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div><p><a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+    </pre><p><a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
 </div>
 </div>
 </div>

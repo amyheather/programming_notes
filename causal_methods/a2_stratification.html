@@ -54,8 +54,14 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'causal_methods/a2_stratification';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -512,8 +518,8 @@ document.write(`
 <li><p>Outcome: Down syndrome</p></li>
 <li><p>Potential confounder: Maternal age</p></li>
 </ul>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     order(&quot;Birth order&quot;):::white;
     down(&quot;Down syndrome&quot;):::white;
@@ -525,7 +531,7 @@ document.write(`
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div><p>See figure:</p>
+    </pre><p>See figure:</p>
 <ul class="simple">
 <li><p>(a) Association of down syndrome with birth order and age groups seperately</p></li>
 <li><p>(b) Down syndrome cases stratified by birth order and maternal age</p></li>

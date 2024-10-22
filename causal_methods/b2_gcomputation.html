@@ -54,8 +54,14 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'causal_methods/b2_gcomputation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -515,8 +521,8 @@ document.write(`
 <div class="section" id="about-the-method">
 <h2>About the method<a class="headerlink" href="#about-the-method" title="Permalink to this heading">#</a></h2>
 <p>G-computation involves using a statistical model (e.g. predict) to predict <strong>potential</strong> outcomes (counterfactuals - with and without exposure).<a class="reference external" href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al. 2022]</a></p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     X(&quot;Binary treatment (X)&quot;):::white;
     Y(&quot;Outcome (Y)&quot;):::white;
@@ -530,7 +536,7 @@ document.write(`
     classDef black fill:#FFFFFF, stroke:#000000;
     classDef empty width:0px,height:0px;
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>Key steps:</p>
+    </pre><p>Key steps:</p>
 <ol class="arabic simple">
 <li><p><strong>Fit model on observed data</strong> - regression model with Y as outcome and X and W as predictors (perhaps also with polynomials and/or interactions if there are multiple control variables)</p></li>
 <li><p>Make identical copy of observed data, but just <strong>replace</strong> outcome so all X=1.</p></li>
@@ -549,8 +555,8 @@ document.write(`
 <div class="section" id="how-does-this-method-enable-us-to-deal-with-treatment-dependent-confounding">
 <h2>How does this method enable us to deal with treatment-dependent confounding?<a class="headerlink" href="#how-does-this-method-enable-us-to-deal-with-treatment-dependent-confounding" title="Permalink to this heading">#</a></h2>
 <p>See the example of treatment-dependent confounding below.</p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     ak(&quot;A&lt;sub&gt;K&lt;/sub&gt;: Treatment&quot;):::green;
     ak1(&quot;A&lt;sub&gt;K+1&lt;/sub&gt;: Treatment&quot;):::green;
@@ -579,12 +585,12 @@ document.write(`
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
     classDef green fill:#DDF2D1, stroke: #FFFFFF;
-        </div><p>If we regressed A<sub>K</sub> and A<sub>K+1</sub> on Y<sub>K+2</sub> while adjusting for confounders should we adjust for the time-varying L<sub>K+1</sub> and Y<sub>K+1</sub>? We can see that:</p>
+    </pre><p>If we regressed A<sub>K</sub> and A<sub>K+1</sub> on Y<sub>K+2</sub> while adjusting for confounders should we adjust for the time-varying L<sub>K+1</sub> and Y<sub>K+1</sub>? We can see that:</p>
 <ol class="arabic simple">
 <li><p><strong>L<sub>K+1</sub> is a collider</strong> on the non-causal path A<sub>K</sub> –&gt; L<sub>K+1</sub> &lt;– U –&gt; Y<sub>K+2</sub></p></li>
 </ol>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     ak(&quot;A&lt;sub&gt;K&lt;/sub&gt;: Treatment&quot;):::red;
     ak1(&quot;A&lt;sub&gt;K+1&lt;/sub&gt;: Treatment&quot;):::white;
@@ -615,11 +621,11 @@ document.write(`
     classDef red fill:#FFCCCB, stroke:red
     classDef green fill:#DDF2D1, stroke: #FFFFFF
     linkStyle 6,7,10 stroke:red;
-        </div><ol class="arabic simple" start="2">
+    </pre><ol class="arabic simple" start="2">
 <li><p><strong>L<sub>K+1</sub> is a mediator</strong> on the causal path A<sub>K</sub> –&gt; L<sub>K+1</sub> –&gt; A<sub>K+1</sub> –&gt; Y<sub>K+2</sub></p></li>
 </ol>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     ak(&quot;A&lt;sub&gt;K&lt;/sub&gt;: Treatment&quot;):::red;
     ak1(&quot;A&lt;sub&gt;K+1&lt;/sub&gt;: Treatment&quot;):::red;
@@ -650,11 +656,11 @@ document.write(`
     classDef red fill:#FFCCCB, stroke:red
     classDef green fill:#DDF2D1, stroke: #FFFFFF
     linkStyle 6,8,9 stroke:red;
-        </div><ol class="arabic simple" start="3">
+    </pre><ol class="arabic simple" start="3">
 <li><p><strong>L<sub>K+1</sub> is a confounder</strong> on the non-causal path A<sub>K+1</sub> &lt;– L<sub>K+1</sub> –&gt; Y<sub>K+2</sub></p></li>
 </ol>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     ak(&quot;A&lt;sub&gt;K&lt;/sub&gt;: Treatment&quot;):::white;
     ak1(&quot;A&lt;sub&gt;K+1&lt;/sub&gt;: Treatment&quot;):::red;
@@ -685,7 +691,7 @@ document.write(`
     classDef red fill:#FFCCCB, stroke:red
     classDef green fill:#DDF2D1, stroke: #FFFFFF
     linkStyle 8,9,13 stroke:red;
-        </div><p>If we adjusted for for L<sub>K+1</sub> we would therefore:</p>
+    </pre><p>If we adjusted for for L<sub>K+1</sub> we would therefore:</p>
 <ul class="simple">
 <li><p>Eliminate confounding bias</p></li>
 <li><p>Introduce collider (stratification) bias</p></li>

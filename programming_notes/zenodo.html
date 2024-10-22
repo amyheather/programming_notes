@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Machine learning &#8212; Amy Notes  documentation</title>
+    <title>Zenodo &#8212; Amy Notes  documentation</title>
   
   
   
@@ -54,11 +54,11 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'programming_notes/machine_learning';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'programming_notes/zenodo';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Open Science" href="open_science.html" />
-    <link rel="prev" title="Zenodo" href="zenodo.html" />
+    <link rel="next" title="Machine learning" href="machine_learning.html" />
+    <link rel="prev" title="Linux" href="linux.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -414,8 +414,8 @@ document.write(`
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="latex.html">Latex</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux.html">Linux</a></li>
-<li class="toctree-l1"><a class="reference internal" href="zenodo.html">Zenodo</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Machine learning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Zenodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_learning.html">Machine learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_science.html">Open Science</a></li>
 <li class="toctree-l1"><a class="reference internal" href="other.html">Other</a></li>
 </ul>
@@ -458,7 +458,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="latex.html" class="nav-link">Latex</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Machine learning</li>
+    <li class="breadcrumb-item active" aria-current="page">Zenodo</li>
   </ul>
 </nav>
 </div>
@@ -475,21 +475,72 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="section" id="machine-learning">
-<h1>Machine learning<a class="headerlink" href="#machine-learning" title="Permalink to this heading">#</a></h1>
-<div class="section" id="causality">
-<h2>Causality<a class="headerlink" href="#causality" title="Permalink to this heading">#</a></h2>
-<p>https://youtu.be/-7vSiWRasxY</p>
-<ul class="simple">
-<li><p>ML learns outcome by finding distinguishing features and how cases differ</p></li>
-<li><p>There will be missing data… censored data.. bias…</p></li>
-<li><p>ML learns target outcome only as a function of the <strong>observable</strong> data</p></li>
-<li><p>People with expert/domain knowledge would be able to identify some of the people or fields missing</p></li>
-<li><p>ML also usually fails to account for relationships between variables</p></li>
-<li><p>In order to improve AI learning, need to incorporate causal knowledge</p></li>
-<li><p>Pearl’s ladder of causation: moving from association (what if I see) to intervention (what if I do) to counterfactuals (what if I had done)</p></li>
-<li><p>Argues that you can smartly use smaller datasets in causal models to get smart outcomes rather than just throwing big datasets in models and getting useless outcomes</p></li>
-</ul>
+  <div class="section" id="zenodo">
+<h1>Zenodo<a class="headerlink" href="#zenodo" title="Permalink to this heading">#</a></h1>
+<div class="section" id="pushing-old-releases">
+<h2>Pushing old releases<a class="headerlink" href="#pushing-old-releases" title="Permalink to this heading">#</a></h2>
+<p>This method was from <a class="github reference external" href="https://github.com/zenodo/zenodo/issues/1463#issuecomment-2349177518">zenodo/zenodo#1463</a>.</p>
+<p>I made the <code class="docutils literal notranslate"><span class="pre">zenodo_archiver.py</span></code> file (as below). I set the repository to sync on Zenodo sandbox. I got the access token from the webhook page in the repository settings. I then ran the command <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">zenodo_archiver.py</span> <span class="pre">pythonhealthdatascience</span> <span class="pre">stars-eom-rcc</span> <span class="pre">v1.1.0</span> <span class="pre">{{token}}</span></code>. You should see `&lt;Response [202]&gt;, which indicates it has been successful.</p>
+<p>(You can do this for actual Zenodo - just remove <code class="docutils literal notranslate"><span class="pre">sandbox.</span></code> from url below, and sync and use webhook for actual zenodo)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Source: https://github.com/zenodo/zenodo/issues/1463#issuecomment-2349177518</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;prohde&#39;</span><span class="p">,</span> <span class="s1">&#39;dr-joe-wirth&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">sys</span>
+
+<span class="c1"># functions</span>
+<span class="k">def</span> <span class="nf">_submit</span><span class="p">(</span><span class="n">user_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">repo_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">access_token</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;tricks Zenodo into archiving a pre-existing release</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        user_name (str): github username</span>
+<span class="sd">        repo_name (str): github repository name</span>
+<span class="sd">        tag (str): the desired tag to archive</span>
+<span class="sd">        access_token (str): the access token from webhook page in repo settings</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># constant</span>
+    <span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Accept&quot;</span><span class="p">:</span> <span class="s2">&quot;application/vnd.github.v3+json&quot;</span><span class="p">}</span>
+
+    <span class="c1"># build the repo</span>
+    <span class="n">repo</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">user_name</span><span class="p">,</span> <span class="n">repo_name</span><span class="p">))</span>
+    
+    <span class="c1"># get the repo response and the release response for the repo</span>
+    <span class="n">repo_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://api.github.com/repos/</span><span class="si">{</span><span class="n">repo</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">HEADERS</span><span class="p">)</span>
+    <span class="n">release_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://api.github.com/repos/</span><span class="si">{</span><span class="n">repo</span><span class="si">}</span><span class="s2">/releases&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">HEADERS</span><span class="p">)</span>
+    
+    <span class="c1"># get the data for the desired release</span>
+    <span class="n">desired_release</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">release_response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;tag_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">tag</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    
+    <span class="c1"># build the payload for the desired release</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;published&quot;</span><span class="p">,</span> <span class="s2">&quot;release&quot;</span><span class="p">:</span> <span class="n">desired_release</span><span class="p">,</span> <span class="s2">&quot;repository&quot;</span><span class="p">:</span> <span class="n">repo_response</span><span class="o">.</span><span class="n">json</span><span class="p">()}</span>
+    
+    <span class="c1"># submit the payload to zenodo&#39;s api</span>
+    <span class="n">submit_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;https://sandbox.zenodo.org/api/hooks/receivers/github/events/?access_token=</span><span class="si">{</span><span class="n">access_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># print the response</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">submit_response</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;main runner function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># parse command line arguments</span>
+    <span class="n">user</span>  <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">repo</span>  <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">tag</span>   <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    
+    <span class="c1"># submit to zenodo</span>
+    <span class="n">_submit</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">repo</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+
+
+<span class="c1"># entrypoint</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">_main</span><span class="p">()</span>
+
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -504,20 +555,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="zenodo.html"
+       href="linux.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Zenodo</p>
+        <p class="prev-next-title">Linux</p>
       </div>
     </a>
     <a class="right-next"
-       href="open_science.html"
+       href="machine_learning.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Open Science</p>
+        <p class="prev-next-title">Machine learning</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -537,14 +588,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causality">Causality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pushing-old-releases">Pushing old releases</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/programming_notes/machine_learning.md.txt">
+    <a href="../_sources/programming_notes/zenodo.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

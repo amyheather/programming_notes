@@ -54,8 +54,14 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'causal_concepts/2_intro_to_causality';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -572,8 +578,8 @@ document.write(`
 <li><p><strong>Acyclic</strong> - as nodes cannot have a directed path from itself back to itself <a class="reference external" href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p></li>
 </ul>
 <p>Example:</p>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     asp(&quot;Aspirin&quot;):::white;
     str(&quot;Stroke&quot;):::white;
@@ -582,7 +588,7 @@ document.write(`
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div><p>We don’t draw causal diagrams as an exact, accurate representation of the world - instead, we draw causal DAGs to help us think about possible sources of bias when making causal inferences.</p>
+    </pre><p>We don’t draw causal diagrams as an exact, accurate representation of the world - instead, we draw causal DAGs to help us think about possible sources of bias when making causal inferences.</p>
 <ul class="simple">
 <li><p>They make sure we illustrate and identify our sources of biases (assumptions)</p>
 <ul>
@@ -637,8 +643,8 @@ document.write(`
 </ul>
 </li>
 </ol>
-<div class="mermaid">
-              flowchart LR;
+<pre  class="mermaid">
+          flowchart LR;
 
     soccer(&quot;Soccer&quot;):::white;
     dehy(&quot;Dehydration&quot;):::white;
@@ -649,7 +655,7 @@ document.write(`
 
     classDef white fill:#FFFFFF, stroke:#FFFFFF
     classDef black fill:#FFFFFF, stroke:#000000
-        </div><ol class="arabic simple" start="4">
+    </pre><ol class="arabic simple" start="4">
 <li><p>There are <strong>no “back doors”</strong> from cause to effect <a class="reference external" href="https://support.sas.com/resources/papers/proceedings19/3240-2019.pdf">[Madhanagopal and Amrhein 2019]</a></p></li>
 </ol>
 <p><strong>Covariance matrix</strong></p>

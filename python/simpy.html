@@ -54,8 +54,14 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'python/simpy';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -491,22 +497,22 @@ document.write(`
 <li><p>Class to represent <strong>system</strong> (which will have generators, entity journeys, and store simpy environment)</p></li>
 <li><p>Class to represent <strong>trial</strong> (i.e. batch of simulation runs with methods to run them, and to store, record and display results from the trial) <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/recommended_structure_classes_for_des_models.html">[source]</a></p></li>
 </ul>
-<div class="mermaid">
-              flowchart TD;
+<pre  class="mermaid">
+          flowchart TD;
 
     param(&quot;&lt;b&gt;Global model parameters&lt;/b&gt;&quot;);
     entity(&quot;&lt;b&gt;Entity&lt;/b&gt;&lt;br&gt;Attributes&quot;);
     system(&quot;&lt;b&gt;System&lt;/b&gt;&lt;br&gt;Generators&lt;br&gt;Resources&lt;br&gt;Entity journeys&lt;br&gt;Stores simpy environment&quot;);
     trial(&quot;&lt;b&gt;Trial&lt;/b&gt;&lt;br&gt;Run model&lt;br&gt;Record and display result&quot;)
-        </div><p>Where store results:</p>
-<div class="mermaid">
-              flowchart TD;
+    </pre><p>Where store results:</p>
+<pre  class="mermaid">
+          flowchart TD;
 
     param(&quot;&lt;b&gt;Global model parameters&lt;/b&gt;&quot;);
     entity(&quot;&lt;b&gt;Entity&lt;/b&gt;&lt;br&gt;Entity queue time&quot;);
     system(&quot;&lt;b&gt;System&lt;/b&gt;&lt;br&gt;Create and populate&lt;br&gt;results dataframe&lt;br&gt;with row for each entity&quot;);
     trial(&quot;&lt;b&gt;Trial&lt;/b&gt;&lt;br&gt;Run model&lt;br&gt;Record and display result&quot;)
-        </div><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+    </pre><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 View full code example<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
