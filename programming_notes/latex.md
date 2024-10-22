@@ -5,6 +5,7 @@
 
 self
 linux
+zenodo
 machine_learning
 open_science
 other
