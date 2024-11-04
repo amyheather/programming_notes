@@ -1,5 +1,9 @@
 # Other
 
+## Resources
+
+<https://ml-science-book.com/>
+
 ## draw.io
 
 To add transparency, select shape then right click > edit style, then add line like `opacity=60;`
