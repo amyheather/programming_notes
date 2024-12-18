@@ -599,6 +599,102 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">quarto</span> <span class="pre">render</span></code> - rebuilds whole book</p></li>
 <li><p>quarto preview button in VS code - will render current page, and will render other pages when you click on them, except blog posts</p></li>
 </ul>
+<div class="section" id="linting-quarto">
+<h3>Linting quarto<a class="headerlink" href="#linting-quarto" title="Permalink to this heading">#</a></h3>
+<p>Linting files - pre-requisites pylint / flake8 (sudo apt install pylint etc.)</p>
+<p>With file <code class="docutils literal notranslate"><span class="pre">lint_qmd.sh</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="o">./</span><span class="n">lint_qmd</span><span class="o">.</span><span class="n">sh</span> <span class="o">./</span> <span class="n">pylint</span>
+<span class="n">bash</span> <span class="o">./</span><span class="n">lint_qmd</span><span class="o">.</span><span class="n">sh</span> <span class="o">./</span> <span class="n">flake8</span> <span class="o">|</span> <span class="n">less</span> <span class="o">-</span><span class="n">R</span>
+</pre></div>
+</div>
+<p>Copy of file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+
+# Directory to search for .qmd files
+DIRECTORY=${1:-.}
+
+# Linter to use (default to flake8)
+LINTER=${2:-flake8}
+
+# Validate the linter choice
+if [[ &quot;$LINTER&quot; != &quot;flake8&quot; &amp;&amp; &quot;$LINTER&quot; != &quot;pylint&quot; ]]; then
+    echo -e &quot;\033[1mError: Unsupported linter. Please choose either &#39;flake8&#39; or &#39;pylint&#39;.\033[0m&quot;
+    echo
+    exit 1
+fi
+
+# Temporary file to store extracted Python code
+TEMP_FILE=$(mktemp)
+
+# Loop through all .qmd files in the directory
+find &quot;$DIRECTORY&quot; -name &quot;*.qmd&quot; | while read -r FILE; do
+    echo
+    echo &quot;--------------------------------------------------------------------&quot;
+    echo &quot;Linting Python code in: $FILE&quot;
+    echo &quot;WARNING: Line numbers may be wrong, so section with error is shown&quot;
+    echo &quot;--------------------------------------------------------------------&quot;
+    echo
+
+    # Extract Python code blocks and save to TEMP_FILE
+    awk &#39;
+        /```{python}/ {code=1; next}
+        /```/ {code=0; next}
+        code {print $0}
+    &#39; &quot;$FILE&quot; &gt; &quot;$TEMP_FILE&quot;
+
+    # Check if the temp file is not empty
+    if [ -s &quot;$TEMP_FILE&quot; ]; then
+        # Run the linter on the extracted code and capture the output
+        echo &quot;Linting extracted code...&quot;
+        echo
+        
+        # Store seen errors to avoid duplicates
+        declare -A seen_errors
+
+        $LINTER &quot;$TEMP_FILE&quot; 2&gt;&amp;1 | while read -r LINE; do
+            # Ignore the file path part in the linter&#39;s output
+            # The format is typically something like: /tmp/tmp.bKSqCNR0PZ:28:1:
+            if [[ &quot;$LINE&quot; =~ [^:]+:([0-9]+):([0-9]+)-?([0-9]+)*: ]]; then
+                # Extract the line and column number, and the error message
+                LINTER_LINE=${BASH_REMATCH[1]}  # Get the line number
+                MESSAGE=${LINE#*:}  # Get the error message after the file and line info
+                MESSAGE=$(echo &quot;$MESSAGE&quot; | sed &#39;s/^[0-9]*: //&#39;) # Strip off any leading line number if present
+
+                # Check if this error has already been processed
+                if [[ -z &quot;${seen_errors[$LINTER_LINE]}&quot; ]]; then
+                    # Mark this error as seen
+                    seen_errors[$LINTER_LINE]=1
+
+                    # Print the linter message in bold
+                    echo -e &quot;\033[1m$MESSAGE\033[0m&quot;
+                    echo
+
+                    # Find the corresponding line in the original .qmd file
+                    ORIGINAL_LINE=$(sed -n &quot;${LINTER_LINE}p&quot; &quot;$TEMP_FILE&quot;)
+
+                    # Print the context: 2 lines above, current line, and 2 lines below
+                    sed -n &quot;$((LINTER_LINE - 2)),$((LINTER_LINE + 2))p&quot; &quot;$TEMP_FILE&quot; | while read -r CONTEXT_LINE; do
+                        echo &quot;  $CONTEXT_LINE&quot;
+                    done
+
+                    echo
+                    echo
+                fi
+            else
+                # Print any other output from the linter without modification
+                echo &quot;$LINE&quot;
+            fi
+        done
+    else
+        echo &quot;No Python code found in $FILE&quot;
+    fi
+done
+
+# Remove the temporary file
+rm -f &quot;$TEMP_FILE&quot;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="jupyter-book">
 <h2>Jupyter book<a class="headerlink" href="#jupyter-book" title="Permalink to this heading">#</a></h2>
@@ -736,7 +832,10 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quarto">Quarto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quarto">Quarto</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linting-quarto">Linting quarto</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book">Jupyter book</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sphinx">Sphinx</a></li>
 </ul>
