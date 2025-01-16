@@ -8,21 +8,33 @@ environments
 packages
 ```
 
+## Comparing two dataframes
+
+```
+waldo::compare(df1, df2)
+```
+
 ## Function setting default inputs  
+
 If default input is different to the input name, you won't have an issue. If it's the same you'll have an error.  
+
 ```
 # Fine:
 x <- function(T = 1){}
 # Problem:
 x <- function(T = T){}
 ```
+
 In that case, you can resolve this by doing...  
+
 ```
 x <- function(T = parent.frame()$T)
 ```
 
 ## Function returning multiple objects  
+
 In python, you can return multiple objects as follows:  
+
 ```
 def fun():
     str = "example"
@@ -33,7 +45,8 @@ print(str_1)
 print(x_1)
 ```  
 
-This is not possible in R. Instead, a good work around is:  
+This is not possible in R. Instead, a good work around is: 
+
 ```
 fun <- function(suffix) {
     str <- "example"
@@ -50,8 +63,11 @@ for (i in seq_along(output[[1]])){
 ```
 
 ## Linting
+
 ```
 install.packages("lintr")
 library(lintr)
 lint("filename.R")
+lintr::lint_dir("foldername")
+lintr::lint_package()
 ```
