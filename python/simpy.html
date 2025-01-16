@@ -521,14 +521,14 @@ View full code example<div class="sd-summary-down docutils">
 </summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">Code source: <a class="reference external" href="https://hsma-programme.github.io/hsma6_des_book/an_example_simpy_model.html">HSMA</a></p>
 <p class="sd-card-text">This is a basic example (e.g. doesn’t have sim-tools distributions with reproducibility)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">simpy</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">simpy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 
 <span class="c1"># Global parameter values</span>
 <span class="c1"># Don&#39;t make instance of this class, just access it directly</span>
-<span class="k">class</span> <span class="nc">g</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">g</span><span class="p">:</span>
     <span class="n">patient_inter</span> <span class="o">=</span> <span class="mi">5</span>
     <span class="n">mean_n_consult_time</span> <span class="o">=</span> <span class="mi">6</span>
     <span class="n">number_of_nurses</span> <span class="o">=</span> <span class="mi">1</span>
@@ -537,15 +537,15 @@ View full code example<div class="sd-summary-down docutils">
 
 
 <span class="c1"># Entity (Patient) with two attributes: ID and time queueing</span>
-<span class="k">class</span> <span class="nc">Patient</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p_id</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Patient</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p_id</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">p_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">q_time_nurse</span> <span class="o">=</span> <span class="mi">0</span>
 
 
-<span class="k">class</span> <span class="nc">Model</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Model</span><span class="p">:</span>
     <span class="c1"># Constructor to set up model for run</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_number</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_number</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">simpy</span><span class="o">.</span><span class="n">Environment</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">patient_counter</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nurse</span> <span class="o">=</span> <span class="n">simpy</span><span class="o">.</span><span class="n">Resource</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">,</span> <span class="n">capacity</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">number_of_nurses</span><span class="p">)</span>
@@ -560,7 +560,7 @@ View full code example<div class="sd-summary-down docutils">
         <span class="bp">self</span><span class="o">.</span><span class="n">mean_q_time_nurse</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="c1"># Generator function for patient arriving</span>
-    <span class="k">def</span> <span class="nf">generator_patient_arrivals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generator_patient_arrivals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Infinite loop does this indefinitely during simulation run</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">patient_counter</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -574,7 +574,7 @@ View full code example<div class="sd-summary-down docutils">
             <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">timeout</span><span class="p">(</span><span class="n">sampled_inter</span><span class="p">)</span>
 
     <span class="c1"># Generator function for patient going through clinic</span>
-    <span class="k">def</span> <span class="nf">attend_clinic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patient</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">attend_clinic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patient</span><span class="p">):</span>
         <span class="c1"># Wait start time</span>
         <span class="n">start_q_nurse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">now</span>
         <span class="c1"># Request a nurse resource</span>
@@ -597,12 +597,12 @@ View full code example<div class="sd-summary-down docutils">
             <span class="c1"># Sink</span>
 
 
-    <span class="k">def</span> <span class="nf">calculate_run_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_run_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Find mean queue time</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mean_q_time_nurse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Q Time Nurse&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Start up DES entity generators that create new patients</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generator_patient_arrivals</span><span class="p">())</span>
         <span class="c1"># Run the model</span>
@@ -614,20 +614,20 @@ View full code example<div class="sd-summary-down docutils">
         <span class="nb">print</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results_df</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">Trial</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Trial</span><span class="p">:</span>
     <span class="c1"># Set up dataframe to store results from each run</span>
-    <span class="k">def</span>  <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w">  </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">df_trial_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">df_trial_results</span><span class="p">[</span><span class="s2">&quot;Run Number&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">df_trial_results</span><span class="p">[</span><span class="s2">&quot;Mean Q Time Nurse&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">df_trial_results</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Run Number&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="c1"># Print trial results</span>
-    <span class="k">def</span> <span class="nf">print_trial_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">print_trial_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Trial Results&quot;</span><span class="p">)</span>
         <span class="nb">print</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df_trial_results</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">run_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_trial</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">number_of_runs</span><span class="p">):</span>
             <span class="c1"># Conduct run of model</span>
             <span class="n">my_model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">run</span><span class="p">)</span>
@@ -664,12 +664,12 @@ Basic example from Tom on MSc<div class="sd-summary-down docutils">
 <li><p class="sd-card-text">Function for patient attending clinic (service()) is within Patient rather than Model</p></li>
 <li><p class="sd-card-text">Environment, Resource, run and process outside of the Model</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Patient</span><span class="p">:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Patient</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Encapsulates the process a patient caller undergoes when they dial 111</span>
 <span class="sd">    and speaks to an operator who triages their call.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">operators</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">operators</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Constructor method</span>
 <span class="sd">        </span>
@@ -688,7 +688,7 @@ Basic example from Tom on MSc<div class="sd-summary-down docutils">
         <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">operators</span> <span class="o">=</span> <span class="n">operators</span>
          
-    <span class="k">def</span> <span class="nf">service</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">service</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        simualtes the service process for a call operator</span>
 <span class="sd">        </span>
@@ -717,11 +717,11 @@ Basic example from Tom on MSc<div class="sd-summary-down docutils">
                       <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;waiting time was </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">waiting_time</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">UrgentCareCallCentre</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UrgentCareCallCentre</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    111 call centre model</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">operators</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">operators</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Constructor method</span>
 <span class="sd">        </span>
@@ -735,7 +735,7 @@ Basic example from Tom on MSc<div class="sd-summary-down docutils">
         <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">operators</span> <span class="o">=</span> <span class="n">operators</span> 
             
-    <span class="k">def</span> <span class="nf">arrivals_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">arrivals_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        IAT is exponentially distributed with mean</span>
 
@@ -796,7 +796,7 @@ What are generator functions?<div class="sd-summary-down docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Source: https://www.geeksforgeeks.org/generators-in-python/</span>
 
 <span class="c1"># Generator function</span>
-<span class="k">def</span> <span class="nf">simple_generator</span><span class="p">():</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">simple_generator</span><span class="p">():</span> 
     <span class="k">yield</span> <span class="mi">1</span>
     <span class="k">yield</span> <span class="mi">2</span>
     <span class="k">yield</span> <span class="mi">3</span>
@@ -890,7 +890,7 @@ When request PriorityResource, tell it what attribute it should use to determine
 <h2>Sampling from distributions<a class="headerlink" href="#sampling-from-distributions" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://github.com/TomMonks/sim-tools">Sim-tools</a> contains a bunch of functions you can use. This are set up to have individual seeds, to esaily enable reproducibility.</p>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sim_tools.distributions</span> <span class="kn">import</span> <span class="n">Exponential</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sim_tools.distributions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Exponential</span>
 
 <span class="c1"># Later in code...</span>
 
@@ -898,13 +898,13 @@ When request PriorityResource, tell it what attribute it should use to determine
 </pre></div>
 </div>
 <p>The Exponential Class from the package (you’ll see there’s actually only a few lines of code):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Exponential</span><span class="p">(</span><span class="n">Distribution</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Exponential</span><span class="p">(</span><span class="n">Distribution</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convenience class for the exponential distribution.</span>
 <span class="sd">    packages up distribution parameters, seed and random generator.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">random_seed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">random_seed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor</span>
 
@@ -921,7 +921,7 @@ When request PriorityResource, tell it what attribute it should use to determine
         <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">mean</span>
 
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate a sample from the exponential distribution</span>
 
@@ -1009,8 +1009,8 @@ Tom’s Auditor class<div class="sd-summary-down docutils">
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Auditor</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">run_length</span><span class="p">,</span> <span class="n">first_obs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Auditor</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">run_length</span><span class="p">,</span> <span class="n">first_obs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Auditor Constructor</span>
 <span class="sd">        </span>
@@ -1042,7 +1042,7 @@ Tom’s Auditor class<div class="sd-summary-down docutils">
             <span class="n">env</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scheduled_observation</span><span class="p">())</span>
             <span class="n">env</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">process_end_of_run</span><span class="p">())</span>
             
-    <span class="k">def</span> <span class="nf">add_resource_to_audit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">audit_type</span><span class="o">=</span><span class="s1">&#39;qs&#39;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_resource_to_audit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">audit_type</span><span class="o">=</span><span class="s1">&#39;qs&#39;</span><span class="p">):</span>
         <span class="k">if</span> <span class="s1">&#39;q&#39;</span> <span class="ow">in</span> <span class="n">audit_type</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">queues</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">resource</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;queue_length_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1051,7 +1051,7 @@ Tom’s Auditor class<div class="sd-summary-down docutils">
             <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">resource</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;system_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>           
             
-    <span class="k">def</span> <span class="nf">scheduled_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scheduled_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        simpy process to control the frequency of </span>
 <span class="sd">        auditor observations of the model.  </span>
@@ -1070,17 +1070,17 @@ Tom’s Auditor class<div class="sd-summary-down docutils">
             <span class="bp">self</span><span class="o">.</span><span class="n">record_queue_length</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">record_calls_in_progress</span><span class="p">()</span>
     
-    <span class="k">def</span> <span class="nf">record_queue_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">record_queue_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">queues</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;queue_length_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">queue</span><span class="p">))</span> 
         
         
-    <span class="k">def</span> <span class="nf">record_calls_in_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">record_calls_in_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;system_</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">count</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">queue</span><span class="p">))</span> 
                
         
-    <span class="k">def</span> <span class="nf">process_end_of_run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">process_end_of_run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Create an end of run summary</span>
 <span class="sd">        </span>
@@ -1137,7 +1137,7 @@ Confidence interval method to determine replication number<div class="sd-summary
 <p class="sd-card-text"><a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab6/sim_lab6_output_analysis_SOLUTIONS.ipynb">[source]</a></p>
 <p class="sd-card-text">‘The method is less useful for values very close to zero. As the utilisation measures are between 0 and 1 it is recommended that you multiple the values by 100.’</p>
 <p class="sd-card-text">Function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">confidence_interval_method</span><span class="p">(</span><span class="n">replications</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">desired_precision</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> 
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">confidence_interval_method</span><span class="p">(</span><span class="n">replications</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">desired_precision</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> 
                                <span class="n">min_rep</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">decimal_place</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    The confidence interval method for selecting the number of replications</span>
@@ -1241,7 +1241,7 @@ Confidence interval method to determine replication number<div class="sd-summary
 <span class="c1"># peek at table of results</span>
 <span class="n">conf_ints</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">plot_confidence_interval_method</span><span class="p">(</span><span class="n">n_reps</span><span class="p">,</span> <span class="n">conf_ints</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_confidence_interval_method</span><span class="p">(</span><span class="n">n_reps</span><span class="p">,</span> <span class="n">conf_ints</span><span class="p">,</span> <span class="n">metric_name</span><span class="p">,</span> 
                                     <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">)):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Plot the confidence intervals and cumulative mean</span>
@@ -1338,11 +1338,11 @@ How does Joblib work?<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">We can illustrate this with a simple function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">joblib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
 
-<span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
     <span class="c1"># Wait one second</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="c1"># Return square root of i**2</span>
@@ -1414,16 +1414,16 @@ Auto fit<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text"><a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab3/input_modelling/fitting.py">[source]</a></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">scipy</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">auto_fit</span><span class="p">(</span><span class="n">data_to_fit</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dist_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">auto_fit</span><span class="p">(</span><span class="n">data_to_fit</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dist_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
     <span class="n">y</span> <span class="o">=</span> <span class="n">data_to_fit</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
     <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -1505,7 +1505,7 @@ Auto fit<div class="sd-summary-down docutils">
     <span class="k">if</span> <span class="n">pp</span><span class="p">:</span>
         <span class="n">pp_qq_plots</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_std</span><span class="p">,</span> <span class="n">dist_names</span><span class="p">)</span>
         
-<span class="k">def</span> <span class="nf">fitted_histogram</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>    
+<span class="k">def</span><span class="w"> </span><span class="nf">fitted_histogram</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>    
     <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
 
@@ -1563,7 +1563,7 @@ Auto fit<div class="sd-summary-down docutils">
         <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Distribution:&#39;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Parameters:&#39;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
         
-<span class="k">def</span> <span class="nf">pp_qq_plots</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_std</span><span class="p">,</span> <span class="n">dist_names</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">pp_qq_plots</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_std</span><span class="p">,</span> <span class="n">dist_names</span><span class="p">):</span>
     <span class="c1">## qq and pp plots</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">y_std</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">data</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
@@ -1628,7 +1628,7 @@ Auto fit<div class="sd-summary-down docutils">
 </pre></div>
 </div>
 <p class="sd-card-text">We can then run the code as follows: <a class="reference external" href="https://github.com/health-data-science-OR/stochastic_systems/blob/master/labs/simulation/lab3/sim_lab3_autofit_intro.ipynb">[source]</a></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">input_modelling.fitting</span> <span class="kn">import</span> <span class="n">auto_fit</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">input_modelling.fitting</span><span class="w"> </span><span class="kn">import</span> <span class="n">auto_fit</span>
 
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">samples</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>

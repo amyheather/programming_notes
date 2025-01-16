@@ -473,6 +473,12 @@ document.write(`
 <h1>General<a class="headerlink" href="#general" title="Permalink to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 </div>
+<div class="section" id="comparing-two-dataframes">
+<h2>Comparing two dataframes<a class="headerlink" href="#comparing-two-dataframes" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">waldo</span><span class="p">::</span><span class="n">compare</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="function-setting-default-inputs">
 <h2>Function setting default inputs<a class="headerlink" href="#function-setting-default-inputs" title="Permalink to this heading">#</a></h2>
 <p>If default input is different to the input name, you won’t have an issue. If it’s the same you’ll have an error.</p>
@@ -490,7 +496,7 @@ document.write(`
 <div class="section" id="function-returning-multiple-objects">
 <h2>Function returning multiple objects<a class="headerlink" href="#function-returning-multiple-objects" title="Permalink to this heading">#</a></h2>
 <p>In python, you can return multiple objects as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fun</span><span class="p">():</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fun</span><span class="p">():</span>
     <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;example&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">20</span>
     <span class="k">return</span> <span class="nb">str</span><span class="p">,</span> <span class="n">x</span><span class="p">;</span> <span class="c1"># Return tuple, we could also write (str, x)</span>
@@ -520,6 +526,8 @@ document.write(`
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;lintr&quot;</span><span class="p">)</span>
 <span class="n">library</span><span class="p">(</span><span class="n">lintr</span><span class="p">)</span>
 <span class="n">lint</span><span class="p">(</span><span class="s2">&quot;filename.R&quot;</span><span class="p">)</span>
+<span class="n">lintr</span><span class="p">::</span><span class="n">lint_dir</span><span class="p">(</span><span class="s2">&quot;foldername&quot;</span><span class="p">)</span>
+<span class="n">lintr</span><span class="p">::</span><span class="n">lint_package</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -569,6 +577,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-two-dataframes">Comparing two dataframes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-setting-default-inputs">Function setting default inputs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-returning-multiple-objects">Function returning multiple objects</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linting">Linting</a></li>

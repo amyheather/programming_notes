@@ -523,7 +523,7 @@ To lint within notebook: <code class="docutils literal notranslate"><span class=
 </pre></div>
 </div>
 <p>Get feedback on exactly what is missing</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas.testing</span> <span class="kn">import</span> <span class="n">assert_frame_equal</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas.testing</span><span class="w"> </span><span class="kn">import</span> <span class="n">assert_frame_equal</span>
 <span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -553,17 +553,17 @@ To lint within notebook: <code class="docutils literal notranslate"><span class=
 <h2>Unit testing<a class="headerlink" href="#unit-testing" title="Permalink to this heading">#</a></h2>
 <p>Note: unit testing is typically for testing function outputs - so although the code below works, you wouldn’t typically write unit tests for this purpose.</p>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">unittest</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
 
-<span class="k">class</span> <span class="nc">DataTests</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DataTests</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Class for running unit tests&#39;&#39;&#39;</span>
 
     <span class="c1"># Run set up once for whole class</span>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">setUpClass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUpClass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Set up - runs prior to each test&#39;&#39;&#39;</span>
         <span class="c1"># Paths and filenames</span>
         <span class="n">raw_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;./data&#39;</span>
@@ -579,7 +579,7 @@ To lint within notebook: <code class="docutils literal notranslate"><span class=
         <span class="bp">self</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">raw_data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clean</span> <span class="o">=</span> <span class="n">clean_data</span>
 
-    <span class="k">def</span> <span class="nf">freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_col</span><span class="p">,</span> <span class="n">raw_val</span><span class="p">,</span> <span class="n">clean_col</span><span class="p">,</span> <span class="n">clean_val</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_col</span><span class="p">,</span> <span class="n">raw_val</span><span class="p">,</span> <span class="n">clean_col</span><span class="p">,</span> <span class="n">clean_val</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Test that the frequency of a value in the raw data is same as</span>
 <span class="sd">        the frequency of a value in the cleaned data</span>
@@ -599,7 +599,7 @@ To lint within notebook: <code class="docutils literal notranslate"><span class=
         <span class="n">clean_freq</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="p">[</span><span class="n">clean_col</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">clean_val</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">raw_freq</span><span class="p">,</span> <span class="n">clean_freq</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">time_neg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_column</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">time_neg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_column</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Function for testing that times are not negative when expected</span>
 <span class="sd">        to be positive.</span>
@@ -607,7 +607,7 @@ To lint within notebook: <code class="docutils literal notranslate"><span class=
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="p">[</span><span class="n">time_column</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">equal_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">exp_array</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">equal_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">exp_array</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Function to check that the only possible values in a column are</span>
 <span class="sd">        those provided by exp_array.</span>
@@ -619,21 +619,21 @@ To lint within notebook: <code class="docutils literal notranslate"><span class=
         <span class="c1"># Sorted so that array order does not matter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">exp_array</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">test_raw_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_raw_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Test the raw dataframe shape is as expected&#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="p">(</span><span class="mi">360381</span><span class="p">,</span> <span class="mi">83</span><span class="p">))</span>
         
-    <span class="k">def</span> <span class="nf">test_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Test that ID numbers are all unique&#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span>
                          <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">test_onset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_onset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Test that onset_known is equal to precise + best estimate&#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">freq</span><span class="p">(</span><span class="s1">&#39;S1OnsetTimeType&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;BE&#39;</span><span class="p">],</span> <span class="s1">&#39;onset_known&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">freq</span><span class="p">(</span><span class="s1">&#39;S1OnsetTimeType&#39;</span><span class="p">,</span> <span class="s1">&#39;NK&#39;</span><span class="p">,</span> <span class="s1">&#39;onset_known&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         
-    <span class="k">def</span> <span class="nf">test_time_negative</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_time_negative</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Test that times are not negative when expected to be positive&#39;&#39;&#39;</span>
         <span class="n">time_col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;onset_to_arrival_time&#39;</span><span class="p">,</span>
                     <span class="s1">&#39;call_to_ambulance_arrival_time&#39;</span><span class="p">,</span>
@@ -646,7 +646,7 @@ To lint within notebook: <code class="docutils literal notranslate"><span class=
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="n">col</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">time_neg</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">test_no_ambulance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_no_ambulance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Test that people who do not arrive by ambulance therefore have</span>
 <span class="sd">        no ambulance times</span>
@@ -675,19 +675,19 @@ To lint within notebook: <code class="docutils literal notranslate"><span class=
 <span class="sd">Directly copied from that webpage, all credit to them.</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="k">def</span> <span class="nf">hex_to_RGB</span><span class="p">(</span><span class="nb">hex</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hex_to_RGB</span><span class="p">(</span><span class="nb">hex</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&#39;&#39;&#39; &quot;#FFFFFF&quot; -&gt; [255,255,255] &#39;&#39;&#39;</span>
   <span class="c1"># Pass 16 to the integer function for change of base</span>
   <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">hex</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="mi">16</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
 
-<span class="k">def</span> <span class="nf">RGB_to_hex</span><span class="p">(</span><span class="n">RGB</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">RGB_to_hex</span><span class="p">(</span><span class="n">RGB</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&#39;&#39;&#39; [255,255,255] -&gt; &quot;#FFFFFF&quot; &#39;&#39;&#39;</span>
   <span class="c1"># Components need to be integers for hex to make sense</span>
   <span class="n">RGB</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">RGB</span><span class="p">]</span>
   <span class="k">return</span> <span class="s2">&quot;#&quot;</span><span class="o">+</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;0</span><span class="si">{0:x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="mi">16</span> <span class="k">else</span>
             <span class="s2">&quot;</span><span class="si">{0:x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">RGB</span><span class="p">])</span>
 
-<span class="k">def</span> <span class="nf">color_dict</span><span class="p">(</span><span class="n">gradient</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">color_dict</span><span class="p">(</span><span class="n">gradient</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&#39;&#39;&#39; Takes in a list of RGB sub-lists and returns dictionary of</span>
 <span class="sd">    colors in RGB and hex form for use in a graphing function</span>
 <span class="sd">    defined later on &#39;&#39;&#39;</span>
@@ -696,7 +696,7 @@ To lint within notebook: <code class="docutils literal notranslate"><span class=
       <span class="s2">&quot;g&quot;</span><span class="p">:[</span><span class="n">RGB</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">RGB</span> <span class="ow">in</span> <span class="n">gradient</span><span class="p">],</span>
       <span class="s2">&quot;b&quot;</span><span class="p">:[</span><span class="n">RGB</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">RGB</span> <span class="ow">in</span> <span class="n">gradient</span><span class="p">]}</span>
 
-<span class="k">def</span> <span class="nf">linear_gradient</span><span class="p">(</span><span class="n">start_hex</span><span class="p">,</span> <span class="n">finish_hex</span><span class="o">=</span><span class="s2">&quot;#FFFFFF&quot;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">linear_gradient</span><span class="p">(</span><span class="n">start_hex</span><span class="p">,</span> <span class="n">finish_hex</span><span class="o">=</span><span class="s2">&quot;#FFFFFF&quot;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&#39;&#39;&#39; returns a gradient list of (n) colors between</span>
 <span class="sd">    two hex colors. start_hex and finish_hex</span>
 <span class="sd">    should be the full six-digit color string,</span>
@@ -721,8 +721,8 @@ To lint within notebook: <code class="docutils literal notranslate"><span class=
 </div>
 <div class="section" id="save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh">
 <h3>Save HTML to csv and then import again and convert to PDF (this is not ideal tbh)<a class="headerlink" href="#save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh" title="Permalink to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">weasyprint</span>
-<span class="kn">import</span> <span class="nn">csv</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">weasyprint</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;out.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
     <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
