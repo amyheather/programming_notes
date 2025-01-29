@@ -474,6 +474,14 @@ document.write(`
 </div>
 <div class="section" id="general-python-stuff">
 <h1>General Python Stuff<a class="headerlink" href="#general-python-stuff" title="Permalink to this heading">#</a></h1>
+<div class="section" id="jupyter-notebook-merge-conflicts">
+<h2>Jupyter notebook merge conflicts<a class="headerlink" href="#jupyter-notebook-merge-conflicts" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">nbdime</span>
+<span class="n">nbdime</span> <span class="n">config</span><span class="o">-</span><span class="n">git</span> <span class="o">--</span><span class="n">enable</span> <span class="o">--</span><span class="k">global</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">branchname</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="using-vs-code">
 <h2>Using VS Code<a class="headerlink" href="#using-vs-code" title="Permalink to this heading">#</a></h2>
 <p>To open VS Code from terminal: <code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">.</span></code><br />
@@ -783,6 +791,7 @@ To lint within notebook: <code class="docutils literal notranslate"><span class=
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook-merge-conflicts">Jupyter notebook merge conflicts</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-vs-code">Using VS Code</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-hinting-in-vs-code-with-pylance">Type hinting in VS Code with Pylance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#violin-plot">Violin plot</a></li>

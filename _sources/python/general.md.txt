@@ -9,6 +9,14 @@ seeds
 
 # General Python Stuff
 
+## Jupyter notebook merge conflicts
+
+```
+pip install nbdime
+nbdime config-git --enable --global
+git merge branchname
+```
+
 ## Using VS Code  
 To open VS Code from terminal: `code .`  
 To activate conda environment in VS Code: Ctrl+Shift+P > Python Interpreter, then select correct environment  
