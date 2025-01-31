@@ -477,9 +477,26 @@ document.write(`
                   
   <div class="section" id="linux">
 <h1>Linux<a class="headerlink" href="#linux" title="Permalink to this heading">#</a></h1>
-<p>Resize an image</p>
+<div class="section" id="resize-an-image">
+<h2>Resize an image<a class="headerlink" href="#resize-an-image" title="Permalink to this heading">#</a></h2>
 <p>imagemagick</p>
 <p>convert -resize 20% source.png dest.jpg</p>
+</div>
+<div class="section" id="reinstall-google-chrome">
+<h2>Reinstall google chrome<a class="headerlink" href="#reinstall-google-chrome" title="Permalink to this heading">#</a></h2>
+<p>Install the <code class="docutils literal notranslate"><span class="pre">.deb</span></code> file (as not available in the official APT repositories).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">direct</span><span class="o">/</span><span class="n">google</span><span class="o">-</span><span class="n">chrome</span><span class="o">-</span><span class="n">stable_current_amd64</span><span class="o">.</span><span class="n">deb</span>
+</pre></div>
+</div>
+<p>Install google chrome.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="n">google</span><span class="o">-</span><span class="n">chrome</span><span class="o">-</span><span class="n">stable_current_amd64</span><span class="o">.</span><span class="n">deb</span>
+</pre></div>
+</div>
+<p>Remove the <code class="docutils literal notranslate"><span class="pre">.deb</span></code> file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">rm</span> <span class="n">google</span><span class="o">-</span><span class="n">chrome</span><span class="o">-</span><span class="n">stable_current_amd64</span><span class="o">.</span><span class="n">deb</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -518,6 +535,18 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resize-an-image">Resize an image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reinstall-google-chrome">Reinstall google chrome</a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 
