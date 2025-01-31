@@ -2,7 +2,7 @@
 
 *Also referred to as covariate adjustment*
 
-The conventional multivariable regression approach - where **confounders are included as covariates** - can be used to estimate causal effects, and can be referred to as "selection on observables". This requires you meet certain *assumptions* however - namely, "*Do we have data on the minimum number of variables needed to **satisfy the backdoor path criterion**?*". [[source]](https://vivdas.medium.com/regression-and-causal-inference-which-variables-should-be-added-to-the-model-fd95a759f78) This is described in [this section of this book](../causal_concepts/3_dags.md), but to recap, we want to identify a **minimal set of covariates** that:
+The conventional multivariable regression approach - where **confounders are included as covariates** - can be used to estimate causal effects, and can be referred to as "selection on observables". This requires you meet certain *assumptions* however - namely, "*Do we have data on the minimum number of variables needed to **satisfy the backdoor path criterion**?*". [[source]](https://vivdas.medium.com/regression-and-causal-inference-which-variables-should-be-added-to-the-model-fd95a759f78) This is described in [this section of this book](../causal_concepts/3_dags.qmd), but to recap, we want to identify a **minimal set of covariates** that:
 1. Block all backdoor paths - so would want to block the open back door path that is in the image on the left
 2. Do not inadvertenly open closed pathways by conditioning on colliders or descendents - as is the case in the image on the right (not conditoning on the collider, so the path remains blocked - but if you did, it would open it)
 

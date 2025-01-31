@@ -18,7 +18,7 @@ If you have **time-varying treatment** (takes different values over time), then 
 Since you have designed the study to appropriate control for confounding for your relationship of interest - between a given treatment/exposure and outcome - the other variables included may have residual confounding or other biases that affect their associations, and it is important that these effect estimates are not presented (or are explained) - otherwise this is called '**Table 2 fallacy**'.
 `````
 
-This page continues on from the introduction to directed acyclic graphs on the prior [causal inference page](./2_intro_to_causality.md).
+This page continues on from the introduction to directed acyclic graphs on the prior [causal inference page](./2_intro_to_causality.qmd).
 
 ## Naming conventions
 

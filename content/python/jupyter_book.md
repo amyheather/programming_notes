@@ -1,15 +1,14 @@
-# Hosting books
+# Jupyter book
 
-<mark>need to sort out</mark>
+Install jupyter-book package.  
 
-* [List here](https://quarto.org/docs/publishing/) - inc. Quarto Pub, Posit Connect, Posit Cloud, Netlify, Confluence, Hugging Face Spaces
-* RPubs
-* Readthedocs
-* GitHub pages
+To create sample book stored in current location: `jupyter-book create book_name/`  
+
+To build/rebuild book: `jupyter-book build book_name`  
+
+If add new page and book table of contents doesn't update upon rebuild, try: `jupyter-book build --all book_name`  
 
 ## GitHub pages
-
-*Note: Written for jupyter book...*
 
 To publish book on GitHub Pages:  
 * Install ghp-import  

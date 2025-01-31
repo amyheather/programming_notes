@@ -84,7 +84,7 @@ We don't draw causal diagrams as an exact, accurate representation of the world 
 * They indicate when associations or independence should be expected.[[HarvardX PH559x]](https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home)
 * They can help determine whether the effect of interest can be identified from available data, and help us clarify our study question[[source]](https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf) - and to identify problems in the study design[[HarvardX PH559x]](https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home)
 
-To find out more about DAGs, see the [subsequent page on DAGs](./3_dags.md).
+To find out more about DAGs, see the [subsequent page on DAGs](./3_dags.qmd).
 
 ## Structural equation modelling (SEM)
 

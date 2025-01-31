@@ -1,0 +1,74 @@
+project:
+  type: book
+  preview:
+    browser: true
+
+book:
+  title: "Programming notes"
+  chapters:
+  - index.qmd
+  - part: "General"
+    chapters:
+    - content/general/linux.md
+    - content/general/git.md
+    - content/general/latex.md
+    - content/general/markdown.md
+    - content/general/machine_learning.md
+    - content/general/open_science.md
+    - content/general/zenodo.md
+    - content/general/other.md
+  - part: "Python"
+    chapters:
+    - content/python/general.md
+    - content/python/environments.md
+    - content/python/seeds.ipynb
+    - content/python/simpy.qmd
+    - content/python/books.md
+    - content/python/quarto.md
+    - content/python/jupyter_book.md
+    - content/python/sphinx.md
+  - part: "R"
+    chapters:
+    - content/r/general.md
+    - content/r/packages.md
+    - content/r/environments.md
+  - part: "Simulation"
+    chapters:
+    - content/simulation/simulation.md
+    - content/simulation/discrete_event.md
+  - part: "Causal concepts"
+    chapters:
+    - content/causal_concepts/1_predict_vs_causal.qmd
+    - content/causal_concepts/2_intro_to_causality.qmd
+    - content/causal_concepts/3_dags.qmd
+    - content/causal_concepts/4_assumptions.md
+    - content/causal_concepts/5_estimands.md
+    - content/causal_concepts/6_propensity_scores.md
+    - content/causal_concepts/7_target_trial.md
+  - part: "Causal methods"
+    chapters:
+    - content/causal_methods/summary.md
+    - content/causal_methods/a1_multivariable_regression.qmd
+    - content/causal_methods/a2_stratification.qmd
+    - content/causal_methods/a3_matching.md
+    - content/causal_methods/a4_iptw.md
+    - content/causal_methods/b1_marginal_structural_models.md
+    - content/causal_methods/b2_gcomputation.qmd
+    - content/causal_methods/b3_gestimation.md
+    - content/causal_methods/c1_instrumental_variable.ipynb
+    - content/causal_methods/c2_regression_discontinuity.qmd
+    - content/causal_methods/c3_interrupted_time.md
+    - content/causal_methods/c4_diff_in_diff.md
+    - content/causal_methods/other.md
+  search:
+    location: navbar
+    type: overlay
+  navbar:
+    collapse: false
+    right:
+      - icon: github
+        href: https://github.com/amyheather/programming_notes
+format:
+  html:
+    theme: cosmo
+    toc: true

@@ -1,13 +1,5 @@
 # General
 
-```{toctree}
-:hidden: True
-
-self
-environments
-packages
-```
-
 ## Comparing two dataframes
 
 ```

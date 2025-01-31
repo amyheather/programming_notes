@@ -1,0 +1,10 @@
+---
+title: Programming notes
+authors:
+  - name: Ms Amy Heather
+    url: https://github.com/amyheather
+    orcid: 0000-0002-6596-3479
+    affiliation: Peninsula Collaboration for Health Operational Research and Data Science (PenCHORD), University of Exeter Medical School
+---
+
+Quarto website with rough notes on a range of topics (e.g. books, python, R, causality, simulation, etc.).

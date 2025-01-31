@@ -1,17 +1,6 @@
 # Latex
 
-```{toctree}
-:hidden: True
-
-self
-linux
-zenodo
-machine_learning
-open_science
-other
-```
-
-# Unicode error
+## Unicode error
 To find a unicode error (e.g. for error 202F, it's a narrow no-break space, which is hard to spot), input the following - 
 ```
 \makeatletter
@@ -19,7 +8,7 @@ To find a unicode error (e.g. for error 202F, it's a narrow no-break space, whic
 \makeatother
 ```
 
-# URL
+## URL
 Options include:
 * `\url{}`
 * `\href{}{}`

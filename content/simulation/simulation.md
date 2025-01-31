@@ -1,10 +1,3 @@
-```{toctree}
-:hidden: True
-
-self
-discrete_event
-```
-
 # Simulation
 
 You can think of there as being three models for healthcare systems:

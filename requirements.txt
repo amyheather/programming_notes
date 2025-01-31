@@ -1,5 +1,3 @@
-jupyter-book
+jupyter
 matplotlib
 numpy
-pydata-sphinx-theme
-sphinxcontrib-mermaid

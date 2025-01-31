@@ -1,8 +1,8 @@
-# Programming and data science notes  
+# Programming, data science and other general notes
 
-Notebook with a range of topics (e.g. books, python, R, causality, simulation).
+Quarto website with rough notes on a range of topics (e.g. books, python, R, causality, simulation, etc.).
 
-Set up with GitHub actions to create and push to GitHub pages - link to book: https://amyheather.github.io/programming_notes/git.html  
+Link to book: https://amyheather.github.io/programming_notes/git.html  
 
 Set up on my computer:
 

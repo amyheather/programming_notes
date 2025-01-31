@@ -1,12 +1,3 @@
-```{toctree}
-:hidden: True
-
-self
-environments
-simpy
-seeds
-```
-
 # General Python Stuff
 
 ## Jupyter notebook merge conflicts
