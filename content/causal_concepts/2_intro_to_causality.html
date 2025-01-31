@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Programming notes</title>
+<title>24&nbsp; The three “languages” of causal inference – Programming notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./content/general/linux.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../content/causal_concepts/3_dags.html" rel="next">
+<link href="../../content/causal_concepts/1_predict_vs_causal.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,6 +67,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -77,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Programming notes</span>
     </a>
   </div>
@@ -98,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Programming notes</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html">Causal concepts</a></li><li class="breadcrumb-item"><a href="../../content/causal_concepts/2_intro_to_causality.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -112,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Programming notes</span></span></a>
   </div>
 </li>
@@ -127,49 +131,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/linux.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/linux.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linux</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/git.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/git.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/latex.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/latex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Latex</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/markdown.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/markdown.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/machine_learning.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/machine_learning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/open_science.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/open_science.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Open Science</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/zenodo.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/zenodo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Zenodo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/other.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/other.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Other</span></span></a>
   </div>
 </li>
@@ -186,49 +190,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/general.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/general.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">General Python Stuff</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/environments.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/environments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python environments</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/seeds.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/seeds.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Seeds</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/simpy.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/simpy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/books.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/books.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Books</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/jupyter_book.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/jupyter_book.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Jupyter book</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/sphinx.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/sphinx.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Sphinx</span></span></a>
   </div>
 </li>
@@ -245,19 +249,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/r/general.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/r/general.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">General</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/r/packages.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/r/packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/r/environments.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/r/environments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Dependency management in R</span></span></a>
   </div>
 </li>
@@ -274,13 +278,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/simulation/simulation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/simulation/simulation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/simulation/discrete_event.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/simulation/discrete_event.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span></a>
   </div>
 </li>
@@ -297,43 +301,43 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/1_predict_vs_causal.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/1_predict_vs_causal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/2_intro_to_causality.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/2_intro_to_causality.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/3_dags.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/3_dags.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/4_assumptions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/4_assumptions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Assumptions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/5_estimands.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/5_estimands.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Causal estimands</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/6_propensity_scores.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/6_propensity_scores.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Propensity scores</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/7_target_trial.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/7_target_trial.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Target trial emulation</span></span></a>
   </div>
 </li>
@@ -350,79 +354,79 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/summary.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/a1_multivariable_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/a1_multivariable_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/a2_stratification.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/a2_stratification.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Stratification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/a3_matching.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/a3_matching.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/a4_iptw.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/a4_iptw.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/b1_marginal_structural_models.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/b1_marginal_structural_models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/b2_gcomputation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/b2_gcomputation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">G-computation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/c1_instrumental_variable.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/c1_instrumental_variable.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/c2_regression_discontinuity.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/c2_regression_discontinuity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/c3_interrupted_time.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/c3_interrupted_time.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/c4_diff_in_diff.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/c4_diff_in_diff.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Difference in differences (DiD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/other.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/other.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Other methods</span></span></a>
   </div>
 </li>
@@ -433,35 +437,31 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#causal-inference" id="toc-causal-inference" class="nav-link active" data-scroll-target="#causal-inference"><span class="header-section-number">24.1</span> Causal inference</a></li>
+  <li><a href="#potential-outcomescounterfactuals" id="toc-potential-outcomescounterfactuals" class="nav-link" data-scroll-target="#potential-outcomescounterfactuals"><span class="header-section-number">24.2</span> Potential outcomes/counterfactuals</a></li>
+  <li><a href="#graphs" id="toc-graphs" class="nav-link" data-scroll-target="#graphs"><span class="header-section-number">24.3</span> Graphs</a></li>
+  <li><a href="#structural-equation-modelling-sem" id="toc-structural-equation-modelling-sem" class="nav-link" data-scroll-target="#structural-equation-modelling-sem"><span class="header-section-number">24.4</span> Structural equation modelling (SEM)</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html">Causal concepts</a></li><li class="breadcrumb-item"><a href="../../content/causal_concepts/2_intro_to_causality.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Programming notes</h1>
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></h1>
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://github.com/amyheather">Ms Amy Heather</a> <a href="https://orcid.org/0000-0002-6596-3479" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Peninsula Collaboration for Health Operational Research and Data Science (PenCHORD), University of Exeter Medical School
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    
   
     
   </div>
@@ -471,9 +471,145 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Quarto website with rough notes on a range of topics (e.g.&nbsp;books, python, R, causality, simulation, etc.).</p>
+<p>`````gzkrndpekdwn Executive summary :class: info</p>
+<p>In causal studies, you are aiming to find an unbiased estimate of the effect of a exposure or treatment on an outcome, by carefully controlling for confounders of the relationship between those two variables.</p>
+<p><strong>Potential outcomes/counterfactuals</strong> framework for causal inference states that we draw causal inference thought contrasting actual values and counterfactual values (if they had or had not received treatment/exposure). It is focused on all possible outcomes, and has specific notation you can use.</p>
+<p><strong>Causal diagrams (directed acyclic graphs - DAGs)</strong> are based on expert knowledge. They depict the causal relationships between nodes using directed arrows. They are used to illustrate/identify sources of bias, to indicate where associations/independence should be expected, and to help inform study design.</p>
+<p><strong>Structural Equation Modelling (SEM)</strong> is a statistical technique to model hypothesised relationships among variables, and these can be causal models if certain criteria are met. SEM involves visualising the hypothesised model, translating the DAG to a path statement, assessing fit statistics, improving model fit using modification indices, and so on. `````</p>
+<section id="causal-inference" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="causal-inference"><span class="header-section-number">24.1</span> Causal inference</h2>
+<p>Causal inference research aims to uncover causal effects. It involves finding an <strong>unbiased estimate of the effect of X on Y, by controlling for confounding factors</strong> that could bias the estimate. This is an estimate of the causal effect of an exposure on an outcome.<a href="https://doi.org/10.1513/AnnalsATS.201808-564PS">[Lederer et al.&nbsp;2018]</a></p>
+<p>When it comes to talking about and defining causality, pioneers in causal inference have come up with three languages.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Language</th>
+<th>Pioneers</th>
+<th>Strengths</th>
+<th>Limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Using <strong>potential outcomes / counterfactuals</strong></td>
+<td>1923 Neyman (statistics); 1973 Lewis (philosophy); 1974 Rubin (statistics); 1986 Robins (epidemiology); <a href="https://www.statslab.cam.ac.uk/~qz280/teaching/causal-2023/notes-2021.pdf">[Zhao 2022]</a></td>
+<td>Good for articulating the inference for a small number of causes and effects <a href="http://www.statslab.cam.ac.uk/~qz280/talk/ssrmp-2020/slides.pdf">[source]</a><br>Easy to add additional assumptions <a href="https://www.statslab.cam.ac.uk/~qz280/teaching/causal-2023/notes-2021.pdf">[Zhao 2022]</a></td>
+<td>Not as convenient if the system is complex <a href="https://www.statslab.cam.ac.uk/~qz280/teaching/causal-2023/notes-2021.pdf">[Zhao 2022]</a></td>
+</tr>
+<tr class="even">
+<td>Using <strong>graphs</strong></td>
+<td>1921 Wright (genetics); 1988 Pearl (computer science “AI”); 1993 Spirtes, Glymour, Scheines (philosophy). <a href="https://www.statslab.cam.ac.uk/~qz280/teaching/causal-2023/notes-2021.pdf">[Zhao 2022]</a></td>
+<td>Good for understanding the scientific problems <a href="http://www.statslab.cam.ac.uk/~qz280/talk/ssrmp-2020/slides.pdf">[source]</a><br>Easy to visualise the causal assumptions <a href="https://www.statslab.cam.ac.uk/~qz280/teaching/causal-2023/notes-2021.pdf">[Zhao 2022]</a></td>
+<td>Difficult for statistical inference because model is non-parametric <a href="https://www.statslab.cam.ac.uk/~qz280/teaching/causal-2023/notes-2021.pdf">[Zhao 2022]</a> (i.e.&nbsp;doesn’t make explicit assumptions about functional form of underlying population distribution… inference more challenging as no predefined functional forms)</td>
+</tr>
+<tr class="odd">
+<td>Using <strong>structural equations</strong></td>
+<td>1921 Wright (genetics); 1943 Haavelmo (econometrics); 1975 Duncan (social sciences); 2000 Pearl (computer science). <a href="https://www.statslab.cam.ac.uk/~qz280/teaching/causal-2023/notes-2021.pdf">[Zhao 2022]</a></td>
+<td>Good for fitting simultaneous models for the variables (espeically for abstract concepts)<a href="http://www.statslab.cam.ac.uk/~qz280/talk/ssrmp-2020/slides.pdf">[source]</a><br>Bridge between graphs and counterfacturals.<br>Easy to operationalise<a href="https://www.statslab.cam.ac.uk/~qz280/teaching/causal-2023/notes-2021.pdf">[Zhao 2022]</a></td>
+<td>Danger to be confused with regression <a href="https://www.statslab.cam.ac.uk/~qz280/teaching/causal-2023/notes-2021.pdf">[Zhao 2022]</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="potential-outcomescounterfactuals" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="potential-outcomescounterfactuals"><span class="header-section-number">24.2</span> Potential outcomes/counterfactuals</h2>
+<p>Names for this approach: * Potential outcomes framework * Counterfactual approach * Equivalent concepts approach,<a href="https://www.coursera.org/learn/crash-course-in-causality/lecture/Lgb6O/hypothetical-interventions">[source]</a> * Rubin or Neyman-Rubin causal model. <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></p>
+<p><strong>The basic idea of this approach</strong></p>
+<p>Using this framework, you describe your causal problem using <strong>counterfactuals</strong>. A counterfactual is a comparison between what is and what might have been - for example, “<em>I know ingesting the poison killed John, because if John had not ingested the poison, I know he would have lived</em>”. ‘The counterfactual outcomes of a specific individual can never be known, since we can never observe the same individual both exposed and unexposed under the same circumstances’. <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a> Instead, we estimate an average causal effect, looking at counterfactual outcomes between groups (rather than individuals).</p>
+<p>The logic of counterfactuals if that you can draw causal inferences when the distribution of observed outcomes in treated group equals in expectation the distribution if they had not ben treated - and because no-one can both receive and not receive treatment, ‘causal inferences implicitly contrast actual values with counterfactual values’. In other words: ‘when exchangeability between those receiving and not receiving an intervention is obtained, the causal counterfactual can be estimated. When exchangeability (i.e., no confounding) is achieved, the contrast of actual outcomes among people who received the intervention in comparison with those who did not receive the intervention can provide the causal effect of the intervention’ <a href="https://doi.org/10.2105%2FAJPH.2016.303539">[Glymour and Spiegelman 2017]</a></p>
+<p><strong>Exposure and outcomes</strong></p>
+<p>We need to identify an <strong>exposure</strong> and an <strong>outcome</strong> (and this is true for all causal inference research). An exposure is a ‘treatment, intervention or other variable that could have taken one of several counterfactual values’. <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a> We are often focussed on <strong>interventions</strong> (i.e.&nbsp;variables that can be manipulated), as they fit well in the potential outcomes framework. Although other variables like age, race and gender can have causal effects, they do not fit as cleanly in the potential outcomes framework.<a href="https://www.coursera.org/learn/crash-course-in-causality/lecture/Lgb6O/hypothetical-interventions">[source]</a> Rubin states that <em>“if you are not talking about an intervention, you can’t talk about causality”</em> - i.e.&nbsp;we’re defining causality using counterfactuals, which is about the counterfactual effects of the intervention<a href="https://baselbiometrics.github.io/home/docs/trainings/20210202/1_Moffa.pdf">[source]</a></p>
+<p>‘Potential outcomes refer to <strong>all possible outcomes</strong> that an individual could experience—both those which are observed (factual) and those which are not (counterfactual). Given a binary exposure and a binary outcome, the possible combinations of actual and counterfactual outcomes give rise to four causal types’: * ‘Doomed: would have experienced the outcome regardless of exposure. * Causative: would have experienced the outcome if exposed, otherwise not. * Preventative: would have experienced the outcome if unexposed, otherwise not. * Immune: would not have experienced the outcome regardless of exposure status.’ <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></p>
+<p><strong>Mathematical notation</strong></p>
+<p>This framework ‘uses <strong>mathematical notation</strong> to describe <strong>counterfactual outcomes</strong> and can be used to describe the causal effect of an exposure on an outcome in statistical terms’. <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a> There are various notations used, but some examples are: * Potential outcome if exposed (Y<sup>a=1</sup>) or not exposed (Y<sup>a=0</sup>) * Expected value of continuous outcome (E(Y)) or probability of binary outcome(P(Y=1)) * Conditional expectation - expected value of Y given that another variable C is 1 (E(Y|C=1)) - i.e.&nbsp;expected values conditional on C / within levels of C / holding C constant. <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></p>
+</section>
+<section id="graphs" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="graphs"><span class="header-section-number">24.3</span> Graphs</h2>
+<p>Using this approach, you describe your causal problem using a causal diagram called a <strong>directed acyclic graphs (DAGs)</strong>. DAGs are composed of nodes and arrows which depict the causal relationships between different variables. They are: * <strong>Directed</strong> - as arrows have a single direction (unidirectional) that represents known causal effects (based on prior knowledge) * <strong>Acyclic</strong> - as nodes cannot have a directed path from itself back to itself <a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+<p>Example:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    asp("Aspirin"):::white;
+    str("Stroke"):::white;
+
+    asp --&gt; str;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>We don’t draw causal diagrams as an exact, accurate representation of the world - instead, we draw causal DAGs to help us think about possible sources of bias when making causal inferences.</p>
+<ul>
+<li>They make sure we illustrate and identify our sources of biases (assumptions)
+<ul>
+<li>More precise and efficient than writing pages of assumptions<a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></li>
+<li>Although they are based on assumptions, so are analytic models.<a href="https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf">[source]</a></li>
+<li>Although investigators often feel some discomfort in deciding what causal effects do and do not exist on the basis of prior knowledge, the advantage of this approach is that it makes these assumptions explicit (and hence transparent).<a href="https://doi.org/10.1513/AnnalsATS.201808-564PS">[Lederer et al.&nbsp;2018]</a></li>
+</ul></li>
+<li>They indicate when associations or independence should be expected.<a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></li>
+<li>They can help determine whether the effect of interest can be identified from available data, and help us clarify our study question<a href="https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf">[source]</a> - and to identify problems in the study design<a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></li>
+</ul>
+<p>To find out more about DAGs, see the <a href="../../content/causal_concepts/3_dags.html">subsequent page on DAGs</a>.</p>
+</section>
+<section id="structural-equation-modelling-sem" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="structural-equation-modelling-sem"><span class="header-section-number">24.4</span> Structural equation modelling (SEM)</h2>
+<p>‘<strong>Structural Equation Modelling (SEM)</strong> is a statistical technique to model hypothesised relationships among variables.’ We first specify these relationships, based on subject matter expertise, either: * Graphically * By listing a set of functions - <em>hence “structural”</em></p>
+<p>The relationships can then be ‘described using structural equations, so called because they describe causal relationships rather than observed associations. A set of structural equations can sometimes be rewritten as a single reduced form equation.’ <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></p>
+<p>Variables can be: * <strong>Manifest</strong> (observed) or <strong>latent</strong> (unobserved) * <strong>Exogenous</strong> (have no cause themselves, but affect others) or <strong>endogenous</strong> (values are caused by other variables)</p>
+<p>Relationships between variables can be one of: * Correlational / bidrectional * Isolated / conditionally independent * Causal / unidirectional</p>
+<p>In a graphical model, representations include: * Ovals = latent variables * Rectangles = manifest variables * Single or double headed arrows indicate nature of relationship <a href="https://support.sas.com/resources/papers/proceedings19/3240-2019.pdf">[Madhanagopal and Amrhein 2019]</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/sem_madhanagopal_2019.png" class="img-fluid figure-img"></p>
+<figcaption>Example of an SEM graphical model</figcaption>
+</figure>
+</div>
+<p><strong>Structural Causal Models</strong></p>
+<p><strong>Structural Causal Models (SCM)</strong> were proposed by Judea Pearl. They integrate SEM and graphical models to aid understanding of causal relationships. SEMs are mainly ‘used to confirm a model rather than to explore a phenomenon’. SEMs can be interpreted as causal models if they meet the conditions: 1. Structure is <strong>valid representation of reality</strong> 2. Relationships are <strong>directed and acyclic</strong> * Directed acyclic gropus are a subset of graphical models, where relationships must be directional 3. <strong>Variables, conditioned on their parents, are independent of their ancestores</strong> * See example below - soccer is ancestor of heatstroke - this conditoin is met if soccer only causes heatstroke via dehydration - and is not met if soccer effects heat stroke directly or through another mediating variable (I think, if not included)</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    soccer("Soccer"):::white;
+    dehy("Dehydration"):::white;
+    heat("Heatstroke"):::white;
+
+    soccer --&gt; dehy;
+    dehy --&gt; heat;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li>There are <strong>no “back doors”</strong> from cause to effect <a href="https://support.sas.com/resources/papers/proceedings19/3240-2019.pdf">[Madhanagopal and Amrhein 2019]</a></li>
+</ol>
+<p><strong>Covariance matrix</strong></p>
+<p>‘The fundamental unit of information in an SEM is the covariance matrix of the model variables.’</p>
+<p>‘An ‘Under-Identified’ model is a model in which it is not possible to estimate all the model parameters because there are too few unique elements. A ‘Just-Identified’ model is a model in which the number of unique covariance elements equals the number of parameters being estimated. An ‘Over-Identified’ model is a model in which the number of unique covariance parameters is greater than the number of parameters being estimated. The difference is the degrees of freedom available for hypothesis tests. The total number of estimated parameters in the model should always be lower than fundamental unit of information in the data; i.e.&nbsp;the model should be over-identified.’ <a href="https://support.sas.com/resources/papers/proceedings19/3240-2019.pdf">[Madhanagopal and Amrhein 2019]</a></p>
+<p><strong>Path statement</strong></p>
+<p>Each of the single headed arrows in the diagram ‘represents a hypothesised dependency. For each of these paths,’ we ‘estimate a path coefficient and test whether the coefficient statistically differs from zero’. <a href="https://support.sas.com/resources/papers/proceedings19/3240-2019.pdf">[Madhanagopal and Amrhein 2019]</a></p>
+<p><strong>Fit statistics</strong></p>
+<p>We assess goodness of fit, and can explore model modifications to improve fit, by: 1. ‘Increasing the number of paths (i.e.&nbsp;allowing the corresponding coefficients to be estimated) 2. Reducing the number of paths (i.e.&nbsp;constraining the corresponding coefficients to zero)’ <a href="https://support.sas.com/resources/papers/proceedings19/3240-2019.pdf">[Madhanagopal and Amrhein 2019]</a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -895,10 +1031,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../content/causal_concepts/1_predict_vs_causal.html" class="pagination-link" aria-label="Prediction v.s. causal inference">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./content/general/linux.html" class="pagination-link" aria-label="Linux">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linux</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/causal_concepts/3_dags.html" class="pagination-link" aria-label="Directed acyclic graphs">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

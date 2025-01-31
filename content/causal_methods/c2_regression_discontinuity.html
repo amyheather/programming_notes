@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Programming notes</title>
+<title>39&nbsp; Regression discontinuity (RD) – Programming notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./content/general/linux.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../content/causal_methods/c3_interrupted_time.html" rel="next">
+<link href="../../content/causal_methods/c1_instrumental_variable.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,6 +67,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -77,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Programming notes</span>
     </a>
   </div>
@@ -98,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Programming notes</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_methods/summary.html">Causal methods</a></li><li class="breadcrumb-item"><a href="../../content/causal_methods/c2_regression_discontinuity.html"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -112,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Programming notes</span></span></a>
   </div>
 </li>
@@ -127,49 +131,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/linux.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/linux.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linux</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/git.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/git.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/latex.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/latex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Latex</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/markdown.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/markdown.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/machine_learning.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/machine_learning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/open_science.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/open_science.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Open Science</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/zenodo.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/zenodo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Zenodo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/other.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/other.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Other</span></span></a>
   </div>
 </li>
@@ -186,49 +190,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/general.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/general.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">General Python Stuff</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/environments.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/environments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python environments</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/seeds.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/seeds.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Seeds</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/simpy.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/simpy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/books.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/books.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Books</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/jupyter_book.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/jupyter_book.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Jupyter book</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/sphinx.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/sphinx.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Sphinx</span></span></a>
   </div>
 </li>
@@ -245,19 +249,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/r/general.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/r/general.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">General</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/r/packages.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/r/packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/r/environments.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/r/environments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Dependency management in R</span></span></a>
   </div>
 </li>
@@ -274,13 +278,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/simulation/simulation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/simulation/simulation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/simulation/discrete_event.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/simulation/discrete_event.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span></a>
   </div>
 </li>
@@ -297,43 +301,43 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/1_predict_vs_causal.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/1_predict_vs_causal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/2_intro_to_causality.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/2_intro_to_causality.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/3_dags.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/3_dags.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/4_assumptions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/4_assumptions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Assumptions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/5_estimands.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/5_estimands.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Causal estimands</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/6_propensity_scores.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/6_propensity_scores.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Propensity scores</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/7_target_trial.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/7_target_trial.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Target trial emulation</span></span></a>
   </div>
 </li>
@@ -350,79 +354,79 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/summary.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/a1_multivariable_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/a1_multivariable_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/a2_stratification.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/a2_stratification.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Stratification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/a3_matching.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/a3_matching.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/a4_iptw.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/a4_iptw.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/b1_marginal_structural_models.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/b1_marginal_structural_models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/b2_gcomputation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/b2_gcomputation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">G-computation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/c1_instrumental_variable.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/c1_instrumental_variable.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/c2_regression_discontinuity.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/c2_regression_discontinuity.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/c3_interrupted_time.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/c3_interrupted_time.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/c4_diff_in_diff.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/c4_diff_in_diff.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Difference in differences (DiD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/other.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/other.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Other methods</span></span></a>
   </div>
 </li>
@@ -433,35 +437,30 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#how-does-rdd-work" id="toc-how-does-rdd-work" class="nav-link active" data-scroll-target="#how-does-rdd-work"><span class="header-section-number">39.1</span> How does RDD work?</a></li>
+  <li><a href="#sharp-v.s.-fuzzy-rdd" id="toc-sharp-v.s.-fuzzy-rdd" class="nav-link" data-scroll-target="#sharp-v.s.-fuzzy-rdd"><span class="header-section-number">39.2</span> Sharp v.s. fuzzy RDD</a></li>
+  <li><a href="#applying-to-our-work" id="toc-applying-to-our-work" class="nav-link" data-scroll-target="#applying-to-our-work"><span class="header-section-number">39.3</span> Applying to our work</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_methods/summary.html">Causal methods</a></li><li class="breadcrumb-item"><a href="../../content/causal_methods/c2_regression_discontinuity.html"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Programming notes</h1>
+<h1 class="title"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></h1>
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://github.com/amyheather">Ms Amy Heather</a> <a href="https://orcid.org/0000-0002-6596-3479" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Peninsula Collaboration for Health Operational Research and Data Science (PenCHORD), University of Exeter Medical School
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    
   
     
   </div>
@@ -471,9 +470,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Quarto website with rough notes on a range of topics (e.g.&nbsp;books, python, R, causality, simulation, etc.).</p>
+<p>Regression Discontinuity Design (RDD) was first used by Thistlethwaite and Campbell (1960). It’s appeal is that it can convinvingly <strong>eliminate selection bias</strong>.</p>
+<p>It can be used when the <strong>exposure status</strong> (wholly or partly) is determined by some <strong>continuous variable exceeding some arbitrary threshold</strong>. <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a> It works best when the cut-off is known, precise and free of manipulation - and is most effect when the exposure ‘has a “hair trigger” that is not tightly related to the outcome being studied’. Examples: * Arrest for DWI when &gt; 0.08 blood-alcohol content * Probably of receiving healthcare insurance at 65 * Probability of receiving medical attention jumping when birthweight falls below 1,500 grams * Probability of attending summer school when grades fall below some minimum level <a href="https://mixtape.scunning.com/06-regression_discontinuity">[Causal Inference: The Mixtape - Scott Cunningham]</a></p>
+<p>‘If the <strong>relationship between the forcing variable and the outcome is otherwise continuous, any discontinuity or jump in the relationship can be attributed to the exposure</strong>.’ RD estimates a local average treatment effect (LATE) ‘among the individuals who fall <strong>just above or just below the threshold</strong>.’ For this reason, we require <strong>large datasets</strong>.</p>
+<p>‘As with IV analysis, bias can occur if the forcing variable is connected to the outcome through a back-door path or any other pathway besides the exposure.’ <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></p>
+<p>Why does this work? See below…</p>
+<section id="how-does-rdd-work" class="level2" data-number="39.1">
+<h2 data-number="39.1" class="anchored" data-anchor-id="how-does-rdd-work"><span class="header-section-number">39.1</span> How does RDD work?</h2>
+<p>To understand RDD, we first focus on <strong>continuity</strong>, which is a core assumption that is illustrated below.</p>
+<p>In the <strong>first graph</strong> observe that: * X (often called the “running variable” or “assignment variable” or “forcing variable”) is a confounder (causes D and Y) * As treatment assignment is based on cut-off, we can never observe units in both treatment and control with same value of X (does not satisfy overlap condition, can’t meet backdoor criterion)</p>
+<p>The <strong>second graph</strong> illustrates that: * We can identify causal effects for subjects with <strong>values of X close to the cut-off c<sub>0</sub></strong>. This is possible because the cut-off is the sole point where treatment and control subjects overlap. * There are lots of assumptions in this graph * One of the assumptions is <strong>continuity</strong> * This means X has no direct effect on Y * i.e.&nbsp;<strong>At c<sub>0</sub>, X no longer has a direct effect on Y</strong> * i.e.&nbsp;The cut-off c<sub>0</sub> <strong>cannot be triggering a competing intervention</strong> at the same time it triggers treatment D * i.e.&nbsp;Expected potential outcomes are continuous at the cut-off (which would necessarily rule out competing interventions occurring at the same time) * <strong>The null hypothesis is continuity</strong> (i.e.&nbsp;things changes gradually), and <strong>any discontinuity implies some cause</strong> (“nature does not make jump” - ‘if you see a turtle on a fencepost, you know he didn’t get there by himself’)</p>
+<p><a href="https://mixtape.scunning.com/06-regression_discontinuity">[Causal Inference: The Mixtape - Scott Cunningham]</a></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart TD;
+
+    graphb:::outline;
+    subgraph graphb[" "]
+      X2("&lt;b&gt;X near c&lt;sub&gt;0&lt;/sub&gt;&lt;/b&gt;"):::white;
+      D2("&lt;b&gt;D&lt;/b&gt;"):::white;
+      U2("&lt;b&gt;U&lt;/b&gt;"):::white;
+      Y2("&lt;b&gt;Y&lt;/b&gt;"):::white;
+    end
+
+    X2 --&gt; D2;
+    D2 --&gt; Y2;
+    U2 --&gt; Y2;
+
+    grapha:::outline;
+    subgraph grapha[" "]
+      X1("&lt;b&gt;X&lt;/b&gt; (continuous variable)"):::white;
+      D1("&lt;b&gt;D&lt;/b&gt; (treatment)&lt;br&gt;&lt;i&gt;receive if X &gt; cut-off c&lt;sub&gt;0&lt;/sub&gt;&lt;/i&gt;"):::white;
+      U1("&lt;b&gt;U&lt;/b&gt;"):::white;
+      Y1("&lt;b&gt;Y&lt;/b&gt; (outcome)"):::white;
+    end
+
+    X1 --&gt; D1;
+    D1 --&gt; Y1;
+    X1 --&gt; Y1;
+    U1 --&gt; Y1;
+    X1 &lt;-.-&gt; U1;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF;
+    classDef black fill:#FFFFFF, stroke:#000000;
+    classDef outline fill:#FFFFFF;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>An example of RDD is Hoekstra (2009) * Aim: Estimate causal effect of college on earnings * Problem: <strong>Selection bias</strong>. State flagship universities are more selective than public universities in the same state. State flagship schools have individuals with higher observed and unobserved ability, and due to their ability, expected them to earn more regardless of their university.</p>
+<p>See first image from Hoekstra (2009), which is about admission to flagship college based on SAT points: * Horizontal axis (SAT points above/below admission cut-off) is centred around 0 (cut-off). Cut-off was binding but not deterministic - some students below cut-off still get in - they likely had qualifications compensating for low SAT scores. Re-centred SAT scores are the running variable * This is not individual data - it is binned, with each dot the conditional mean (enrollment rate) * Lines are least squares fitted values of running variable, and regression could include higher-order terms, so line is above to more flexibly track central tendencies of data, with lines fit seperately for left and right * There is a discontinuous jump at cut-off * <strong>Looking at a large sample of students just either side of the cut-off, we expect them to be pretty similar to one another in terms of observable and unobservable characteristics</strong>.</p>
+<p><a href="https://mixtape.scunning.com/06-regression_discontinuity">[Causal Inference: The Mixtape - Scott Cunningham]</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/mixtape_hoekstra_rdd.jpg" class="img-fluid figure-img"></p>
+<figcaption>Hoekstra RDD</figcaption>
+</figure>
+</div>
+<p>In this figure, notice: * Estimated discontinuity 0.095 means that those just above cut-off earn 9.5% higher wages on average than those just below. With a variety of bins, estimates range from 7.4 to 11.1%. * He has found that ‘<strong>where workers experienced a jump in the probability of enrolling at the state flagship university, there is, ten to fifteen years later, a separate jump in logged earnings of around 10%</strong>. Those individuals who just barely made it in to the state flagship university made around 10% more in long-term earnings than those individuals who just barely missed the cutoff.’ * ‘Insofar as <strong>the two groups of applicants right around the cutoff have comparable future earnings in a world where neither attended the state flagship university, then there is no selection bias confounding his comparison</strong>’.</p>
+<p><a href="https://mixtape.scunning.com/06-regression_discontinuity">[Causal Inference: The Mixtape - Scott Cunningham]</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/mixtape_hoekstra_rdd2.jpg" class="img-fluid figure-img"></p>
+<figcaption>Hoekstra RDD</figcaption>
+</figure>
+</div>
+</section>
+<section id="sharp-v.s.-fuzzy-rdd" class="level2" data-number="39.2">
+<h2 data-number="39.2" class="anchored" data-anchor-id="sharp-v.s.-fuzzy-rdd"><span class="header-section-number">39.2</span> Sharp v.s. fuzzy RDD</h2>
+<p><strong>Sharp RDD</strong> - when probability of treatment goes from 0 to 1 at cut-off - and so running variable is deterministic of X (dashed line)</p>
+<p><strong>Fuzzy RDD</strong> - when probability of treatment discontinuously increases at cut-off (as in example above) (solid line)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/cunning_fuzzy_sharp_rdd.png" class="img-fluid figure-img"></p>
+<figcaption>Fuzzy v.s. sharp RDD</figcaption>
+</figure>
+</div>
+</section>
+<section id="applying-to-our-work" class="level2" data-number="39.3">
+<h2 data-number="39.3" class="anchored" data-anchor-id="applying-to-our-work"><span class="header-section-number">39.3</span> Applying to our work</h2>
+<p>This might be less relevant for caesarean (no single one cut-off for a single treatment).</p>
+<p>However, it would be relevant to stroke, which has much clearer cut-offs. Although maybe focus per hospital would you need to? If you think hospital has impact on threshold?</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -895,10 +980,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../content/causal_methods/c1_instrumental_variable.html" class="pagination-link" aria-label="Instrumental variables">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./content/general/linux.html" class="pagination-link" aria-label="Linux">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linux</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/causal_methods/c3_interrupted_time.html" class="pagination-link" aria-label="Interrupted time series (ITS)">
+        <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

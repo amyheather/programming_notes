@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Programming notes</title>
+<title>27&nbsp; Causal estimands – Programming notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./content/general/linux.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../content/causal_concepts/6_propensity_scores.html" rel="next">
+<link href="../../content/causal_concepts/4_assumptions.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Programming notes</span>
     </a>
   </div>
@@ -98,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Programming notes</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html">Causal concepts</a></li><li class="breadcrumb-item"><a href="../../content/causal_concepts/5_estimands.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Causal estimands</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -112,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Programming notes</span></span></a>
   </div>
 </li>
@@ -127,49 +128,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/linux.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/linux.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linux</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/git.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/git.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/latex.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/latex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Latex</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/markdown.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/markdown.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/machine_learning.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/machine_learning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/open_science.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/open_science.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Open Science</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/zenodo.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/zenodo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Zenodo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/general/other.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/other.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Other</span></span></a>
   </div>
 </li>
@@ -186,49 +187,49 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/general.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/general.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">General Python Stuff</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/environments.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/environments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python environments</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/seeds.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/seeds.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Seeds</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/simpy.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/simpy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/books.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/books.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Books</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/jupyter_book.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/jupyter_book.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Jupyter book</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/python/sphinx.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/python/sphinx.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Sphinx</span></span></a>
   </div>
 </li>
@@ -245,19 +246,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/r/general.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/r/general.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">General</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/r/packages.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/r/packages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/r/environments.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/r/environments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Dependency management in R</span></span></a>
   </div>
 </li>
@@ -274,13 +275,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/simulation/simulation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/simulation/simulation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/simulation/discrete_event.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/simulation/discrete_event.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span></a>
   </div>
 </li>
@@ -297,43 +298,43 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/1_predict_vs_causal.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/1_predict_vs_causal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/2_intro_to_causality.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/2_intro_to_causality.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/3_dags.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/3_dags.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/4_assumptions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/4_assumptions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Assumptions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/5_estimands.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/5_estimands.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Causal estimands</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/6_propensity_scores.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/6_propensity_scores.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Propensity scores</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_concepts/7_target_trial.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_concepts/7_target_trial.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Target trial emulation</span></span></a>
   </div>
 </li>
@@ -350,79 +351,79 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/summary.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/a1_multivariable_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/a1_multivariable_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/a2_stratification.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/a2_stratification.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Stratification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/a3_matching.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/a3_matching.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/a4_iptw.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/a4_iptw.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/b1_marginal_structural_models.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/b1_marginal_structural_models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/b2_gcomputation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/b2_gcomputation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">G-computation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/c1_instrumental_variable.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/c1_instrumental_variable.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/c2_regression_discontinuity.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/c2_regression_discontinuity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/c3_interrupted_time.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/c3_interrupted_time.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/c4_diff_in_diff.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/c4_diff_in_diff.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Difference in differences (DiD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/causal_methods/other.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/causal_methods/other.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Other methods</span></span></a>
   </div>
 </li>
@@ -433,35 +434,35 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#average-causal-effect" id="toc-average-causal-effect" class="nav-link active" data-scroll-target="#average-causal-effect"><span class="header-section-number">27.1</span> Average causal effect</a></li>
+  <li><a href="#causal-effect-estimands" id="toc-causal-effect-estimands" class="nav-link" data-scroll-target="#causal-effect-estimands"><span class="header-section-number">27.2</span> Causal effect estimands</a>
+  <ul class="collapse">
+  <li><a href="#choosing-a-causal-estimand" id="toc-choosing-a-causal-estimand" class="nav-link" data-scroll-target="#choosing-a-causal-estimand"><span class="header-section-number">27.2.1</span> Choosing a causal estimand</a></li>
+  <li><a href="#effect-measures" id="toc-effect-measures" class="nav-link" data-scroll-target="#effect-measures"><span class="header-section-number">27.2.2</span> Effect measures</a></li>
+  <li><a href="#treatment-effects" id="toc-treatment-effects" class="nav-link" data-scroll-target="#treatment-effects"><span class="header-section-number">27.2.3</span> Treatment effects</a></li>
+  </ul></li>
+  <li><a href="#more-on-intention-to-treat" id="toc-more-on-intention-to-treat" class="nav-link" data-scroll-target="#more-on-intention-to-treat"><span class="header-section-number">27.3</span> More on: Intention-to-treat</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html">Causal concepts</a></li><li class="breadcrumb-item"><a href="../../content/causal_concepts/5_estimands.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Causal estimands</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Programming notes</h1>
+<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Causal estimands</span></h1>
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author"><a href="https://github.com/amyheather">Ms Amy Heather</a> <a href="https://orcid.org/0000-0002-6596-3479" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Peninsula Collaboration for Health Operational Research and Data Science (PenCHORD), University of Exeter Medical School
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    
   
     
   </div>
@@ -471,9 +472,114 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Quarto website with rough notes on a range of topics (e.g.&nbsp;books, python, R, causality, simulation, etc.).</p>
+<p>`````ytxqgrnhufxq Executive summary :class: info</p>
+<p>Possible causal effect measures: * Causal mean difference * Causal mean ratio * Causal risk difference * Causal risk ratio</p>
+<p>Possible causal effects - i.e.&nbsp;causal estimand - choice of which can be guided by thinking of target trial you are trying to emulate: * Average treatment effect (ATE) * Average treatment effect in the treated (ATT) * Average treatment effect in the untreated (ATU/ATUT) * Intention-to-treat effect (ITT) * Complier average causal effect (CACE) or local average treatment effect</p>
+<p>`````</p>
+<section id="average-causal-effect" class="level2" data-number="27.1">
+<h2 data-number="27.1" class="anchored" data-anchor-id="average-causal-effect"><span class="header-section-number">27.1</span> Average causal effect</h2>
+<p>In causal inference studies, you are estimating the <strong>average causal effect</strong> of the treatment/exposure when comparing between groups of individuals. This is because it is generally impossible to estimate the causal effect for an individual, as you can’t go back in time and not give them an outcome.<a href="https://hummedia.manchester.ac.uk/institutes/methods-manchester/docs/CausalInference.pdf">[source]</a></p>
+<p>The terminology used varies, with <a href="https://doi.org/10.1513/AnnalsATS.201808-564PS">Lederer et al.&nbsp;2018</a> suggesting that we refer to finding <strong>causal associations</strong> and <strong>effect estimates</strong> - but not <strong>actual</strong> causal effects, or saying that the “exposure has an ‘effect’ or ‘impact’ on outcome”, or that the “exposure ‘protects against’ or ‘promotes’ outcome”. They suggest these are avoided without substantial evidence of a true causal effect.<a href="https://doi.org/10.1513/AnnalsATS.201808-564PS">[Lederer et al.&nbsp;2018]</a></p>
+</section>
+<section id="causal-effect-estimands" class="level2" data-number="27.2">
+<h2 data-number="27.2" class="anchored" data-anchor-id="causal-effect-estimands"><span class="header-section-number">27.2</span> Causal effect estimands</h2>
+<section id="choosing-a-causal-estimand" class="level3" data-number="27.2.1">
+<h3 data-number="27.2.1" class="anchored" data-anchor-id="choosing-a-causal-estimand"><span class="header-section-number">27.2.1</span> Choosing a causal estimand</h3>
+<p>Before you estimate the causal effect, you have to choose which effect you are trying to estimate (i.e.&nbsp;<strong>the causal estimand</strong>).<a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a> Things to consider…</p>
+<p><strong>Target population</strong> - different methods ‘allow you to estimate effects that can generalise to different target populations’ (e.g.&nbsp;difference between the various causal treatment effects below)</p>
+<p>Whether effect is <strong>marginal or conditional</strong> * <strong>Marginal</strong> - * Relevant to whole population * Involves comparing potential outcome under treatment to potential outcome under control (as in randomised trials) * Useful for finding overall effect * <strong>Conditional</strong> * Specific to certain population * Involves comparing potential outcomes within strata * Useful for finding treatment effect in particular subset of population</p>
+<p>The <strong>outcome type</strong> (continuous, binary, or time-to-event).</p>
+<p>Whether the effect measure is <strong>non-collapsible or collapsible</strong>.<a href="https://cran.r-project.org/web/packages/MatchIt/vignettes/estimating-effects.html">[Greifer 2023]</a> * <strong>Non-collapsible</strong> * This is when the conditional effect measure differs from the marginal effect measure even in the absence of confounding. This is true for certain non-linear effect measures like the odds ratio. * It means that conditional measures are more <strong>difficult to compare</strong> between studies (since different studies typically adjust for different sets of covariates), and that marginal effects may be <strong>less transportable</strong> between populations<a href="https://doi.org/10.1093/aje/kwq474">[Vansteelandt and Keiding 2011]</a> * In these cases, it is very important to distinguish between marginal and conditional effects, as different methods target different types of effect * <strong>Collapsible</strong> * Same methods can be used to estimate marginal and conditional effects <a href="https://cran.r-project.org/web/packages/MatchIt/vignettes/estimating-effects.html">[Greifer 2023]</a></p>
+<p>It can be challenging to identify the appropriate causal estimand. However, specifying a <strong>target trial</strong> (i.e.&nbsp;hypothetical RCT you are trying to emulate), can help with figuring this out. <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></p>
+</section>
+<section id="effect-measures" class="level3" data-number="27.2.2">
+<h3 data-number="27.2.2" class="anchored" data-anchor-id="effect-measures"><span class="header-section-number">27.2.2</span> Effect measures</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Effect measure</th>
+<th>Outcome type</th>
+<th>Collapsiblility</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean difference</td>
+<td>Continuous</td>
+<td>Collapsible</td>
+<td>‘An average increase in systolic blood pressure by 10 mmHg’</td>
+</tr>
+<tr class="even">
+<td>Risk difference (RD)</td>
+<td>Binary</td>
+<td>Collapsible</td>
+<td>‘An average increase in the risk of stroke by 5%’</td>
+</tr>
+<tr class="odd">
+<td>Risk ratio (RR)</td>
+<td>Binary</td>
+<td>Non-collapsible</td>
+<td>‘An average increase in the risk of stroke by a factor of 1.5’</td>
+</tr>
+<tr class="even">
+<td>Odds ratio (OR)</td>
+<td>Binary</td>
+<td>Non-collapsible</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>Hazard ratio (HR)</td>
+<td>Time-to-event (i.e.&nbsp;survival)</td>
+<td>Non-collapsible <a href="https://cran.r-project.org/web/packages/MatchIt/vignettes/estimating-effects.html">[Greifer 2023]</a></td>
+<td>- <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="treatment-effects" class="level3" data-number="27.2.3">
+<h3 data-number="27.2.3" class="anchored" data-anchor-id="treatment-effects"><span class="header-section-number">27.2.3</span> Treatment effects</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Causal treatment effect</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Average treatment effect (ATE)</strong></td>
+<td>Difference between average outcome, when EVERYONE is exposed v.s. when NO-ONE is exposed</td>
+</tr>
+<tr class="even">
+<td><strong>Average treatment effect in the treated (ATT)</strong></td>
+<td>ATE calculated only in sub-population of individuals who were actually exposed</td>
+</tr>
+<tr class="odd">
+<td><strong>Average treatment effect in the untreated (ATU/ATUT)</strong></td>
+<td>ATE calculated only in sub-population of individuals who were actually unexposed</td>
+</tr>
+<tr class="even">
+<td><strong>Intention-to-treat effect (ITT)</strong></td>
+<td>Average effect of being assigned to (but not necessarilly receiving) the exposure</td>
+</tr>
+<tr class="odd">
+<td><strong>Complier average causal effect (CACE) or local average treatment effect</strong></td>
+<td>ATE calculated only among ‘compliers’ <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="more-on-intention-to-treat" class="level2" data-number="27.3">
+<h2 data-number="27.3" class="anchored" data-anchor-id="more-on-intention-to-treat"><span class="header-section-number">27.3</span> More on: Intention-to-treat</h2>
+<p><strong>Intention-to-treat analysis</strong> is the preferred analysis strategy for RCTs. This means that the analysis includes all participants, all retained in the group to which they were allocated.</p>
+<p>However, this can be hard to achieve due to: 1. <strong>Missing outcomes</strong> * A “complete case” (or “available case”) analysis only includes participants with no missing outcomes, and whilst only a few missing outcomes won’t cause a problem, in half of trials more than 10% of randomised patients may have missing outcomes. Hence, exclusion will reduce the sample size, and may introduce bias if loss to follow-up is related to a patient’s response to treatment. * Participants with missing outcomes can be included if their outcomes are imputed - but this requires strong assumptions. Common example is to use “last observation carried forward”, but this may introduce bias and makes no allowance for uncertainty imputation. 2. <strong>Non-adherence to protocol</strong> * Examples include participants who didn’t meet inclusion criteria (e.g.&nbsp;wrong diagnosis, too young), did not take all of the intended treatment, received a different treatment, or received no treatment * Intention-to-treat analysis ignores protocol deviations, including participants in their assigned groups regardless. Modified intention-to-treat (or ‘per protocol analysis’) is an analysis that excludes participants who didn’t adequately adhere (e.g.&nbsp;minimum amount of intervention) - but this would need to be labelled as a non-randomised, observational comparison, and be aware that the exclusion of patients compromises randomisation.<a href="https://www.bmj.com/content/340/bmj.c869">[CONSORT]</a></p>
+<p>These two problems can introduce <strong>non-random selection effects</strong> - i.e.&nbsp;randomisation isn’t the only cause for treatment - hence introducing confounding (bias), and meaning that exchangeability would no longer holder - and hence why intention-to-treat is recommended (i.e.&nbsp;ignore protocol deviations).</p>
+<p>The <strong>Complier-Average Causal Effect (CACE) estimate</strong> is the comparison of the average outcome of the compliers in the treatment arm compared with the average outcome of the comparable group of would-be compliers in the control arm. It is the intention-to-treat effect in the sub-group of participants who would always have complied with their treatment allocation, and is not subject to confounding.<a href="https://hummedia.manchester.ac.uk/institutes/methods-manchester/docs/CausalInference.pdf">[source]</a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -895,10 +1001,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../../content/causal_concepts/4_assumptions.html" class="pagination-link" aria-label="Assumptions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Assumptions</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./content/general/linux.html" class="pagination-link" aria-label="Linux">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linux</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/causal_concepts/6_propensity_scores.html" class="pagination-link" aria-label="Propensity scores">
+        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Propensity scores</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

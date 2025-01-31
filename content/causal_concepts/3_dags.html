@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>25&nbsp; Directed acyclic graphs – Programming notes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../content/causal_concepts/4_assumptions.html" rel="next">
+<link href="../../content/causal_concepts/2_intro_to_causality.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-72c93205fb41c15e2e398b4f9a505ee2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Programming notes</span>
+    </a>
+  </div>
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/amyheather/programming_notes"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html">Causal concepts</a></li><li class="breadcrumb-item"><a href="../../content/causal_concepts/3_dags.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Programming notes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">General</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/linux.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linux</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/latex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Latex</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/machine_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/open_science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Open Science</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/zenodo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Zenodo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/other.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Other</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/general.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">General Python Stuff</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python environments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/seeds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Seeds</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/simpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/books.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Books</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/jupyter_book.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Jupyter book</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/sphinx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Sphinx</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/r/general.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">General</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/r/packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/r/environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Dependency management in R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Simulation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/simulation/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/simulation/discrete_event.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Causal concepts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/1_predict_vs_causal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/2_intro_to_causality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/3_dags.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/4_assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Assumptions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/5_estimands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Causal estimands</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/6_propensity_scores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Propensity scores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/7_target_trial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Target trial emulation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Causal methods</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/a1_multivariable_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/a2_stratification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Stratification</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/a3_matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Matching</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/a4_iptw.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/b1_marginal_structural_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/b2_gcomputation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">G-computation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/c1_instrumental_variable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/c2_regression_discontinuity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/c3_interrupted_time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/c4_diff_in_diff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Difference in differences (DiD)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/other.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Other methods</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link active" data-scroll-target="#naming-conventions"><span class="header-section-number">25.1</span> Naming conventions</a></li>
+  <li><a href="#key-components" id="toc-key-components" class="nav-link" data-scroll-target="#key-components"><span class="header-section-number">25.2</span> Key components</a>
+  <ul class="collapse">
+  <li><a href="#confounders" id="toc-confounders" class="nav-link" data-scroll-target="#confounders"><span class="header-section-number">25.2.1</span> Confounders</a></li>
+  <li><a href="#moderators" id="toc-moderators" class="nav-link" data-scroll-target="#moderators"><span class="header-section-number">25.2.2</span> Moderators</a></li>
+  <li><a href="#mediators" id="toc-mediators" class="nav-link" data-scroll-target="#mediators"><span class="header-section-number">25.2.3</span> Mediators</a></li>
+  <li><a href="#colliders" id="toc-colliders" class="nav-link" data-scroll-target="#colliders"><span class="header-section-number">25.2.4</span> Colliders</a></li>
+  <li><a href="#selection-nodes" id="toc-selection-nodes" class="nav-link" data-scroll-target="#selection-nodes"><span class="header-section-number">25.2.5</span> Selection nodes</a></li>
+  <li><a href="#measurement-error-mis-measured-variables" id="toc-measurement-error-mis-measured-variables" class="nav-link" data-scroll-target="#measurement-error-mis-measured-variables"><span class="header-section-number">25.2.6</span> Measurement error (mis-measured variables)</a></li>
+  </ul></li>
+  <li><a href="#how-do-you-know-what-to-include-in-your-dag" id="toc-how-do-you-know-what-to-include-in-your-dag" class="nav-link" data-scroll-target="#how-do-you-know-what-to-include-in-your-dag"><span class="header-section-number">25.3</span> How do you know what to include in your DAG?</a>
+  <ul class="collapse">
+  <li><a href="#dag-completeness" id="toc-dag-completeness" class="nav-link" data-scroll-target="#dag-completeness"><span class="header-section-number">25.3.1</span> DAG completeness</a></li>
+  <li><a href="#how-do-you-know-when-to-include-mediators" id="toc-how-do-you-know-when-to-include-mediators" class="nav-link" data-scroll-target="#how-do-you-know-when-to-include-mediators"><span class="header-section-number">25.3.2</span> How do you know when to include mediators?</a></li>
+  <li><a href="#when-should-you-draw-arrows" id="toc-when-should-you-draw-arrows" class="nav-link" data-scroll-target="#when-should-you-draw-arrows"><span class="header-section-number">25.3.3</span> When should you draw arrows?</a></li>
+  <li><a href="#can-you-use-variable-selection-methods" id="toc-can-you-use-variable-selection-methods" class="nav-link" data-scroll-target="#can-you-use-variable-selection-methods"><span class="header-section-number">25.3.4</span> Can you use variable selection methods?</a></li>
+  </ul></li>
+  <li><a href="#how-do-you-create-a-dag" id="toc-how-do-you-create-a-dag" class="nav-link" data-scroll-target="#how-do-you-create-a-dag"><span class="header-section-number">25.4</span> How do you create a DAG?</a></li>
+  <li><a href="#paths" id="toc-paths" class="nav-link" data-scroll-target="#paths"><span class="header-section-number">25.5</span> Paths</a></li>
+  <li><a href="#d-seperation-rules" id="toc-d-seperation-rules" class="nav-link" data-scroll-target="#d-seperation-rules"><span class="header-section-number">25.6</span> D-seperation rules</a>
+  <ul class="collapse">
+  <li><a href="#rules" id="toc-rules" class="nav-link" data-scroll-target="#rules"><span class="header-section-number">25.6.1</span> Rules</a></li>
+  <li><a href="#examples-of-each-rule" id="toc-examples-of-each-rule" class="nav-link" data-scroll-target="#examples-of-each-rule"><span class="header-section-number">25.6.2</span> Examples of each rule</a></li>
+  </ul></li>
+  <li><a href="#faithfulness" id="toc-faithfulness" class="nav-link" data-scroll-target="#faithfulness"><span class="header-section-number">25.7</span> Faithfulness</a></li>
+  <li><a href="#time-varying-treatments-and-confounders" id="toc-time-varying-treatments-and-confounders" class="nav-link" data-scroll-target="#time-varying-treatments-and-confounders"><span class="header-section-number">25.8</span> Time-varying treatments and confounders</a>
+  <ul class="collapse">
+  <li><a href="#what-is-a-time-varying-treatment" id="toc-what-is-a-time-varying-treatment" class="nav-link" data-scroll-target="#what-is-a-time-varying-treatment"><span class="header-section-number">25.8.1</span> What is a time-varying treatment?</a></li>
+  <li><a href="#treatment-confounder-feedback" id="toc-treatment-confounder-feedback" class="nav-link" data-scroll-target="#treatment-confounder-feedback"><span class="header-section-number">25.8.2</span> Treatment-confounder feedback</a></li>
+  </ul></li>
+  <li><a href="#presenting-results-from-causal-inference-studies" id="toc-presenting-results-from-causal-inference-studies" class="nav-link" data-scroll-target="#presenting-results-from-causal-inference-studies"><span class="header-section-number">25.9</span> Presenting results from causal inference studies</a></li>
+  <li><a href="#minimal-set-of-covariates" id="toc-minimal-set-of-covariates" class="nav-link" data-scroll-target="#minimal-set-of-covariates"><span class="header-section-number">25.10</span> Minimal set of covariates</a></li>
+  <li><a href="#example-cases" id="toc-example-cases" class="nav-link" data-scroll-target="#example-cases"><span class="header-section-number">25.11</span> Example cases</a>
+  <ul class="collapse">
+  <li><a href="#example-oestrogen-and-endometrial-cancer" id="toc-example-oestrogen-and-endometrial-cancer" class="nav-link" data-scroll-target="#example-oestrogen-and-endometrial-cancer"><span class="header-section-number">25.11.1</span> Example: Oestrogen and endometrial cancer</a></li>
+  <li><a href="#example-hiv-and-art" id="toc-example-hiv-and-art" class="nav-link" data-scroll-target="#example-hiv-and-art"><span class="header-section-number">25.11.2</span> Example: HIV and ART</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html">Causal concepts</a></li><li class="breadcrumb-item"><a href="../../content/causal_concepts/3_dags.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>`````qvgpzpwsgplv Executive summary :class: info</p>
+<p>In a DAG, you can identify: * <strong>Confounders</strong> - common cause both treatment and outcome * <strong>Mediators</strong> - lie on causal path between variables, inclusion depends on whether you are interested in direct effect of treatment and outcome that doesn’t pass through mediator * <strong>Colliders</strong> - common effect of two other variables * <strong>Moderators</strong> - change size or direction of relationship between variables</p>
+<p>You start the diagram with your research question (i.e.&nbsp;two nodes whose relationship you are interested) and then add all <strong>common</strong> causes for those nodes, and for any other nodes you add to the graph.</p>
+<p><strong>D-seperation rules</strong> determine whether paths will be open (expect associations) or blocked (independent), which are based on whether condition or not on confounders and colliders.</p>
+<p>If you have <strong>time-varying treatment</strong> (takes different values over time), then you will have other time-varying components (e.g.&nbsp;time-varying confounding). If there is <strong>treatment-confounder feedback</strong> (i.e.&nbsp;earlier treatment impacts value of later confounder), then you will need to use a special type of method to adjust for confounders, referred to as <strong>G-methods</strong>.</p>
+<p>Since you have designed the study to appropriate control for confounding for your relationship of interest - between a given treatment/exposure and outcome - the other variables included may have residual confounding or other biases that affect their associations, and it is important that these effect estimates are not presented (or are explained) - otherwise this is called ‘<strong>Table 2 fallacy</strong>’. `````</p>
+<p>This page continues on from the introduction to directed acyclic graphs on the prior <a href="../../content/causal_concepts/2_intro_to_causality.html">causal inference page</a>.</p>
+<section id="naming-conventions" class="level2" data-number="25.1">
+<h2 data-number="25.1" class="anchored" data-anchor-id="naming-conventions"><span class="header-section-number">25.1</span> Naming conventions</h2>
+<p>There are naming conventions for particular components of the DAG: * <strong>A (or E)</strong> = Exposure / Treatment / Intervention / Primary IV * <strong>Y (or D)</strong> = Outcome * <strong>C</strong> = Covariates / Confounders * <strong>U</strong> = Unmeasured relevant variables</p>
+<p>When letters are not used, the exposure and outcome will often be highlighted using a “?” on the arrow, or through coloured boxes or arrows.</p>
+<p>Example:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    A:::green;
+    Y:::green;
+    C:::white;
+    U:::white;
+    
+    A --&gt;|?| Y;
+    C --&gt; A;
+    C --&gt; Y;
+    U --&gt; A;
+    U --&gt; C;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+    classDef green fill:#DDF2D1, stroke: #FFFFFF;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Nodes can also be described as: * <strong>Ancestor</strong> = direct cause (<strong>parent</strong>) or indirect cause (e.g.&nbsp;<strong>grandparent</strong>) of a variable * <strong>Descendent</strong> = direct effect (<strong>child</strong>) or indirect effect (e.g.&nbsp;<strong>grandchild</strong>) of a variable <a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+</section>
+<section id="key-components" class="level2" data-number="25.2">
+<h2 data-number="25.2" class="anchored" data-anchor-id="key-components"><span class="header-section-number">25.2</span> Key components</h2>
+<section id="confounders" class="level3" data-number="25.2.1">
+<h3 data-number="25.2.1" class="anchored" data-anchor-id="confounders"><span class="header-section-number">25.2.1</span> Confounders</h3>
+<p><strong>Confounders</strong> are variables that <strong>cause BOTH the treatment/exposure and outcomes</strong>.</p>
+<p><em>Informally, it occurs when there is an open backdoor path between the treatment/exposure and outcome, and you could say a confounder is a variable that - possibly together with other variables - can be used to block the backdoor path between the treatment and outcome.</em></p>
+<p>We included <strong>measured and unmeasured</strong> confounders in our DAG.<a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+<p>We can use <strong>conditioning</strong> to control for confounding. This involves examining the relationship between A and Y within levels of the conditioning variable, using either: (a) sample restriction, (b) stratification, (c) adjustment, or (d) matching. If we don’t do this, we will get <strong>confounding bias</strong> (where a common cause of A and Y is not blocked). When you condition on something, you <strong>draw a box</strong> around it on the DAG.</p>
+<p>Other terms like “adjusting” or “controlling” suggest a misleading interpretation of the model - although there does seem to be variability in terminology, with many sources using these terms. <a href="https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf">[source]</a> Igelström et al.&nbsp;2022 explain that ‘conditioning on a variable is analogous to controlling for, adjusting for or stratifying by it (although in practice, different methods of conditioning may have different effects on the results and their interpretation).’<a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></p>
+<p>Example: smoking causes yellow fingers and lung cancer * If we don’t condition on it, we expect to see an association between yellow fingers and lung cancer (known as a <strong>marginal/unconditional</strong> association) * If we do condition on smoking, we expect to see no association between yellow fingers and lung cancers (i.e.&nbsp;they are “<strong>not associated conditional on</strong> smoking)<a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart TD;
+
+    con:::outline;
+    subgraph con["`**Conditional**`"]
+      cig2("Smoking"):::black;
+      lung2("Lung cancer"):::white;
+      yellow2("Yellow fingers"):::white;
+    end
+
+    cig2 --&gt; lung2;
+    cig2 --&gt; yellow2;
+
+    uncon:::outline;
+    subgraph uncon["`**Unconditional**`"]
+      cig("Smoking"):::white;
+      lung("Lung cancer"):::white;
+      yellow("Yellow fingers"):::white;
+    end
+
+    cig --&gt; lung;
+    cig --&gt; yellow;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF;
+    classDef black fill:#FFFFFF, stroke:#000000;
+    classDef outline fill:#FFFFFF;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="moderators" class="level3" data-number="25.2.2">
+<h3 data-number="25.2.2" class="anchored" data-anchor-id="moderators"><span class="header-section-number">25.2.2</span> Moderators</h3>
+<p><strong>Moderators</strong> are variables that change the <strong>size or direction</strong> of the relationship between variables. These could also be referred to as <strong>effect modifiers</strong> or statistical interaction. <a href="https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf">[source]</a> * If it impacts the <strong>size</strong> of the relationship, this is called <strong>non-qualitative effect modification</strong> * If it impacts the <strong>direction</strong> of the relationship, this is called <strong>qualitative effect modification</strong> <a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a> * These can also be referred to as <strong>effect measure modification (EMM)</strong>. <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></p>
+<p>They usually help you judge the external validity of your study by identifying the limitations of when the relationship between variables holds. <a href="https://www.scribbr.co.uk/faqs/why-should-you-include-mediators-and-moderators-in-your-study/">[source]</a></p>
+<p>There has been some disagreement on how these should be included/notation within DAGs. <a href="https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf">[source]</a><a href="https://pubmed.ncbi.nlm.nih.gov/17700243/">[Weinberg 2007]</a></p>
+<p>‘The presence and extent of EMM mathematically depends on the choice of an additive or multiplicative scale linking exposure and outcome; EMM may be present on either one of these scales or both’</p>
+<p>‘If both the exposure and effect modifier are causes of the outcome, then EMM will always be present on at least one scale.’</p>
+<p>‘<strong>Interaction</strong> denotes that the <strong>joint effect of two exposures is different from the sum of the individual effects of each exposure</strong>. Like EMM, the presence and extent of interaction depends on the choice of an additive or multiplicative scale and does not necessarily have a meaningful causal interpretation. ‘Interaction’ is sometimes used interchangeably with EMM, but it is helpful to think of these as different concepts: * Interaction focuses on the <strong>joint causal effect</strong> of two exposures (eg, the combined effect of smoking and asbestos exposure on lung cancer) * EMM focuses on the effect of one exposure whose effect differs across levels of another variable (eg, the effect of asbestos exposure on lung cancer in smokers vs non-smokers); with EMM, the <strong>causal effect of the effect modifier itself is not of interest</strong>.’ <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    A("A (treatment/exposure)"):::green;
+    Y("Y (outcome)"):::green;
+    Empty[ ]:::empty;
+    Mod("Moderator"):::white;
+
+    Mod --&gt; Empty;
+    A --- Empty;
+    Empty --&gt;|?| Y;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF;
+    classDef black fill:#FFFFFF, stroke:#000000;
+    classDef empty width:0px,height:0px;
+    classDef green fill:#DDF2D1, stroke: #FFFFFF;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>Why do we care about modifiers/effect modification?</strong></p>
+<ol type="1">
+<li>The average causal effect will differ between populations with different prevalence of the modifier - i.e.&nbsp;it depends on the distribution of individual causal effects in the population</li>
+</ol>
+<ul>
+<li>**Example: If average causal effect of exposure is harmful in women and beneficial in mean, a study with an equal gender split would find null causal effect, and a study with majority women would find harmful causal effect.*</li>
+<li>Hence, ‘there is generally no such thing as “the average causal effect of treatment A on outcome Y (period)”, but “the average causal effect of treatment A on outcome Y in a population with a particular mix of causal effect modifiers.”’ The ability to extrapolate causal effects between populations is referred to as the <strong>transportability</strong> of causal inferences across populations.</li>
+<li>However, there will often be unmeasured effect modifiers, and so ‘transportability of causal effects is an unverifiable assumption that relives heavily on subject-matter experts’.<a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a></li>
+</ul>
+<ol start="2" type="1">
+<li><p>Additive (but not multiplicative) effect modification can help identify groups who would most benefit from an intervention <a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a></p></li>
+<li><p>Identifying effect modification may help us to understand the biological, social, or other mechanisms leading to the outcome. <a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a></p></li>
+</ol>
+</section>
+<section id="mediators" class="level3" data-number="25.2.3">
+<h3 data-number="25.2.3" class="anchored" data-anchor-id="mediators"><span class="header-section-number">25.2.3</span> Mediators</h3>
+<p><strong>Mediators</strong> are variables that lie in the causal path between the two other variables (e.g.&nbsp;between exposure and outcome), and they tell you how or why an effect takes place.<a href="https://www.scribbr.co.uk/faqs/why-should-you-include-mediators-and-moderators-in-your-study/">[source]</a> * A path that includes a mediator is often called an <strong>indirect effect</strong> or indirect causal path * In contrast, the arrow directly connecting the treatment and outcome represents the <strong>direct causal effect</strong> of the treatment on the outcome that is not due to changes in the mediator.<a href="https://doi.org/10.1513/AnnalsATS.201808-564PS">[Lederer et al.&nbsp;2018]</a> This is also referred to as the <strong>controlled direct effect (CDE)</strong> <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a> * If you do not have a direct arrow between the treatment and outcome, and only via the mediator, this implies that this is the only way in which the treatment can cause the outcome, and that if you know the mediator is present, knowing whether or not the treatment was present should have no impact on the outcome.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    treat("Treatment"):::white;
+    med("Mediator"):::white;
+    out("Outcome"):::white;
+
+    treat --&gt; med;
+    med --&gt; out;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>You might <strong>condition</strong> on a mediator if you are interested in the <strong>direct effect of treatment on outcome that doesn’t pass through mediator</strong>. Example: In racial disparity studies, will condition on mediators like socioeconomic, education, location (often though <strong>matching</strong> on these characteristics), to allow you to isolate the unique effect of race that is not explainable by those pathways. <a href="https://stats.stackexchange.com/questions/488048/dag-are-there-situations-where-adjusting-for-mediators-is-reasonable">[source]</a> This is referred to as <strong>mediation analysis</strong> - when you’re trying to ‘quantify how much of the total effect of A on Y is explained by a particular mediator (the indirect effect), and how much is not (the direct effect)’.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    race("Race"):::white;
+    outcome("Outcome"):::white;
+    ses("Socioeconomic status"):::black;
+    ed("Education"):::black;
+    loc("Location"):::black;
+
+    race --&gt;|?| outcome;
+    race --&gt; ses; ses --&gt; outcome;
+    race --&gt; ed; ed --&gt; outcome;
+    race --&gt; loc; loc --&gt; outcome;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="how-is-cde-estimated" class="level4" data-number="25.2.3.1">
+<h4 data-number="25.2.3.1" class="anchored" data-anchor-id="how-is-cde-estimated"><span class="header-section-number">25.2.3.1</span> How is CDE estimated?</h4>
+<ul>
+<li>‘Assuming no interaction between exposure and mediator, and no confounding between mediator and outcome, the indirect effect can be obtained by subtracting the CDE from the total effect’</li>
+<li>‘When interaction is present between exposure and mediator, the CDE will take on different values for different levels of the mediator, and the effect obtained by subtracting the CDE from the total effect no longer has a meaningful causal interpretation.’</li>
+<li>‘To address this problem, alternative definitions of causal direct and indirect effects have been proposed, such that their sum adds up to the total effect even in the presence of interactions, generally by allowing one or more of these effects to include the interaction effect.’ These include:
+<ul>
+<li>Controlled direct effect (CDE)</li>
+<li>Natural direct effect or pure direct effect</li>
+<li>Natural indirect effect or total indirect effect</li>
+<li>Pure indirect effect</li>
+<li>Total direct effect</li>
+</ul></li>
+<li>‘These effect estimands can be defined theoretically in counterfactual terms, but can only be estimated given additional assumptions that are difficult to verify and may lack applicability for estimating policy-relevant mediation quantities (eg, how much the effect of A on Y could be reduced by intervening on the mediator).’<a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></li>
+</ul>
+</section>
+<section id="over-adjustment-bias" class="level4" data-number="25.2.3.2">
+<h4 data-number="25.2.3.2" class="anchored" data-anchor-id="over-adjustment-bias"><span class="header-section-number">25.2.3.2</span> Over-adjustment bias</h4>
+<p><a href="https://doi.org/10.1097/EDE.0b013e3181a819a1">Schisterman et al.&nbsp;2009</a> defined <strong>over-adjustment bias</strong> as ‘control for an intermediate variable (or a descending proxy for an intermediate variable) on a causal path from exposure to outcome’ (i.e.&nbsp;controlling for a mediator).</p>
+</section>
+</section>
+<section id="colliders" class="level3" data-number="25.2.4">
+<h3 data-number="25.2.4" class="anchored" data-anchor-id="colliders"><span class="header-section-number">25.2.4</span> Colliders</h3>
+<p><strong>Colliders</strong> are descendents of two other variables - i.e.&nbsp;common effect - with two arrows from the parents pointing to (“colliding with”) the descendent node. Colliders naturally block back-door paths. <strong>Controlling for a collider will open the back-door path, thereby introducing confounding</strong>.<a href="https://doi.org/10.1513/AnnalsATS.201808-564PS">[Lederer et al.&nbsp;2018]</a> This is referred to as <strong>collider bias</strong></p>
+<p>Example: A genetic factor and an environmental factor causing cancer. * Scenario #1: No conditioning - These are <strong>independent</strong> - i.e.&nbsp;genetic factor doesn’t have causal effect on environmental factor - and so we don’t expect to see an association between genetic and environment (unconditional/marginal association). * Scenario #2: Condition on cancer - If we condition on cancer - such as by just selecting people who have cancer - we will find an <strong>inverse association</strong> between genetics and environment (as if cancer wasn’t caused by one, it was by the other). This biased effect estimate is referred to as <strong>selection bias</strong>. * Scenario #3: Condition on surgery - We can <strong>induce</strong> selection bias by conditioning on the downstream consequence of a collider - e.g.&nbsp;if cancer is collider, and surgery is consequence of cancer, if we condition on surgery, we expect to see inverse association between genetic and environment conditional on surgery (just as we did for the collider cancer).<a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart TD;
+
+    con_sur:::outline;
+    subgraph con_sur["`**Condition on surgery**`"]
+      gene3("Genetic&lt;br&gt;factor"):::white;
+      env3("Environmental&lt;br&gt;factor"):::white;
+      cancer3("Cancer"):::white;
+      surgery3("Surgery"):::black;
+    end
+
+    gene3 --&gt; cancer3;
+    env3 --&gt; cancer3;
+    cancer3 --&gt; surgery3;
+
+    con_cancer:::outline;
+    subgraph con_cancer["`**Condition on cancer**`"]
+      gene2("Genetic&lt;br&gt;factor"):::white;
+      env2("Environmental&lt;br&gt;factor"):::white;
+      cancer2("Cancer"):::black;
+      surgery2("Surgery"):::white;
+    end
+
+    gene2 --&gt; cancer2;
+    env2 --&gt; cancer2;
+    cancer2 --&gt; surgery2;
+
+    none:::outline;
+    subgraph none["`**No conditioning**`"]
+      gene("Genetic&lt;br&gt;factor"):::white;
+      env("Environmental&lt;br&gt;factor"):::white;
+      cancer("Cancer"):::white;
+      surgery("Surgery"):::white;
+    end
+
+    gene --&gt; cancer;
+    env --&gt; cancer;
+    cancer --&gt; surgery;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+    classDef outline fill:#FFFFFF;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Collider bias may also be present when neither the exposure nor the outcome is a direct cause of the collider variable. An example is <strong>M-bias</strong>. In this example… * Focus: beta-blocker use and risk of ARDS * Might be tempted to adjust for crackles as you might think its a confounder… 1) heart failure leads to both chronic β-blocker therapy and crackles, and 2) pneumonia causes both ARDS and crackles * However, crackles is actually a collider on the <strong>back-door path</strong> of <strong>chronic β-blocker therapy</strong> ← heart failure → crackles ← pneumonia → <strong>ARDS</strong>. Adjusting for the presence of crackles opens this back-door path, introducing confounding. Ignoring the presence of crackles would be the right thing to do.<a href="https://doi.org/10.1513/AnnalsATS.201808-564PS">[Lederer et al.&nbsp;2018]</a></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart TD;
+
+    beta("Beta blocker use"):::white;
+    ards("Acute respiratory distress syndrome (ARDS)"):::white;
+    hf("Heart failure"):::white;
+    pneu("Pneumonia"):::white;
+    crackles("Crackles"):::black;
+
+    hf --&gt; beta;
+    hf --&gt; crackles;
+    pneu --&gt; crackles;
+    pneu --&gt; ards;
+    beta --&gt;|?| ards;
+  
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Another type of collider bias - specifically, a type of selection bias - is <strong>Berkson’s bias</strong>. This is when the selection of cases into the study depends on hospitalisation, and the treatment is another disease, or a cause of another disease, which also results in hospitalisation.<a href="https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf">[source]</a></p>
+</section>
+<section id="selection-nodes" class="level3" data-number="25.2.5">
+<h3 data-number="25.2.5" class="anchored" data-anchor-id="selection-nodes"><span class="header-section-number">25.2.5</span> Selection nodes</h3>
+<p><strong>Selection nodes</strong> - by definition - are <strong>always conditioned on</strong>. This is because they reflect a restriction for inclusion such as: * <strong>Loss to follow-up</strong> - e.g.&nbsp;if some people lost to follow-up (C1) and some remain to end (C0), our analysis is restricted to C0. This means that only individuals with certain values of C are included in the analysis, as we’re essentially conditioning on it. * <strong>Inclusion/exclusion criteria for the study</strong> - e.g.&nbsp;if only include men, then gender –&gt; study enrollment</p>
+</section>
+<section id="measurement-error-mis-measured-variables" class="level3" data-number="25.2.6">
+<h3 data-number="25.2.6" class="anchored" data-anchor-id="measurement-error-mis-measured-variables"><span class="header-section-number">25.2.6</span> Measurement error (mis-measured variables)</h3>
+<p><strong>Measurement error</strong> is the degree to which we mismeasure a variable. If believe a variable is mismeasured, we have a node with a “<em>” that points from variable, with another representing measurement error.<a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a> There are two types: </em> <strong>Non-differential error</strong> - if error is not in exposure or outcome - this will bias the estimate of effect towards the null (so for small effects or studies with little power, it can make a true effect disappear) * <strong>Differential error</strong> - if there is error in exposure and outcome - then, errors themselvse can be associated, opening a back-door path between exposure and outcome<a href="https://cran.r-project.org/web/packages/ggdag/vignettes/bias-structures.html">[source]</a> - i.e.&nbsp;it is when measurement error varies in size depending on another variable. <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></p>
+<p>Example: <strong>Recall bias</strong>. Does taking multivitamins in childhood help protect against bladder cancer later in life? * Bias in outcome depends only on how well diagnosis of bladder cancer represents actually having it * Bias in exposure depends on both (a) memory of vitamin uptake, and (b) bladder cancer, since they might have spent more time reflecting on what could have caused the illness * If there is no effect of vitamins on bladder cancer, this dependency will make it seem as if vitamins are a <strong>risk</strong> for bladder cancer. If it is, in fact, <strong>protective</strong>, recall bias can reduce or even reverse the association.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart TD;
+
+    me_diag("&lt;b&gt;Measurement error&lt;/b&gt;&lt;br&gt;in diagnosis"):::white;
+    diag("Diagnosis of bladder cancer *"):::white;
+    cancer("Bladder cancer"):::white;
+    me_vit("&lt;b&gt;Measurement error&lt;/b&gt;&lt;br&gt;in vitamin uptake"):::white;
+    mem_vit("Memory of&lt;br&gt;vitamin uptake *"):::white;
+    vit("Childhood vitamin intake"):::white;
+
+    me_diag --&gt; diag;
+    cancer --&gt; diag;
+    cancer --&gt; me_vit;
+    me_vit --&gt; mem_vit;
+    vit --&gt; mem_vit;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+    classDef outline fill:#FFFFFF
+    classDef green fill:#DDF2D1, stroke: #FFFFFF;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="how-do-you-know-what-to-include-in-your-dag" class="level2" data-number="25.3">
+<h2 data-number="25.3" class="anchored" data-anchor-id="how-do-you-know-what-to-include-in-your-dag"><span class="header-section-number">25.3</span> How do you know what to include in your DAG?</h2>
+<section id="dag-completeness" class="level3" data-number="25.3.1">
+<h3 data-number="25.3.1" class="anchored" data-anchor-id="dag-completeness"><span class="header-section-number">25.3.1</span> DAG completeness</h3>
+<p>A DAG is said to represent a complete causal structure between a treatment and outcome if: * <strong>Treatment and outcome</strong> are presented * <strong>For any two nodes on the graph, all common causes</strong> of those two nodes are represented * All <strong>selection variables</strong> are represented (i.e.&nbsp;selection node) <a href="https://doi.org/10.1002/psp4.12894">[Rogers et al.&nbsp;2022]</a></p>
+<p>What do we mean by including common causes? Illustrating with an example… * In <strong>RCT</strong> where people were randomised to receive Aspirin, we <strong>don’t need to include other variables</strong> that can cause stroke (e.g.&nbsp;coronary heart disease (CHD)), as they didn’t cause why people got aspirin. * In an <strong>observational study</strong>, there will be other variables that would explain why people received aspirin (e.g.&nbsp;CHD), which we would need to include for it to be a causal DAG (i.e.&nbsp;<strong>aspirin AND stroke BOTH caused by CHD</strong>). <a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+<p>You don’t need variables that <strong>cause Y but not A</strong> (although might include if for example you want to compare to other studies that did adjust for that variable).</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart TD;
+
+    ob:::outline;
+    subgraph ob["`**Observational**`"]
+      asp2("Aspirin"):::green;
+      str2("Stroke"):::green;
+      chd2("Coronary heart disease (CHD)"):::white;
+    end
+
+    asp2 --&gt; str2;
+    chd2 --&gt; asp2;
+    chd2 --&gt; str2;
+
+    rct:::outline;
+    subgraph rct["`**RCT**`"]
+      asp("Aspirin"):::green;
+      str("Stroke"):::green;
+    end
+
+    asp --&gt; str;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+    classDef outline fill:#FFFFFF
+    classDef green fill:#DDF2D1, stroke: #FFFFFF;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="how-do-you-know-when-to-include-mediators" class="level3" data-number="25.3.2">
+<h3 data-number="25.3.2" class="anchored" data-anchor-id="how-do-you-know-when-to-include-mediators"><span class="header-section-number">25.3.2</span> How do you know when to include mediators?</h3>
+<ul>
+<li>If we are interested in the <strong>total effect of A on Y</strong>, we don’t need to specify the mechanisms through which A may affect Y (i.e.&nbsp;don’t need any m ediators between A and Y)</li>
+<li>However, if we are interested in the <strong>direct effect of A on Y</strong> that doesn’t pass through the mediator, then we should include it. <a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></li>
+</ul>
+</section>
+<section id="when-should-you-draw-arrows" class="level3" data-number="25.3.3">
+<h3 data-number="25.3.3" class="anchored" data-anchor-id="when-should-you-draw-arrows"><span class="header-section-number">25.3.3</span> When should you draw arrows?</h3>
+<p>The DAG is drawn based on <strong>expert knowledge</strong>, including arrows when you believe that something causes something else. If expert knowledge is <strong>insufficient</strong> for us to rule out a direct effect of E on D, then we should draw an arrow.</p>
+<p>Arrows on causal graphs are <strong>not deterministic</strong> - i.e.&nbsp;doesn’t mean every person with exposure will see outcome - as some will never, and some without outcome will develop it. <a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+</section>
+<section id="can-you-use-variable-selection-methods" class="level3" data-number="25.3.4">
+<h3 data-number="25.3.4" class="anchored" data-anchor-id="can-you-use-variable-selection-methods"><span class="header-section-number">25.3.4</span> Can you use variable selection methods?</h3>
+<p>No - it is important that these are based on expert knowledge. For causal inference, it is <strong>NOT</strong> recommended to choose included variables/relationships based on: * P value-based and model-based <strong>variable selection methods</strong> (including forward, backward, and stepwise selection) - since they ignore the causal structure underlying the hypothesis and treat confounders and colliders similarly * Use methods that <strong>rely on model</strong> fit or related constructs (e.g.&nbsp;R<sup>2</sup>, Akaike information criterion, and Bayesian information criterion) - since these rely heavily on the available data, in which causal relationships may or may not have been captured and may or may not be evident, and specification of model and arbitrary variables included will drive observed associations with outcome * Use selection of variables that, when included in a model, change the magnitude of the effect estimate of the exposure of interest, to identify confounders * Identify multiple ‘independent predictors’ through purposeful or automated variable selection</p>
+<p><strong>If the authors have hypotheses about each variable, then a separate model for each variable should be generated</strong> - or a prediction model could be developed, if prediction, rather than causal inference, is the goal of the analysis<a href="https://doi.org/10.1513/AnnalsATS.201808-564PS">[Lederer et al.&nbsp;2018]</a></p>
+</section>
+</section>
+<section id="how-do-you-create-a-dag" class="level2" data-number="25.4">
+<h2 data-number="25.4" class="anchored" data-anchor-id="how-do-you-create-a-dag"><span class="header-section-number">25.4</span> How do you create a DAG?</h2>
+<p>First, start with your <strong>research question</strong>. This should be A (treatment/exposure) and Y (outcome), identificated by letters, “?” or colours.</p>
+<p>Then add the key components as detailed above… * Measured confounders (L) * Unmeasured confounders (U) * Selection nodes * Moderators * Mediators * Mismeasured variables</p>
+<p><strong>Everytime you add a new node</strong> to the DAG, you need to conside whether it has common causes with any other variables (its not just about common causes of A and Y). For example, if you believe measurement of Y is affected by whether person is on treatment, draw arrow from A to measurement error for Y.</p>
+<p>There can often be <strong>more than one appropriate DAG</strong>, and alternate DAGs can make excellent sensitivity analyses.<a href="https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf">[source]</a> <a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    A("A (treatment/exposure)"):::green;
+    Y("Y (outcome)"):::green;
+    Empty[ ]:::empty;
+    Mod("Moderator"):::white;
+    M("Mediator"):::white;
+    L("L (confounder)"):::white;
+    U("U (unmeasured confounder)"):::white;
+    C("C (selection node)"):::black;
+    Y*("Y* (mismeasured outcome)"):::white;
+    UY("U&lt;sub&gt;Y&lt;/sub&gt; (measurement error for Y)"):::white;
+
+    Mod --&gt; Empty;
+    A --- Empty; Empty --&gt;|?| Y;
+    A --&gt; M; M --&gt; Y;
+    L --&gt; A; L --&gt; Y;
+    U --&gt; L; U --&gt; Y;
+    A --&gt; C;
+    L --&gt; C;
+    Y --&gt; Y*;
+    UY --&gt; Y*;
+    A --&gt; UY;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF;
+    classDef black fill:#FFFFFF, stroke:#000000;
+    classDef empty width:0px,height:0px;
+    classDef green fill:#DDF2D1, stroke: #FFFFFF;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="paths" class="level2" data-number="25.5">
+<h2 data-number="25.5" class="anchored" data-anchor-id="paths"><span class="header-section-number">25.5</span> Paths</h2>
+<p>A <strong>path</strong> is any route through graph - it <strong>doesn’t have to follow</strong> the direction of the arrows. Paths can be either be: * <strong>Open</strong> paths - represent statistical associations between two variables * E.g. If don’t condition on confounder, will be an open path, and see association with confounder * <strong>Blocked</strong> (or “closed” paths) - represent the absence of associations * E.g. An unconditioned collider should have no association <a href="https://doi.org/10.1038/s41390-018-0071-3">[Williams et al.&nbsp;2018]</a></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart TD;
+
+    block:::outline;
+    subgraph block["`**Path blocked at collider**`"]
+      a("Treatment"):::green;
+      y("Outcome"):::green;
+      x("Collider"):::white;
+    end
+
+    a --&gt; y;
+    a --&gt; x;
+    y --&gt; x;
+
+    open:::outline;
+    subgraph open["`**Path open at confounder**`"]
+      a2("Treatment"):::green;
+      y2("Outcome"):::green;
+      x2("Confounder"):::white;
+    end
+
+    a2 --&gt; y2;
+    x2 --&gt; a2;
+    x2 --&gt; y2;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+    classDef outline fill:#FFFFFF
+    classDef green fill:#DDF2D1, stroke: #FFFFFF;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The <strong>target (causal) paths</strong> are the directed paths from the exposure to the outcome which transmit the target effect. <strong>Biasing paths</strong> are non-directed open paths between the exposure and the outcome, which transmit bias for estimating the effect of the exposure on the outcome.<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3733703/">[source]</a></p>
+</section>
+<section id="d-seperation-rules" class="level2" data-number="25.6">
+<h2 data-number="25.6" class="anchored" data-anchor-id="d-seperation-rules"><span class="header-section-number">25.6</span> D-seperation rules</h2>
+<section id="rules" class="level3" data-number="25.6.1">
+<h3 data-number="25.6.1" class="anchored" data-anchor-id="rules"><span class="header-section-number">25.6.1</span> Rules</h3>
+<p><strong>D-seperation</strong> rules are used to determine whether paths are <strong>open or blocked</strong> - i.e.&nbsp;whether variables will be <strong>associated or independent</strong>.</p>
+<p>If <strong>all paths are blocked</strong> between two variables on the DAG, then they are <strong>d-seperated</strong> (i.e.&nbsp;not associated / statistical independence).<a href="https://sgfin.github.io/2019/06/19/Causal-Inference-Book-All-DAGs/">[source]</a> Otherwise, they are <strong>d-connected</strong>.<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3733703/">[source]</a></p>
+<p>When identified here, these are structural sources of association. Another cause of association - beyond it being a causal relationship - is by chance. However, increasing our sample size, chance associations should disappear (whilst structural remain and become sharper). <a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+<p>Rules: 1. If there are <strong>no</strong> variables being conditioned on * A path is only <strong>blocked</strong> if it contains a <strong>collider</strong> * A path is <strong>open</strong> if it does not contain a collider</p>
+<ol start="2" type="1">
+<li><p>Path is <strong>blocked</strong> if it contains a <strong>non-collider</strong> that <strong>is</strong> conditioned on</p></li>
+<li><p>Path is <strong>open</strong> if <strong>collider is</strong> conditioned on</p></li>
+<li><p>Path is <strong>open</strong> if <strong>descendent</strong> of collider <strong>is</strong> conditioned on.<a href="https://sgfin.github.io/2019/06/19/Causal-Inference-Book-All-DAGs/">[source]</a></p></li>
+</ol>
+</section>
+<section id="examples-of-each-rule" class="level3" data-number="25.6.2">
+<h3 data-number="25.6.2" class="anchored" data-anchor-id="examples-of-each-rule"><span class="header-section-number">25.6.2</span> Examples of each rule</h3>
+<p>Rule 1: L to Y open</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    l("L"):::white;
+    a("A"):::white;
+    y("Y"):::white;
+
+    l --&gt; a;
+    a --&gt; y;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+    classDef outline fill:#FFFFFF
+    classDef green fill:#DDF2D1, stroke: #FFFFFF;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Rule 1: L to A blocked</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    l("L"):::white;
+    a("A"):::white;
+    y("Y"):::white;
+
+    l --&gt; y;
+    a --&gt; y;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+    classDef outline fill:#FFFFFF
+    classDef green fill:#DDF2D1, stroke: #FFFFFF;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Rule 2: A to Y blocked.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    a("A"):::white;
+    b("B"):::black;
+    y("Y"):::white;
+    
+    a --&gt; b; b--&gt; y;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Rule 3: A to Y open.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    a("A"):::white;
+    y("Y"):::white;
+    l("L"):::black;
+    
+    a --&gt; l; y--&gt; l;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Rule 4: A to Y open.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    a("A"):::white;
+    y("Y"):::white;
+    l("L"):::white
+    d("D"):::black;
+    
+    a --&gt; l; y--&gt; l; l --&gt; d;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="faithfulness" class="level2" data-number="25.7">
+<h2 data-number="25.7" class="anchored" data-anchor-id="faithfulness"><span class="header-section-number">25.7</span> Faithfulness</h2>
+<p>Faithfulness is the result of <strong>opposite effects of exactly equal magnitude</strong> - e.g.&nbsp;if aspirin caused stroke for half of poppulation and prevented it in the other half, then causal dag is correct (as aspirin affects stroke) but <strong>no association is observed (as they cancel each other out</strong>). In that case, we say the joint distribution of the data is not faithful to the causal DAG. These perfect cancellations are <strong>rare</strong> and we don’t expect them to happen in practice. <a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+</section>
+<section id="time-varying-treatments-and-confounders" class="level2" data-number="25.8">
+<h2 data-number="25.8" class="anchored" data-anchor-id="time-varying-treatments-and-confounders"><span class="header-section-number">25.8</span> Time-varying treatments and confounders</h2>
+<section id="what-is-a-time-varying-treatment" class="level3" data-number="25.8.1">
+<h3 data-number="25.8.1" class="anchored" data-anchor-id="what-is-a-time-varying-treatment"><span class="header-section-number">25.8.1</span> What is a time-varying treatment?</h3>
+<p>A <strong>time-varying treatment</strong> is treatment that can take different values over time - such as: * Whether or not receive medicine at each timepoint * Dose of medicine at each time point</p>
+<p>This is as opposed to <strong>fixed treatments</strong> that do not vary over time (e.g.&nbsp;whether took vitamin D at time of conception).</p>
+<p>We can represent this using two arbritary time points, K and K+1. Actual study includes many more weeks but for most purposes, two time points are enough to represent the main features of the causal structure when there is time varying treatment.</p>
+<p>You’ll notice that a consequence of the time-varying treatment is <strong>time-varying confounder and outcome</strong>. A confounder is time-varying when it can take different values at different timepoint, and confound at different timepoints.</p>
+<p>Example: EPO used to treat anemia, dose is based on haemoglobin level at time of appointment (which itself depends on disease severity, but we’ve just represented that as a single timepoint). To show that we have <strong>time-varying</strong> components, we refer to: * L and A at timepoint K (e.g.&nbsp;week 0) * Y, L and A at timepoint K+1 (e.g.&nbsp;week 1) * Y at timepoint K+2 (e.g.&nbsp;week 2)</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    ak("A&lt;sub&gt;K&lt;/sub&gt;: EPO dose"):::white;
+    ak1("A&lt;sub&gt;K+1&lt;/sub&gt;: EPO dose"):::white;
+    yk1("Y&lt;sub&gt;K+1&lt;/sub&gt;: Death"):::white;
+    yk2("Y&lt;sub&gt;K+2&lt;/sub&gt;: Death"):::white;
+    lk("L&lt;sub&gt;K&lt;/sub&gt;: Haemoglobin"):::white;
+    lk1("L&lt;sub&gt;K+1&lt;/sub&gt;: Haemoglobin"):::white;
+    u("U: Disease severity"):::white;
+
+    ak --&gt; yk1;
+    u --&gt; yk1;
+    u --&gt; lk;
+    lk --&gt; ak;
+    lk --&gt; ak1;
+    ak --&gt; ak1;
+    u --&gt; lk1;
+    lk1 --&gt; ak1;
+    ak1 --&gt; yk2;
+    u --&gt; yk2;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="treatment-confounder-feedback" class="level3" data-number="25.8.2">
+<h3 data-number="25.8.2" class="anchored" data-anchor-id="treatment-confounder-feedback"><span class="header-section-number">25.8.2</span> Treatment-confounder feedback</h3>
+<p>Our DAG above was incomplete - in this scenario, treatment at timepoint K will impact the confounder (levels of haemoglobin) at timepoint K+1. This is referred to as <strong>treatment-confounder feedback</strong> - when the later confounder is impacted by prior treatment.<a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a> This is also referred to as <strong>intermediate confounding</strong> - when a confoudner is affected by prior exposure/treatment status.<a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a></p>
+<p>When there is <strong>treatment-confounder feedback</strong>, then conventional adjustment methods, since: In other words: 1. Confounding on an intermediate confounder blocks part of the effect of prior exposure/treatment. 2. Conditioning on an intermediate confounder can introduce collider bias, opening additional back-door paths between exposure/treatment and outcome.<a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a> * e.g.&nbsp;We’ll get a biased estimate if we condition on the Ls, as conditioning on L<sub>K+1</sub> will open a path that was previously blocked: A<sub>K</sub> to L<sub>K+1</sub> to U to Y<sub>K</sub>. Hence, we have introduced selection bias.<a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+<p>This means we will be unable to yield an unbiased estimate and, if the time-varying confounder also affects the outcome (e.g.&nbsp;L<sub>K+1</sub> –&gt; Y<sub>K+2</sub>), it will be impossible to estimate the total effect of the treatment.<a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+<p>We need other methods to handle these settings: <strong>G-methods</strong>. <a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    ak("A&lt;sub&gt;K&lt;/sub&gt;: EPO dose"):::white;
+    ak1("A&lt;sub&gt;K+1&lt;/sub&gt;: EPO dose"):::white;
+    yk1("Y&lt;sub&gt;K+1&lt;/sub&gt;: Death"):::white;
+    yk2("Y&lt;sub&gt;K+2&lt;/sub&gt;: Death"):::white;
+    lk("L&lt;sub&gt;K&lt;/sub&gt;: Haemoglobin"):::black;
+    lk1("L&lt;sub&gt;K+1&lt;/sub&gt;: Haemoglobin"):::black;
+    u("U: Disease severity"):::white;
+
+    ak --&gt; yk1;
+    u --&gt; yk1;
+    u --&gt; lk;
+    lk --&gt; ak;
+    lk --&gt; ak1;
+    ak --&gt; ak1;
+    ak --&gt; lk1;
+    u --&gt; lk1;
+    lk1 --&gt; ak1;
+    ak1 --&gt; yk2;
+    u --&gt; yk2;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="presenting-results-from-causal-inference-studies" class="level2" data-number="25.9">
+<h2 data-number="25.9" class="anchored" data-anchor-id="presenting-results-from-causal-inference-studies"><span class="header-section-number">25.9</span> Presenting results from causal inference studies</h2>
+<p>‘Causal models are typically designed to test an association between a <strong>single exposure and an outcome</strong>. The additional independent variables in a model (often called “covariates”) <strong>serve to control for confounding</strong>. The observed associations between these covariates and the outcome have not been subject to the same approach to control of confounding as the exposure’ (i.e.&nbsp;they themselves have not been corrected for confounding - <em>and they shouldn’t and didn’t have to be</em>). ‘Therefore, <strong>residual confounding and other biases often heavily influence these associations</strong>.’</p>
+<p>‘This situation is known as “<strong>Table 2 fallacy</strong>,” a term arising from the practice of presenting effect estimates for all independent variables in “Table 2”.’ It is strongly recommended that these effect estimates are <strong>not presented</strong>.<a href="https://doi.org/10.1513/AnnalsATS.201808-564PS">[Lederer et al.&nbsp;2018]</a></p>
+<p>Hartig 2019 discusses how this may not be practical in some fields (they give example of ecology) where you rarely have a clear target variable/hypothesis, but suggest instead that’s important to explicitly state/seperate reasonablly controlled varaibles from possibly confounded variables.<a href="https://theoreticalecology.wordpress.com/2019/04/14/mediators-confounders-colliders-a-crash-course-in-causal-inference/">[source]</a></p>
+</section>
+<section id="minimal-set-of-covariates" class="level2" data-number="25.10">
+<h2 data-number="25.10" class="anchored" data-anchor-id="minimal-set-of-covariates"><span class="header-section-number">25.10</span> Minimal set of covariates</h2>
+<p>We want to identify a <strong>minimal set of covariates</strong> that: 1. Blocks all backdoor paths. 2. Doesn’t inadvertenly open closed pathways by conditioning on colliders or descendents. <a href="https://med.stanford.edu/content/dam/sm/s-spire/documents/WIP-DAGs_ATrickey_Final-2019-01-28.pdf">[source]</a></p>
+<p>With the example below, the minimal set of variables you’d need to condition for would be <strong>L0 and L1 - wouldn’t need to for U</strong> as doing for L0 and L1 blocks the backdoor paths.<a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    ak("A&lt;sub&gt;K&lt;/sub&gt;: EPO dose"):::white;
+    ak1("A&lt;sub&gt;K+1&lt;/sub&gt;: EPO dose"):::white;
+    yk1("Y&lt;sub&gt;K+1&lt;/sub&gt;: Death"):::white;
+    yk2("Y&lt;sub&gt;K+2&lt;/sub&gt;: Death"):::white;
+    lk("L&lt;sub&gt;K&lt;/sub&gt;: Haemoglobin"):::white;
+    lk1("L&lt;sub&gt;K+1&lt;/sub&gt;: Haemoglobin"):::white;
+    u("U: Disease severity"):::white;
+
+    ak --&gt; yk1;
+    u --&gt; yk1;
+    u --&gt; lk;
+    lk --&gt; ak;
+    lk --&gt; ak1;
+    ak --&gt; ak1;
+    u --&gt; lk1;
+    lk1 --&gt; ak1;
+    ak1 --&gt; yk2;
+    u --&gt; yk2;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="example-cases" class="level2" data-number="25.11">
+<h2 data-number="25.11" class="anchored" data-anchor-id="example-cases"><span class="header-section-number">25.11</span> Example cases</h2>
+<p>These examples help demonstrate the utility of causal diagrams.</p>
+<section id="example-oestrogen-and-endometrial-cancer" class="level3" data-number="25.11.1">
+<h3 data-number="25.11.1" class="anchored" data-anchor-id="example-oestrogen-and-endometrial-cancer"><span class="header-section-number">25.11.1</span> Example: Oestrogen and endometrial cancer</h3>
+<p>In 1970s, women began to receive oestrogren after menopause. Some studies in 1975/6 found that women receiving oestrogen had higher risk of diagnosis with endometrical cancer than women not receiving them. Why? Possibilities include… 1. Oestrogens cause cancer 2. Oestrogens can cause uterine bleeding, so women receive a uterine exam, during which the cancer (which is often silent, asymptomatic, and otherwise not diagnosed) is noticed and diagnosed - this phenomenon is called <strong>ascertainment bias</strong></p>
+<p>How do we decide which explanation is right?</p>
+<ul>
+<li>Yale researchers restricted the data analysis to women with uterine bleeding (regardless of whether they were on oestrogens), since they should all have the same likelihood of uterine exams and existing cancer being diagnosed. If there still an association, oestrogen causative.</li>
+<li>Boston researchers argued we would find association even in women who bleed and even if they don’t cause cancer, and so that this approach would still have ascertainment bias.</li>
+</ul>
+<p>Explanation one.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    a("A: Oestrogens"):::white;
+    u("U: Cancer (unmeasured)"):::white;
+    y("Y: Cancer (diagnosed)"):::white;
+
+    a --&gt; u;
+    u --&gt; y;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Explanation two.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    a("A: Oestrogens"):::white;
+    u("U: Cancer (unmeasured)"):::white;
+    y("Y: Cancer (diagnosed)"):::white;
+    c("C: Uterine bleeding"):::white;
+
+    a --&gt; c;
+    u --&gt; c;
+    c --&gt; y;
+    u --&gt; y;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Restrict analysis to women who bleed. If association still found, must be path of A –&gt; U –&gt; Y. Boston argued could still exist. * Conditioning on C blocks path A-C-Y * However, we still have path of A-C-U-Y, and C is collider on that path, so when condition on C, it becomes open (and conditioning on C is what we do when we restrict analysis to bleeders)</p>
+<p>So Boston were right.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    a("A: Oestrogens"):::white;
+    u("U: Cancer (unmeasured)"):::white;
+    y("Y: Cancer (diagnosed)"):::white;
+    c("C: Uterine bleeding"):::black;
+
+    a --&gt; c;
+    u --&gt; c;
+    c --&gt; y;
+    u --&gt; y;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>What can you do then? You can design study where C-Y doesn’t exist as you require all women to be screened for cancer frequently regardless of whether they bleed. If no association between A and Y, then we know there is no causal effect of A on U. If you still found association, then A must cause U.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    a("A: Oestrogens"):::white;
+    u("U: Cancer (unmeasured)"):::white;
+    y("Y: Cancer (diagnosed)"):::white;
+    c("C: Uterine bleeding"):::white;
+
+    a --&gt; c;
+    u --&gt; c;
+    u --&gt; y;
+
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+</section>
+<section id="example-hiv-and-art" class="level3" data-number="25.11.2">
+<h3 data-number="25.11.2" class="anchored" data-anchor-id="example-hiv-and-art"><span class="header-section-number">25.11.2</span> Example: HIV and ART</h3>
+<p>Randomised controlled trials of new antiretroviral therapy (ART) for HIV found it was effective and reduced morality by more than half.</p>
+<p>Observational of clinical data to look at real world effect of ART did not detect much benefit for new combination therapies - no increased survival among those taking ART. What was wrong with the studies?</p>
+<p>They were adjusting for lots of confounders - e.g.&nbsp;CD4 count - and yet could not eliminate the bias. Some people say there must be lots of unmeasured confounding. However, the more time-varying confounders were adjusted for, the more biased the effect estimate seemed to be. The problem was treatment-confounder feedback - the value of CD4 count was impacted by earlier treatment - in this case, the bias was in the opposite direction.</p>
+<p>There is a way to identify whether the bias is due to incomplete adjustment for confounding or for incorrect adjustment for time-varying confounders - and that is to use G-methods to adjust for the time-varying confounders. When they used G-methods, the effect estimates were much closer to the ARTs.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">  flowchart LR;
+
+    ak("A&lt;sub&gt;K&lt;/sub&gt;&lt;br&gt;ART"):::white;
+    
+    lk("L&lt;sub&gt;K&lt;/sub&gt;&lt;br&gt;CD4 count"):::black;
+    u("U&lt;br&gt;Immuno-suppression status"):::white;
+    yk1("Y&lt;sub&gt;K+1&lt;/sub&gt;&lt;br&gt;Mortality"):::white;
+    lk1("L&lt;sub&gt;K+1&lt;/sub&gt;&lt;br&gt;CD4 count"):::black;
+    ak1("A&lt;sub&gt;K+1&lt;/sub&gt;&lt;br&gt;ART"):::white;
+    yk2("Y&lt;sub&gt;K+2&lt;/sub&gt;&lt;br&gt;Mortality"):::white;
+    
+    lk --&gt; ak;
+    u --&gt; lk; 
+    u --&gt; yk1;
+    u --&gt; lk1;
+    lk1 --&gt; ak1;
+    u --&gt; yk2;
+    ak --&gt; lk1;
+    
+    classDef white fill:#FFFFFF, stroke:#FFFFFF
+    classDef black fill:#FFFFFF, stroke:#000000
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../content/causal_concepts/2_intro_to_causality.html" class="pagination-link" aria-label="The three &quot;languages&quot; of causal inference">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../content/causal_concepts/4_assumptions.html" class="pagination-link" aria-label="Assumptions">
+        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Assumptions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
