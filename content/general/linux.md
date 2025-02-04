@@ -25,3 +25,11 @@ Remove the `.deb` file.
 ```
 sudo rm google-chrome-stable_current_amd64.deb
 ```
+
+## Upgrade quarto
+
+Install the `.deb` file, then run e.g....
+
+```
+sudo dpkg -i quarto-1.6.40-linux-amd64.deb
+```
