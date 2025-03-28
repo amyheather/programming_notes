@@ -1,5 +1,62 @@
 # General Python Stuff
 
+## Weird data classes
+
+This will work, as it recognises them as parameters when you type hint:
+
+```
+@dataclass
+class ASUArrivals:
+    stroke: float = 1.2
+    tia: float = 9.3
+    neuro: float = 3.6
+    other: float = 3.2
+
+ASUArrivals(stroke=4)
+```
+
+But without, it recognises them as class attributes, and so won't work:
+
+```
+@dataclass
+class ASUArrivals:
+    stroke = 1.2
+    tia = 9.3
+    neuro = 3.6
+    other = 3.2
+
+ASUArrivals(stroke=4)
+
+--> TypeError: ASUArrivals.__init__() got an unexpected keyword argument 'stroke'
+```
+
+It doesn't do any validation with the type hints - you can say int, but it doesn't care if you use int, for example.
+
+```
+@dataclass
+class ASUArrivals:
+    stroke: int = 1.2
+    tia: float = 9.3
+    neuro: float = 3.6
+    other: float = 3.2
+
+ASUArrivals(stroke=4.3)
+```
+
+If you miss type hints for any of them, they just get dropped from the class entirely
+
+```
+@dataclass
+class ASUArrivals:
+    stroke: float = 1.2
+    tia = 9.3
+    neuro: float = 3.6
+    other: float = 3.2
+
+ASUArrivals()
+--> ASUArrivals(stroke=1.2, neuro=3.6, other=3.2)
+```
+
 ## Jupyter notebook merge conflicts
 
 ```
