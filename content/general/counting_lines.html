@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>38&nbsp; G-estimation of structural nested models – Programming notes</title>
+<title>4&nbsp; Counting lines – Programming notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/causal_methods/c1_instrumental_variable.html" rel="next">
-<link href="../../content/causal_methods/b2_gcomputation.html" rel="prev">
+<link href="../../content/general/latex.html" rel="next">
+<link href="../../content/general/git.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -100,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_methods/summary.html">Causal methods</a></li><li class="breadcrumb-item"><a href="../../content/causal_methods/b3_gestimation.html"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/general/linux.html">General</a></li><li class="breadcrumb-item"><a href="../../content/general/counting_lines.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Counting lines</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -141,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/general/counting_lines.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/counting_lines.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Counting lines</span></span></a>
   </div>
 </li>
@@ -400,7 +435,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
   </div>
 </li>
@@ -441,21 +476,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#g-computation-iptw" id="toc-g-computation-iptw" class="nav-link active" data-scroll-target="#g-computation-iptw"><span class="header-section-number">38.1</span> G-computation + IPTW</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_methods/summary.html">Causal methods</a></li><li class="breadcrumb-item"><a href="../../content/causal_methods/b3_gestimation.html"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/general/linux.html">General</a></li><li class="breadcrumb-item"><a href="../../content/general/counting_lines.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Counting lines</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Counting lines</span></h1>
 </div>
 
 
@@ -472,25 +501,195 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>‘<strong>G-estimation</strong> refers to the method of estimating the parameter(s) (see below) and does not specify the model. Most implementations of g-estimation are for <strong>structural nested models</strong>.’ G-estimation of structural nested models (SNM) is a method first proposed by Robins (1986). It’s applications include: * Adjusting for time-varying confounded affected by prior exposure/treatment (treatment-confounder feedback) * Mediation analysis (when exposure affects a confounder of the mediator-outcome relationship) <a href="https://doi.org/10.1007/s40471-016-0081-9">[Picciotto and Neophytou 2016]</a></p>
-<p><strong>Description of method:</strong> ‘G-estimation of structural nested models (SNM) predicts the counterfactual outcome at each time point given no exposure from that point onwards, conditional on prior values of the exposure and confounders.’ <a href="https://doi.org/10.1136/jech-2022-219267">[Igelström et al.&nbsp;2022]</a> In other words, ‘these models control for time-varying confounding affected by previous treatment (exposure) by modeling the outcome at each time as a function of the treatment and covariate history up to that time’. <a href="https://doi.org/10.1093/ndt/gfw341">[Williamson and Ravani 2017]</a> The models are “nested” as we conceptualise the longitudinal data as a nested series of trials. In this approach: 1. <strong>Analyse last trial</strong> first. We adjust for past exposures and covariates. 2. Once the relationship between that exposure and the outcome is understood, the method analytically “removes” the effect of that final exposure from the outcome. This process is repeated at each time point m, for m taking every value down to the beginning of follow-up, after “intervening” to <strong>remove exposures occurring at all later time points.</strong> 3. At the end, the counterfactual outcome has been estimated for each individual under a regimen of being always unexposed/untreated, as a function of observed variables and the unknown parameter’ <a href="https://doi.org/10.1007/s40471-016-0081-9">[Picciotto and Neophytou 2016]</a></p>
-<p><strong>Estimation of the parameters using G-estimation</strong>: ‘In applications, the process entails a grid search or optimization algorithm in which hypothetical values for the parameter are used to calculate candidate values for counterfactual outcomes for each individual under no exposure/treatment. Unlike, for example, a maximum likelihood estimation procedure, g-estimation directly leverages the assumption of conditional exchangeability by determining which set of candidate counterfactual outcomes is statistically independent of observed exposures, conditional on previously measured covariates and treatments/exposures. This can be done by including the candidate counterfactual outcome along with earlier covariates and exposures in a model predicting observed exposure and checking whether the coefficient for the candidate counterfactual outcome is zero. The parameter value that was used to calculate that set of candidate counterfactual outcomes is the g-estimate’ <a href="https://doi.org/10.1007/s40471-016-0081-9">[Picciotto and Neophytou 2016]</a></p>
-<p>Diagram from <a href="https://doi.org/10.1007/s40471-016-0081-9">Picciotto and Neophytou 2016</a>:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/snm.png" class="img-fluid figure-img"></p>
-<figcaption>Structural nested modelling</figcaption>
-</figure>
-</div>
-<p><strong>Assumptions:</strong> * Consistency - true if treatment is well-defined or various versions of treatment have equivalent effects * Conditional exchangeability (“no unmeasured confounders”) * Correct specification of models * No interference (“stable unit treatment value assumption”) * Does not require the positive assumption <a href="https://doi.org/10.1007/s40471-016-0081-9">[Picciotto and Neophytou 2016]</a></p>
-<p><strong>Classes of structural nested models</strong>: * <strong>Structural Nested Mean Models</strong> - studies ‘the change (difference or ratio) in the mean of an outcome that is a continuous variable (e.g., a biomarker) as a function of time-varying treatment or exposure, conditional on observed history of covariates’ * <strong>Structural Nested Cumulative Failure Time Models</strong> - ‘outcome under study is the risk of a failure event at each time point, not just at the end of follow-up’ * <strong>Structural Nested Accelerated Failure Time Models</strong> - ‘Rather than the risk of outcome at each time point, this class of models considers length of survival time as the outcome; time to event can be accelerated or delayed by exposure. Furthermore, instead of the change in counterfactual outcome due to a change in exposure, structural nested accelerated failure time models (SNAFTMs) model the counterfactual outcome itself: (median) counterfactual survival time if unexposed is modeled as a function of observed variables’ <a href="https://doi.org/10.1007/s40471-016-0081-9">[Picciotto and Neophytou 2016]</a></p>
-<p><strong>Variations:</strong> * Optimal Dynamic Treatment Regimen * Double Robustness <a href="https://doi.org/10.1007/s40471-016-0081-9">[Picciotto and Neophytou 2016]</a></p>
-<section id="g-computation-iptw" class="level2" data-number="38.1">
-<h2 data-number="38.1" class="anchored" data-anchor-id="g-computation-iptw"><span class="header-section-number">38.1</span> G-computation + IPTW</h2>
-<p>‘Some authors have proposed combinations of G-computation and propensity scores to improve the estimation of the marginal causal effect. These methods are known as doubly robust estimators (DRE) because they require the specification of both the outcome (for GC) and treatment allocation (for PS) mechanisms to minimise the impact of model misspecification’. <a href="https://doi.org/10.1038/s41598-020-65917-x">[Chatton et al.&nbsp;2020]</a></p>
+<p>Script to count lines of code - run with <code>bash count_reproduction_lines.sh</code>…</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install cloc if not already on machine</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g. sudo apt-get install cloc</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># This script assumes copies of these folders are stored in the current folder</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># List of repository folders</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">repos</span><span class="op">=</span><span class="va">(</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  stars-reproduce-shoaib-2022</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  stars-reproduce-huang-2019</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  stars-reproduce-lim-2020</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  stars-reproduce-kim-2021</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  stars-reproduce-anagnostou-2022</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  stars-reproduce-johnson-2021</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  stars-reproduce-hernandez-2015</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  stars-reproduce-wood-2021</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="va">)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Output files</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="va">orig_output</span><span class="op">=</span><span class="st">"cloc_original_studies.txt"</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="va">repro_output</span><span class="op">=</span><span class="st">"cloc_reproductions.txt"</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Empty the output files if they exist</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="st">"</span><span class="va">$orig_output</span><span class="st">"</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="st">"</span><span class="va">$repro_output</span><span class="st">"</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> repo <span class="kw">in</span> <span class="st">"</span><span class="va">${repos</span><span class="op">[@]</span><span class="va">}</span><span class="st">"</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Original study</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"</span><span class="va">$repo</span><span class="st">"</span> <span class="op">&gt;&gt;</span> <span class="st">"</span><span class="va">$orig_output</span><span class="st">"</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="ex">cloc</span> <span class="st">"</span><span class="va">$repo</span><span class="st">/original_study"</span> <span class="op">&gt;&gt;</span> <span class="st">"</span><span class="va">$orig_output</span><span class="st">"</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">""</span> <span class="op">&gt;&gt;</span> <span class="st">"</span><span class="va">$orig_output</span><span class="st">"</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Reproduction</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"</span><span class="va">$repo</span><span class="st">"</span> <span class="op">&gt;&gt;</span> <span class="st">"</span><span class="va">$repro_output</span><span class="st">"</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="ex">cloc</span> <span class="st">"</span><span class="va">$repo</span><span class="st">/reproduction"</span> <span class="op">&gt;&gt;</span> <span class="st">"</span><span class="va">$repro_output</span><span class="st">"</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">""</span> <span class="op">&gt;&gt;</span> <span class="st">"</span><span class="va">$repro_output</span><span class="st">"</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Example output…</p>
+<pre><code>stars-reproduce-shoaib-2022
+github.com/AlDanial/cloc v 1.98  T=0.02 s (1341.8 files/s, 557050.6 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Python                           4            220            342           1487
+Jupyter Notebook                 8              0           7978            860
+Markdown                         2             73              9            132
+CSV                             10              0              0             39
+YAML                             1              0              0             22
+Bourne Shell                     1              3              6             11
+Dockerfile                       1              8             10              9
+-------------------------------------------------------------------------------
+SUM:                            27            304           8345           2560
+-------------------------------------------------------------------------------
+stars-reproduce-huang-2019
+github.com/AlDanial/cloc v 1.98  T=0.04 s (2818.8 files/s, 324900.0 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+HTML                            13            404             23           5089
+R                               15            746            485           1884
+Markdown                         3            642              0           1439
+CSV                             31              0              0            569
+YAML                             1             45              0            320
+CSS                              1             24              0            106
+Rmd                             11            486           1217             80
+JSON                            38              0              0             74
+Dockerfile                       1              9             14             28
+Bourne Shell                     2              4              0             11
+DOS Batch                        2              5              0             11
+SVG                              1              0              0              1
+-------------------------------------------------------------------------------
+SUM:                           119           2365           1739           9612
+-------------------------------------------------------------------------------
+stars-reproduce-lim-2020
+github.com/AlDanial/cloc v 1.98  T=0.04 s (568.7 files/s, 1005060.2 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+CSV                             14              0              0          34214
+Jupyter Notebook                 1              0           1791            498
+Python                           3             63            177            176
+Markdown                         1             54              0             96
+Dockerfile                       1              9             11             15
+YAML                             1              0              0             12
+-------------------------------------------------------------------------------
+SUM:                            21            126           1979          35011
+-------------------------------------------------------------------------------
+stars-reproduce-kim-2021
+github.com/AlDanial/cloc v 1.98  T=0.05 s (3184.0 files/s, 494794.3 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+R                               27           1740           1652           8039
+HTML                            13            404             23           5089
+CSV                             60              5              0           1683
+Markdown                         2            583              4           1314
+Rmd                             12            616           1467            377
+YAML                             1             45              0            320
+CSS                              1             24              0            106
+JSON                            30              0              0             48
+Dockerfile                       1              9             12             29
+Bourne Shell                     2              4              0             11
+DOS Batch                        2              5              0             11
+SVG                              1              0              0              1
+-------------------------------------------------------------------------------
+SUM:                           152           3435           3158          17028
+-------------------------------------------------------------------------------
+stars-reproduce-anagnostou-2022
+github.com/AlDanial/cloc v 1.98  T=0.01 s (1388.7 files/s, 188533.7 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Python                           9            282            439            916
+Markdown                         1             48              0             88
+Jupyter Notebook                 1              0            380             79
+CSV                              4              0              0             36
+YAML                             1              0              0             13
+Dockerfile                       1              8             10              9
+-------------------------------------------------------------------------------
+SUM:                            17            338            829           1141
+-------------------------------------------------------------------------------
+stars-reproduce-johnson-2021
+github.com/AlDanial/cloc v 1.98  T=0.15 s (2030.0 files/s, 585056.1 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+CSV                            163             17              0          34817
+Rmd                             29           5999           4515          17220
+Markdown                        21           2568              0           6140
+HTML                            19            404             23           5859
+R                               30           1882            891           4636
+C++                              2            915            413           2978
+YAML                             2             46              1            323
+CSS                              1             24              0            106
+JSON                            39              0              0             57
+Dockerfile                       1              9             14             30
+Bourne Shell                     2              4              0             11
+DOS Batch                        2              5              0             11
+SVG                              1              0              0              1
+-------------------------------------------------------------------------------
+SUM:                           312          11873           5857          72189
+-------------------------------------------------------------------------------
+stars-reproduce-hernandez-2015
+github.com/AlDanial/cloc v 1.98  T=0.04 s (2701.0 files/s, 416118.8 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+HTML                            13            404             23           5089
+Text                            38              0              0           2361
+Python                          23            509            793           1730
+R                               11            669            368           1575
+Markdown                         3            598              0           1343
+YAML                             2             45              0            335
+Rmd                             12            568           1337            211
+CSV                              6              5              0            129
+CSS                              1             24              0            106
+Dockerfile                       1              7              8             42
+JSON                             4              0              0             22
+Bourne Shell                     2              4              0             11
+DOS Batch                        2              5              0             11
+SVG                              1              0              0              1
+-------------------------------------------------------------------------------
+SUM:                           119           2838           2529          12966
+-------------------------------------------------------------------------------
+stars-reproduce-wood-2021
+github.com/AlDanial/cloc v 1.98  T=0.23 s (418.8 files/s, 901826.0 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+CSV                             25              0              0         195648
+HTML                            13            404             23           5089
+R                               17            784            441           2215
+Markdown                         2            579              0           1297
+YAML                             1             45              0            320
+CSS                              1             24              0            106
+Rmd                             11            486           1217             80
+Dockerfile                       1              9             14             29
+Text                            20              0              0             20
+JSON                             1              0              0             19
+Bourne Shell                     2              4              0             11
+DOS Batch                        2              5              0             11
+SVG                              1              0              0              1
+-------------------------------------------------------------------------------
+SUM:                            97           2340           1695         204846
+-------------------------------------------------------------------------------</code></pre>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -894,13 +1093,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/causal_methods/b2_gcomputation.html" class="pagination-link" aria-label="G-computation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G-computation</span></span>
+      <a href="../../content/general/git.html" class="pagination-link" aria-label="Git">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/causal_methods/c1_instrumental_variable.html" class="pagination-link" aria-label="Instrumental variables">
-        <span class="nav-page-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/general/latex.html" class="pagination-link" aria-label="Latex">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Latex</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
