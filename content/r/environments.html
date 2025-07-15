@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -38,10 +73,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6e4858b4921ffe5a9c7d897cee0e5447.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-5fd9db47a040b21ac2cac9a0b3b722ba.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -446,10 +481,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#how-to-set-up-renv-for-reproducible-research" id="toc-how-to-set-up-renv-for-reproducible-research" class="nav-link active" data-scroll-target="#how-to-set-up-renv-for-reproducible-research"><span class="header-section-number">21.1</span> How to set-up renv for reproducible research</a></li>
-  <li><a href="#basic-renv-commands" id="toc-basic-renv-commands" class="nav-link" data-scroll-target="#basic-renv-commands"><span class="header-section-number">21.2</span> Basic renv commands</a></li>
-  <li><a href="#binder" id="toc-binder" class="nav-link" data-scroll-target="#binder"><span class="header-section-number">21.3</span> Binder</a></li>
-  <li><a href="#a-few-other-options" id="toc-a-few-other-options" class="nav-link" data-scroll-target="#a-few-other-options"><span class="header-section-number">21.4</span> A few other options…</a></li>
+  <li><a href="#manual-r-installation-and-symbolic-links" id="toc-manual-r-installation-and-symbolic-links" class="nav-link active" data-scroll-target="#manual-r-installation-and-symbolic-links"><span class="header-section-number">21.1</span> Manual R installation and symbolic links</a></li>
+  <li><a href="#general-stuff" id="toc-general-stuff" class="nav-link" data-scroll-target="#general-stuff"><span class="header-section-number">21.2</span> General stuff</a></li>
+  <li><a href="#how-to-set-up-renv-for-reproducible-research" id="toc-how-to-set-up-renv-for-reproducible-research" class="nav-link" data-scroll-target="#how-to-set-up-renv-for-reproducible-research"><span class="header-section-number">21.3</span> How to set-up renv for reproducible research</a></li>
+  <li><a href="#basic-renv-commands" id="toc-basic-renv-commands" class="nav-link" data-scroll-target="#basic-renv-commands"><span class="header-section-number">21.4</span> Basic renv commands</a></li>
+  <li><a href="#binder" id="toc-binder" class="nav-link" data-scroll-target="#binder"><span class="header-section-number">21.5</span> Binder</a></li>
+  <li><a href="#a-few-other-options" id="toc-a-few-other-options" class="nav-link" data-scroll-target="#a-few-other-options"><span class="header-section-number">21.6</span> A few other options…</a></li>
   </ul>
 </nav>
     </div>
@@ -475,6 +512,39 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="manual-r-installation-and-symbolic-links" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="manual-r-installation-and-symbolic-links"><span class="header-section-number">21.1</span> Manual R installation and symbolic links</h2>
+<p>These are additional instructions on how to manually switch R versions on Linux.</p>
+<p><strong>Installation</strong></p>
+<p>Following instructions from <a href="https://github.com/rstudio/r-builds">r-builds</a>, we first specify the version of R that you want to install (<a href="https://cdn.posit.co/r/versions.json">see available versions</a>).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">R_VERSION</span><span class="op">=</span>4.5.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Download the <code>.deb</code> package (modifying the url depending on your system - <code>ubuntu-2004</code>, <code>ubuntu-2204</code>, <code>ubuntu2404</code>, <code>debian-12</code>).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://cdn.posit.co/r/ubuntu-2204/pkgs/r-<span class="va">${R_VERSION}</span>_1_amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Install the package:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi r-<span class="va">${R_VERSION}</span>_1_amd64.deb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>View installed R versions:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /opt/R/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Switching between versions</strong></p>
+<p>To set the default R version for RStudio and the terminal, you can create symbolic links in <code>/usr/local/bin</code> pointing to the desired version under <code>/opt/R</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> ln <span class="at">-s</span> /opt/R/<span class="va">${R_VERSION}</span>/bin/R /usr/local/bin/R </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> ln <span class="at">-s</span> /opt/R/<span class="va">${R_VERSION}</span>/bin/Rscript /usr/local/bin/Rscript</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, a better approach is to use <strong>update-alternatives</strong>. You have to register <code>R</code> and <code>Rscript</code> for each version of R - for example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--install</span> /usr/local/bin/R R /opt/R/3.6.0/bin/R 360</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--install</span> /usr/local/bin/Rscript Rscript /opt/R/3.6.0/bin/Rscript 360</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--install</span> /usr/local/bin/R R /opt/R/4.4.1/bin/R 441</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--install</span> /usr/local/bin/Rscript Rscript /opt/R/4.4.1/bin/Rscript 441</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--install</span> /usr/local/bin/R R /opt/R/4.5.0/bin/R 450</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--install</span> /usr/local/bin/Rscript Rscript /opt/R/4.5.0/bin/Rscript 450</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then run the following commands to switch versions interactively - you’ll be prompted to select which version of R to use.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--config</span> R</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-alternatives <span class="at">--config</span> Rscript</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When you open RStudio, you should find it has switched to the version of R you chose.</p>
+<p>However, if using different versions of R between projects, you will need to change this before opening RStudio for each project.</p>
+</section>
+<section id="general-stuff" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="general-stuff"><span class="header-section-number">21.2</span> General stuff</h2>
 <p>Can use gnome-box to run a new system.</p>
 <p>CRAN won’t let you use old versions of packages.</p>
 <p>People like R because they can just use one R environment and everything works in that latest environment. General recommendation is just to use the latest stuff</p>
@@ -580,8 +650,9 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li>versions</li>
 </ul>
-<section id="how-to-set-up-renv-for-reproducible-research" class="level2" data-number="21.1">
-<h2 data-number="21.1" class="anchored" data-anchor-id="how-to-set-up-renv-for-reproducible-research"><span class="header-section-number">21.1</span> How to set-up renv for reproducible research</h2>
+</section>
+<section id="how-to-set-up-renv-for-reproducible-research" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="how-to-set-up-renv-for-reproducible-research"><span class="header-section-number">21.3</span> How to set-up renv for reproducible research</h2>
 <p>Create <code>DESCRIPTION</code> file e.g.</p>
 <pre><code>Title: quarto_huang_2019
 Depends: 
@@ -603,14 +674,14 @@ Imports:
 </ul>
 <p>The error was due to how those versions are formatted on CRAN, as you can see on the <a href="https://cran.r-project.org/src/contrib/Archive/tiff/">tiff archive</a>.</p>
 </section>
-<section id="basic-renv-commands" class="level2" data-number="21.2">
-<h2 data-number="21.2" class="anchored" data-anchor-id="basic-renv-commands"><span class="header-section-number">21.2</span> Basic renv commands</h2>
+<section id="basic-renv-commands" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="basic-renv-commands"><span class="header-section-number">21.4</span> Basic renv commands</h2>
 <p>To start new project environment, creating .RProfile: <code>renv::init()</code><br>
 To save state of project library to lockfile renv.lock: <code>renv::snapshot()</code><br>
 To return to environment in lockfile: <code>renv::restore()</code></p>
 </section>
-<section id="binder" class="level2" data-number="21.3">
-<h2 data-number="21.3" class="anchored" data-anchor-id="binder"><span class="header-section-number">21.3</span> Binder</h2>
+<section id="binder" class="level2" data-number="21.5">
+<h2 data-number="21.5" class="anchored" data-anchor-id="binder"><span class="header-section-number">21.5</span> Binder</h2>
 <p>Created using instructions from <a href="https://ajstewartlang.github.io/23_introduction_to_binder/slides/23_introduction_to_binder.pdf">here</a> and <a href="https://github.com/binder-examples/r">here</a>.</p>
 <ol type="1">
 <li>Create runtime.txt file with R version<br>
@@ -620,8 +691,8 @@ To return to environment in lockfile: <code>renv::restore()</code></p>
 <li>Navigate to https://mybinder.org/, paste in GitHub repository, set to “URL to open (optional)” and type in “rstudio”, then launch</li>
 </ol>
 </section>
-<section id="a-few-other-options" class="level2" data-number="21.4">
-<h2 data-number="21.4" class="anchored" data-anchor-id="a-few-other-options"><span class="header-section-number">21.4</span> A few other options…</h2>
+<section id="a-few-other-options" class="level2" data-number="21.6">
+<h2 data-number="21.6" class="anchored" data-anchor-id="a-few-other-options"><span class="header-section-number">21.6</span> A few other options…</h2>
 <ul>
 <li><strong>Posit Public Package Manager</strong>- can use Snapshot (earliest is Oct 2017, and 5 most recent versions of R), for Linux can install binary packages (which is much quicker, as usually R installs from source rather than binary unlike for Windows and Mac which makes it really slow) - <a href="https://packagemanager.posit.co/client/#/repos/cran/setup">source 1</a>, <a href="https://docs.posit.co/faq/p3m-faq/#frequently-asked-questions">source 2</a></li>
 <li><strong>Groundhog</strong> - can go back to R 3.2 and April 2015 (and apparently can patch to go earlier) - <a href="https://www.brodrigues.co/blog/2023-01-12-repro_r/">source 1</a></li>
