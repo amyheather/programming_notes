@@ -1,5 +1,70 @@
 # Dependency management in R
 
+## Manual R installation and symbolic links
+
+These are additional instructions on how to manually switch R versions on Linux.
+
+**Installation**
+
+Following instructions from [r-builds](https://github.com/rstudio/r-builds), we first specify the version of R that you want to install ([see available versions](https://cdn.posit.co/r/versions.json)).
+
+```{.bash}
+R_VERSION=4.5.0
+```
+
+Download the `.deb` package (modifying the url depending on your system - `ubuntu-2004`, `ubuntu-2204`, `ubuntu2404`, `debian-12`).
+
+```{.bash}
+curl -O https://cdn.posit.co/r/ubuntu-2204/pkgs/r-${R_VERSION}_1_amd64.deb
+```
+
+Install the package:
+
+```{.bash}
+sudo gdebi r-${R_VERSION}_1_amd64.deb
+```
+
+View installed R versions:
+
+```{.bash}
+ls /opt/R/
+```
+
+**Switching between versions**
+
+To set the default R version for RStudio and the terminal, you can create symbolic links in `/usr/local/bin` pointing to the desired version under `/opt/R`.
+
+```{.bash}
+sudo ln -s /opt/R/${R_VERSION}/bin/R /usr/local/bin/R 
+sudo ln -s /opt/R/${R_VERSION}/bin/Rscript /usr/local/bin/Rscript
+```
+
+However, a better approach is to use **update-alternatives**. You have to register `R` and `Rscript` for each version of R - for example:
+
+```{.bash}
+sudo update-alternatives --install /usr/local/bin/R R /opt/R/3.6.0/bin/R 360
+sudo update-alternatives --install /usr/local/bin/Rscript Rscript /opt/R/3.6.0/bin/Rscript 360
+
+sudo update-alternatives --install /usr/local/bin/R R /opt/R/4.4.1/bin/R 441
+sudo update-alternatives --install /usr/local/bin/Rscript Rscript /opt/R/4.4.1/bin/Rscript 441
+
+sudo update-alternatives --install /usr/local/bin/R R /opt/R/4.5.0/bin/R 450
+sudo update-alternatives --install /usr/local/bin/Rscript Rscript /opt/R/4.5.0/bin/Rscript 450
+```
+
+Then run the following commands to switch versions interactively - you'll be prompted to select which version of R to use.
+
+```{.bash}
+sudo update-alternatives --config R
+sudo update-alternatives --config Rscript
+```
+
+When you open RStudio, you should find it has switched to the version of R you chose.
+
+However, if using different versions of R between projects, you will need to change this before opening RStudio for each project.
+
+## General stuff
+
 Can use gnome-box to run a new system.
 
 CRAN won't let you use old versions of packages.
