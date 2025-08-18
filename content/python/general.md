@@ -1,5 +1,60 @@
 # General Python Stuff
 
+## Package on conda for the first time
+
+1. Navigate to the `staged-recipes` repository folder (which you should have cloned onto your machine), and move into the `recipes` folder.
+
+```{.bash}
+staged-recipes
+➜ cd recipes
+```
+
+2. Switch over to the `lintquarto` branch.
+
+```{.bash}
+git checkout lintquarto
+```
+
+3. Use `grayskull` to update the recipe (`lintquarto/meta.yaml`). It will pull the metadata about the package from PyPI, and will not use your local installation of the package.
+
+```{.bash}
+grayskull pypi lintquarto
+```
+
+4. Fix the `meta.yaml` file. There are two changes to make...
+
+Add the `home` element within `about`.
+
+```{.bash}
+home: https://lintquarto.github.io/lintquarto/
+```
+
+Update the python version requirements syntax as per the [conda-forge documentation](https://conda-forge.org/docs/maintainer/knowledge_base/#noarch-python), using `python_min` for `host` (fixed version), `run` (minimum version) and `requires` (fixed version).
+
+**Note:** Don't need to set the `python_min` anywhere unless it differs from conda default (currently 3.7).
+
+```{.bash}
+  host:
+    - python {{ python_min }}
+
+...
+
+  run:
+    - python >={{ python_min }}
+
+...
+
+  requires:
+    - python {{ python_min }}
+
+```
+
+5. Create a pull request to merge `lintquarto:lintquarto` into `conda-forge:main` ([as compared here](https://github.com/conda-forge/staged-recipes/compare/main...lintquarto:staged-recipes:lintquarto)).
+
+You will need to complete the checklist template in the pull request.
+
+CI actions will then run and test the package build. 
+
 ## Weird data classes
 
 This will work, as it recognises them as parameters when you type hint:
