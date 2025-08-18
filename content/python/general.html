@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -38,10 +73,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-5fd9db47a040b21ac2cac9a0b3b722ba.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e8de9bd59ba156b9e4cb33cd6f01d621.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -446,20 +481,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#weird-data-classes" id="toc-weird-data-classes" class="nav-link active" data-scroll-target="#weird-data-classes"><span class="header-section-number">11.1</span> Weird data classes</a></li>
-  <li><a href="#jupyter-notebook-merge-conflicts" id="toc-jupyter-notebook-merge-conflicts" class="nav-link" data-scroll-target="#jupyter-notebook-merge-conflicts"><span class="header-section-number">11.2</span> Jupyter notebook merge conflicts</a></li>
-  <li><a href="#using-vs-code" id="toc-using-vs-code" class="nav-link" data-scroll-target="#using-vs-code"><span class="header-section-number">11.3</span> Using VS Code</a></li>
-  <li><a href="#type-hinting-in-vs-code-with-pylance" id="toc-type-hinting-in-vs-code-with-pylance" class="nav-link" data-scroll-target="#type-hinting-in-vs-code-with-pylance"><span class="header-section-number">11.4</span> Type hinting in VS Code with Pylance</a></li>
-  <li><a href="#violin-plot" id="toc-violin-plot" class="nav-link" data-scroll-target="#violin-plot"><span class="header-section-number">11.5</span> Violin plot</a></li>
-  <li><a href="#jupyter-lab" id="toc-jupyter-lab" class="nav-link" data-scroll-target="#jupyter-lab"><span class="header-section-number">11.6</span> Jupyter lab</a></li>
-  <li><a href="#comparing-two-dataframes" id="toc-comparing-two-dataframes" class="nav-link" data-scroll-target="#comparing-two-dataframes"><span class="header-section-number">11.7</span> Comparing two dataframes</a></li>
-  <li><a href="#linting" id="toc-linting" class="nav-link" data-scroll-target="#linting"><span class="header-section-number">11.8</span> Linting</a></li>
-  <li><a href="#compare-dataframes" id="toc-compare-dataframes" class="nav-link" data-scroll-target="#compare-dataframes"><span class="header-section-number">11.9</span> Compare dataframes</a></li>
-  <li><a href="#package" id="toc-package" class="nav-link" data-scroll-target="#package"><span class="header-section-number">11.10</span> Package</a></li>
-  <li><a href="#unit-testing" id="toc-unit-testing" class="nav-link" data-scroll-target="#unit-testing"><span class="header-section-number">11.11</span> Unit testing</a></li>
-  <li><a href="#colour-scales" id="toc-colour-scales" class="nav-link" data-scroll-target="#colour-scales"><span class="header-section-number">11.12</span> Colour scales</a>
+  <li><a href="#package-on-conda-for-the-first-time" id="toc-package-on-conda-for-the-first-time" class="nav-link active" data-scroll-target="#package-on-conda-for-the-first-time"><span class="header-section-number">11.1</span> Package on conda for the first time</a></li>
+  <li><a href="#weird-data-classes" id="toc-weird-data-classes" class="nav-link" data-scroll-target="#weird-data-classes"><span class="header-section-number">11.2</span> Weird data classes</a></li>
+  <li><a href="#jupyter-notebook-merge-conflicts" id="toc-jupyter-notebook-merge-conflicts" class="nav-link" data-scroll-target="#jupyter-notebook-merge-conflicts"><span class="header-section-number">11.3</span> Jupyter notebook merge conflicts</a></li>
+  <li><a href="#using-vs-code" id="toc-using-vs-code" class="nav-link" data-scroll-target="#using-vs-code"><span class="header-section-number">11.4</span> Using VS Code</a></li>
+  <li><a href="#type-hinting-in-vs-code-with-pylance" id="toc-type-hinting-in-vs-code-with-pylance" class="nav-link" data-scroll-target="#type-hinting-in-vs-code-with-pylance"><span class="header-section-number">11.5</span> Type hinting in VS Code with Pylance</a></li>
+  <li><a href="#violin-plot" id="toc-violin-plot" class="nav-link" data-scroll-target="#violin-plot"><span class="header-section-number">11.6</span> Violin plot</a></li>
+  <li><a href="#jupyter-lab" id="toc-jupyter-lab" class="nav-link" data-scroll-target="#jupyter-lab"><span class="header-section-number">11.7</span> Jupyter lab</a></li>
+  <li><a href="#comparing-two-dataframes" id="toc-comparing-two-dataframes" class="nav-link" data-scroll-target="#comparing-two-dataframes"><span class="header-section-number">11.8</span> Comparing two dataframes</a></li>
+  <li><a href="#linting" id="toc-linting" class="nav-link" data-scroll-target="#linting"><span class="header-section-number">11.9</span> Linting</a></li>
+  <li><a href="#compare-dataframes" id="toc-compare-dataframes" class="nav-link" data-scroll-target="#compare-dataframes"><span class="header-section-number">11.10</span> Compare dataframes</a></li>
+  <li><a href="#package" id="toc-package" class="nav-link" data-scroll-target="#package"><span class="header-section-number">11.11</span> Package</a></li>
+  <li><a href="#unit-testing" id="toc-unit-testing" class="nav-link" data-scroll-target="#unit-testing"><span class="header-section-number">11.12</span> Unit testing</a></li>
+  <li><a href="#colour-scales" id="toc-colour-scales" class="nav-link" data-scroll-target="#colour-scales"><span class="header-section-number">11.13</span> Colour scales</a>
   <ul class="collapse">
-  <li><a href="#save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh" id="toc-save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh" class="nav-link" data-scroll-target="#save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh"><span class="header-section-number">11.12.1</span> Save HTML to csv and then import again and convert to PDF (this is not ideal tbh)</a></li>
+  <li><a href="#save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh" id="toc-save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh" class="nav-link" data-scroll-target="#save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh"><span class="header-section-number">11.13.1</span> Save HTML to csv and then import again and convert to PDF (this is not ideal tbh)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -486,8 +522,48 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="weird-data-classes" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="weird-data-classes"><span class="header-section-number">11.1</span> Weird data classes</h2>
+<section id="package-on-conda-for-the-first-time" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="package-on-conda-for-the-first-time"><span class="header-section-number">11.1</span> Package on conda for the first time</h2>
+<ol type="1">
+<li>Navigate to the <code>staged-recipes</code> repository folder (which you should have cloned onto your machine), and move into the <code>recipes</code> folder.</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">staged-recipes</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">➜</span> cd recipes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Switch over to the <code>lintquarto</code> branch.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout lintquarto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Use <code>grayskull</code> to update the recipe (<code>lintquarto/meta.yaml</code>). It will pull the metadata about the package from PyPI, and will not use your local installation of the package.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">grayskull</span> pypi lintquarto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Fix the <code>meta.yaml</code> file. There are two changes to make…</li>
+</ol>
+<p>Add the <code>home</code> element within <code>about</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">home:</span> https://lintquarto.github.io/lintquarto/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Update the python version requirements syntax as per the <a href="https://conda-forge.org/docs/maintainer/knowledge_base/#noarch-python">conda-forge documentation</a>, using <code>python_min</code> for <code>host</code> (fixed version), <code>run</code> (minimum version) and <code>requires</code> (fixed version).</p>
+<p><strong>Note:</strong> Don’t need to set the <code>python_min</code> anywhere unless it differs from conda default (currently 3.7).</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">host:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-</span> python {{ python_min }}</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">run:</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-</span> python <span class="op">&gt;</span>={{ python_min }}</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">requires:</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">-</span> python {{ python_min }}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="5" type="1">
+<li>Create a pull request to merge <code>lintquarto:lintquarto</code> into <code>conda-forge:main</code> (<a href="https://github.com/conda-forge/staged-recipes/compare/main...lintquarto:staged-recipes:lintquarto">as compared here</a>).</li>
+</ol>
+<p>You will need to complete the checklist template in the pull request.</p>
+<p>CI actions will then run and test the package build.</p>
+</section>
+<section id="weird-data-classes" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="weird-data-classes"><span class="header-section-number">11.2</span> Weird data classes</h2>
 <p>This will work, as it recognises them as parameters when you type hint:</p>
 <pre><code>@dataclass
 class ASUArrivals:
@@ -528,49 +604,49 @@ class ASUArrivals:
 ASUArrivals()
 --&gt; ASUArrivals(stroke=1.2, neuro=3.6, other=3.2)</code></pre>
 </section>
-<section id="jupyter-notebook-merge-conflicts" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="jupyter-notebook-merge-conflicts"><span class="header-section-number">11.2</span> Jupyter notebook merge conflicts</h2>
+<section id="jupyter-notebook-merge-conflicts" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="jupyter-notebook-merge-conflicts"><span class="header-section-number">11.3</span> Jupyter notebook merge conflicts</h2>
 <pre><code>pip install nbdime
 nbdime config-git --enable --global
 git merge branchname</code></pre>
 </section>
-<section id="using-vs-code" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="using-vs-code"><span class="header-section-number">11.3</span> Using VS Code</h2>
+<section id="using-vs-code" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="using-vs-code"><span class="header-section-number">11.4</span> Using VS Code</h2>
 <p>To open VS Code from terminal: <code>code .</code><br>
 To activate conda environment in VS Code: Ctrl+Shift+P &gt; Python Interpreter, then select correct environment<br>
 To view/create settings.json in .vscode folder: Ctrl+Shift+P &gt; Preferences: Open Workspace Settings (JSON)</p>
 </section>
-<section id="type-hinting-in-vs-code-with-pylance" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="type-hinting-in-vs-code-with-pylance"><span class="header-section-number">11.4</span> Type hinting in VS Code with Pylance</h2>
+<section id="type-hinting-in-vs-code-with-pylance" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="type-hinting-in-vs-code-with-pylance"><span class="header-section-number">11.5</span> Type hinting in VS Code with Pylance</h2>
 <p>Extension &gt; Pylance should be installed<br>
 In settings.json, set <code>"python.analysis.typeCheckingMode": "strict"</code> or to <code>"None"</code> or <code>"basic"</code></p>
 </section>
-<section id="violin-plot" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="violin-plot"><span class="header-section-number">11.5</span> Violin plot</h2>
+<section id="violin-plot" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="violin-plot"><span class="header-section-number">11.6</span> Violin plot</h2>
 <pre><code>df = data.groupby('quarter_year')['stroke_severity'].agg(lambda x: list(x))
 fig, ax = plt.subplots()
 ax.violinplot(df)
 ax.set_xticks(np.arange(1, len(df.index)+1), labels=df.index)
 plt.show()</code></pre>
 </section>
-<section id="jupyter-lab" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="jupyter-lab"><span class="header-section-number">11.6</span> Jupyter lab</h2>
+<section id="jupyter-lab" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="jupyter-lab"><span class="header-section-number">11.7</span> Jupyter lab</h2>
 <p>Install jupyterlab package.<br>
 Where you want to open, in terminal, type <code>jupyter lab</code></p>
 </section>
-<section id="comparing-two-dataframes" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="comparing-two-dataframes"><span class="header-section-number">11.7</span> Comparing two dataframes</h2>
+<section id="comparing-two-dataframes" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="comparing-two-dataframes"><span class="header-section-number">11.8</span> Comparing two dataframes</h2>
 <p>Simple check if match: <code>df1.equals(df2)</code> Drop duplicate columns: <code>pd.concat([df1, df2]).drop_duplicates(keep=False)</code></p>
 </section>
-<section id="linting" class="level2" data-number="11.8">
-<h2 data-number="11.8" class="anchored" data-anchor-id="linting"><span class="header-section-number">11.8</span> Linting</h2>
+<section id="linting" class="level2" data-number="11.9">
+<h2 data-number="11.9" class="anchored" data-anchor-id="linting"><span class="header-section-number">11.9</span> Linting</h2>
 <p>Install flake8 and nbqa packages.<br>
 To lint file: <code>flake8 filename.py</code><br>
 To lint jupyter notebook: <code>nbqa flake8 filename.ipynb</code><br>
 To lint within notebook: <code>%load_ext pycodestyle_magic</code> and <code>%pycodestyle_on</code></p>
 </section>
-<section id="compare-dataframes" class="level2" data-number="11.9">
-<h2 data-number="11.9" class="anchored" data-anchor-id="compare-dataframes"><span class="header-section-number">11.9</span> Compare dataframes</h2>
+<section id="compare-dataframes" class="level2" data-number="11.10">
+<h2 data-number="11.10" class="anchored" data-anchor-id="compare-dataframes"><span class="header-section-number">11.10</span> Compare dataframes</h2>
 <p>True/False of difference (note: sometimes False but no actual difference - then try assertion below)</p>
 <pre><code>df1.equals(df2)</code></pre>
 <p>Show differences between them</p>
@@ -579,12 +655,12 @@ To lint within notebook: <code>%load_ext pycodestyle_magic</code> and <code>%pyc
 <pre><code>from pandas.testing import assert_frame_equal
 assert_frame_equal(df1, df2)</code></pre>
 </section>
-<section id="package" class="level2" data-number="11.10">
-<h2 data-number="11.10" class="anchored" data-anchor-id="package"><span class="header-section-number">11.10</span> Package</h2>
+<section id="package" class="level2" data-number="11.11">
+<h2 data-number="11.11" class="anchored" data-anchor-id="package"><span class="header-section-number">11.11</span> Package</h2>
 <p>https://betterscientificsoftware.github.io/python-for-hpc/tutorials/python-pypi-packaging/ * Make setup.py - if you read from requirements for it, will need to make MANIFEST.in file which includes the line <code>include requirements.txt</code> * <code>python setup.py check</code> * <code>python setup.py sdist bdist_wheel</code> * <code>pip install twine</code> * <code>twine upload --repository-url https://test.pypi.org/legacy/ dist/*</code> * When want to update package: * Delete dist folder * <code>python setup.py sdist bdist_wheel</code> * <code>twine upload --skip-existing --repository-url https://test.pypi.org/legacy/ dist/*</code> * Above uses test pypi URL - for real pypi upload, use <code>https://upload.pypi.org/legacy/</code> * To install the package locally (rather than from pypi) using your requirements.txt file, if for example it was in a sister directory, add to the text file <code>../foldername/dist/filename.whl</code> * If you are simultaneously working on the package and other code - so if you want to be getting live changes to the package rather than having to rebuild and reinstall the package each time - use <code>pip install -e /path/to/repo/</code> - this will use a symbolic link to the repository meaning any changes to the code will also be automatically reflected. For example, when its in a sister directory, <code>pip install -e ../kailo_beewell_dashboard_package</code>. You can also do this from your <strong>requirements.txt</strong> by adding <code>-e ../packagefolder</code>. If the package was already in your environment, you’ll need to delete it, and make just delete and remake the environment</p>
 </section>
-<section id="unit-testing" class="level2" data-number="11.11">
-<h2 data-number="11.11" class="anchored" data-anchor-id="unit-testing"><span class="header-section-number">11.11</span> Unit testing</h2>
+<section id="unit-testing" class="level2" data-number="11.12">
+<h2 data-number="11.12" class="anchored" data-anchor-id="unit-testing"><span class="header-section-number">11.12</span> Unit testing</h2>
 <p>Note: unit testing is typically for testing function outputs - so although the code below works, you wouldn’t typically write unit tests for this purpose.</p>
 <p>Example:</p>
 <pre><code>import numpy as np
@@ -698,8 +774,8 @@ if __name__ == '__main__':
     unittest.main()
 </code></pre>
 </section>
-<section id="colour-scales" class="level2" data-number="11.12">
-<h2 data-number="11.12" class="anchored" data-anchor-id="colour-scales"><span class="header-section-number">11.12</span> Colour scales</h2>
+<section id="colour-scales" class="level2" data-number="11.13">
+<h2 data-number="11.13" class="anchored" data-anchor-id="colour-scales"><span class="header-section-number">11.13</span> Colour scales</h2>
 <pre><code>'''
 Helper functions for creating discrete colour scale sampling in the
 continuous scale between two provided colours.
@@ -749,8 +825,8 @@ def linear_gradient(start_hex, finish_hex="#FFFFFF", n=10):
     RGB_list.append(curr_vector)
 
   return color_dict(RGB_list)</code></pre>
-<section id="save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh" class="level3" data-number="11.12.1">
-<h3 data-number="11.12.1" class="anchored" data-anchor-id="save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh"><span class="header-section-number">11.12.1</span> Save HTML to csv and then import again and convert to PDF (this is not ideal tbh)</h3>
+<section id="save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh" class="level3" data-number="11.13.1">
+<h3 data-number="11.13.1" class="anchored" data-anchor-id="save-html-to-csv-and-then-import-again-and-convert-to-pdf-this-is-not-ideal-tbh"><span class="header-section-number">11.13.1</span> Save HTML to csv and then import again and convert to PDF (this is not ideal tbh)</h3>
 <pre><code>import weasyprint
 import csv
 
