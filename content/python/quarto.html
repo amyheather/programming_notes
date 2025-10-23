@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../content/python/books.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e8de9bd59ba156b9e4cb33cd6f01d621.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,6 +80,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Programming notes</span>
     </a>
@@ -110,6 +113,10 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -446,7 +453,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#linting-quarto" id="toc-linting-quarto" class="nav-link active" data-scroll-target="#linting-quarto"><span class="header-section-number">16.1</span> Linting quarto</a></li>
+  <li><a href="#stlite" id="toc-stlite" class="nav-link active" data-scroll-target="#stlite"><span class="header-section-number">16.1</span> <code>stlite</code></a></li>
   </ul>
 </nav>
     </div>
@@ -497,97 +504,31 @@ nbclient</code></pre>
 <li><code>quarto render</code> - rebuilds whole book</li>
 <li>quarto preview button in VS code - will render current page, and will render other pages when you click on them, except blog posts</li>
 </ul>
-<section id="linting-quarto" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="linting-quarto"><span class="header-section-number">16.1</span> Linting quarto</h2>
-<p>Linting files - pre-requisites pylint / flake8 (sudo apt install pylint etc.)</p>
-<p>With file <code>lint_qmd.sh</code>:</p>
-<pre><code>bash ./lint_qmd.sh ./ pylint
-bash ./lint_qmd.sh ./ flake8 | less -R</code></pre>
-<p>Copy of file:</p>
-<pre><code>#!/bin/bash
-
-# Directory to search for .qmd files
-DIRECTORY=${1:-.}
-
-# Linter to use (default to flake8)
-LINTER=${2:-flake8}
-
-# Validate the linter choice
-if [[ "$LINTER" != "flake8" &amp;&amp; "$LINTER" != "pylint" ]]; then
-    echo -e "\033[1mError: Unsupported linter. Please choose either 'flake8' or 'pylint'.\033[0m"
-    echo
-    exit 1
-fi
-
-# Temporary file to store extracted Python code
-TEMP_FILE=$(mktemp)
-
-# Loop through all .qmd files in the directory
-find "$DIRECTORY" -name "*.qmd" | while read -r FILE; do
-    echo
-    echo "--------------------------------------------------------------------"
-    echo "Linting Python code in: $FILE"
-    echo "WARNING: Line numbers may be wrong, so section with error is shown"
-    echo "--------------------------------------------------------------------"
-    echo
-
-    # Extract Python code blocks and save to TEMP_FILE
-    awk '
-        /```{python}/ {code=1; next}
-        /```/ {code=0; next}
-        code {print $0}
-    ' "$FILE" &gt; "$TEMP_FILE"
-
-    # Check if the temp file is not empty
-    if [ -s "$TEMP_FILE" ]; then
-        # Run the linter on the extracted code and capture the output
-        echo "Linting extracted code..."
-        echo
-        
-        # Store seen errors to avoid duplicates
-        declare -A seen_errors
-
-        $LINTER "$TEMP_FILE" 2&gt;&amp;1 | while read -r LINE; do
-            # Ignore the file path part in the linter's output
-            # The format is typically something like: /tmp/tmp.bKSqCNR0PZ:28:1:
-            if [[ "$LINE" =~ [^:]+:([0-9]+):([0-9]+)-?([0-9]+)*: ]]; then
-                # Extract the line and column number, and the error message
-                LINTER_LINE=${BASH_REMATCH[1]}  # Get the line number
-                MESSAGE=${LINE#*:}  # Get the error message after the file and line info
-                MESSAGE=$(echo "$MESSAGE" | sed 's/^[0-9]*: //') # Strip off any leading line number if present
-
-                # Check if this error has already been processed
-                if [[ -z "${seen_errors[$LINTER_LINE]}" ]]; then
-                    # Mark this error as seen
-                    seen_errors[$LINTER_LINE]=1
-
-                    # Print the linter message in bold
-                    echo -e "\033[1m$MESSAGE\033[0m"
-                    echo
-
-                    # Find the corresponding line in the original .qmd file
-                    ORIGINAL_LINE=$(sed -n "${LINTER_LINE}p" "$TEMP_FILE")
-
-                    # Print the context: 2 lines above, current line, and 2 lines below
-                    sed -n "$((LINTER_LINE - 2)),$((LINTER_LINE + 2))p" "$TEMP_FILE" | while read -r CONTEXT_LINE; do
-                        echo "  $CONTEXT_LINE"
-                    done
-
-                    echo
-                    echo
-                fi
-            else
-                # Print any other output from the linter without modification
-                echo "$LINE"
-            fi
-        done
-    else
-        echo "No Python code found in $FILE"
-    fi
-done
-
-# Remove the temporary file
-rm -f "$TEMP_FILE"</code></pre>
+<section id="stlite" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="stlite"><span class="header-section-number">16.1</span> <code>stlite</code></h2>
+<p>Sammi mentioned that the stlite quarto extension can be a nice way of including simple interactivity in quarto books to demonstrate concepts.</p>
+<p>Using this extension: https://github.com/whitphx/quarto-stlite</p>
+<p>Though she flagged that it would say matplotlib was not installed when it was, and the answer was:</p>
+<blockquote class="blockquote">
+<p><code>import matplotlib.pyplot as plt</code> = bad <code>from matplotlib import pyplot as plt</code> = good</p>
+</blockquote>
+<p>And likewise with other imports (e.g.&nbsp;needing <code>from plotly import express as px</code>).</p>
+<p>She used to fix the broken embedded streamlit apps in the streamlit HSMA book (https://webapps.hsma.co.uk/).</p>
+<p>From Sammi: There’s basically two subtly different versions of each example in my streamlit book - the standard streamlit code shown to the user, and the one that actually renders the embedded app.</p>
+<p>Main changes tend to be:</p>
+<ul>
+<li>import micropip</li>
+<li>install any packages that aren’t in there by default with await micropip.install(“some_package”)
+<ul>
+<li>there are a few limitations around certain packages not being installable due to not having pure python requirements or wheels available, but that list seems to be getting smaller over time</li>
+</ul></li>
+<li>import (mostly) as normal (today’s issue excluded :joy: )</li>
+<li>if you need to reference an external file, I’ve had some issues with it accessing my usual options (files stored in a github repo, dropbox, google drive)
+<ul>
+<li>I’ve ended up resorting to a free site called https://catbox.moe/ as it was the only one that didn’t seem to run into security issues - not ideal and I will eventually get around to checking whether the issue that was previously preventing me using other options are still present</li>
+</ul></li>
+</ul>
+<p>They’re scattered throughout this book but there’s a few on this page, with the last one having a dropdown to properly demonstrate the interactivity: https://webapps.hsma.co.uk/interactive_charts.html</p>
 
 
 </section>
@@ -644,13 +585,14 @@ rm -f "$TEMP_FILE"</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

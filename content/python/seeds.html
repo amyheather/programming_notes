@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../content/python/environments.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e8de9bd59ba156b9e4cb33cd6f01d621.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -114,6 +115,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Programming notes</span>
     </a>
@@ -145,6 +148,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -520,7 +527,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In NumPy, the two main packages you’ll come across in relation to random seeds are <code>numpy</code> and <code>random</code>.</p>
 <p>In this script, we will demonstrate using numpy.</p>
 <div id="cell-2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="generating-a-random-number" class="level2" data-number="13.2">
@@ -529,8 +536,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Without a seed, you can see that we’ll get a different answer each time.</p>
 <p>In Python, these values are produced by a pseudorandom number generator.</p>
 <div id="cell-4" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.random.random())</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.random.random())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.random.random())</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.random.random())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.9160257015890815
 0.014614208720352462</code></pre>
@@ -547,11 +554,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We have what can be referred to a the “global” RNG for our script. It is common practice to set the seed for the global RNG at the start of the script using <code>random.seed()</code> or <code>np.random.seed()</code>.<a href="https://albertcthomas.github.io/good-practices-random-number-generators/">[source]</a></p>
 <p>As you’ll see, setting this seed ensures you then get the same result.</p>
 <div id="cell-7" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">5</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">5</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.random.random())</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">5</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.random.random())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.random.random())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.22199317108973948
 0.22199317108973948</code></pre>
@@ -566,7 +573,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You can use <code>np.random.default_rng()</code> to create a RNG.</p>
 <p>You then use that RNG object when calling <code>.random()</code>.</p>
 <div id="cell-10" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Illustration that this enables reproducibility</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Illustration that this enables reproducibility</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.random())</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -574,7 +581,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.random())</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Showing that this is a generator object</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.22733602246716966
 0.22733602246716966
@@ -583,11 +590,11 @@ Generator(PCG64)</code></pre>
 </div>
 <p>It has generally been said that you should create a single PRNG and draw from it sequentially (rather than creating new PRNGs within your script). This is having multiple streams, you can be concerned about what the streams from different seeds might be less independent/more correlated that those creates from a single seed. However, the numpy developers have explained that the size and entropy seeding of their PRNGs means that this concern is not particularly relevant. <a href="https://albertcthomas.github.io/good-practices-random-number-generators/">[source 1]</a> <a href="https://github.com/numpy/numpy/issues/15322#issuecomment-573890207">[source 2]</a></p>
 <div id="cell-12" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using a single PRNG...</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using a single PRNG...</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.random())</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.integers(<span class="dv">1</span>,<span class="dv">5</span>))</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.standard_normal())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.standard_normal())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.22733602246716966
 4
@@ -605,7 +612,7 @@ Generator(PCG64)</code></pre>
 <h2 data-number="13.7" class="anchored" data-anchor-id="seedsequence-spawning"><span class="header-section-number">13.7</span> SeedSequence spawning</h2>
 <p>You provide a seed to SeedSequence. It then uses this seed to create N BitGenerator states that are highly probable to be independent of each other. Conversion to bit generator states “uses hashing techniques to ensure that low-quality seeds are turned into high quality initial states”. You can then use these to instantiate PRNGs.<a href="https://numpy.org/doc/stable/reference/random/parallel.html">[source]</a></p>
 <div id="cell-15" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ss <span class="op">=</span> np.random.SeedSequence(entropy<span class="op">=</span><span class="dv">12345</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ss <span class="op">=</span> np.random.SeedSequence(entropy<span class="op">=</span><span class="dv">12345</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'ss: </span><span class="sc">{</span>ss<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Spawn 10 child SeedSequences to pass to child processes</span></span>
@@ -614,7 +621,7 @@ Generator(PCG64)</code></pre>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 10 PRNGs</span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>prngs <span class="op">=</span> [np.random.default_rng(s) <span class="cf">for</span> s <span class="kw">in</span> child_seeds]</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'example PRNGs: </span><span class="sc">{</span>prngs[<span class="dv">0</span>:<span class="dv">2</span>]<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'example PRNGs: </span><span class="sc">{</span>prngs[<span class="dv">0</span>:<span class="dv">2</span>]<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ss: SeedSequence(
     entropy=12345,
@@ -631,11 +638,11 @@ example PRNGs: [Generator(PCG64) at 0x70A2B3C559A0, Generator(PCG64) at 0x70A2B3
 </div>
 <p>For convenience, you can spawn independent child generators directly from a parent generator (without needing to directly use <code>SeedSequence</code>). Those children can likewise be used to spawn yet more independent generators.<a href="https://numpy.org/doc/stable/reference/random/parallel.html">[source]</a></p>
 <div id="cell-17" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>parent_rng <span class="op">=</span> np.random.default_rng(<span class="dv">12345</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>parent_rng <span class="op">=</span> np.random.default_rng(<span class="dv">12345</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(parent_rng)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>streams <span class="op">=</span> parent_rng.spawn(<span class="dv">10</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>streams</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>streams</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Generator(PCG64)</code></pre>
 </div>
@@ -658,7 +665,7 @@ example PRNGs: [Generator(PCG64) at 0x70A2B3C559A0, Generator(PCG64) at 0x70A2B3
 <p>In stochastic simulations, we sample from a distribution. However, it is important to set individual random number streams for sampling, as illustrated below (based on <a href="https://pythonhealthdatascience.github.io/stars-treat-simmer/02_model/03_r_sampling.html">source</a>).</p>
 <p>In our example, we sample acute length of stay (LoS) from an exponential distribution and rehabilitation LoS from a uniform distribution.</p>
 <div id="cell-19" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seed and parameters for our distributions</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seed and parameters for our distributions</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>seed <span class="op">=</span> <span class="dv">42</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>acute_mean <span class="op">=</span> <span class="dv">32</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>rehab_min <span class="op">=</span> <span class="dv">15</span></span>
@@ -673,7 +680,7 @@ example PRNGs: [Generator(PCG64) at 0x70A2B3C559A0, Generator(PCG64) at 0x70A2B3
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>rehab_los <span class="op">=</span> rng.uniform(low<span class="op">=</span>rehab_min, high<span class="op">=</span>rehab_max, size<span class="op">=</span>n_patients)</span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Acute LoS: </span><span class="sc">{</span>acute_los<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Rehab LoS: </span><span class="sc">{</span>rehab_los<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Rehab LoS: </span><span class="sc">{</span>rehab_los<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Acute LoS: [0.07513152 0.07300593 0.07452378 0.00874357 0.00270117]
 Rehab LoS: [78.41545286 64.47408063 66.09417984 23.32738612 44.27508596]</code></pre>
@@ -688,7 +695,7 @@ Rehab LoS: [78.41545286 64.47408063 66.09417984 23.32738612 44.27508596]</code><
 </blockquote>
 <p>But we do not! Instead we get -</p>
 <div id="cell-21" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change to 2 patients</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change to 2 patients</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>n_patients <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Instantiate PRNG</span></span>
@@ -699,7 +706,7 @@ Rehab LoS: [78.41545286 64.47408063 66.09417984 23.32738612 44.27508596]</code><
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>rehab_los <span class="op">=</span> rng.uniform(low<span class="op">=</span>rehab_min, high<span class="op">=</span>rehab_max, size<span class="op">=</span>n_patients)</span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Acute LoS: </span><span class="sc">{</span>acute_los<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Rehab LoS: </span><span class="sc">{</span>rehab_los<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Rehab LoS: </span><span class="sc">{</span>rehab_los<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Acute LoS: [76.93467533 74.75806899]
 Rehab LoS: [70.80886479 60.32892189]</code></pre>
@@ -709,7 +716,7 @@ Rehab LoS: [70.80886479 60.32892189]</code></pre>
 <p>This problem will introduce noise between experiments, where variation in results are due to this and not actually the change we made to the simulation.</p>
 <p>Hence, it is recommended to use individual PRNGs for each sampling distribution (as in <a href="https://pythonhealthdatascience.github.io/stars-simpy-example-docs/content/02_model_code/04_model.html">this example</a>).</p>
 <div id="cell-23" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Source: https://pythonhealthdatascience.github.io/stars-simpy-example-docs/content/02_model_code/04_model.html</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Source: https://pythonhealthdatascience.github.io/stars-simpy-example-docs/content/02_model_code/04_model.html</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Exponential:</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, mean, random_seed<span class="op">=</span><span class="va">None</span>):</span>
@@ -755,7 +762,7 @@ Rehab LoS: [70.80886479 60.32892189]</code></pre>
 <span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Sampling two from each</span></span>
 <span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Sampling two from each...'</span>)</span>
 <span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(triage_dist.sample(<span class="dv">2</span>))</span>
-<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(exam_dist.sample(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(exam_dist.sample(<span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Sampling five from each...
 [2.90633292 5.48489155 1.37244157 0.83179124 9.79691459]
@@ -769,7 +776,7 @@ Sampling two from each...
 <p>Another way of setting up this same thing (from me, just to help illustrate it in another way, but you’ll see it is the same results)…</p>
 <p>From looking at it, you’ll also understand the benefit of the way the Classes are set up above.</p>
 <div id="cell-25" class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create parent generator and spawn child sequences</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create parent generator and spawn child sequences</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>parent_rng <span class="op">=</span> np.random.default_rng(seed)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>generators <span class="op">=</span> parent_rng.spawn(<span class="dv">10</span>)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -790,7 +797,7 @@ Sampling two from each...
 <span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>exam_rng <span class="op">=</span> generators[<span class="dv">1</span>]</span>
 <span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Sampling two from each...'</span>)</span>
 <span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(triage_rng.exponential(triage_mean, <span class="dv">2</span>))</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(exam_rng.normal(exam_mean, np.sqrt(exam_var), <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(exam_rng.normal(exam_mean, np.sqrt(exam_var), <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Sampling five from each...
 [2.90633292 5.48489155 1.37244157 0.83179124 9.79691459]
@@ -805,8 +812,8 @@ Sampling two from each...
 <h2 data-number="13.9" class="anchored" data-anchor-id="legacy-random-generation"><span class="header-section-number">13.9</span> Legacy Random Generation</h2>
 <p><code>RandomState</code> is no longer supported. It is the old way of creating a random number generator, allowing you to set the seed just for the generator (and not messing about with the global random generation).</p>
 <div id="cell-27" class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.RandomState(<span class="dv">12345</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>rng.randint(<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, size<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.RandomState(<span class="dv">12345</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>rng.randint(<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, size<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="49">
 <pre><code>array([ 1,  0,  0,  0, -1,  0,  1,  1,  0,  1])</code></pre>
 </div>
@@ -867,13 +874,14 @@ Sampling two from each...
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
