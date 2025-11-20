@@ -12,6 +12,7 @@ book:
     - content/general/linux.md
     - content/general/git.md
     - content/general/counting_lines.md
+    - content/general/peer_review.md
     - content/general/latex.md
     - content/general/markdown.md
     - content/general/machine_learning.md
