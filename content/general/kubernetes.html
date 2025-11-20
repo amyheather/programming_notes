@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>17&nbsp; Books – Programming notes</title>
+<title>8&nbsp; Kubernetes – Programming notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../content/python/quarto.html" rel="next">
-<link href="../../content/python/simpy.html" rel="prev">
+<link href="../../content/general/machine_learning.html" rel="next">
+<link href="../../content/general/markdown.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -43,6 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -101,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/python/general.html">Python</a></li><li class="breadcrumb-item"><a href="../../content/python/books.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Books</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/general/linux.html">General</a></li><li class="breadcrumb-item"><a href="../../content/general/kubernetes.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Kubernetes</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -166,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/general/kubernetes.html" class="sidebar-item-text sidebar-link">
+  <a href="../../content/general/kubernetes.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Kubernetes</span></span></a>
   </div>
 </li>
@@ -231,7 +234,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/python/books.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../content/python/books.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Books</span></span></a>
   </div>
 </li>
@@ -454,15 +457,27 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#notes-from-httpswww.youtube.comwatchvr2zul9mw6wc" id="toc-notes-from-httpswww.youtube.comwatchvr2zul9mw6wc" class="nav-link active" data-scroll-target="#notes-from-httpswww.youtube.comwatchvr2zul9mw6wc"><span class="header-section-number">8.1</span> Notes from https://www.youtube.com/watch?v=r2zuL9MW6wc</a>
+  <ul class="collapse">
+  <li><a href="#theory" id="toc-theory" class="nav-link" data-scroll-target="#theory"><span class="header-section-number">8.1.1</span> Theory</a></li>
+  <li><a href="#having-a-go" id="toc-having-a-go" class="nav-link" data-scroll-target="#having-a-go"><span class="header-section-number">8.1.2</span> Having a go</a></li>
+  </ul></li>
+  <li><a href="#how-does-kubernetes-compare-with-docker" id="toc-how-does-kubernetes-compare-with-docker" class="nav-link" data-scroll-target="#how-does-kubernetes-compare-with-docker"><span class="header-section-number">8.2</span> How does Kubernetes compare with docker?</a></li>
+  <li><a href="#kubernetes-presentation-from-rpysoc2025" id="toc-kubernetes-presentation-from-rpysoc2025" class="nav-link" data-scroll-target="#kubernetes-presentation-from-rpysoc2025"><span class="header-section-number">8.3</span> Kubernetes presentation from RPySoc2025</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/python/general.html">Python</a></li><li class="breadcrumb-item"><a href="../../content/python/books.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Books</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/general/linux.html">General</a></li><li class="breadcrumb-item"><a href="../../content/general/kubernetes.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Kubernetes</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Books</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Kubernetes</span></h1>
 </div>
 
 
@@ -479,97 +494,202 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>System</th>
-<th>Valid input files</th>
-<th>Compatibility with Python &amp; R</th>
-<th>Blog posts (tags, dates, filters) ?</th>
-<th>Nice examples</th>
-<th>Additional details</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><b>Jupyter Book</b><br><a href="https://jupyterbook.org/en/stable/intro.html">Documentation</a></td>
-<td>- Markdown <code>.md</code><br>- Jupyter notebook <code>.ipynb</code><br>- MyST markdown notebook <code>.md</code><br>- reStructured Text <code>.rst</code> (not recommended)<br><a href="https://jupyterbook.org/en/stable/file-types/index.html">[source]</a></td>
-<td>Python tool. Would probably only use with R if you were working with R in <code>.ipynb</code>. Possible to convert <code>.Rmd</code> to <code>ipynb</code> or MyST</td>
-<td>Not found example</td>
-<td><a href="https://samuel-book.github.io/samuel-1/introduction/intro.html">SAMueL-1</a><br><br><a href="https://samuel-book.github.io/samuel-2/introduction/intro.html">SAMueL-2</a></td>
-<td>Easy integration with BinderHub and Google Colab <a href="https://jupyterbook.org/en/stable/interactive/launchbuttons.html">[source]</a><br><br>Uses Sphinx to build book <a href="https://jupyterbook.org/en/stable/explain/sphinx.html">[source]</a></td>
-</tr>
-<tr class="even">
-<td><b>Sphinx</b><br><a href="https://www.sphinx-doc.org/en/master/">Documentation</a></td>
-<td>- reStructured Text <code>.rst</code> (default)<br>- Markdown <code>.md</code><br>- Jupyter notebook <code>.ipynb</code> (with nbsphinx and MyST-NB)</td>
-<td>Designed for Python, didn’t easily run into R implementation, but <a href="https://www.ericholscher.com/blog/2014/feb/11/sphinx-isnt-just-for-python/">examples here in various languages</a></td>
-<td>Yes</td>
-<td><a href="https://www.pyopensci.org/python-package-guide/index.html">pyOpenSci</a><br><br><a href="https://a-little-book-of-r-for-biomedical-statistics.readthedocs.io/en/latest/">Little book of R for biomedical statistics</a><br><br><a href="https://chrisholdgraf.com/blog/">Chris Holdgraf’s blog</a></td>
-<td>Thumbnail gallery, Binder, nbviewer <a href="https://nbsphinx.readthedocs.io/en/latest/gallery/gallery-with-nested-documents.html">[source]</a></td>
-</tr>
-<tr class="odd">
-<td><b>Quarto</b><br><a href="https://quarto.org/">Documentation</a></td>
-<td>- Cross-language Quarto markdown <code>.qmd</code> (which combines markdown and executable code)<br>-Jupyter notebook <code>.ipynb</code><br>- Markdown <code>.md</code><br>- R markdown <code>.Rmd</code><br><a href="https://quarto.org/docs/projects/quarto-projects.html">[source]</a></td>
-<td>Explicitly supports dynamic content from Python, R, Julia and Observable <a href="https://quarto.org/">[source]</a><br><a href="https://quarto.org/docs/faq/rmarkdown.html">Comparison with Rmd</a></td>
-<td>Well supported natively<br><a href="https://quarto.org/docs/websites/website-blog.html">Tutorial 1</a> <br><a href="https://albert-rapp.de/posts/13_quarto_blog_writing_guide/13_quarto_blog_writing_guide.html">Tutorial 2</a><br><a href="https://samanthacsik.github.io/posts/2022-10-24-quarto-blogs/">Tutorial 3</a></td>
-<td><a href="https://github.com/ddanieltan/ddanieltan.com">ddanieltan’s blog</a><br><br>Quarto’s blog - <a href="https://github.com/quarto-dev/quarto-web">github</a>, <a href="https://quarto.org/docs/blog/">site</a><br><br><a href="https://r4ds.hadley.nz/">R for Data Science</a><br><br><a href="https://wesmckinney.com/book/">Python for Data Analysis</a><br><br>HSMA DES Book - <a href="https://github.com/hsma-programme/hsma6_des_book">github</a>, <a href="https://hsma-programme.github.io/hsma6_des_book/">site</a></td>
-<td>Huge range of supported output formats <a href="https://quarto.org/docs/output-formats/all-formats.html">[source]</a></td>
-</tr>
-<tr class="even">
-<td><b>Jekyll</b></td>
-<td>- Markdown <code>.md</code><br>- HTML</td>
-<td>Written in Ruby. Creates simple static sites.</td>
-<td></td>
-<td>Exeter RSE Workshop - <a href="https://github.com/UniExeterRSE/intro-version-control">github</a>, <a href="https://uniexeterrse.github.io/intro-version-control/">site</a><br><br><a href="https://www.ruby-lang.org/en/">Ruby’s website</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><b>Mkdocs</b><br><a href="https://www.mkdocs.org/">Documentation</a></td>
-<td>- Markdown <code>.md</code><br>Seems possible for others but more designed for markdown?</td>
-<td>Designed for Python</td>
-<td>Yes with Material for Mkdocs <a href="https://squidfunk.github.io/mkdocs-material/plugins/blog/">plugin</a></td>
-<td>Material for MkDocs - <a href="https://github.com/squidfunk/mkdocs-material">github</a>, <a href="https://squidfunk.github.io/mkdocs-material/">site</a><br><br>Cookiecutter Data Science - <a href="https://github.com/drivendata/cookiecutter-data-science/tree/master">github</a>, <a href="http://drivendata.github.io/cookiecutter-data-science/">site</a></td>
-<td><a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a> provides additional features</td>
-</tr>
-<tr class="even">
-<td><b>Bookdown</b><br><a href="https://bookdown.org/">Documentation</a></td>
-<td>- R Markdown <code>.Rmd</code></td>
-<td>Designed for R</td>
-<td></td>
-<td><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown Definitive Guide</a><br><br><a href="https://bookdown.org/yihui/rmarkdown-cookbook/">R Markdown Cookbook</a></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><b>Blogdown</b><br><a href="https://bookdown.org/yihui/blogdown/">Documentation</a></td>
-<td>- R Markdown <code>.Rmd</code></td>
-<td>Designed for R</td>
-<td></td>
-<td><a href="https://awesome-blogdown.com/">List of blogs</a></td>
-<td>Built on <a href="https://gohugo.io/">Hugo</a> <a href="https://bookdown.org/yihui/blogdown/hugo.html">[source]</a></td>
-</tr>
-<tr class="even">
-<td><b>Hugodown</b><br><a href="https://hugodown.r-lib.org/">Documentation</a></td>
-<td>- R Markdown <code>.Rmd</code></td>
-<td>Designed for R</td>
-<td></td>
-<td><a href="https://awesome-blogdown.com/">List of blogs</a></td>
-<td>Built on <a href="https://gohugo.io/">Hugo</a></td>
-</tr>
-<tr class="odd">
-<td><b>Distill for R Markdown</b><br><a href="https://rstudio.github.io/distill/">Documentation</a></td>
-<td>- R Markdown <code>.Rmd</code></td>
-<td>Designed for R</td>
-<td>Yes natively (eg. set up project as blog or website)</td>
-<td><a href="https://www.pipinghotdata.com/blog">Piping Hot Data</a><br><br><a href="https://www.tidymodels.org/learn/">Tidy models</a><br><br><a href="https://milesmcbain.xyz/">Before I sleep</a></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://education.rstudio.com/blog/2021/02/distill-it-down/">Reflections on RMarkdown, Distill, Bookdown and Blogdown</a>.</p>
-<p>Paid: https://www.gitbook.com/pricing</p>
-<p>Other random noted down options not explored: * Sandpaper, pegboard and varnish - example: https://carpentries-lab.github.io/good-enough-practices/index.html * Sweave/LaTeX RStudio/LaTeX Pandoc SageMath Colab Notebooks Nbconvert Pelican Org mode DocOnce Scribus Madoko Texinfo</p>
+<section id="notes-from-httpswww.youtube.comwatchvr2zul9mw6wc" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="notes-from-httpswww.youtube.comwatchvr2zul9mw6wc"><span class="header-section-number">8.1</span> Notes from <a href="https://www.youtube.com/watch?v=r2zuL9MW6wc" class="uri">https://www.youtube.com/watch?v=r2zuL9MW6wc</a></h2>
+<section id="theory" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="theory"><span class="header-section-number">8.1.1</span> Theory</h3>
+<p><strong>Container:</strong> You write a dockerfile, build the image, then you (and others) can run your app within that container. It has everything it needs and will be the same each time. On DockerHub, there are many images you can download and use in your container. You can docker run, open the port in your browser, use the app.</p>
+<p>But:</p>
+<ul>
+<li>What if it crashes when running container on Linux v.s., AWS?</li>
+<li>What if we want to containerise front-end separate to back-end?</li>
+<li>What if container is overloaded, we want five more instances to evenly distribute behind load balancer, and later scale back, killing three?</li>
+</ul>
+<p><strong>Kubernetes</strong> is an open source solution to deploying, managing, automating and scaling containerised applications.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="components-of-kubernetes.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Diagram showing components of a Kubernetes cluster from kubernetes.io."><img src="components-of-kubernetes.svg" class="img-fluid figure-img" alt="Diagram showing components of a Kubernetes cluster from kubernetes.io."></a></p>
+<figcaption>Diagram showing components of a Kubernetes cluster from <a href="https://kubernetes.io/docs/concepts/overview/components/">kubernetes.io</a>.</figcaption>
+</figure>
+</div>
+<p>Every Kubernetes cluster has a <strong>control plane</strong> (or “master node”). It is its own Linux environment, and can be a physical or virtual machine. It contains all the system components that make Kubernetes work, like:</p>
+<ul>
+<li>The API server that exposes the Kubernetes API to us</li>
+<li>The etcd key value store for your cluster data</li>
+<li>The scheduler</li>
+<li>The controller manager</li>
+<li>etc.</li>
+</ul>
+<p>These make global decisions about the cluster, and you don’t normally want your applications running on this master node, it’s reserved for system components.</p>
+<p>Instead, your deploy your applications on <strong>worker nodes</strong> (or “computer machines”), which are just additional Linux machines.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="redhat_kubernetes.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Diagram showing how parts of a Kubernetes cluster relate to one another from Redhat"><img src="redhat_kubernetes.svg" class="img-fluid figure-img" alt="Diagram showing how parts of a Kubernetes cluster relate to one another from Redhat"></a></p>
+<figcaption>Diagram showing how parts of a Kubernetes cluster relate to one another from <a href="https://www.redhat.com/en/topics/containers/kubernetes-architecture">Redhat</a></figcaption>
+</figure>
+</div>
+<p>Each worker node has:</p>
+<ul>
+<li>A kubelete, which listens for instructions from the kube-apiserver. It serves to deploy and destroy containers, among other things.</li>
+<li>A kube-proxy, which allows services to talk to other containers on other nodes.</li>
+</ul>
+<p>When you want to deploy an application, it runs as a <strong>pod</strong> on the node. Inside that pod is your <strong>container</strong> (or sometimes multiple containers). Depending on the size or capacity of your node, you can have many applications running on it. When that one gets maxed out, you can update the cluster to deploy a second worker node, third worker node, etc.</p>
+<p>You can interact with the Kubernetes cluster by talking to the API server. The easiest way to do this is to install the <code>kubectl</code> command line tool.</p>
+</section>
+<section id="having-a-go" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="having-a-go"><span class="header-section-number">8.1.2</span> Having a go</h3>
+<p>You need Docker, minikube and kubectl.</p>
+<p>Go to <a href="https://minikube.sigs.k8s.io/docs/start/" class="uri">https://minikube.sigs.k8s.io/docs/start/</a> and follow installation instructions. For me this was:</p>
+<pre><code>curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube &amp;&amp; rm minikube-linux-amd64</code></pre>
+<p>Go to <a href="http://kubernetes.io/docs/tasks/tools/install-kubectl-linux/" class="uri">http://kubernetes.io/docs/tasks/tools/install-kubectl-linux/</a> and follow instructions.</p>
+<pre><code>curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+kubectl version --client</code></pre>
+<p>Start a minikube cluster by running:</p>
+<pre><code>minikube start</code></pre>
+<p>I had an issue:</p>
+<pre><code>(base) amy@xps:~$ minikube start
+😄  minikube v1.37.0 on Ubuntu 24.04
+👎  Unable to pick a default driver. Here is what was considered, in preference order:
+    ▪ docker: Not healthy: "docker version --format {{.Server.Os}}-{{.Server.Version}}:{{.Server.Platform.Name}}" exit status 1: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.47/version": dial unix /var/run/docker.sock: connect: permission denied
+    ▪ docker: Suggestion: Add your user to the 'docker' group: 'sudo usermod -aG docker $USER &amp;&amp; newgrp docker' &lt;https://docs.docker.com/engine/install/linux-postinstall/&gt;
+💡  Alternatively you could install one of these drivers:
+    ▪ kvm2: Not installed: exec: "virsh": executable file not found in $PATH
+    ▪ podman: Not installed: exec: "podman": executable file not found in $PATH
+    ▪ qemu2: Not installed: exec: "qemu-system-x86_64": executable file not found in $PATH
+    ▪ virtualbox: Not installed: unable to find VBoxManage in $PATH
+
+❌  Exiting due to DRV_NOT_HEALTHY: Found driver(s) but none were healthy. See above for suggestions how to fix installed drivers.</code></pre>
+<p>I fixed this by adding my user to the docker group so I can interact with Docker without sudo:</p>
+<pre><code>sudo usermod -aG docker $USER</code></pre>
+<p>I then refreshed my shell session:</p>
+<pre><code>newgrp docker</code></pre>
+<p>When re-ran command, this time was a success:</p>
+<pre><code>(base) amy@xps:~$ minikube start
+😄  minikube v1.37.0 on Ubuntu 24.04
+✨  Automatically selected the docker driver. Other choices: none, ssh
+📌  Using Docker driver with root privileges
+👍  Starting "minikube" primary control-plane node in "minikube" cluster
+🚜  Pulling base image v0.0.48 ...
+💾  Downloading Kubernetes v1.34.0 preload ...
+    &gt; preloaded-images-k8s-v18-v1...:  337.07 MiB / 337.07 MiB  100.00% 43.90 M
+    &gt; gcr.io/k8s-minikube/kicbase...:  488.51 MiB / 488.52 MiB  100.00% 68.15 M
+🔥  Creating docker container (CPUs=2, Memory=7900MB) ...
+❗  Failing to connect to https://registry.k8s.io/ from both inside the minikube container and host machine
+💡  To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
+🐳  Preparing Kubernetes v1.34.0 on Docker 28.4.0 ...
+🔗  Configuring bridge CNI (Container Networking Interface) ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default</code></pre>
+<p>With minikube, there’s only one node, the master node, you have to do everything on that. We can run this command to see we have one node called <code>minikube</code> and its the <code>control-plane</code> node:</p>
+<pre><code>(base) amy@xps:~$ kubectl get nodes
+NAME       STATUS   ROLES           AGE   VERSION
+minikube   Ready    control-plane   46s   v1.34.0</code></pre>
+<p>We can run this command to see what pods are running on the machine. We see all our system pods / services that are running on this control plane… api… controller manager… scheduler… etc.</p>
+<pre><code>(base) amy@xps:~$ kubectl get pods -A
+NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE
+kube-system   coredns-66bc5c9577-cf2cv           1/1     Running   0             100s
+kube-system   etcd-minikube                      1/1     Running   0             106s
+kube-system   kube-apiserver-minikube            1/1     Running   0             106s
+kube-system   kube-controller-manager-minikube   1/1     Running   0             106s
+kube-system   kube-proxy-nzk8v                   1/1     Running   0             101s
+kube-system   kube-scheduler-minikube            1/1     Running   0             106s
+kube-system   storage-provisioner                1/1     Running   1 (70s ago)   105s</code></pre>
+<p>How do we deploy applications onto this cluster? The most basic is called a kubernetes deployment object.</p>
+<p>With kubernetes, we can declare in YAML the desired state of our resources, and Kubernetes will work to guarantee that state. We give it the end product, and it will maintain that state at all times until we change it.</p>
+<p>There are example deployments at <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/" class="uri">https://kubernetes.io/docs/concepts/workloads/controllers/deployment/</a>. We can see this example:</p>
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80</code></pre>
+<p>There’s a YAML, we’re declaring endstate of deployment. We can see…</p>
+<ul>
+<li><code>apiVersion: apps/v1</code> - all deployment objects have an API version</li>
+<li><code>kind: Deployment</code></li>
+<li><code>name: nginx-deployment</code> - as we’re going to be deploying some nginx pods</li>
+<li><code>replicas: 3</code> - we want to deploy three pods of this application</li>
+<li><code>containers</code> - within this pod we are going to have a container called <code>nginx</code>, it will pull the <code>nginx:1.14.2</code> image from DockerHub (you would change this to pull from whatever image you have on a container repository), and will use <code>port</code> 80.</li>
+</ul>
+<p>We create a new file:</p>
+<pre><code>sudo nano nginx-deployment.yaml</code></pre>
+<p>And copy in the text above.</p>
+<p>To apply this “manifest” to my Kubernetes cluster, I can run:</p>
+<pre><code>kubectl apply -f nginx-deployment.yaml</code></pre>
+<p>Now if we check what pods we have, we see three new pods</p>
+<pre><code>kubectl get pods -A
+NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE
+default       nginx-deployment-bf744486c-dvz44   1/1     Running   0             70s
+default       nginx-deployment-bf744486c-jnhf8   1/1     Running   0             70s
+default       nginx-deployment-bf744486c-rfc4l   1/1     Running   0             70s
+kube-system   coredns-66bc5c9577-cf2cv           1/1     Running   0             11m
+kube-system   etcd-minikube                      1/1     Running   0             11m
+kube-system   kube-apiserver-minikube            1/1     Running   0             11m
+kube-system   kube-controller-manager-minikube   1/1     Running   0             11m
+kube-system   kube-proxy-nzk8v                   1/1     Running   0             11m
+kube-system   kube-scheduler-minikube            1/1     Running   0             11m
+kube-system   storage-provisioner                1/1     Running   1 (10m ago)   11m</code></pre>
+<p>To see the actual deployment object, we run this command, and see there is one deployment, and in that deployment there are three pods:</p>
+<pre><code>(base) amy@xps:~$ kubectl get deployments --all-namespaces
+NAMESPACE     NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+default       nginx-deployment   3/3     3            3           88s
+kube-system   coredns            1/1     1            1           11m</code></pre>
+<p>To increase to six pods, edit <code>.yaml</code> replicas to <code>6</code>. As soon as you save the file and run <code>kubectl apply -f nginx-deployment.yaml</code> again, it should update that state to have six pods.</p>
+<p>There’s much more you can do. You can run the back-end of your app in a container in a pod, or three pods for higher availability, and then run your front end in a separate container in a different pod or set of pods, and then expose it to a load balancer via a Kubernetes service and have a public IP and a DNS and all of that… you can set network policies and all sorts of configurations according to your preferred architecture and application set-up. Developers commit new features, kicks off Pipeline, new image built, deployed and ran on Kubernetes.</p>
+<p>He suggests <a href="https://k8slens.dev/" class="uri">https://k8slens.dev/</a> for visualising. It reads the kube config, gives graphical user interface for kubernetes cluster.</p>
+<p>He also recommends the course <a href="https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests" class="uri">https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests</a>. When you sign up for course, you get to use CodeCloud and their simulated Kubernetes to do you work on. Learn new concept, they give terminal, you practice hands-on.</p>
+</section>
+</section>
+<section id="how-does-kubernetes-compare-with-docker" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="how-does-kubernetes-compare-with-docker"><span class="header-section-number">8.2</span> How does Kubernetes compare with docker?</h2>
+<p><strong>Docker:</strong> Manage individual containers and images. Start and stop containers manually. Focuses on one at a time.</p>
+<p><strong>Kubernetes:</strong> Used to run lots of containers. It helps you manage them - make sure all are running, restart a new one if one breaks, add more containers when more people use the app (and vice versa), balance the work among your containers.</p>
+<p>Kubernetes is “declarative”, so you tell it “I want three containers” and it figures how to achieve that and maintain it (instead of telling it how to do things step-by-step).</p>
+<p>It is “dynamic” so it can change the number of boxes on the fly (e.g.&nbsp;in response to user numbers).</p>
+<p><strong>Why might you want lots of containers?</strong></p>
+<ul>
+<li>Each container has a limit. If everyone is on one container and it fails, everyone is affected, the whole app goes down. But if you have more than one, the rest keep going, it’s more reliable.</li>
+<li>All your containers can run on one powerful computer (host machine) - but still helpful to have multiple as shares workload and isolates problems. But for large-scale apps or with tools like kubernetes, your containers can also be spread across many different computers (“notes”), so the app keeps working even if one turns off and crashes.</li>
+</ul>
+<p>This can be handy for a research project with lots of analysis/scenarios, -</p>
+<ul>
+<li>If need to run lots of experiments at once, can start more containers to deal with surge, then close down.</li>
+<li>It will restart failed jobs.</li>
+<li>It can spread jobs across computers/cloud machines so can run efficiently and avoid overloading servers</li>
+<li>The set-up can be described in a YAML so anyone can run exactly the same cluster on their own machine or cloud, repeatable, reliable. Works anywhere.</li>
+<li>If multiple services talking to each other in workflow, kubernetes can help manage that.</li>
+</ul>
+</section>
+<section id="kubernetes-presentation-from-rpysoc2025" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="kubernetes-presentation-from-rpysoc2025"><span class="header-section-number">8.3</span> Kubernetes presentation from RPySoc2025</h2>
+<p><a href="https://amadeuspzs.github.io/nhs-rpysoc-2025-deploy-python/" class="uri">https://amadeuspzs.github.io/nhs-rpysoc-2025-deploy-python/</a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -974,17 +1094,49 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../content/python/simpy.html" class="pagination-link" aria-label="DES using SimPy">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span>
+      <a href="../../content/general/markdown.html" class="pagination-link" aria-label="Markdown">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Markdown</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../content/python/quarto.html" class="pagination-link" aria-label="Quarto">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Quarto</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../content/general/machine_learning.html" class="pagination-link" aria-label="Machine learning">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Machine learning</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
