@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>24&nbsp; Prediction v.s. causal inference – Programming notes</title>
+<title>25&nbsp; Prediction v.s. causal inference – Programming notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -83,8 +83,6 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Programming notes</span>
     </a>
@@ -106,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html">Causal concepts</a></li><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html">Causal concepts</a></li><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -116,10 +114,6 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -157,38 +151,44 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../content/general/peer_review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Peer review</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../content/general/latex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Latex</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Latex</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/markdown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/machine_learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/open_science.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Open Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Open Science</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/zenodo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Zenodo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Zenodo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/other.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Other</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Other</span></span></a>
   </div>
 </li>
       </ul>
@@ -205,49 +205,49 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/general.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">General Python Stuff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">General Python Stuff</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/environments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python environments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python environments</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/seeds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Seeds</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Seeds</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/simpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/books.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Books</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Books</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/jupyter_book.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Jupyter book</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Jupyter book</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/sphinx.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Sphinx</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Sphinx</span></span></a>
   </div>
 </li>
       </ul>
@@ -264,19 +264,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/r/general.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">General</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">General</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/r/packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/r/environments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dependency management in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dependency management in R</span></span></a>
   </div>
 </li>
       </ul>
@@ -293,13 +293,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/simulation/simulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/simulation/discrete_event.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span></a>
   </div>
 </li>
       </ul>
@@ -316,43 +316,43 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/1_predict_vs_causal.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/2_intro_to_causality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/3_dags.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/4_assumptions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Assumptions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Assumptions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/5_estimands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Causal estimands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Causal estimands</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/6_propensity_scores.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Propensity scores</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Propensity scores</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/7_target_trial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Target trial emulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Target trial emulation</span></span></a>
   </div>
 </li>
       </ul>
@@ -369,79 +369,79 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a1_multivariable_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a2_stratification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stratification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Stratification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a3_matching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Matching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a4_iptw.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/b1_marginal_structural_models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/b2_gcomputation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G-computation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G-computation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c1_instrumental_variable.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c2_regression_discontinuity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c3_interrupted_time.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c4_diff_in_diff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Difference in differences (DiD)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Difference in differences (DiD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/other.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Other methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Other methods</span></span></a>
   </div>
 </li>
       </ul>
@@ -456,22 +456,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#how-do-you-know-whether-you-are-interested-in-prediction-or-causation" id="toc-how-do-you-know-whether-you-are-interested-in-prediction-or-causation" class="nav-link active" data-scroll-target="#how-do-you-know-whether-you-are-interested-in-prediction-or-causation"><span class="header-section-number">24.1</span> How do you know whether you are interested in prediction or causation?</a>
+  <li><a href="#how-do-you-know-whether-you-are-interested-in-prediction-or-causation" id="toc-how-do-you-know-whether-you-are-interested-in-prediction-or-causation" class="nav-link active" data-scroll-target="#how-do-you-know-whether-you-are-interested-in-prediction-or-causation"><span class="header-section-number">25.1</span> How do you know whether you are interested in prediction or causation?</a>
   <ul class="collapse">
-  <li><a href="#illustrative-example" id="toc-illustrative-example" class="nav-link" data-scroll-target="#illustrative-example"><span class="header-section-number">24.1.1</span> Illustrative example</a></li>
-  <li><a href="#explainability-v.s.-causality" id="toc-explainability-v.s.-causality" class="nav-link" data-scroll-target="#explainability-v.s.-causality"><span class="header-section-number">24.1.2</span> Explainability v.s. causality</a></li>
+  <li><a href="#illustrative-example" id="toc-illustrative-example" class="nav-link" data-scroll-target="#illustrative-example"><span class="header-section-number">25.1.1</span> Illustrative example</a></li>
+  <li><a href="#explainability-v.s.-causality" id="toc-explainability-v.s.-causality" class="nav-link" data-scroll-target="#explainability-v.s.-causality"><span class="header-section-number">25.1.2</span> Explainability v.s. causality</a></li>
   </ul></li>
-  <li><a href="#doing-predictive-and-etiological-research" id="toc-doing-predictive-and-etiological-research" class="nav-link" data-scroll-target="#doing-predictive-and-etiological-research"><span class="header-section-number">24.2</span> Doing predictive AND etiological research</a></li>
-  <li><a href="#when-can-prediction-models-answer-causal-questions" id="toc-when-can-prediction-models-answer-causal-questions" class="nav-link" data-scroll-target="#when-can-prediction-models-answer-causal-questions"><span class="header-section-number">24.3</span> When can prediction models answer causal questions?</a></li>
-  <li><a href="#confusion-and-controversy" id="toc-confusion-and-controversy" class="nav-link" data-scroll-target="#confusion-and-controversy"><span class="header-section-number">24.4</span> Confusion and controversy</a>
+  <li><a href="#doing-predictive-and-etiological-research" id="toc-doing-predictive-and-etiological-research" class="nav-link" data-scroll-target="#doing-predictive-and-etiological-research"><span class="header-section-number">25.2</span> Doing predictive AND etiological research</a></li>
+  <li><a href="#when-can-prediction-models-answer-causal-questions" id="toc-when-can-prediction-models-answer-causal-questions" class="nav-link" data-scroll-target="#when-can-prediction-models-answer-causal-questions"><span class="header-section-number">25.3</span> When can prediction models answer causal questions?</a></li>
+  <li><a href="#confusion-and-controversy" id="toc-confusion-and-controversy" class="nav-link" data-scroll-target="#confusion-and-controversy"><span class="header-section-number">25.4</span> Confusion and controversy</a>
   <ul class="collapse">
-  <li><a href="#reasons-for-confusion" id="toc-reasons-for-confusion" class="nav-link" data-scroll-target="#reasons-for-confusion"><span class="header-section-number">24.4.1</span> Reasons for confusion</a></li>
-  <li><a href="#confusion-in-the-literature" id="toc-confusion-in-the-literature" class="nav-link" data-scroll-target="#confusion-in-the-literature"><span class="header-section-number">24.4.2</span> Confusion in the literature</a></li>
+  <li><a href="#reasons-for-confusion" id="toc-reasons-for-confusion" class="nav-link" data-scroll-target="#reasons-for-confusion"><span class="header-section-number">25.4.1</span> Reasons for confusion</a></li>
+  <li><a href="#confusion-in-the-literature" id="toc-confusion-in-the-literature" class="nav-link" data-scroll-target="#confusion-in-the-literature"><span class="header-section-number">25.4.2</span> Confusion in the literature</a></li>
   </ul></li>
-  <li><a href="#concepts-and-principles" id="toc-concepts-and-principles" class="nav-link" data-scroll-target="#concepts-and-principles"><span class="header-section-number">24.5</span> Concepts and principles</a>
+  <li><a href="#concepts-and-principles" id="toc-concepts-and-principles" class="nav-link" data-scroll-target="#concepts-and-principles"><span class="header-section-number">25.5</span> Concepts and principles</a>
   <ul class="collapse">
-  <li><a href="#ladder-of-causality" id="toc-ladder-of-causality" class="nav-link" data-scroll-target="#ladder-of-causality"><span class="header-section-number">24.5.1</span> Ladder of causality</a></li>
-  <li><a href="#types-of-inference" id="toc-types-of-inference" class="nav-link" data-scroll-target="#types-of-inference"><span class="header-section-number">24.5.2</span> Types of inference</a></li>
+  <li><a href="#ladder-of-causality" id="toc-ladder-of-causality" class="nav-link" data-scroll-target="#ladder-of-causality"><span class="header-section-number">25.5.1</span> Ladder of causality</a></li>
+  <li><a href="#types-of-inference" id="toc-types-of-inference" class="nav-link" data-scroll-target="#types-of-inference"><span class="header-section-number">25.5.2</span> Types of inference</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -479,9 +479,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html">Causal concepts</a></li><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html">Causal concepts</a></li><li class="breadcrumb-item"><a href="../../content/causal_concepts/1_predict_vs_causal.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></h1>
+<h1 class="title"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></h1>
 </div>
 
 
@@ -498,12 +498,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>`````wligxabqbpxq Executive summary :class: info</p>
+<p>`````amvzdaqjondq Executive summary :class: info</p>
 <p>Predictive research aims to predict an outcome with the <strong>best accuracy</strong>. Explainability (e.g.&nbsp;SHAP) is about understanding why a model makes certain predictions. When making predictions, whether the direction of relationships (e.g.&nbsp;from SHAP values) is true/causal doesn’t matter, as the goal is just to make the best predictions.</p>
 <p>Etiological research aims to <strong>uncover causal effects</strong>. It involves finding an unbiased estimate of the effect of X on Y, by controlling for confounding factors that could bias the estimate. In causal inference, the true direction of relationships (and the counterfactual scenarios) are important. It typically starts with drawing a causal diagram.</p>
 <p>`````</p>
-<section id="how-do-you-know-whether-you-are-interested-in-prediction-or-causation" class="level2" data-number="24.1">
-<h2 data-number="24.1" class="anchored" data-anchor-id="how-do-you-know-whether-you-are-interested-in-prediction-or-causation"><span class="header-section-number">24.1</span> How do you know whether you are interested in prediction or causation?</h2>
+<section id="how-do-you-know-whether-you-are-interested-in-prediction-or-causation" class="level2" data-number="25.1">
+<h2 data-number="25.1" class="anchored" data-anchor-id="how-do-you-know-whether-you-are-interested-in-prediction-or-causation"><span class="header-section-number">25.1</span> How do you know whether you are interested in prediction or causation?</h2>
 <p>Scientific research can be categorised into descriptive, predictive and etiological research. Descriptive research aims to summarise the characteristics of a group (or person).<a href="https://doi.org/10.1016/j.dcn.2020.100867">[Hamaker et al.&nbsp;2020]</a> However, this page focusses just on <strong>predictive and etiological research</strong>.</p>
 <table class="caption-top table">
 <thead>
@@ -531,8 +531,8 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<section id="illustrative-example" class="level3" data-number="24.1.1">
-<h3 data-number="24.1.1" class="anchored" data-anchor-id="illustrative-example"><span class="header-section-number">24.1.1</span> Illustrative example</h3>
+<section id="illustrative-example" class="level3" data-number="25.1.1">
+<h3 data-number="25.1.1" class="anchored" data-anchor-id="illustrative-example"><span class="header-section-number">25.1.1</span> Illustrative example</h3>
 <p>A team have built an XGBoost model to predict whether customers will renew their subscription. They use SHAP values to understand how the model made its predictions. They notice a suprising finding: <strong>users who report more bugs are more likely to renew. Is this a problem? It depends on their goal</strong></p>
 <ul>
 <li><p>If their goal is to <strong>predict customer retention to estimate future revenue</strong>, then this relationship is helpful for <strong>prediction</strong>, and it doesn’t matter about the direction, as long as our predictions are good.</p></li>
@@ -569,20 +569,20 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="explainability-v.s.-causality" class="level3" data-number="24.1.2">
-<h3 data-number="24.1.2" class="anchored" data-anchor-id="explainability-v.s.-causality"><span class="header-section-number">24.1.2</span> Explainability v.s. causality</h3>
+<section id="explainability-v.s.-causality" class="level3" data-number="25.1.2">
+<h3 data-number="25.1.2" class="anchored" data-anchor-id="explainability-v.s.-causality"><span class="header-section-number">25.1.2</span> Explainability v.s. causality</h3>
 <p>Explainability refers to being able to <strong>understand why a model makes certain predictions</strong>. The aim of explainable AI is to make ML models more transparent. It provides insights on: * How a model makes predictions * What features are most important * How sensitive a model is to changes in the input <a href="https://doi.org/10.1038/s42256-020-0197-y">[Prosperi et al.&nbsp;2020]</a></p>
 <p>The contribution of individual covariates are often mistakenly interpreted causally, but the methods used were focused on combining covariates to optimise predictive accuracy, and not to predict the outcome distribution under hypothetical interventions. <a href="https://doi.org/10.1186/s41512-021-00092-9">[Lin et al.&nbsp;2021]</a></p>
 <p>However, it cannot be used to infer causal relationships, since the findings may be biased by stratification or unmeasured confounders, or mediated by other factors in the causal pathway.<a href="https://doi.org/10.1038/s42256-020-0197-y">[Prosperi et al.&nbsp;2020]</a> If you wish to make claims about causality, you will need to build a casual model. Causal ML aims to <strong>infer causal relationships</strong> from observational data by estimating the effect of a specific variable on the outcome, while <strong>appropriately controlling</strong> for other confounding factors that could bias the estimate.<a href="https://medium.com/@dahnert.sebastian/understand-the-difference-and-intersection-between-causal-ml-and-explainable-ai-65583132e704">[source]</a></p>
 </section>
 </section>
-<section id="doing-predictive-and-etiological-research" class="level2" data-number="24.2">
-<h2 data-number="24.2" class="anchored" data-anchor-id="doing-predictive-and-etiological-research"><span class="header-section-number">24.2</span> Doing predictive AND etiological research</h2>
+<section id="doing-predictive-and-etiological-research" class="level2" data-number="25.2">
+<h2 data-number="25.2" class="anchored" data-anchor-id="doing-predictive-and-etiological-research"><span class="header-section-number">25.2</span> Doing predictive AND etiological research</h2>
 <p>Many problems will require a <strong>combination of prediction and causation</strong>. * “Pure forecasting task” - e.g.&nbsp;just want to predict whether or not it will rain, and don’t care why/what caused the rain * “Pure causation task” - e.g.&nbsp;performing a rain dance presumed to save dying crops, only if it actually causes rain * Combination of the two - e.g.&nbsp;if planning assignment of fire inspectors across a city, should (a) predict will establishment will be in violation of fire codes, and (b) estimate causal effect on establishment’s behaviour of receiving an inspection or not</p>
 <p>Beck et al.&nbsp;2018 also argue that <strong>prediction remains relevant even if you’re only interested in understanding causal effects</strong>. Explanations that invoke causal mechanisms always make predictions - specifically, predictions about what will happen under an intervention. ‘Whether they do so explicitly or not, that is, causal claims necessarily make predictions; thus it is both fair and arguably useful to hold them accountable for the accuracy of the predictions they make.’ They therefore argue that the <strong>predictive performance of models and of explanations</strong> is important to include (e.g.&nbsp;R<sup>2</sup>, MAE, RMSE, AUC, accuracy, recall, F1).<a href="https://doi.org/10.31219/osf.io/u6vz5">[Beck et al.&nbsp;2018]</a></p>
 </section>
-<section id="when-can-prediction-models-answer-causal-questions" class="level2" data-number="24.3">
-<h2 data-number="24.3" class="anchored" data-anchor-id="when-can-prediction-models-answer-causal-questions"><span class="header-section-number">24.3</span> When can prediction models answer causal questions?</h2>
+<section id="when-can-prediction-models-answer-causal-questions" class="level2" data-number="25.3">
+<h2 data-number="25.3" class="anchored" data-anchor-id="when-can-prediction-models-answer-causal-questions"><span class="header-section-number">25.3</span> When can prediction models answer causal questions?</h2>
 <p>As this example is from a simulation study where know true causal effects, we can plot the SHAP values from the prediction models v.s. the known true causal effects.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -608,21 +608,21 @@ ul.task-list li input[type="checkbox"] {
 <p>‘Specialized causal tools based on the principals of instrumental variables, differences-in-differences, or regression discontinuities can sometimes exploit partial randomization even in cases where a full experiment is impossible. For example, instrumental variable techniques can be used to identify causal effects in cases where we cannot randomly assign a treatment, but we can randomly nudge some customers towards treatment, like sending an email encouraging them to explore a new product feature. Difference-in-difference approaches can be helpful when the introduction of new treatments is staggered across groups. Finally, regression discontinuity approaches are a good option when patterns of treatment exhibit sharp cut-offs (for example qualification for treatment based on a specific, measurable trait like revenue over $5,000 per month).’</p>
 <p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/overviews/Be%20careful%20when%20interpreting%20predictive%20models%20in%20search%20of%20causal%20insights.html#">[source]</a></p>
 </section>
-<section id="confusion-and-controversy" class="level2" data-number="24.4">
-<h2 data-number="24.4" class="anchored" data-anchor-id="confusion-and-controversy"><span class="header-section-number">24.4</span> Confusion and controversy</h2>
-<section id="reasons-for-confusion" class="level3" data-number="24.4.1">
-<h3 data-number="24.4.1" class="anchored" data-anchor-id="reasons-for-confusion"><span class="header-section-number">24.4.1</span> Reasons for confusion</h3>
+<section id="confusion-and-controversy" class="level2" data-number="25.4">
+<h2 data-number="25.4" class="anchored" data-anchor-id="confusion-and-controversy"><span class="header-section-number">25.4</span> Confusion and controversy</h2>
+<section id="reasons-for-confusion" class="level3" data-number="25.4.1">
+<h3 data-number="25.4.1" class="anchored" data-anchor-id="reasons-for-confusion"><span class="header-section-number">25.4.1</span> Reasons for confusion</h3>
 <p>Causal inference can be confusing and controversial. Reasons for this are: * Causally <strong>unrelated</strong> variables can be <strong>highly correlated</strong> * Results may be reported in a way that is careful to avoid referring to any causal relationships, but it will often still <strong>naturally be read and interpreted as causal</strong> * Even if there is a causal relationship, sometimes the <strong>direction is unclear</strong> - would need to carefully examine the temporal relationships between the variables<a href="https://www.coursera.org/learn/crash-course-in-causality/lecture/x4UMR/confusion-over-causality">[source]</a></p>
 </section>
-<section id="confusion-in-the-literature" class="level3" data-number="24.4.2">
-<h3 data-number="24.4.2" class="anchored" data-anchor-id="confusion-in-the-literature"><span class="header-section-number">24.4.2</span> Confusion in the literature</h3>
+<section id="confusion-in-the-literature" class="level3" data-number="25.4.2">
+<h3 data-number="25.4.2" class="anchored" data-anchor-id="confusion-in-the-literature"><span class="header-section-number">25.4.2</span> Confusion in the literature</h3>
 <p>In practice, prediction and causation are <strong>commonly conflated</strong>. A review of observational studies found that 26% (46 / 180) observational cohort studies conflated between etiology and prediction - * In causal studies, this was mainly due to selection of covariates based on their ability to predict <strong>without taking causal structure into account</strong>. * In prediction studies, this was mainly due to <strong>causal interpretation</strong> of covariates included in a prediction model.</p>
 </section>
 </section>
-<section id="concepts-and-principles" class="level2" data-number="24.5">
-<h2 data-number="24.5" class="anchored" data-anchor-id="concepts-and-principles"><span class="header-section-number">24.5</span> Concepts and principles</h2>
-<section id="ladder-of-causality" class="level3" data-number="24.5.1">
-<h3 data-number="24.5.1" class="anchored" data-anchor-id="ladder-of-causality"><span class="header-section-number">24.5.1</span> Ladder of causality</h3>
+<section id="concepts-and-principles" class="level2" data-number="25.5">
+<h2 data-number="25.5" class="anchored" data-anchor-id="concepts-and-principles"><span class="header-section-number">25.5</span> Concepts and principles</h2>
+<section id="ladder-of-causality" class="level3" data-number="25.5.1">
+<h3 data-number="25.5.1" class="anchored" data-anchor-id="ladder-of-causality"><span class="header-section-number">25.5.1</span> Ladder of causality</h3>
 <p>Judea Pearl proposed the ‘<strong>Ladder of Causality</strong>’ to categorise different levels of causal thinking, with increasing levels of difficulty.</p>
 <table class="caption-top table">
 <colgroup>
@@ -663,8 +663,8 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://cacm.acm.org/magazines/2019/3/234929-the-seven-tools-of-causal-inference-with-reflections-on-machine-learning/fulltext?mobile=false">[source]</a></p>
 <p>Difference between interventions and counterfactuals in this hierarchy: * With interventions, you ask what will happen on average if you perform an action. * With counterfactuals, you ask what would have happened if you had performed a different action. * These two queries are mathematically distinct as they require different levels of information to be answered (counterfactuals need more information to be answered)’.<a href="https://stats.stackexchange.com/questions/379799/difference-between-rungs-two-and-three-in-the-ladder-of-causation">[source]</a></p>
 </section>
-<section id="types-of-inference" class="level3" data-number="24.5.2">
-<h3 data-number="24.5.2" class="anchored" data-anchor-id="types-of-inference"><span class="header-section-number">24.5.2</span> Types of inference</h3>
+<section id="types-of-inference" class="level3" data-number="25.5.2">
+<h3 data-number="25.5.2" class="anchored" data-anchor-id="types-of-inference"><span class="header-section-number">25.5.2</span> Types of inference</h3>
 <p>From C.S.Peirce in late 1800s: * ‘<strong>Deduction</strong> - necessary inference following logic’ <a href="https://www.statslab.cam.ac.uk/~qz280/teaching/causal-2023/notes-2021.pdf">[Zhao 2022]</a> * e.g.&nbsp;If dentist appointment at 10 and it’s 30 minute drive, deduce you need to leave at 9.30 <a href="https://www.merriam-webster.com/grammar/deduction-vs-induction-vs-abduction">[source]</a> * ‘<strong>Induction</strong> - probable or non-necessary inference (purely) based on statistical data * e.g.&nbsp;Correlation between cigarette smoking and lung cancer’ <a href="https://www.statslab.cam.ac.uk/~qz280/teaching/causal-2023/notes-2021.pdf">[Zhao 2022]</a> * Four of your six coworker order the same sandwich so you induce that the sandwich is probably good <a href="https://www.merriam-webster.com/grammar/deduction-vs-induction-vs-abduction">[source]</a> * ‘<strong>Abduction</strong> - inference with implicit or explicit appeal to explanatory considerations * e.g.&nbsp;Investigation of a crime scene * Cigarette smoking causes lung cancer’ <a href="https://www.statslab.cam.ac.uk/~qz280/teaching/causal-2023/notes-2021.pdf">[Zhao 2022]</a></p>
 
 
@@ -1075,12 +1075,12 @@ ul.task-list li input[type="checkbox"] {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../content/simulation/discrete_event.html" class="pagination-link" aria-label="Discrete event simulation (DES)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../content/causal_concepts/2_intro_to_causality.html" class="pagination-link" aria-label="The three &quot;languages&quot; of causal inference">
-        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

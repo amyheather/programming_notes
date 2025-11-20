@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>33&nbsp; Stratification – Programming notes</title>
+<title>34&nbsp; Stratification – Programming notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -83,8 +83,6 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Programming notes</span>
     </a>
@@ -106,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_methods/summary.html">Causal methods</a></li><li class="breadcrumb-item"><a href="../../content/causal_methods/a2_stratification.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stratification</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_methods/summary.html">Causal methods</a></li><li class="breadcrumb-item"><a href="../../content/causal_methods/a2_stratification.html"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Stratification</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -116,10 +114,6 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -157,38 +151,44 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../content/general/peer_review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Peer review</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../content/general/latex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Latex</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Latex</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/markdown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/machine_learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/open_science.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Open Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Open Science</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/zenodo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Zenodo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Zenodo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/other.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Other</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Other</span></span></a>
   </div>
 </li>
       </ul>
@@ -205,49 +205,49 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/general.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">General Python Stuff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">General Python Stuff</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/environments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python environments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python environments</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/seeds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Seeds</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Seeds</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/simpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/books.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Books</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Books</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/jupyter_book.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Jupyter book</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Jupyter book</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/sphinx.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Sphinx</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Sphinx</span></span></a>
   </div>
 </li>
       </ul>
@@ -264,19 +264,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/r/general.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">General</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">General</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/r/packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/r/environments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dependency management in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dependency management in R</span></span></a>
   </div>
 </li>
       </ul>
@@ -293,13 +293,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/simulation/simulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/simulation/discrete_event.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span></a>
   </div>
 </li>
       </ul>
@@ -316,43 +316,43 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/1_predict_vs_causal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/2_intro_to_causality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/3_dags.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/4_assumptions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Assumptions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Assumptions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/5_estimands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Causal estimands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Causal estimands</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/6_propensity_scores.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Propensity scores</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Propensity scores</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/7_target_trial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Target trial emulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Target trial emulation</span></span></a>
   </div>
 </li>
       </ul>
@@ -369,79 +369,79 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a1_multivariable_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a2_stratification.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stratification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Stratification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a3_matching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Matching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a4_iptw.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/b1_marginal_structural_models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/b2_gcomputation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G-computation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G-computation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c1_instrumental_variable.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c2_regression_discontinuity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c3_interrupted_time.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c4_diff_in_diff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Difference in differences (DiD)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Difference in differences (DiD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/other.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Other methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Other methods</span></span></a>
   </div>
 </li>
       </ul>
@@ -456,19 +456,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#simple-example" id="toc-simple-example" class="nav-link active" data-scroll-target="#simple-example"><span class="header-section-number">33.1</span> Simple example</a></li>
-  <li><a href="#mantel-haenszel-formula" id="toc-mantel-haenszel-formula" class="nav-link" data-scroll-target="#mantel-haenszel-formula"><span class="header-section-number">33.2</span> Mantel-Haenszel Formula</a></li>
-  <li><a href="#stratification-on-the-propensity-score" id="toc-stratification-on-the-propensity-score" class="nav-link" data-scroll-target="#stratification-on-the-propensity-score"><span class="header-section-number">33.3</span> Stratification on the propensity score</a></li>
-  <li><a href="#limitations-of-stratification" id="toc-limitations-of-stratification" class="nav-link" data-scroll-target="#limitations-of-stratification"><span class="header-section-number">33.4</span> Limitations of stratification</a></li>
+  <li><a href="#simple-example" id="toc-simple-example" class="nav-link active" data-scroll-target="#simple-example"><span class="header-section-number">34.1</span> Simple example</a></li>
+  <li><a href="#mantel-haenszel-formula" id="toc-mantel-haenszel-formula" class="nav-link" data-scroll-target="#mantel-haenszel-formula"><span class="header-section-number">34.2</span> Mantel-Haenszel Formula</a></li>
+  <li><a href="#stratification-on-the-propensity-score" id="toc-stratification-on-the-propensity-score" class="nav-link" data-scroll-target="#stratification-on-the-propensity-score"><span class="header-section-number">34.3</span> Stratification on the propensity score</a></li>
+  <li><a href="#limitations-of-stratification" id="toc-limitations-of-stratification" class="nav-link" data-scroll-target="#limitations-of-stratification"><span class="header-section-number">34.4</span> Limitations of stratification</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_methods/summary.html">Causal methods</a></li><li class="breadcrumb-item"><a href="../../content/causal_methods/a2_stratification.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stratification</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_methods/summary.html">Causal methods</a></li><li class="breadcrumb-item"><a href="../../content/causal_methods/a2_stratification.html"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Stratification</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stratification</span></h1>
+<h1 class="title"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Stratification</span></h1>
 </div>
 
 
@@ -489,8 +489,8 @@ ul.task-list li input[type="checkbox"] {
 <p>It was proposed by Frangakis and Rubin 2002.<a href="https://doi.org/10.1111/j.0006-341X.2002.00021.x">[source]</a> It has gained popularity since the ICH E9 addendum on statistical principles for clinical trials, which listed it as a valid approach to ICEs.<a href="https://cran.r-project.org/web/packages/PStrata/vignettes/PStrata_JSS.pdf">[source]</a> The use of stratification to adjust for confounding is so common that some investigators consider the terms ‘stratification’ and ‘adjustment’ synonymous. Whilst it can be used to adjust for confounding - but it can also be used to <strong>identify effect modification</strong>.<a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a></p>
 <p>Principal stratification involves partitioning participants into <strong>principal strata</strong> - i.e.&nbsp;particular values of a variable. ‘Stratification necessarily results in multiple stratum-specific effect measures (one per stratum defined by the variables L). Each of them quantifies the average causal effect in a nonoverlapping subset of the population but, in general, none of them quantifies the average causal effect in the entire population.’ Instead, they are <strong>conditional effect measures</strong>. <a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a></p>
 <p>‘Often, one of the principal strata is the focus of inference, but sometimes it is of interest to combine principal effects across several (or all) principal strata while accounting for a confounding effect of a post-randomization variable.’<a href="https://doi.org/10.1002/sim.9439">[Lipkovich et al.&nbsp;2022]</a> Hence, stratification involves either: * <strong>Restricting analysis to subset</strong> of study population with particular value of confounder.<a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a> This type of stratification is referred to as <strong>restriction</strong>. When positivity fails for some strata of the population (i.e.&nbsp;impossible to get a certain exposure), restriction is used to limit causal inference to the strata where it does hold. <a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a> * <strong>Performing analysis in each stratum</strong> of confounder.<a href="https://learning.edx.org/course/course-v1:HarvardX+PH559x+2T2020/home">[HarvardX PH559x]</a> For causal inference, stratification is simply applies restriction to several mutually exclusive subsets of the population, with exchangeability within each subset. <a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a></p>
-<section id="simple-example" class="level2" data-number="33.1">
-<h2 data-number="33.1" class="anchored" data-anchor-id="simple-example"><span class="header-section-number">33.1</span> Simple example</h2>
+<section id="simple-example" class="level2" data-number="34.1">
+<h2 data-number="34.1" class="anchored" data-anchor-id="simple-example"><span class="header-section-number">34.1</span> Simple example</h2>
 <ul>
 <li>Exposure: Birth order</li>
 <li>Outcome: Down syndrome</li>
@@ -528,17 +528,17 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="mantel-haenszel-formula" class="level2" data-number="33.2">
-<h2 data-number="33.2" class="anchored" data-anchor-id="mantel-haenszel-formula"><span class="header-section-number">33.2</span> Mantel-Haenszel Formula</h2>
+<section id="mantel-haenszel-formula" class="level2" data-number="34.2">
+<h2 data-number="34.2" class="anchored" data-anchor-id="mantel-haenszel-formula"><span class="header-section-number">34.2</span> Mantel-Haenszel Formula</h2>
 <p>The <strong>Mantel-Haenszel formula</strong> can be used to provide a pooled odds ratio across different strata. There are alternative methods (e.g.&nbsp;Woolf and inverse variance) but the Mantel-Haenszel method is generally the most robust.<a href="https://www.statsdirect.co.uk/help/meta_analysis/mh.htm">[source]</a></p>
 <p>Key steps: 1. Calculate crude relative risks (RR) or odds ratio (OR) (i.e.&nbsp;<strong>without stratifying</strong>) 2. Stratify by confounding variable and calculate <strong>stratum-specific</strong> RR or OR 3. Assess whether effect estimates are roughly homogenous across strata and do not differ from that in the whole group * If they are <strong>homogeneous</strong>, this means there is <strong>no confounding</strong>, and you can calculate the overall adjusted RR or OR by the <strong>Mantel-Haenszel formula</strong>. The pooling estimate provides an <strong>average</strong> of the stratum-specific RRs or ORs with <strong>weights proportional to the number of individuals</strong> in each stratum. * If they are <strong>heterogeneous</strong> and we are interested in effect modification, stratum-specific effect estimates should be reported separately. <a href="https://doi.org/10.1159/000319590">[Tripepi et al.&nbsp;2010]</a></p>
 </section>
-<section id="stratification-on-the-propensity-score" class="level2" data-number="33.3">
-<h2 data-number="33.3" class="anchored" data-anchor-id="stratification-on-the-propensity-score"><span class="header-section-number">33.3</span> Stratification on the propensity score</h2>
+<section id="stratification-on-the-propensity-score" class="level2" data-number="34.3">
+<h2 data-number="34.3" class="anchored" data-anchor-id="stratification-on-the-propensity-score"><span class="header-section-number">34.3</span> Stratification on the propensity score</h2>
 <p>You can stratify subjects based on their propensity scores. ‘The literature showed that five strata are adequate to reduce at least 90% of the bias associated with a confounding variable. With a large sample size, we can use between 10 or 20 strata.’ <a href="https://doi.org/10.14196%2Fmjiri.32.122">[Valojerdi et al.&nbsp;2018]</a></p>
 </section>
-<section id="limitations-of-stratification" class="level2" data-number="33.4">
-<h2 data-number="33.4" class="anchored" data-anchor-id="limitations-of-stratification"><span class="header-section-number">33.4</span> Limitations of stratification</h2>
+<section id="limitations-of-stratification" class="level2" data-number="34.4">
+<h2 data-number="34.4" class="anchored" data-anchor-id="limitations-of-stratification"><span class="header-section-number">34.4</span> Limitations of stratification</h2>
 <ul>
 <li>Computes <strong>conditional</strong> effect measures (not average effect measures)</li>
 <li>Requires computation of effect measures in subsets of population defined by combining <em>all</em> variables required for conditional exchangeability<a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">[Hernán and Robins 2024]</a>
@@ -957,12 +957,12 @@ ul.task-list li input[type="checkbox"] {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../content/causal_methods/a1_multivariable_regression.html" class="pagination-link" aria-label="Multivariable regression">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../content/causal_methods/a3_matching.html" class="pagination-link" aria-label="Matching">
-        <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Matching</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Matching</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

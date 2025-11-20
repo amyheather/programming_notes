@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>21&nbsp; Dependency management in R – Programming notes</title>
+<title>22&nbsp; Dependency management in R – Programming notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -115,8 +115,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Programming notes</span>
     </a>
@@ -138,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/r/general.html">R</a></li><li class="breadcrumb-item"><a href="../../content/r/environments.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dependency management in R</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/r/general.html">R</a></li><li class="breadcrumb-item"><a href="../../content/r/environments.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dependency management in R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -148,10 +146,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -189,38 +183,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../content/general/peer_review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Peer review</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../content/general/latex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Latex</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Latex</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/markdown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/machine_learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/open_science.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Open Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Open Science</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/zenodo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Zenodo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Zenodo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/other.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Other</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Other</span></span></a>
   </div>
 </li>
       </ul>
@@ -237,49 +237,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/general.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">General Python Stuff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">General Python Stuff</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/environments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python environments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python environments</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/seeds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Seeds</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Seeds</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/simpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/books.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Books</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Books</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/jupyter_book.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Jupyter book</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Jupyter book</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/sphinx.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Sphinx</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Sphinx</span></span></a>
   </div>
 </li>
       </ul>
@@ -296,19 +296,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/r/general.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">General</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">General</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/r/packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/r/environments.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dependency management in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dependency management in R</span></span></a>
   </div>
 </li>
       </ul>
@@ -325,13 +325,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/simulation/simulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/simulation/discrete_event.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span></a>
   </div>
 </li>
       </ul>
@@ -348,43 +348,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/1_predict_vs_causal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/2_intro_to_causality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/3_dags.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/4_assumptions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Assumptions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Assumptions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/5_estimands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Causal estimands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Causal estimands</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/6_propensity_scores.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Propensity scores</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Propensity scores</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/7_target_trial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Target trial emulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Target trial emulation</span></span></a>
   </div>
 </li>
       </ul>
@@ -401,79 +401,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a1_multivariable_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a2_stratification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stratification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Stratification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a3_matching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Matching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a4_iptw.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/b1_marginal_structural_models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/b2_gcomputation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G-computation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G-computation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c1_instrumental_variable.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c2_regression_discontinuity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c3_interrupted_time.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c4_diff_in_diff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Difference in differences (DiD)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Difference in differences (DiD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/other.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Other methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Other methods</span></span></a>
   </div>
 </li>
       </ul>
@@ -488,21 +488,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#manual-r-installation-and-symbolic-links" id="toc-manual-r-installation-and-symbolic-links" class="nav-link active" data-scroll-target="#manual-r-installation-and-symbolic-links"><span class="header-section-number">21.1</span> Manual R installation and symbolic links</a></li>
-  <li><a href="#general-stuff" id="toc-general-stuff" class="nav-link" data-scroll-target="#general-stuff"><span class="header-section-number">21.2</span> General stuff</a></li>
-  <li><a href="#how-to-set-up-renv-for-reproducible-research" id="toc-how-to-set-up-renv-for-reproducible-research" class="nav-link" data-scroll-target="#how-to-set-up-renv-for-reproducible-research"><span class="header-section-number">21.3</span> How to set-up renv for reproducible research</a></li>
-  <li><a href="#basic-renv-commands" id="toc-basic-renv-commands" class="nav-link" data-scroll-target="#basic-renv-commands"><span class="header-section-number">21.4</span> Basic renv commands</a></li>
-  <li><a href="#binder" id="toc-binder" class="nav-link" data-scroll-target="#binder"><span class="header-section-number">21.5</span> Binder</a></li>
-  <li><a href="#a-few-other-options" id="toc-a-few-other-options" class="nav-link" data-scroll-target="#a-few-other-options"><span class="header-section-number">21.6</span> A few other options…</a></li>
+  <li><a href="#manual-r-installation-and-symbolic-links" id="toc-manual-r-installation-and-symbolic-links" class="nav-link active" data-scroll-target="#manual-r-installation-and-symbolic-links"><span class="header-section-number">22.1</span> Manual R installation and symbolic links</a></li>
+  <li><a href="#general-stuff" id="toc-general-stuff" class="nav-link" data-scroll-target="#general-stuff"><span class="header-section-number">22.2</span> General stuff</a></li>
+  <li><a href="#how-to-set-up-renv-for-reproducible-research" id="toc-how-to-set-up-renv-for-reproducible-research" class="nav-link" data-scroll-target="#how-to-set-up-renv-for-reproducible-research"><span class="header-section-number">22.3</span> How to set-up renv for reproducible research</a></li>
+  <li><a href="#basic-renv-commands" id="toc-basic-renv-commands" class="nav-link" data-scroll-target="#basic-renv-commands"><span class="header-section-number">22.4</span> Basic renv commands</a></li>
+  <li><a href="#binder" id="toc-binder" class="nav-link" data-scroll-target="#binder"><span class="header-section-number">22.5</span> Binder</a></li>
+  <li><a href="#a-few-other-options" id="toc-a-few-other-options" class="nav-link" data-scroll-target="#a-few-other-options"><span class="header-section-number">22.6</span> A few other options…</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/r/general.html">R</a></li><li class="breadcrumb-item"><a href="../../content/r/environments.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dependency management in R</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/r/general.html">R</a></li><li class="breadcrumb-item"><a href="../../content/r/environments.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dependency management in R</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dependency management in R</span></h1>
+<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dependency management in R</span></h1>
 </div>
 
 
@@ -519,8 +519,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="manual-r-installation-and-symbolic-links" class="level2" data-number="21.1">
-<h2 data-number="21.1" class="anchored" data-anchor-id="manual-r-installation-and-symbolic-links"><span class="header-section-number">21.1</span> Manual R installation and symbolic links</h2>
+<section id="manual-r-installation-and-symbolic-links" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="manual-r-installation-and-symbolic-links"><span class="header-section-number">22.1</span> Manual R installation and symbolic links</h2>
 <p>These are additional instructions on how to manually switch R versions on Linux.</p>
 <p><strong>Installation</strong></p>
 <p>Following instructions from <a href="https://github.com/rstudio/r-builds">r-builds</a>, we first specify the version of R that you want to install (<a href="https://cdn.posit.co/r/versions.json">see available versions</a>).</p>
@@ -550,8 +550,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>When you open RStudio, you should find it has switched to the version of R you chose.</p>
 <p>However, if using different versions of R between projects, you will need to change this before opening RStudio for each project.</p>
 </section>
-<section id="general-stuff" class="level2" data-number="21.2">
-<h2 data-number="21.2" class="anchored" data-anchor-id="general-stuff"><span class="header-section-number">21.2</span> General stuff</h2>
+<section id="general-stuff" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="general-stuff"><span class="header-section-number">22.2</span> General stuff</h2>
 <p>Can use gnome-box to run a new system.</p>
 <p>CRAN won’t let you use old versions of packages.</p>
 <p>People like R because they can just use one R environment and everything works in that latest environment. General recommendation is just to use the latest stuff</p>
@@ -658,8 +658,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>versions</li>
 </ul>
 </section>
-<section id="how-to-set-up-renv-for-reproducible-research" class="level2" data-number="21.3">
-<h2 data-number="21.3" class="anchored" data-anchor-id="how-to-set-up-renv-for-reproducible-research"><span class="header-section-number">21.3</span> How to set-up renv for reproducible research</h2>
+<section id="how-to-set-up-renv-for-reproducible-research" class="level2" data-number="22.3">
+<h2 data-number="22.3" class="anchored" data-anchor-id="how-to-set-up-renv-for-reproducible-research"><span class="header-section-number">22.3</span> How to set-up renv for reproducible research</h2>
 <p>Create <code>DESCRIPTION</code> file e.g.</p>
 <pre><code>Title: quarto_huang_2019
 Depends: 
@@ -681,14 +681,14 @@ Imports:
 </ul>
 <p>The error was due to how those versions are formatted on CRAN, as you can see on the <a href="https://cran.r-project.org/src/contrib/Archive/tiff/">tiff archive</a>.</p>
 </section>
-<section id="basic-renv-commands" class="level2" data-number="21.4">
-<h2 data-number="21.4" class="anchored" data-anchor-id="basic-renv-commands"><span class="header-section-number">21.4</span> Basic renv commands</h2>
+<section id="basic-renv-commands" class="level2" data-number="22.4">
+<h2 data-number="22.4" class="anchored" data-anchor-id="basic-renv-commands"><span class="header-section-number">22.4</span> Basic renv commands</h2>
 <p>To start new project environment, creating .RProfile: <code>renv::init()</code><br>
 To save state of project library to lockfile renv.lock: <code>renv::snapshot()</code><br>
 To return to environment in lockfile: <code>renv::restore()</code></p>
 </section>
-<section id="binder" class="level2" data-number="21.5">
-<h2 data-number="21.5" class="anchored" data-anchor-id="binder"><span class="header-section-number">21.5</span> Binder</h2>
+<section id="binder" class="level2" data-number="22.5">
+<h2 data-number="22.5" class="anchored" data-anchor-id="binder"><span class="header-section-number">22.5</span> Binder</h2>
 <p>Created using instructions from <a href="https://ajstewartlang.github.io/23_introduction_to_binder/slides/23_introduction_to_binder.pdf">here</a> and <a href="https://github.com/binder-examples/r">here</a>.</p>
 <ol type="1">
 <li>Create runtime.txt file with R version<br>
@@ -698,8 +698,8 @@ To return to environment in lockfile: <code>renv::restore()</code></p>
 <li>Navigate to https://mybinder.org/, paste in GitHub repository, set to “URL to open (optional)” and type in “rstudio”, then launch</li>
 </ol>
 </section>
-<section id="a-few-other-options" class="level2" data-number="21.6">
-<h2 data-number="21.6" class="anchored" data-anchor-id="a-few-other-options"><span class="header-section-number">21.6</span> A few other options…</h2>
+<section id="a-few-other-options" class="level2" data-number="22.6">
+<h2 data-number="22.6" class="anchored" data-anchor-id="a-few-other-options"><span class="header-section-number">22.6</span> A few other options…</h2>
 <ul>
 <li><strong>Posit Public Package Manager</strong>- can use Snapshot (earliest is Oct 2017, and 5 most recent versions of R), for Linux can install binary packages (which is much quicker, as usually R installs from source rather than binary unlike for Windows and Mac which makes it really slow) - <a href="https://packagemanager.posit.co/client/#/repos/cran/setup">source 1</a>, <a href="https://docs.posit.co/faq/p3m-faq/#frequently-asked-questions">source 2</a></li>
 <li><strong>Groundhog</strong> - can go back to R 3.2 and April 2015 (and apparently can patch to go earlier) - <a href="https://www.brodrigues.co/blog/2023-01-12-repro_r/">source 1</a></li>
@@ -1118,12 +1118,12 @@ To return to environment in lockfile: <code>renv::restore()</code></p>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../content/r/packages.html" class="pagination-link" aria-label="Packages">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Packages</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Packages</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../content/simulation/simulation.html" class="pagination-link" aria-label="Simulation">
-        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Simulation</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Simulation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

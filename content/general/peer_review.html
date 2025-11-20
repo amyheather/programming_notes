@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Peer review – Programming notes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../content/general/latex.html" rel="next">
+<link href="../../content/general/counting_lines.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Programming notes</span>
+    </a>
+  </div>
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/amyheather/programming_notes"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/general/linux.html">General</a></li><li class="breadcrumb-item"><a href="../../content/general/peer_review.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Peer review</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Programming notes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">General</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/linux.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Linux</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Git</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/counting_lines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Counting lines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/peer_review.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Peer review</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/latex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Latex</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/machine_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/open_science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Open Science</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/zenodo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Zenodo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/general/other.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Other</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/general.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">General Python Stuff</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python environments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/seeds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Seeds</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/simpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/books.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Books</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/jupyter_book.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Jupyter book</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/python/sphinx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Sphinx</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/r/general.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">General</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/r/packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/r/environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dependency management in R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Simulation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/simulation/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/simulation/discrete_event.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Causal concepts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/1_predict_vs_causal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/2_intro_to_causality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/3_dags.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/4_assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Assumptions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/5_estimands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Causal estimands</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/6_propensity_scores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Propensity scores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_concepts/7_target_trial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Target trial emulation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Causal methods</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/a1_multivariable_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/a2_stratification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Stratification</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/a3_matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Matching</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/a4_iptw.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/b1_marginal_structural_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/b2_gcomputation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G-computation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/c1_instrumental_variable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/c2_regression_discontinuity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/c3_interrupted_time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/c4_diff_in_diff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Difference in differences (DiD)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/causal_methods/other.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Other methods</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link active" data-scroll-target="#preparation"><span class="header-section-number">5.1</span> Preparation</a></li>
+  <li><a href="#reading-the-paper" id="toc-reading-the-paper" class="nav-link" data-scroll-target="#reading-the-paper"><span class="header-section-number">5.2</span> Reading the Paper</a></li>
+  <li><a href="#section-by-section-review" id="toc-section-by-section-review" class="nav-link" data-scroll-target="#section-by-section-review"><span class="header-section-number">5.3</span> Section-by-Section Review</a>
+  <ul class="collapse">
+  <li><a href="#title" id="toc-title" class="nav-link" data-scroll-target="#title"><span class="header-section-number">5.3.1</span> Title</a></li>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link" data-scroll-target="#abstract"><span class="header-section-number">5.3.2</span> Abstract</a></li>
+  <li><a href="#keywords" id="toc-keywords" class="nav-link" data-scroll-target="#keywords"><span class="header-section-number">5.3.3</span> Keywords</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">5.3.4</span> Introduction</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">5.3.5</span> Methods</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">5.3.6</span> Results</a></li>
+  <li><a href="#discussion-and-conclusion" id="toc-discussion-and-conclusion" class="nav-link" data-scroll-target="#discussion-and-conclusion"><span class="header-section-number">5.3.7</span> Discussion and Conclusion</a></li>
+  <li><a href="#tables-and-figures" id="toc-tables-and-figures" class="nav-link" data-scroll-target="#tables-and-figures"><span class="header-section-number">5.3.8</span> Tables and Figures</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">5.3.9</span> References</a></li>
+  <li><a href="#open-scholarship-review-stars-criteria" id="toc-open-scholarship-review-stars-criteria" class="nav-link" data-scroll-target="#open-scholarship-review-stars-criteria"><span class="header-section-number">5.3.10</span> Open Scholarship Review (STARS criteria)</a></li>
+  </ul></li>
+  <li><a href="#categorizing-comments-major-vs.-minor" id="toc-categorizing-comments-major-vs.-minor" class="nav-link" data-scroll-target="#categorizing-comments-major-vs.-minor"><span class="header-section-number">5.4</span> Categorizing Comments: Major vs.&nbsp;Minor</a>
+  <ul class="collapse">
+  <li><a href="#major-issues" id="toc-major-issues" class="nav-link" data-scroll-target="#major-issues"><span class="header-section-number">5.4.1</span> Major Issues</a></li>
+  <li><a href="#minor-issues" id="toc-minor-issues" class="nav-link" data-scroll-target="#minor-issues"><span class="header-section-number">5.4.2</span> Minor Issues</a></li>
+  </ul></li>
+  <li><a href="#writing-the-review" id="toc-writing-the-review" class="nav-link" data-scroll-target="#writing-the-review"><span class="header-section-number">5.5</span> Writing the Review</a>
+  <ul class="collapse">
+  <li><a href="#structure-your-report" id="toc-structure-your-report" class="nav-link" data-scroll-target="#structure-your-report"><span class="header-section-number">5.5.1</span> Structure Your Report</a></li>
+  <li><a href="#summary-paragraph" id="toc-summary-paragraph" class="nav-link" data-scroll-target="#summary-paragraph"><span class="header-section-number">5.5.2</span> 1. Summary Paragraph</a></li>
+  <li><a href="#overall-impression-and-recommendation" id="toc-overall-impression-and-recommendation" class="nav-link" data-scroll-target="#overall-impression-and-recommendation"><span class="header-section-number">5.5.3</span> 2. Overall Impression and Recommendation</a></li>
+  <li><a href="#major-comments" id="toc-major-comments" class="nav-link" data-scroll-target="#major-comments"><span class="header-section-number">5.5.4</span> 3. Major Comments</a></li>
+  <li><a href="#minor-comments" id="toc-minor-comments" class="nav-link" data-scroll-target="#minor-comments"><span class="header-section-number">5.5.5</span> 4. Minor Comments</a></li>
+  <li><a href="#confidential-comments-to-editor" id="toc-confidential-comments-to-editor" class="nav-link" data-scroll-target="#confidential-comments-to-editor"><span class="header-section-number">5.5.6</span> 5. Confidential Comments to Editor</a></li>
+  </ul></li>
+  <li><a href="#making-your-decision-recommendation" id="toc-making-your-decision-recommendation" class="nav-link" data-scroll-target="#making-your-decision-recommendation"><span class="header-section-number">5.6</span> Making Your Decision Recommendation</a>
+  <ul class="collapse">
+  <li><a href="#decision-categories" id="toc-decision-categories" class="nav-link" data-scroll-target="#decision-categories"><span class="header-section-number">5.6.1</span> Decision Categories</a></li>
+  <li><a href="#writing-your-recommendation-to-the-editor" id="toc-writing-your-recommendation-to-the-editor" class="nav-link" data-scroll-target="#writing-your-recommendation-to-the-editor"><span class="header-section-number">5.6.2</span> Writing Your Recommendation to the Editor</a></li>
+  </ul></li>
+  <li><a href="#final-checks-before-submission" id="toc-final-checks-before-submission" class="nav-link" data-scroll-target="#final-checks-before-submission"><span class="header-section-number">5.7</span> Final Checks Before Submission</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/general/linux.html">General</a></li><li class="breadcrumb-item"><a href="../../content/general/peer_review.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Peer review</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Peer review</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This was created by sharing my notes and sources with perplexity, and it generated this checklist for me.</p>
+<section id="preparation" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="preparation"><span class="header-section-number">5.1</span> Preparation</h2>
+<p><strong>Research the topic.</strong> If you lack background knowledge, research the field before starting. This helps you assess whether the work represents a genuine contribution.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p><strong>Check for duplicates and prior work.</strong> Search for similar papers or earlier versions of this manuscript to ensure originality and identify any potential duplicate publication concerns.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p><strong>Verify your expertise and availability.</strong> Confirm the manuscript is in your area of expertise and that you have sufficient time to complete a thorough review.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p><strong>Check for competing interests.</strong> Identify any conflicts of interest that might affect your objectivity.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+</section>
+<section id="reading-the-paper" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="reading-the-paper"><span class="header-section-number">5.2</span> Reading the Paper</h2>
+<p><strong>First read:</strong> Scan the entire manuscript to understand the main message, study design, and overall direction. Ask yourself:</p>
+<ul>
+<li>What contribution does this article make to the field?<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+<li>Is the manuscript original?<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
+<li>Is the overall study design appropriate?<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></li>
+<li>What are the research question and key claims?<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></li>
+</ul>
+<p><strong>Second read:</strong> Conduct a detailed, section-by-section review using the checklists below. Keep everything confidential throughout this process.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
+</section>
+<section id="section-by-section-review" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="section-by-section-review"><span class="header-section-number">5.3</span> Section-by-Section Review</h2>
+<p>As you read each section, note specific concerns with page and line numbers. Categorize issues as <strong>major</strong> or <strong>minor</strong> as you go.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a><a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
+<section id="title" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="title"><span class="header-section-number">5.3.1</span> Title</h3>
+<ul>
+<li>Does it clearly express what the manuscript is about?<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></li>
+<li>Does it highlight the importance of the study?<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></li>
+<li>Does it contain unnecessary description?<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></li>
+</ul>
+</section>
+<section id="abstract" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="abstract"><span class="header-section-number">5.3.2</span> Abstract</h3>
+<ul>
+<li>Is it a short, clear summary of aims, key methods, important findings, and conclusions?<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></li>
+<li>Does it accurately communicate the main study contributions?<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></li>
+<li>Does it include enough information to stand alone?<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></li>
+<li>Does it contain unnecessary information?<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></li>
+</ul>
+</section>
+<section id="keywords" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="keywords"><span class="header-section-number">5.3.3</span> Keywords</h3>
+<p>Minor issues only: Are they appropriate and comprehensive?<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a></p>
+</section>
+<section id="introduction" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="introduction"><span class="header-section-number">5.3.4</span> Introduction</h3>
+<ul>
+<li>Does it clearly summarize the current state of the topic?<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a></li>
+<li>Does it address limitations of current knowledge?<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a></li>
+<li>Does it clearly explain why the study was necessary?<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a></li>
+<li>Does it clearly define the study aim, consistent with the rest of the manuscript?<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a></li>
+<li>Does it concisely establish the rationale (significance of topic, knowledge gap, how gap will be addressed)?<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a></li>
+<li>Is the research question clear and appropriate?<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a></li>
+<li>Is the literature review up to date and appropriate?<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a></li>
+</ul>
+</section>
+<section id="methods" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5" class="anchored" data-anchor-id="methods"><span class="header-section-number">5.3.5</span> Methods</h3>
+<ul>
+<li>Are the study design and methods appropriate for the research question?<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a></li>
+<li>Are all methods clearly and transparently described?<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a></li>
+<li>Is there enough detail to repeat the experiments/reproduce the study?<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a><a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a></li>
+<li>Is it clear how samples were collected or participants recruited?<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a></li>
+<li>Is there potential bias in the sample or recruitment?<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a></li>
+<li>Are correct controls/validation included?<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a></li>
+<li>Are potential confounding factors considered?<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a></li>
+<li>Has randomization been done correctly?<a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a></li>
+<li>Is the time-frame sufficient to see outcomes?<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a></li>
+<li>Is there sufficient power and appropriate statistics?<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a></li>
+<li>Are there concerns related to internal or external validity?<a href="#fn40" class="footnote-ref" id="fnref40" role="doc-noteref"><sup>40</sup></a></li>
+<li>Are there ethical concerns (IRB review, informed consent, ethical design)?<a href="#fn41" class="footnote-ref" id="fnref41" role="doc-noteref"><sup>41</sup></a><a href="#fn42" class="footnote-ref" id="fnref42" role="doc-noteref"><sup>42</sup></a></li>
+</ul>
+</section>
+<section id="results" class="level3" data-number="5.3.6">
+<h3 data-number="5.3.6" class="anchored" data-anchor-id="results"><span class="header-section-number">5.3.6</span> Results</h3>
+<ul>
+<li>Are results presented clearly and accurately?<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a></li>
+<li>Do the results match the methods?<a href="#fn44" class="footnote-ref" id="fnref44" role="doc-noteref"><sup>44</sup></a></li>
+<li>Have all relevant data been included?<a href="#fn45" class="footnote-ref" id="fnref45" role="doc-noteref"><sup>45</sup></a></li>
+<li>Is there risk of patients/participants being identified?<a href="#fn46" class="footnote-ref" id="fnref46" role="doc-noteref"><sup>46</sup></a></li>
+<li>Is data in text consistent with figures and tables?<a href="#fn47" class="footnote-ref" id="fnref47" role="doc-noteref"><sup>47</sup></a></li>
+<li>Have necessary analyses been performed to test the hypothesis?<a href="#fn48" class="footnote-ref" id="fnref48" role="doc-noteref"><sup>48</sup></a></li>
+<li>Could additional analyses more comprehensively test the hypothesis?<a href="#fn49" class="footnote-ref" id="fnref49" role="doc-noteref"><sup>49</sup></a></li>
+<li>Are results supported by the data?<a href="#fn50" class="footnote-ref" id="fnref50" role="doc-noteref"><sup>50</sup></a></li>
+<li>Have data been transparently represented?<a href="#fn51" class="footnote-ref" id="fnref51" role="doc-noteref"><sup>51</sup></a></li>
+<li>Are there concerns about accuracy of reported data or results?<a href="#fn52" class="footnote-ref" id="fnref52" role="doc-noteref"><sup>52</sup></a></li>
+</ul>
+</section>
+<section id="discussion-and-conclusion" class="level3" data-number="5.3.7">
+<h3 data-number="5.3.7" class="anchored" data-anchor-id="discussion-and-conclusion"><span class="header-section-number">5.3.7</span> Discussion and Conclusion</h3>
+<ul>
+<li>Do authors logically explain the findings?<a href="#fn53" class="footnote-ref" id="fnref53" role="doc-noteref"><sup>53</sup></a></li>
+<li>Do authors compare findings with current research?<a href="#fn54" class="footnote-ref" id="fnref54" role="doc-noteref"><sup>54</sup></a></li>
+<li>Are implications for future research and applications discussed?<a href="#fn55" class="footnote-ref" id="fnref55" role="doc-noteref"><sup>55</sup></a></li>
+<li>Are conclusions supported by the data?<a href="#fn56" class="footnote-ref" id="fnref56" role="doc-noteref"><sup>56</sup></a><a href="#fn57" class="footnote-ref" id="fnref57" role="doc-noteref"><sup>57</sup></a></li>
+<li>Have data been interpreted fairly and in a balanced manner?<a href="#fn58" class="footnote-ref" id="fnref58" role="doc-noteref"><sup>58</sup></a></li>
+<li>Have results been interpreted in context of existing literature?<a href="#fn59" class="footnote-ref" id="fnref59" role="doc-noteref"><sup>59</sup></a></li>
+<li>Are conclusions logical from the data?<a href="#fn60" class="footnote-ref" id="fnref60" role="doc-noteref"><sup>60</sup></a></li>
+<li>Have study limitations been comprehensively discussed?<a href="#fn61" class="footnote-ref" id="fnref61" role="doc-noteref"><sup>61</sup></a><a href="#fn62" class="footnote-ref" id="fnref62" role="doc-noteref"><sup>62</sup></a></li>
+<li>Are contradictory data discussed?<a href="#fn63" class="footnote-ref" id="fnref63" role="doc-noteref"><sup>63</sup></a></li>
+</ul>
+</section>
+<section id="tables-and-figures" class="level3" data-number="5.3.8">
+<h3 data-number="5.3.8" class="anchored" data-anchor-id="tables-and-figures"><span class="header-section-number">5.3.8</span> Tables and Figures</h3>
+<ul>
+<li>Are data presented clearly and appropriately?<a href="#fn64" class="footnote-ref" id="fnref64" role="doc-noteref"><sup>64</sup></a></li>
+<li>Is presentation consistent with text description?<a href="#fn65" class="footnote-ref" id="fnref65" role="doc-noteref"><sup>65</sup></a></li>
+<li>Do legends and headings clearly explain what is shown?<a href="#fn66" class="footnote-ref" id="fnref66" role="doc-noteref"><sup>66</sup></a></li>
+<li>Do they include measures of uncertainty (standard error, confidence intervals) and sample size where required?<a href="#fn67" class="footnote-ref" id="fnref67" role="doc-noteref"><sup>67</sup></a></li>
+<li>Are they clear and representative of the study?<a href="#fn68" class="footnote-ref" id="fnref68" role="doc-noteref"><sup>68</sup></a></li>
+<li>Are there concerns about data manipulation?<a href="#fn69" class="footnote-ref" id="fnref69" role="doc-noteref"><sup>69</sup></a></li>
+</ul>
+</section>
+<section id="references" class="level3" data-number="5.3.9">
+<h3 data-number="5.3.9" class="anchored" data-anchor-id="references"><span class="header-section-number">5.3.9</span> References</h3>
+<ul>
+<li>Are key references missing?<a href="#fn70" class="footnote-ref" id="fnref70" role="doc-noteref"><sup>70</sup></a></li>
+<li>Do authors cite initial discoveries where suitable?<a href="#fn71" class="footnote-ref" id="fnref71" role="doc-noteref"><sup>71</sup></a></li>
+<li>Do they cite reviews where they should cite original papers?<a href="#fn72" class="footnote-ref" id="fnref72" role="doc-noteref"><sup>72</sup></a></li>
+<li>Do cited studies represent current knowledge?<a href="#fn73" class="footnote-ref" id="fnref73" role="doc-noteref"><sup>73</sup></a></li>
+</ul>
+</section>
+<section id="open-scholarship-review-stars-criteria" class="level3" data-number="5.3.10">
+<h3 data-number="5.3.10" class="anchored" data-anchor-id="open-scholarship-review-stars-criteria"><span class="header-section-number">5.3.10</span> Open Scholarship Review (STARS criteria)</h3>
+<ul>
+<li>Used a reporting checklist?<a href="#fn74" class="footnote-ref" id="fnref74" role="doc-noteref"><sup>74</sup></a></li>
+<li>Deposited model in a public archive?<a href="#fn75" class="footnote-ref" id="fnref75" role="doc-noteref"><sup>75</sup></a></li>
+<li>Included ORCID in model metadata?<a href="#fn76" class="footnote-ref" id="fnref76" role="doc-noteref"><sup>76</sup></a></li>
+<li>Shared model under an open licence?<a href="#fn77" class="footnote-ref" id="fnref77" role="doc-noteref"><sup>77</sup></a></li>
+<li>Provided basic instructions to run and use model?<a href="#fn78" class="footnote-ref" id="fnref78" role="doc-noteref"><sup>78</sup></a></li>
+<li>Explained how dependencies are managed?<a href="#fn79" class="footnote-ref" id="fnref79" role="doc-noteref"><sup>79</sup></a></li>
+<li>Provided code for all scenarios, sensitivity analyses, tables, figures, and reported results?<a href="#fn80" class="footnote-ref" id="fnref80" role="doc-noteref"><sup>80</sup></a></li>
+</ul>
+</section>
+</section>
+<section id="categorizing-comments-major-vs.-minor" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="categorizing-comments-major-vs.-minor"><span class="header-section-number">5.4</span> Categorizing Comments: Major vs.&nbsp;Minor</h2>
+<section id="major-issues" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="major-issues"><span class="header-section-number">5.4.1</span> Major Issues</h3>
+<p><strong>Definition:</strong> Significant concerns essential for publication that affect validity, interpretation, or impact. These require substantial changes and warrant re-review.<a href="#fn81" class="footnote-ref" id="fnref81" role="doc-noteref"><sup>81</sup></a><a href="#fn82" class="footnote-ref" id="fnref82" role="doc-noteref"><sup>82</sup></a><a href="#fn83" class="footnote-ref" id="fnref83" role="doc-noteref"><sup>83</sup></a><a href="#fn84" class="footnote-ref" id="fnref84" role="doc-noteref"><sup>84</sup></a><a href="#fn85" class="footnote-ref" id="fnref85" role="doc-noteref"><sup>85</sup></a></p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Fundamental methodological flaws or bias<a href="#fn86" class="footnote-ref" id="fnref86" role="doc-noteref"><sup>86</sup></a><a href="#fn87" class="footnote-ref" id="fnref87" role="doc-noteref"><sup>87</sup></a></li>
+<li>Missing or inadequate data analysis<a href="#fn88" class="footnote-ref" id="fnref88" role="doc-noteref"><sup>88</sup></a><a href="#fn89" class="footnote-ref" id="fnref89" role="doc-noteref"><sup>89</sup></a></li>
+<li>Weak or missing theoretical framework<a href="#fn90" class="footnote-ref" id="fnref90" role="doc-noteref"><sup>90</sup></a><a href="#fn91" class="footnote-ref" id="fnref91" role="doc-noteref"><sup>91</sup></a></li>
+<li>Unclear or unsupported arguments<a href="#fn92" class="footnote-ref" id="fnref92" role="doc-noteref"><sup>92</sup></a><a href="#fn93" class="footnote-ref" id="fnref93" role="doc-noteref"><sup>93</sup></a></li>
+<li>Inadequate description preventing reproducibility<a href="#fn94" class="footnote-ref" id="fnref94" role="doc-noteref"><sup>94</sup></a></li>
+<li>Ethical concerns<a href="#fn95" class="footnote-ref" id="fnref95" role="doc-noteref"><sup>95</sup></a></li>
+<li>Results not supported by data<a href="#fn96" class="footnote-ref" id="fnref96" role="doc-noteref"><sup>96</sup></a></li>
+<li>Conclusions not logical from findings<a href="#fn97" class="footnote-ref" id="fnref97" role="doc-noteref"><sup>97</sup></a></li>
+<li>Entire sections needing rewriting or reorganization<a href="#fn98" class="footnote-ref" id="fnref98" role="doc-noteref"><sup>98</sup></a><a href="#fn99" class="footnote-ref" id="fnref99" role="doc-noteref"><sup>99</sup></a></li>
+<li>Missing crucial experiments or analyses<a href="#fn100" class="footnote-ref" id="fnref100" role="doc-noteref"><sup>100</sup></a></li>
+<li>Relevance concerns for the journal’s scope<a href="#fn101" class="footnote-ref" id="fnref101" role="doc-noteref"><sup>101</sup></a><a href="#fn102" class="footnote-ref" id="fnref102" role="doc-noteref"><sup>102</sup></a></li>
+</ul>
+<p><strong>Rule of thumb:</strong> If you need to see the manuscript again to verify the issues were fixed, it’s a major issue.<a href="#fn103" class="footnote-ref" id="fnref103" role="doc-noteref"><sup>103</sup></a></p>
+</section>
+<section id="minor-issues" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="minor-issues"><span class="header-section-number">5.4.2</span> Minor Issues</h3>
+<p><strong>Definition:</strong> Important improvements that typically won’t affect overall conclusions and aren’t essential for publication. These can often be reviewed by the editor alone without re-review.<a href="#fn104" class="footnote-ref" id="fnref104" role="doc-noteref"><sup>104</sup></a><a href="#fn105" class="footnote-ref" id="fnref105" role="doc-noteref"><sup>105</sup></a><a href="#fn106" class="footnote-ref" id="fnref106" role="doc-noteref"><sup>106</sup></a><a href="#fn107" class="footnote-ref" id="fnref107" role="doc-noteref"><sup>107</sup></a></p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Clarifying ambiguous statements<a href="#fn108" class="footnote-ref" id="fnref108" role="doc-noteref"><sup>108</sup></a><a href="#fn109" class="footnote-ref" id="fnref109" role="doc-noteref"><sup>109</sup></a></li>
+<li>Typographical or grammatical errors<a href="#fn110" class="footnote-ref" id="fnref110" role="doc-noteref"><sup>110</sup></a><a href="#fn111" class="footnote-ref" id="fnref111" role="doc-noteref"><sup>111</sup></a></li>
+<li>Citation inconsistencies or missing minor references<a href="#fn112" class="footnote-ref" id="fnref112" role="doc-noteref"><sup>112</sup></a><a href="#fn113" class="footnote-ref" id="fnref113" role="doc-noteref"><sup>113</sup></a></li>
+<li>Fine-tuning figures, tables, or formatting<a href="#fn114" class="footnote-ref" id="fnref114" role="doc-noteref"><sup>114</sup></a></li>
+<li>Small additional context or citations<a href="#fn115" class="footnote-ref" id="fnref115" role="doc-noteref"><sup>115</sup></a><a href="#fn116" class="footnote-ref" id="fnref116" role="doc-noteref"><sup>116</sup></a></li>
+<li>Syntax and language improvements<a href="#fn117" class="footnote-ref" id="fnref117" role="doc-noteref"><sup>117</sup></a></li>
+<li>Keywords and title refinements<a href="#fn118" class="footnote-ref" id="fnref118" role="doc-noteref"><sup>118</sup></a></li>
+</ul>
+<p><strong>Rule of thumb:</strong> If the editor can verify the changes without your expertise, it’s a minor issue.<a href="#fn119" class="footnote-ref" id="fnref119" role="doc-noteref"><sup>119</sup></a></p>
+</section>
+</section>
+<section id="writing-the-review" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="writing-the-review"><span class="header-section-number">5.5</span> Writing the Review</h2>
+<section id="structure-your-report" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="structure-your-report"><span class="header-section-number">5.5.1</span> Structure Your Report</h3>
+<p>Use this standard format:<a href="#fn120" class="footnote-ref" id="fnref120" role="doc-noteref"><sup>120</sup></a><a href="#fn121" class="footnote-ref" id="fnref121" role="doc-noteref"><sup>121</sup></a><a href="#fn122" class="footnote-ref" id="fnref122" role="doc-noteref"><sup>122</sup></a></p>
+<ol type="1">
+<li><strong>Summary paragraph</strong></li>
+<li><strong>Overall impression and recommendation</strong></li>
+<li><strong>Major comments</strong> (numbered)</li>
+<li><strong>Minor comments</strong> (numbered)</li>
+<li><strong>Confidential comments to editor</strong> (separate section)</li>
+</ol>
+</section>
+<section id="summary-paragraph" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="summary-paragraph"><span class="header-section-number">5.5.2</span> 1. Summary Paragraph</h3>
+<p>Write 3-5 sentences demonstrating you’ve read and understood the study. Include:<a href="#fn123" class="footnote-ref" id="fnref123" role="doc-noteref"><sup>123</sup></a><a href="#fn124" class="footnote-ref" id="fnref124" role="doc-noteref"><sup>124</sup></a><a href="#fn125" class="footnote-ref" id="fnref125" role="doc-noteref"><sup>125</sup></a></p>
+<ul>
+<li>Study objectives and design<a href="#fn126" class="footnote-ref" id="fnref126" role="doc-noteref"><sup>126</sup></a></li>
+<li>Key results<a href="#fn127" class="footnote-ref" id="fnref127" role="doc-noteref"><sup>127</sup></a></li>
+<li>Authors’ conclusions/interpretations<a href="#fn128" class="footnote-ref" id="fnref128" role="doc-noteref"><sup>128</sup></a></li>
+<li>Positive contributions made by the article<a href="#fn129" class="footnote-ref" id="fnref129" role="doc-noteref"><sup>129</sup></a></li>
+</ul>
+<p>This shows the editor you understand the paper and helps authors see your interpretation.<a href="#fn130" class="footnote-ref" id="fnref130" role="doc-noteref"><sup>130</sup></a></p>
+</section>
+<section id="overall-impression-and-recommendation" class="level3" data-number="5.5.3">
+<h3 data-number="5.5.3" class="anchored" data-anchor-id="overall-impression-and-recommendation"><span class="header-section-number">5.5.3</span> 2. Overall Impression and Recommendation</h3>
+<p>State your recommended decision (explained in next section) and provide your “take-home” message about the manuscript’s strengths and weaknesses.<a href="#fn131" class="footnote-ref" id="fnref131" role="doc-noteref"><sup>131</sup></a><a href="#fn132" class="footnote-ref" id="fnref132" role="doc-noteref"><sup>132</sup></a></p>
+</section>
+<section id="major-comments" class="level3" data-number="5.5.4">
+<h3 data-number="5.5.4" class="anchored" data-anchor-id="major-comments"><span class="header-section-number">5.5.4</span> 3. Major Comments</h3>
+<p><strong>Formatting:</strong></p>
+<ul>
+<li>Number each comment<a href="#fn133" class="footnote-ref" id="fnref133" role="doc-noteref"><sup>133</sup></a><a href="#fn134" class="footnote-ref" id="fnref134" role="doc-noteref"><sup>134</sup></a><a href="#fn135" class="footnote-ref" id="fnref135" role="doc-noteref"><sup>135</sup></a></li>
+<li>List most important concerns first<a href="#fn136" class="footnote-ref" id="fnref136" role="doc-noteref"><sup>136</sup></a></li>
+<li>Include page and line numbers for easy reference<a href="#fn137" class="footnote-ref" id="fnref137" role="doc-noteref"><sup>137</sup></a><a href="#fn138" class="footnote-ref" id="fnref138" role="doc-noteref"><sup>138</sup></a><a href="#fn139" class="footnote-ref" id="fnref139" role="doc-noteref"><sup>139</sup></a></li>
+<li>Give concrete examples with direct quotes (bolded or italicized)<a href="#fn140" class="footnote-ref" id="fnref140" role="doc-noteref"><sup>140</sup></a></li>
+<li>Be specific and actionable<a href="#fn141" class="footnote-ref" id="fnref141" role="doc-noteref"><sup>141</sup></a><a href="#fn142" class="footnote-ref" id="fnref142" role="doc-noteref"><sup>142</sup></a><a href="#fn143" class="footnote-ref" id="fnref143" role="doc-noteref"><sup>143</sup></a></li>
+</ul>
+<p><strong>Content:</strong> Address critical concerns from your section-by-section review that fall into the major category. Focus on issues fundamental to the current study—not “next step” suggestions.<a href="#fn144" class="footnote-ref" id="fnref144" role="doc-noteref"><sup>144</sup></a><a href="#fn145" class="footnote-ref" id="fnref145" role="doc-noteref"><sup>145</sup></a></p>
+<p><strong>Tone:</strong></p>
+<ul>
+<li>Be direct but respectful<a href="#fn146" class="footnote-ref" id="fnref146" role="doc-noteref"><sup>146</sup></a><a href="#fn147" class="footnote-ref" id="fnref147" role="doc-noteref"><sup>147</sup></a><a href="#fn148" class="footnote-ref" id="fnref148" role="doc-noteref"><sup>148</sup></a><a href="#fn149" class="footnote-ref" id="fnref149" role="doc-noteref"><sup>149</sup></a></li>
+<li>Be professional and constructive, not offensive<a href="#fn150" class="footnote-ref" id="fnref150" role="doc-noteref"><sup>150</sup></a><a href="#fn151" class="footnote-ref" id="fnref151" role="doc-noteref"><sup>151</sup></a><a href="#fn152" class="footnote-ref" id="fnref152" role="doc-noteref"><sup>152</sup></a><a href="#fn153" class="footnote-ref" id="fnref153" role="doc-noteref"><sup>153</sup></a></li>
+<li>Focus on the research, not the researcher<a href="#fn154" class="footnote-ref" id="fnref154" role="doc-noteref"><sup>154</sup></a><a href="#fn155" class="footnote-ref" id="fnref155" role="doc-noteref"><sup>155</sup></a></li>
+<li>Frame as suggestions: “Consider clarifying…” rather than demands<a href="#fn156" class="footnote-ref" id="fnref156" role="doc-noteref"><sup>156</sup></a><a href="#fn157" class="footnote-ref" id="fnref157" role="doc-noteref"><sup>157</sup></a><a href="#fn158" class="footnote-ref" id="fnref158" role="doc-noteref"><sup>158</sup></a></li>
+<li>Acknowledge authors’ effort<a href="#fn159" class="footnote-ref" id="fnref159" role="doc-noteref"><sup>159</sup></a><a href="#fn160" class="footnote-ref" id="fnref160" role="doc-noteref"><sup>160</sup></a></li>
+<li>Avoid defensive or aggressive language<a href="#fn161" class="footnote-ref" id="fnref161" role="doc-noteref"><sup>161</sup></a></li>
+<li>Use neutral language without emotionally charged expressions<a href="#fn162" class="footnote-ref" id="fnref162" role="doc-noteref"><sup>162</sup></a><a href="#fn163" class="footnote-ref" id="fnref163" role="doc-noteref"><sup>163</sup></a></li>
+</ul>
+<p><strong>Example structure:</strong> “The methodology section lacks clarity on participant inclusion criteria (page 6, lines 120-125). This makes it difficult to assess whether the sample is representative. Consider adding a detailed explanation of your inclusion and exclusion criteria, including specific thresholds for each criterion.”<a href="#fn164" class="footnote-ref" id="fnref164" role="doc-noteref"><sup>164</sup></a><a href="#fn165" class="footnote-ref" id="fnref165" role="doc-noteref"><sup>165</sup></a><a href="#fn166" class="footnote-ref" id="fnref166" role="doc-noteref"><sup>166</sup></a></p>
+</section>
+<section id="minor-comments" class="level3" data-number="5.5.5">
+<h3 data-number="5.5.5" class="anchored" data-anchor-id="minor-comments"><span class="header-section-number">5.5.5</span> 4. Minor Comments</h3>
+<p>Use the same formatting and tone guidelines as major comments. List minor issues identified in your section-by-section review. Keep these brief. <strong>Don’t focus primarily on spelling and grammar</strong>—these are trivial.<a href="#fn167" class="footnote-ref" id="fnref167" role="doc-noteref"><sup>167</sup></a><a href="#fn168" class="footnote-ref" id="fnref168" role="doc-noteref"><sup>168</sup></a></p>
+</section>
+<section id="confidential-comments-to-editor" class="level3" data-number="5.5.6">
+<h3 data-number="5.5.6" class="anchored" data-anchor-id="confidential-comments-to-editor"><span class="header-section-number">5.5.6</span> 5. Confidential Comments to Editor</h3>
+<p><strong>Purpose:</strong> Discuss sensitive information or context that shouldn’t be shared with authors. You don’t have to write anything here—it’s optional.<a href="#fn169" class="footnote-ref" id="fnref169" role="doc-noteref"><sup>169</sup></a><a href="#fn170" class="footnote-ref" id="fnref170" role="doc-noteref"><sup>170</sup></a><a href="#fn171" class="footnote-ref" id="fnref171" role="doc-noteref"><sup>171</sup></a><a href="#fn172" class="footnote-ref" id="fnref172" role="doc-noteref"><sup>172</sup></a><a href="#fn173" class="footnote-ref" id="fnref173" role="doc-noteref"><sup>173</sup></a></p>
+<p><strong>What to include:</strong></p>
+<ul>
+<li>Your overall assessment summary and rationale for your decision recommendation<a href="#fn174" class="footnote-ref" id="fnref174" role="doc-noteref"><sup>174</sup></a><a href="#fn175" class="footnote-ref" id="fnref175" role="doc-noteref"><sup>175</sup></a><a href="#fn176" class="footnote-ref" id="fnref176" role="doc-noteref"><sup>176</sup></a></li>
+<li>Novelty and rigor assessment<a href="#fn177" class="footnote-ref" id="fnref177" role="doc-noteref"><sup>177</sup></a></li>
+<li>Potential ethical issues (plagiarism, manipulated figures, duplicate publication, human subjects concerns, inappropriate authorship)<a href="#fn178" class="footnote-ref" id="fnref178" role="doc-noteref"><sup>178</sup></a><a href="#fn179" class="footnote-ref" id="fnref179" role="doc-noteref"><sup>179</sup></a></li>
+<li>Sensitive concerns about the manuscript that might be too harsh for authors<a href="#fn180" class="footnote-ref" id="fnref180" role="doc-noteref"><sup>180</sup></a><a href="#fn181" class="footnote-ref" id="fnref181" role="doc-noteref"><sup>181</sup></a></li>
+<li>Context the editor should know (e.g., previous interaction with this manuscript at another journal)<a href="#fn182" class="footnote-ref" id="fnref182" role="doc-noteref"><sup>182</sup></a></li>
+<li>Whether manuscript needs language/grammar editing<a href="#fn183" class="footnote-ref" id="fnref183" role="doc-noteref"><sup>183</sup></a></li>
+<li>Clarifications if your decision category doesn’t fully communicate your assessment<a href="#fn184" class="footnote-ref" id="fnref184" role="doc-noteref"><sup>184</sup></a></li>
+</ul>
+<p><strong>Important:</strong> Never contradict your comments to authors here. All scientific evaluation should be in your comments to authors.<a href="#fn185" class="footnote-ref" id="fnref185" role="doc-noteref"><sup>185</sup></a></p>
+</section>
+</section>
+<section id="making-your-decision-recommendation" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="making-your-decision-recommendation"><span class="header-section-number">5.6</span> Making Your Decision Recommendation</h2>
+<section id="decision-categories" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="decision-categories"><span class="header-section-number">5.6.1</span> Decision Categories</h3>
+<p><strong>Accept without revision:</strong> Very rare.<a href="#fn186" class="footnote-ref" id="fnref186" role="doc-noteref"><sup>186</sup></a></p>
+<p><strong>Minor revisions:</strong> Limited changes needed. The manuscript is mostly sound but needs small refinements like clarifying text, fixing tables, adding minor citations, or tweaking arguments. High chance of acceptance if revisions are made properly. Often reviewed by editor only, not sent back to reviewers.<a href="#fn187" class="footnote-ref" id="fnref187" role="doc-noteref"><sup>187</sup></a><a href="#fn188" class="footnote-ref" id="fnref188" role="doc-noteref"><sup>188</sup></a><a href="#fn189" class="footnote-ref" id="fnref189" role="doc-noteref"><sup>189</sup></a><a href="#fn190" class="footnote-ref" id="fnref190" role="doc-noteref"><sup>190</sup></a><a href="#fn191" class="footnote-ref" id="fnref191" role="doc-noteref"><sup>191</sup></a></p>
+<p><strong>Major revisions:</strong> Substantial work required. Examples include:<a href="#fn192" class="footnote-ref" id="fnref192" role="doc-noteref"><sup>192</sup></a><a href="#fn193" class="footnote-ref" id="fnref193" role="doc-noteref"><sup>193</sup></a></p>
+<ul>
+<li>Substantial rewriting needed<a href="#fn194" class="footnote-ref" id="fnref194" role="doc-noteref"><sup>194</sup></a></li>
+<li>Key elements missing or inadequately described<a href="#fn195" class="footnote-ref" id="fnref195" role="doc-noteref"><sup>195</sup></a></li>
+<li>Significant data issues requiring additional or reanalysis<a href="#fn196" class="footnote-ref" id="fnref196" role="doc-noteref"><sup>196</sup></a></li>
+<li>Major structural reorganization needed<a href="#fn197" class="footnote-ref" id="fnref197" role="doc-noteref"><sup>197</sup></a><a href="#fn198" class="footnote-ref" id="fnref198" role="doc-noteref"><sup>198</sup></a></li>
+<li>New experiments required<a href="#fn199" class="footnote-ref" id="fnref199" role="doc-noteref"><sup>199</sup></a></li>
+<li>Addressing whole new topics in arguments<a href="#fn200" class="footnote-ref" id="fnref200" role="doc-noteref"><sup>200</sup></a></li>
+<li>Existing analyses have flaws<a href="#fn201" class="footnote-ref" id="fnref201" role="doc-noteref"><sup>201</sup></a></li>
+</ul>
+<p>The manuscript will be sent back to reviewers for re-evaluation. Acceptance is not guaranteed after revision.<a href="#fn202" class="footnote-ref" id="fnref202" role="doc-noteref"><sup>202</sup></a><a href="#fn203" class="footnote-ref" id="fnref203" role="doc-noteref"><sup>203</sup></a><a href="#fn204" class="footnote-ref" id="fnref204" role="doc-noteref"><sup>204</sup></a></p>
+<p><strong>Reject:</strong> Fundamental flaws that cannot be addressed through revision, inappropriate principle/method, or insufficient contribution. Use when reviewers recommend major revisions but suggest changes authors cannot actually make (e.g., fundamental design flaws).<a href="#fn205" class="footnote-ref" id="fnref205" role="doc-noteref"><sup>205</sup></a><a href="#fn206" class="footnote-ref" id="fnref206" role="doc-noteref"><sup>206</sup></a></p>
+</section>
+<section id="writing-your-recommendation-to-the-editor" class="level3" data-number="5.6.2">
+<h3 data-number="5.6.2" class="anchored" data-anchor-id="writing-your-recommendation-to-the-editor"><span class="header-section-number">5.6.2</span> Writing Your Recommendation to the Editor</h3>
+<p>In your confidential comments, explain the rationale for your recommendation, such as:<a href="#fn207" class="footnote-ref" id="fnref207" role="doc-noteref"><sup>207</sup></a><a href="#fn208" class="footnote-ref" id="fnref208" role="doc-noteref"><sup>208</sup></a></p>
+<ul>
+<li>How the manuscript advances the field<a href="#fn209" class="footnote-ref" id="fnref209" role="doc-noteref"><sup>209</sup></a></li>
+<li>How it informs clinical care or practice<a href="#fn210" class="footnote-ref" id="fnref210" role="doc-noteref"><sup>210</sup></a></li>
+<li>Whether it motivates important new lines of investigation<a href="#fn211" class="footnote-ref" id="fnref211" role="doc-noteref"><sup>211</sup></a></li>
+<li>Whether issues are addressable through revision<a href="#fn212" class="footnote-ref" id="fnref212" role="doc-noteref"><sup>212</sup></a></li>
+<li>Any sensitive concerns<a href="#fn213" class="footnote-ref" id="fnref213" role="doc-noteref"><sup>213</sup></a></li>
+</ul>
+</section>
+</section>
+<section id="final-checks-before-submission" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="final-checks-before-submission"><span class="header-section-number">5.7</span> Final Checks Before Submission</h2>
+<ul>
+<li>Have you given a brief summary and highlighted key messages?<a href="#fn214" class="footnote-ref" id="fnref214" role="doc-noteref"><sup>214</sup></a></li>
+<li>Have you given positive feedback as well as constructive criticism?<a href="#fn215" class="footnote-ref" id="fnref215" role="doc-noteref"><sup>215</sup></a><a href="#fn216" class="footnote-ref" id="fnref216" role="doc-noteref"><sup>216</sup></a></li>
+<li>Have you clearly marked which concerns are major vs.&nbsp;minor?<a href="#fn217" class="footnote-ref" id="fnref217" role="doc-noteref"><sup>217</sup></a><a href="#fn218" class="footnote-ref" id="fnref218" role="doc-noteref"><sup>218</sup></a><a href="#fn219" class="footnote-ref" id="fnref219" role="doc-noteref"><sup>219</sup></a></li>
+<li>Are your concerns specific with examples where possible?<a href="#fn220" class="footnote-ref" id="fnref220" role="doc-noteref"><sup>220</sup></a><a href="#fn221" class="footnote-ref" id="fnref221" role="doc-noteref"><sup>221</sup></a><a href="#fn222" class="footnote-ref" id="fnref222" role="doc-noteref"><sup>222</sup></a></li>
+<li>Have you numbered comments and referred to page/line numbers?<a href="#fn223" class="footnote-ref" id="fnref223" role="doc-noteref"><sup>223</sup></a><a href="#fn224" class="footnote-ref" id="fnref224" role="doc-noteref"><sup>224</sup></a><a href="#fn225" class="footnote-ref" id="fnref225" role="doc-noteref"><sup>225</sup></a></li>
+<li>Is your feedback constructive and focused on the research?<a href="#fn226" class="footnote-ref" id="fnref226" role="doc-noteref"><sup>226</sup></a><a href="#fn227" class="footnote-ref" id="fnref227" role="doc-noteref"><sup>227</sup></a></li>
+<li>If you were the author, would you understand how to improve the manuscript?<a href="#fn228" class="footnote-ref" id="fnref228" role="doc-noteref"><sup>228</sup></a></li>
+<li>If you were the editor, would your comments help them make a decision?<a href="#fn229" class="footnote-ref" id="fnref229" role="doc-noteref"><sup>229</sup></a></li>
+<li>Have you checked spelling and grammar in your report?<a href="#fn230" class="footnote-ref" id="fnref230" role="doc-noteref"><sup>230</sup></a></li>
+<li>Have you included comments in correct places in the online system (confidential vs.&nbsp;author-facing)?<a href="#fn231" class="footnote-ref" id="fnref231" role="doc-noteref"><sup>231</sup></a></li>
+<li>Is your tone professional and respectful throughout?<a href="#fn232" class="footnote-ref" id="fnref232" role="doc-noteref"><sup>232</sup></a><a href="#fn233" class="footnote-ref" id="fnref233" role="doc-noteref"><sup>233</sup></a><a href="#fn234" class="footnote-ref" id="fnref234" role="doc-noteref"><sup>234</sup></a><a href="#fn235" class="footnote-ref" id="fnref235" role="doc-noteref"><sup>235</sup></a></li>
+<li>Have you included positive feedback alongside criticism?<a href="#fn236" class="footnote-ref" id="fnref236" role="doc-noteref"><sup>236</sup></a></li>
+<li>Have you indicated if you’re available to review the revised version?<a href="#fn237" class="footnote-ref" id="fnref237" role="doc-noteref"><sup>237</sup></a></li>
+<li>Will you finish on time?<a href="#fn238" class="footnote-ref" id="fnref238" role="doc-noteref"><sup>238</sup></a> <span style="display:none"><a href="#fn239" class="footnote-ref" id="fnref239" role="doc-noteref"><sup>239</sup></a><a href="#fn240" class="footnote-ref" id="fnref240" role="doc-noteref"><sup>240</sup></a><a href="#fn241" class="footnote-ref" id="fnref241" role="doc-noteref"><sup>241</sup></a><a href="#fn242" class="footnote-ref" id="fnref242" role="doc-noteref"><sup>242</sup></a><a href="#fn243" class="footnote-ref" id="fnref243" role="doc-noteref"><sup>243</sup></a><a href="#fn244" class="footnote-ref" id="fnref244" role="doc-noteref"><sup>244</sup></a><a href="#fn245" class="footnote-ref" id="fnref245" role="doc-noteref"><sup>245</sup></a><a href="#fn246" class="footnote-ref" id="fnref246" role="doc-noteref"><sup>246</sup></a><a href="#fn247" class="footnote-ref" id="fnref247" role="doc-noteref"><sup>247</sup></a><a href="#fn248" class="footnote-ref" id="fnref248" role="doc-noteref"><sup>248</sup></a><a href="#fn249" class="footnote-ref" id="fnref249" role="doc-noteref"><sup>249</sup></a><a href="#fn250" class="footnote-ref" id="fnref250" role="doc-noteref"><sup>250</sup></a><a href="#fn251" class="footnote-ref" id="fnref251" role="doc-noteref"><sup>251</sup></a><a href="#fn252" class="footnote-ref" id="fnref252" role="doc-noteref"><sup>252</sup></a></span></li>
+</ul>
+<div data-align="center">
+⁂
+</div>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn37"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn40"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref40" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn41"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref41" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn42"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref42" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn43"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref43" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn44"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref44" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn45"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref45" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn46"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref46" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn47"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref47" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn48"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref48" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn49"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref49" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn50"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref50" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn51"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref51" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn52"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref52" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn53"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref53" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn54"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref54" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn55"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref55" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn56"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref56" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn57"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref57" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn58"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref58" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn59"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref59" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn60"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref60" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn61"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref61" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn62"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref62" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn63"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref63" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn64"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref64" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn65"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref65" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn66"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref66" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn67"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref67" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn68"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref68" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn69"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref69" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn70"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref70" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn71"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref71" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn72"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref72" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn73"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref73" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn74"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref74" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn75"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref75" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn76"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref76" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn77"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref77" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn78"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref78" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn79"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref79" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn80"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref80" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn81"><p>https://www.sagepub.com/explore-our-content/blogs/posts/sage-perspectives/2025/10/30/questions-answered-how-to-be-a-peer-reviewer<a href="#fnref81" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn82"><p>https://www.reddit.com/r/PhD/comments/1fbcvwc/what_is_considered_major_revision_and_what_is/<a href="#fnref82" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn83"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref83" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn84"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref84" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn85"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref85" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn86"><p>https://www.reddit.com/r/PhD/comments/1fbcvwc/what_is_considered_major_revision_and_what_is/<a href="#fnref86" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn87"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref87" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn88"><p>https://www.reddit.com/r/PhD/comments/1fbcvwc/what_is_considered_major_revision_and_what_is/<a href="#fnref88" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn89"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref89" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn90"><p>https://www.reddit.com/r/PhD/comments/1fbcvwc/what_is_considered_major_revision_and_what_is/<a href="#fnref90" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn91"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref91" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn92"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref92" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn93"><p>https://www.sagepub.com/explore-our-content/blogs/posts/sage-perspectives/2025/10/30/questions-answered-how-to-be-a-peer-reviewer<a href="#fnref93" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn94"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref94" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn95"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref95" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn96"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref96" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn97"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref97" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn98"><p>https://www.linkedin.com/pulse/major-revision-vs-minor-understanding-differences-nvurc<a href="#fnref98" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn99"><p>https://www.reddit.com/r/PhD/comments/1fbcvwc/what_is_considered_major_revision_and_what_is/<a href="#fnref99" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn100"><p>https://www.reddit.com/r/PhD/comments/1fbcvwc/what_is_considered_major_revision_and_what_is/<a href="#fnref100" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn101"><p>https://www.sagepub.com/explore-our-content/blogs/posts/sage-perspectives/2025/10/30/questions-answered-how-to-be-a-peer-reviewer<a href="#fnref101" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn102"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref102" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn103"><p>https://www.reddit.com/r/PhD/comments/1fbcvwc/what_is_considered_major_revision_and_what_is/<a href="#fnref103" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn104"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref104" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn105"><p>https://www.sagepub.com/explore-our-content/blogs/posts/sage-perspectives/2025/10/30/questions-answered-how-to-be-a-peer-reviewer<a href="#fnref105" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn106"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref106" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn107"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref107" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn108"><p>https://www.reddit.com/r/PhD/comments/1fbcvwc/what_is_considered_major_revision_and_what_is/<a href="#fnref108" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn109"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref109" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn110"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref110" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn111"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref111" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn112"><p>https://www.reddit.com/r/PhD/comments/1fbcvwc/what_is_considered_major_revision_and_what_is/<a href="#fnref112" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn113"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref113" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn114"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref114" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn115"><p>https://www.reddit.com/r/PhD/comments/1fbcvwc/what_is_considered_major_revision_and_what_is/<a href="#fnref115" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn116"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref116" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn117"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref117" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn118"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref118" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn119"><p>https://www.reddit.com/r/PhD/comments/1fbcvwc/what_is_considered_major_revision_and_what_is/<a href="#fnref119" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn120"><p>https://www.f1000.com/researcher_blog/how-to-write-a-peer-review-report/<a href="#fnref120" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn121"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref121" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn122"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref122" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn123"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref123" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn124"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref124" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn125"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref125" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn126"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref126" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn127"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref127" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn128"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref128" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn129"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref129" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn130"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref130" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn131"><p>https://www.f1000.com/researcher_blog/how-to-write-a-peer-review-report/<a href="#fnref131" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn132"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref132" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn133"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref133" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn134"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref134" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn135"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref135" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn136"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref136" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn137"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref137" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn138"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref138" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn139"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref139" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn140"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref140" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn141"><p>https://pmc.ncbi.nlm.nih.gov/articles/PMC11580681/<a href="#fnref141" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn142"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref142" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn143"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref143" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn144"><p>https://pmc.ncbi.nlm.nih.gov/articles/PMC11580681/<a href="#fnref144" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn145"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref145" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn146"><p>https://researcheracademy.elsevier.com/navigating-peer-review/certified-peer-reviewer-course/31-write-helpful-peer-review-report<a href="#fnref146" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn147"><p>https://ehp.niehs.nih.gov/reviewers/constructive-comments<a href="#fnref147" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn148"><p>https://www.nature.com/nrmicro/for-referees/writing-your-report<a href="#fnref148" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn149"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref149" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn150"><p>https://www.reddit.com/r/AskAcademia/comments/17ttmgs/peer_review_confidential_comments_to_the_editors/<a href="#fnref150" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn151"><p>https://ehp.niehs.nih.gov/reviewers/constructive-comments<a href="#fnref151" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn152"><p>https://www.nature.com/nrmicro/for-referees/writing-your-report<a href="#fnref152" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn153"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref153" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn154"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref154" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn155"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref155" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn156"><p>https://www.deel.com/blog/peer-review-feedback-examples/<a href="#fnref156" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn157"><p>https://www.thrivesparrow.com/blog/peer-review-examples<a href="#fnref157" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn158"><p>https://www.sagepub.com/explore-our-content/blogs/posts/sage-perspectives/2025/10/30/questions-answered-how-to-be-a-peer-reviewer<a href="#fnref158" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn159"><p>https://www.thesify.ai/blog/mastering-the-peer-review-process-a-guide-for-students-and-researchers<a href="#fnref159" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn160"><p>https://www.sagepub.com/explore-our-content/blogs/posts/sage-perspectives/2025/10/30/questions-answered-how-to-be-a-peer-reviewer<a href="#fnref160" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn161"><p>https://authorservices.taylorandfrancis.com/publishing-your-research/peer-review/<a href="#fnref161" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn162"><p>https://lpsonline.sas.upenn.edu/features/difference-between-academic-and-professional-writing-helpful-guide<a href="#fnref162" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn163"><p>https://www.sciencedirect.com/science/article/abs/pii/S1364661321001248<a href="#fnref163" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn164"><p>https://www.thrivesparrow.com/blog/peer-review-examples<a href="#fnref164" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn165"><p>https://www.deel.com/blog/peer-review-feedback-examples/<a href="#fnref165" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn166"><p>https://www.thesify.ai/blog/mastering-the-peer-review-process-a-guide-for-students-and-researchers<a href="#fnref166" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn167"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref167" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn168"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref168" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn169"><p>https://thinkscience.co.jp/en/downloads/ThinkSCIENCE-Writing-effective-reviewer-comments.pdf<a href="#fnref169" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn170"><p>https://ehp.niehs.nih.gov/reviewers/constructive-comments<a href="#fnref170" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn171"><p>https://edinburghuniversitypress.com/publish-with-us/early-career-researcher-hub/peer-review-process-for-journals/writing-your-review<a href="#fnref171" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn172"><p>https://www.nature.com/nrmicro/for-referees/writing-your-report<a href="#fnref172" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn173"><p>https://www.reddit.com/r/AskAcademia/comments/17ttmgs/peer_review_confidential_comments_to_the_editors/<a href="#fnref173" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn174"><p>https://ehp.niehs.nih.gov/reviewers/constructive-comments<a href="#fnref174" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn175"><p>https://thinkscience.co.jp/en/downloads/ThinkSCIENCE-Writing-effective-reviewer-comments.pdf<a href="#fnref175" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn176"><p>https://www.sagepub.com/explore-our-content/blogs/posts/sage-perspectives/2025/10/30/questions-answered-how-to-be-a-peer-reviewer<a href="#fnref176" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn177"><p>https://ehp.niehs.nih.gov/reviewers/constructive-comments<a href="#fnref177" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn178"><p>https://www.nature.com/nrmicro/for-referees/writing-your-report<a href="#fnref178" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn179"><p>https://ehp.niehs.nih.gov/reviewers/constructive-comments<a href="#fnref179" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn180"><p>https://www.reddit.com/r/AskAcademia/comments/17ttmgs/peer_review_confidential_comments_to_the_editors/<a href="#fnref180" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn181"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref181" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn182"><p>https://www.nature.com/nrmicro/for-referees/writing-your-report<a href="#fnref182" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn183"><p>https://ehp.niehs.nih.gov/reviewers/constructive-comments<a href="#fnref183" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn184"><p>https://www.reddit.com/r/AskAcademia/comments/17ttmgs/peer_review_confidential_comments_to_the_editors/<a href="#fnref184" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn185"><p>https://www.nature.com/nrmicro/for-referees/writing-your-report<a href="#fnref185" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn186"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref186" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn187"><p>https://journals.publishing.umich.edu/tia/site/review-publication-process<a href="#fnref187" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn188"><p>https://www.apa.org/pubs/journals/resources/publishing-tips/peer-review<a href="#fnref188" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn189"><p>https://www.sagepub.com/explore-our-content/blogs/posts/sage-perspectives/2025/10/30/questions-answered-how-to-be-a-peer-reviewer<a href="#fnref189" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn190"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref190" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn191"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref191" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn192"><p>https://journals.publishing.umich.edu/tia/site/review-publication-process<a href="#fnref192" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn193"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref193" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn194"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref194" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn195"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref195" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn196"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref196" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn197"><p>https://www.reddit.com/r/PhD/comments/1fbcvwc/what_is_considered_major_revision_and_what_is/<a href="#fnref197" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn198"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref198" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn199"><p>https://www.reddit.com/r/PhD/comments/1fbcvwc/what_is_considered_major_revision_and_what_is/<a href="#fnref199" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn200"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref200" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn201"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref201" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn202"><p>https://journals.publishing.umich.edu/tia/site/review-publication-process<a href="#fnref202" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn203"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref203" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn204"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref204" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn205"><p>https://authorservices.wiley.com/author-resources/Journal-Authors/submission-peer-review/peer-review.html<a href="#fnref205" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn206"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref206" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn207"><p>https://ehp.niehs.nih.gov/reviewers/constructive-comments<a href="#fnref207" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn208"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref208" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn209"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref209" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn210"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref210" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn211"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref211" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn212"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref212" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn213"><p>https://www.sagepub.com/journals/information-for-editors/peer-review-sage-track-training-resources/making-decisions<a href="#fnref213" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn214"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref214" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn215"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref215" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn216"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref216" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn217"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref217" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn218"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref218" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn219"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref219" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn220"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref220" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn221"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref221" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn222"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref222" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn223"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref223" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn224"><p>https://plos.org/resource/how-to-write-a-peer-review/<a href="#fnref224" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn225"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref225" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn226"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref226" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn227"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref227" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn228"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref228" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn229"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref229" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn230"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref230" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn231"><p>https://thesis-edit.com/what-is-a-major-revision-vs-minor-revision-in-peer-review-understanding-the-peer-review-process/<a href="#fnref231" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn232"><p>https://researcheracademy.elsevier.com/navigating-peer-review/certified-peer-reviewer-course/31-write-helpful-peer-review-report<a href="#fnref232" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn233"><p>https://www.nature.com/nrmicro/for-referees/writing-your-report<a href="#fnref233" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn234"><p>https://ehp.niehs.nih.gov/reviewers/constructive-comments<a href="#fnref234" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn235"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref235" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn236"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref236" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn237"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref237" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn238"><p>https://mitcommlab.mit.edu/broad/commkit/peer-review/<a href="#fnref238" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn239"><p>https://jams.pub/blog/post/peer-review-reports<a href="#fnref239" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn240"><p>https://support.jmir.org/hc/en-us/articles/115004367848-What-does-the-peer-review-process-at-JMIR-journals-look-like<a href="#fnref240" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn241"><p>https://authorservices.wiley.com/Reviewers/journal-reviewers/how-to-perform-a-peer-review/step-by-step-guide-to-reviewing-a-manuscript.html<a href="#fnref241" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn242"><p>https://www.computer.org/publications/making-peer-review-recommendations<a href="#fnref242" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn243"><p>https://www.sciltp.com/journals/ic/forReviewers<a href="#fnref243" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn244"><p>https://editorresources.taylorandfrancis.com/reviewer-guidelines/peer-review-process/<a href="#fnref244" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn245"><p>https://blog.gatesopenresearch.org/2025/10/08/how-to-write-a-constructive-peer-review-report/<a href="#fnref245" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn246"><p>https://www.rippling.com/blog/peer-review-examples<a href="#fnref246" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn247"><p>https://servicemanual.gov.scot/quality-assurance<a href="#fnref247" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn248"><p>https://www.leapsome.com/blog/peer-review-feedback-examples<a href="#fnref248" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn249"><p>https://patthomson.net/2020/10/12/style-tone-and-grammar-native-speaker-bias-in-peer-reviews/<a href="#fnref249" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn250"><p>https://www.effy.ai/blog/360-feedback-examples<a href="#fnref250" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn251"><p>https://jalt-publications.org/articles/28481-peer-reviewing-improve-your-writing<a href="#fnref251" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn252"><p>https://www.peoplebox.ai/blog/peer-review-examples/<a href="#fnref252" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../content/general/counting_lines.html" class="pagination-link" aria-label="Counting lines">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Counting lines</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../content/general/latex.html" class="pagination-link" aria-label="Latex">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Latex</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

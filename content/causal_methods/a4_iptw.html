@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>35&nbsp; Inverse probability of treatment weighting (IPTW) with baseline covariates – Programming notes</title>
+<title>36&nbsp; Inverse probability of treatment weighting (IPTW) with baseline covariates – Programming notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -80,8 +80,6 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Programming notes</span>
     </a>
@@ -103,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_methods/summary.html">Causal methods</a></li><li class="breadcrumb-item"><a href="../../content/causal_methods/a4_iptw.html"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_methods/summary.html">Causal methods</a></li><li class="breadcrumb-item"><a href="../../content/causal_methods/a4_iptw.html"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -113,10 +111,6 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -154,38 +148,44 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../content/general/peer_review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Peer review</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../content/general/latex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Latex</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Latex</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/markdown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/machine_learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/open_science.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Open Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Open Science</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/zenodo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Zenodo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Zenodo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/general/other.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Other</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Other</span></span></a>
   </div>
 </li>
       </ul>
@@ -202,49 +202,49 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/general.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">General Python Stuff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">General Python Stuff</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/environments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python environments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python environments</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/seeds.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Seeds</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Seeds</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/simpy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">DES using SimPy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/books.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Books</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Books</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/jupyter_book.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Jupyter book</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Jupyter book</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/python/sphinx.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Sphinx</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Sphinx</span></span></a>
   </div>
 </li>
       </ul>
@@ -261,19 +261,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/r/general.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">General</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">General</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/r/packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/r/environments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Dependency management in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Dependency management in R</span></span></a>
   </div>
 </li>
       </ul>
@@ -290,13 +290,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/simulation/simulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/simulation/discrete_event.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Discrete event simulation (DES)</span></span></a>
   </div>
 </li>
       </ul>
@@ -313,43 +313,43 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/1_predict_vs_causal.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Prediction v.s. causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/2_intro_to_causality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">The three “languages” of causal inference</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/3_dags.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Directed acyclic graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/4_assumptions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Assumptions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Assumptions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/5_estimands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Causal estimands</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Causal estimands</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/6_propensity_scores.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Propensity scores</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Propensity scores</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_concepts/7_target_trial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Target trial emulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Target trial emulation</span></span></a>
   </div>
 </li>
       </ul>
@@ -366,79 +366,79 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a1_multivariable_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Multivariable regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a2_stratification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Stratification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Stratification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a3_matching.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Matching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/a4_iptw.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/b1_marginal_structural_models.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/b2_gcomputation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G-computation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G-computation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/b3_gestimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">G-estimation of structural nested models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c1_instrumental_variable.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Instrumental variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c2_regression_discontinuity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Regression discontinuity (RD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c3_interrupted_time.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Interrupted time series (ITS)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/c4_diff_in_diff.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Difference in differences (DiD)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Difference in differences (DiD)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/causal_methods/other.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Other methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Other methods</span></span></a>
   </div>
 </li>
       </ul>
@@ -453,15 +453,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#example" id="toc-example" class="nav-link active" data-scroll-target="#example"><span class="header-section-number">35.1</span> Example</a></li>
-  <li><a href="#strengths-and-limitations" id="toc-strengths-and-limitations" class="nav-link" data-scroll-target="#strengths-and-limitations"><span class="header-section-number">35.2</span> Strengths and limitations</a></li>
-  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">35.3</span> Assumptions</a></li>
-  <li><a href="#iptw-variants" id="toc-iptw-variants" class="nav-link" data-scroll-target="#iptw-variants"><span class="header-section-number">35.4</span> IPTW variants</a>
+  <li><a href="#example" id="toc-example" class="nav-link active" data-scroll-target="#example"><span class="header-section-number">36.1</span> Example</a></li>
+  <li><a href="#strengths-and-limitations" id="toc-strengths-and-limitations" class="nav-link" data-scroll-target="#strengths-and-limitations"><span class="header-section-number">36.2</span> Strengths and limitations</a></li>
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">36.3</span> Assumptions</a></li>
+  <li><a href="#iptw-variants" id="toc-iptw-variants" class="nav-link" data-scroll-target="#iptw-variants"><span class="header-section-number">36.4</span> IPTW variants</a>
   <ul class="collapse">
-  <li><a href="#weight-stabilisation" id="toc-weight-stabilisation" class="nav-link" data-scroll-target="#weight-stabilisation"><span class="header-section-number">35.4.1</span> Weight stabilisation</a></li>
-  <li><a href="#propensity-score-trimming-and-truncation" id="toc-propensity-score-trimming-and-truncation" class="nav-link" data-scroll-target="#propensity-score-trimming-and-truncation"><span class="header-section-number">35.4.2</span> Propensity score trimming and truncation</a></li>
-  <li><a href="#augmented-inverse-propensity-weighting-aipw" id="toc-augmented-inverse-propensity-weighting-aipw" class="nav-link" data-scroll-target="#augmented-inverse-propensity-weighting-aipw"><span class="header-section-number">35.4.3</span> Augmented inverse propensity weighting (AIPW)</a></li>
-  <li><a href="#excluding-treated-individuals" id="toc-excluding-treated-individuals" class="nav-link" data-scroll-target="#excluding-treated-individuals"><span class="header-section-number">35.4.4</span> Excluding treated individuals</a></li>
+  <li><a href="#weight-stabilisation" id="toc-weight-stabilisation" class="nav-link" data-scroll-target="#weight-stabilisation"><span class="header-section-number">36.4.1</span> Weight stabilisation</a></li>
+  <li><a href="#propensity-score-trimming-and-truncation" id="toc-propensity-score-trimming-and-truncation" class="nav-link" data-scroll-target="#propensity-score-trimming-and-truncation"><span class="header-section-number">36.4.2</span> Propensity score trimming and truncation</a></li>
+  <li><a href="#augmented-inverse-propensity-weighting-aipw" id="toc-augmented-inverse-propensity-weighting-aipw" class="nav-link" data-scroll-target="#augmented-inverse-propensity-weighting-aipw"><span class="header-section-number">36.4.3</span> Augmented inverse propensity weighting (AIPW)</a></li>
+  <li><a href="#excluding-treated-individuals" id="toc-excluding-treated-individuals" class="nav-link" data-scroll-target="#excluding-treated-individuals"><span class="header-section-number">36.4.4</span> Excluding treated individuals</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -469,9 +469,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_methods/summary.html">Causal methods</a></li><li class="breadcrumb-item"><a href="../../content/causal_methods/a4_iptw.html"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/causal_methods/summary.html">Causal methods</a></li><li class="breadcrumb-item"><a href="../../content/causal_methods/a4_iptw.html"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></h1>
+<h1 class="title"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Inverse probability of treatment weighting (IPTW) with baseline covariates</span></h1>
 </div>
 
 
@@ -520,8 +520,8 @@ ul.task-list li input[type="checkbox"] {
 <p>This means that larger weights go to: * Exposed individuals with a lower probability of exposure * Unexposed individuals with a higher probability of exposure</p>
 <p>Conceptually, IPTW can be considered mathematically equivalent to standardisation.</p>
 <p>As IPTW aims to balance patient characteristics in the exposed and unexposed groups, it is considered good practice to assess the <strong>standardized differences</strong> between groups for all baseline characteristics both before and after weighting. The advantage of checking standardized mean differences is that it allows for comparisons of balance across variables measured in different units. As a rule of thumb, a standardized difference of &lt;10% may be considered a negligible imbalance between groups. If the standardized differences remain too large after weighting, the propensity model should be revisited (e.g.&nbsp;by including interaction terms, transformations, splines). <a href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al.&nbsp;2022]</a></p>
-<section id="example" class="level2" data-number="35.1">
-<h2 data-number="35.1" class="anchored" data-anchor-id="example"><span class="header-section-number">35.1</span> Example</h2>
+<section id="example" class="level2" data-number="36.1">
+<h2 data-number="36.1" class="anchored" data-anchor-id="example"><span class="header-section-number">36.1</span> Example</h2>
 <ul>
 <li>Study on receiving extended-hours haemodialysis (EHD) treatment v.s. conventional HD (CHD)</li>
 <li>Want to balance distribution of diabetes - at baseline, <strong>higher % diabetes patients in CHD group</strong> than in EHD group</li>
@@ -582,20 +582,20 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="strengths-and-limitations" class="level2" data-number="35.2">
-<h2 data-number="35.2" class="anchored" data-anchor-id="strengths-and-limitations"><span class="header-section-number">35.2</span> Strengths and limitations</h2>
+<section id="strengths-and-limitations" class="level2" data-number="36.2">
+<h2 data-number="36.2" class="anchored" data-anchor-id="strengths-and-limitations"><span class="header-section-number">36.2</span> Strengths and limitations</h2>
 <p>Strengths: * (As for all propensity score-based methods) able to summarise all characteristics in a single covariate * Retains more individuals than propensity score matching * Can be used for categorical or continuous exposures (whilst matching generally compares a single treatment group with a control group) * Estimates hazard ratios with less bias than propensity score stratification or adjustment using the propensity score * Can be used in marginal structural models to correct for time-dependent confounders</p>
 <p>Limitations: * Simulation studies have shown IPTW can be no better than multivariable regression * IPTW cautioned against for sample sizes under 150 due to underestimation of the variance (i.e.&nbsp;standard error, confidence interval and P-values) of effect estimates * ‘Sensitive to misspecifications of the propensity score model, as omission of interaction effects or misspecification of functional forms of included covariates may induce imbalanced groups, biasing the effect estimate’ <a href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al.&nbsp;2022]</a> * ‘Propensity values near 0 and 1 yield extreme weights (after taking the inverse)’<a href="https://www2.stat.duke.edu/~fl35/teaching/640/Chap3.4_observational_weighting.pdf">[source]</a> - i.e.&nbsp;not recommended when propensities are small (close to 0) as weights can be unstable * ATE may not always be the sensible estimand <a href="https://www2.stat.duke.edu/~fl35/teaching/640/Chap3.4_observational_weighting.pdf">[source]</a></p>
 </section>
-<section id="assumptions" class="level2" data-number="35.3">
-<h2 data-number="35.3" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">35.3</span> Assumptions</h2>
+<section id="assumptions" class="level2" data-number="36.3">
+<h2 data-number="36.3" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">36.3</span> Assumptions</h2>
 <p>‘Treatment effects obtained using IPTW may be interpreted as causal under the following assumptions: * Exchangeability * No misspecification of the propensity score model * Positivity * Consistency’ <a href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al.&nbsp;2022]</a></p>
 </section>
-<section id="iptw-variants" class="level2" data-number="35.4">
-<h2 data-number="35.4" class="anchored" data-anchor-id="iptw-variants"><span class="header-section-number">35.4</span> IPTW variants</h2>
+<section id="iptw-variants" class="level2" data-number="36.4">
+<h2 data-number="36.4" class="anchored" data-anchor-id="iptw-variants"><span class="header-section-number">36.4</span> IPTW variants</h2>
 <p>One of the limitations described above is that propensity values near 0 and 1 yield <strong>extreme weights</strong>. This can ‘inflate the variance and confident intervals of the effect estimate. This may occur when the exposure is rare in a small subset of individuals, which subsequently receives very large weights, and thus have a disproportionate influence on the analysis.’ It’s worth considering <strong>why</strong> these individuals have such a low probability of being treatment but actually receive the treatment, or vice versa - they may be <strong>outliers</strong>. For example, ‘patients with a 100% probbaility of receiving a particular treatment would not be eligible to be randomised to both treatments’. There are variants to IPTW that attempt to address some of its limitations. <a href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al.&nbsp;2022]</a></p>
-<section id="weight-stabilisation" class="level3" data-number="35.4.1">
-<h3 data-number="35.4.1" class="anchored" data-anchor-id="weight-stabilisation"><span class="header-section-number">35.4.1</span> Weight stabilisation</h3>
+<section id="weight-stabilisation" class="level3" data-number="36.4.1">
+<h3 data-number="36.4.1" class="anchored" data-anchor-id="weight-stabilisation"><span class="header-section-number">36.4.1</span> Weight stabilisation</h3>
 <ul>
 <li>Replace ‘numerator (which is 1 in the unstabilized weights) with the <strong>crude probability of exposure</strong> (i.e.&nbsp;given by the propensity score model without covariates).’</li>
 <li>‘In case of a binary exposure, the numerator is simply the proportion of patients who were exposed. Stablised weights can therefore be calculated as:’
@@ -607,8 +607,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>In other weights, weight stabilisation invovles multiplying the unstabilised weight by the probability of the observed exposure without conditioning on the confounders, and so it the stablised weight is the ‘ratio of the unconditional probability (the numerator) to the conditional probability (the denominator)’.<a href="https://doi.org/10.2215/CJN.00650117">[Xie et al.&nbsp;2017]</a></p>
 </section>
-<section id="propensity-score-trimming-and-truncation" class="level3" data-number="35.4.2">
-<h3 data-number="35.4.2" class="anchored" data-anchor-id="propensity-score-trimming-and-truncation"><span class="header-section-number">35.4.2</span> Propensity score trimming and truncation</h3>
+<section id="propensity-score-trimming-and-truncation" class="level3" data-number="36.4.2">
+<h3 data-number="36.4.2" class="anchored" data-anchor-id="propensity-score-trimming-and-truncation"><span class="header-section-number">36.4.2</span> Propensity score trimming and truncation</h3>
 <ul>
 <li><strong>Symmetric trimming</strong> - exclude patients with a score outside [a, 1-a], with often a=0.1, so [0.1, 0.9] <a href="https://www2.stat.duke.edu/~fl35/teaching/640/Chap3.4_observational_weighting.pdf">[source]</a> - typically 1st and 99th percentiles, but lower thresholds can reduce variance <a href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al.&nbsp;2022]</a></li>
 <li><strong>Asymmetric trimming</strong> - exclude patients with a score outside the common range formed by the treated and control patients, and below the q quantile of treated and above the 1-q quantile of control</li>
@@ -616,14 +616,14 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>‘Truncating weights change the population of inference and thus this reduction in variance comes at the cost of increasing bias’. <a href="https://doi.org/10.1093%2Fckj%2Fsfab158">[Chesnaye et al.&nbsp;2022]</a></p>
 </section>
-<section id="augmented-inverse-propensity-weighting-aipw" class="level3" data-number="35.4.3">
-<h3 data-number="35.4.3" class="anchored" data-anchor-id="augmented-inverse-propensity-weighting-aipw"><span class="header-section-number">35.4.3</span> Augmented inverse propensity weighting (AIPW)</h3>
+<section id="augmented-inverse-propensity-weighting-aipw" class="level3" data-number="36.4.3">
+<h3 data-number="36.4.3" class="anchored" data-anchor-id="augmented-inverse-propensity-weighting-aipw"><span class="header-section-number">36.4.3</span> Augmented inverse propensity weighting (AIPW)</h3>
 <p>Augmented inverse propensity weighting (AIPW) involves: 1. Fitting a <strong>propensity score</strong> model (i.e.&nbsp;estimated probability of treatment assignment conditional on baseline characteristics) 2. Fit <strong>two seperate models</strong> that estimate the outcome - one under treatment and one under control 3. <strong>Weight</strong> each outcome by the propensity scores</p>
 <p>This improves on IPW to combine information about the probability of treatment and predictive information about the outcome variable. It is a <strong>doubly robust</strong> estimator / has the property of double robustnesss. This means ‘that it is consistent (i.e., it converges in probability to the true value of the parameter) for the ATE if either the propensity score model or the outcome model is correctly specified’.</p>
 <p>AIPW is more flexible as it doesn’t require the <strong>same set of covariates</strong> to be used for the propensity score model and model estimaing treatment-outcome relationship. <a href="https://doi.org/10.1177%2F0272989X211027181">[Kurz 2022]</a></p>
 </section>
-<section id="excluding-treated-individuals" class="level3" data-number="35.4.4">
-<h3 data-number="35.4.4" class="anchored" data-anchor-id="excluding-treated-individuals"><span class="header-section-number">35.4.4</span> Excluding treated individuals</h3>
+<section id="excluding-treated-individuals" class="level3" data-number="36.4.4">
+<h3 data-number="36.4.4" class="anchored" data-anchor-id="excluding-treated-individuals"><span class="header-section-number">36.4.4</span> Excluding treated individuals</h3>
 <p>Pajouheshnia et al.&nbsp;2017 propose to exclude treated individuals after IPTW - i.e.&nbsp;stratifying the sample but focussing only on untreated - so that the resulting validation set resembles the untreated target population. <a href="https://doi.org/10.1186%2Fs12874-017-0375-8">[Pajouheshnia et al.&nbsp;2017]</a> This is proposed in the context of the treatment paradox, with the intention of finding the direct effect of the exposure on outcome not mediated by treatment.</p>
 <p>In their simulation study, Pajouheshnia et al.&nbsp;2017 find that <strong>IPW alone did not improve calibration</strong> (compared to when we did nothing to account for the treatment paradox), but IPW followed by the <strong>exclusion of treated individuals</strong> provided correct estimates for calibration. IPW alone or followed by the exclusion of treated individuals improved estimates of the c-index in all scenarios where the assumptions of positivity and no unobserved confounding were met. In scenario 4, <strong>where treatment allocation was determined by a strict risk-threshold and thus the assumption of positivity was violated, IPW was ineffective, and resulted in the worst estimates of discrimination across all methods</strong>. In addition, the extreme weights calculated in scenario 4 led to very large standard errors. In scenarios 13–15, the presence of an unobserved confounder led to the failure of IPW to provide correct estimates of the c-index. Weight truncation at the 98% percentile increased precision, but was less effective in correcting of the c-index for the effects of treatment.</p>
 <p>‘Although the use of IPW prior to the exclusion of treated individuals is a promising solution in data where treatments are non-randomly allocated, it <strong>should not be used when there are severe violations of the underlying assumptions, e.g.&nbsp;in the presence of non-positivity (where some individuals had no chance of receiving treatment), or when there is an unobserved confounder, strongly associated with both the outcome and treatment use.</strong> There is thus a need to explore alternative methods to IPW to account for the effects of treatment use when validating a prognostic model in settings with non-random treatment use.’ <a href="https://doi.org/10.1186%2Fs12874-017-0375-8">[Pajouheshnia et al.&nbsp;2017]</a></p>
@@ -1036,12 +1036,12 @@ ul.task-list li input[type="checkbox"] {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../content/causal_methods/a3_matching.html" class="pagination-link" aria-label="Matching">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Matching</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Matching</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../content/causal_methods/b1_marginal_structural_models.html" class="pagination-link" aria-label="Marginal structural models (MSM)">
-        <span class="nav-page-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Marginal structural models (MSM)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
