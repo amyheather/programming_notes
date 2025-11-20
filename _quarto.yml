@@ -15,6 +15,7 @@ book:
     - content/general/peer_review.md
     - content/general/latex.md
     - content/general/markdown.md
+    - content/general/kubernetes.md
     - content/general/machine_learning.md
     - content/general/open_science.md
     - content/general/zenodo.md
