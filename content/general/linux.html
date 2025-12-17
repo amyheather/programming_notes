@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -462,6 +497,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#resize-an-image" id="toc-resize-an-image" class="nav-link active" data-scroll-target="#resize-an-image"><span class="header-section-number">2.1</span> Resize an image</a></li>
   <li><a href="#reinstall-google-chrome" id="toc-reinstall-google-chrome" class="nav-link" data-scroll-target="#reinstall-google-chrome"><span class="header-section-number">2.2</span> Reinstall google chrome</a></li>
   <li><a href="#upgrade-quarto" id="toc-upgrade-quarto" class="nav-link" data-scroll-target="#upgrade-quarto"><span class="header-section-number">2.3</span> Upgrade quarto</a></li>
+  <li><a href="#videos" id="toc-videos" class="nav-link" data-scroll-target="#videos"><span class="header-section-number">2.4</span> Videos</a></li>
   </ul>
 </nav>
     </div>
@@ -505,6 +541,13 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="2.3" class="anchored" data-anchor-id="upgrade-quarto"><span class="header-section-number">2.3</span> Upgrade quarto</h2>
 <p>Install the <code>.deb</code> file, then run e.g….</p>
 <pre><code>sudo dpkg -i quarto-1.6.40-linux-amd64.deb</code></pre>
+</section>
+<section id="videos" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="videos"><span class="header-section-number">2.4</span> Videos</h2>
+<p>Trim video length:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ffmpeg</span> <span class="at">-ss</span> 00:00:01.2 <span class="at">-i</span> vscode.webm <span class="at">-t</span> 00:00:05.5 <span class="at">-c:v</span> libvpx-vp9 <span class="at">-c:a</span> libopus vscode_crop.webm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Convert to GIF:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ffmpeg</span> <span class="at">-ss</span> 00:00:01.2 <span class="at">-i</span> vscode.webm <span class="at">-t</span> 00:00:05.5 <span class="at">-c:v</span> libvpx-vp9 <span class="at">-c:a</span> libopus vscode_crop.webm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
