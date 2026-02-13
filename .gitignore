@@ -3,3 +3,4 @@ _build/
 .vscode/
 /.quarto/
 _book/
+**/*.quarto_ipynb
